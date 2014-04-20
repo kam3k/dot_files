@@ -19,6 +19,8 @@ Bundle 'bling/vim-airline'
 " Filetype and syntax
 syntax on
 filetype plugin indent on
+" autocmd Filetype python setlocal ts=4 sts=4 sw=4
+autocmd Filetype cpp setlocal ts=2 sts=2 sw=2
 
 " Settings
 set rnu " relative numbering
