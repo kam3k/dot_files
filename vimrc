@@ -6,20 +6,18 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Vundle bundles
-Bundle 'sandeepcr529/Buffet.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
-Bundle 'jiangmiao/auto-pairs'
 Bundle 'w0ng/vim-hybrid'
-Bundle 'davidhalter/jedi-vim'
-Bundle 'ervandew/supertab'
-Bundle 'JuliaLang/julia-vim'
 Bundle 'bling/vim-airline'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'mattdbridges/bufkill.vim'
+Bundle 'Raimondi/delimitMate'
 
 " Filetype and syntax
 syntax on
 filetype plugin indent on
-" autocmd Filetype python setlocal ts=4 sts=4 sw=4
+autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype cpp setlocal ts=2 sts=2 sw=2
 
 " Settings
@@ -49,6 +47,7 @@ set laststatus=2 " always show status line
 " Appearance
 silent! colorscheme hybrid
 hi MatchParen gui=bold guifg=magenta
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
 
 " Windowing commands
 nnoremap <silent> <c-q> <c-w>q
@@ -61,8 +60,14 @@ nnoremap <silent> <leader>mk <C-W>K
 nnoremap <silent> <leader>ml <C-W>L
 nnoremap <silent> <leader>mh <C-W>H
 
-" Other remaps
+" Buffer commands
 nnoremap <c-p> <c-^>
+nnoremap <c-i> :bp<CR>
+nnoremap <c-o> :bn<CR>
+nnoremap <c-x> :BW<CR>
+
+" Other remaps
+inoremap {<CR> {<CR>}<esc>O
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 inoremap <c-enter> <esc>o
 inoremap <c-s-enter> <esc>A;<CR>
@@ -71,13 +76,6 @@ vnoremap > >gv
 noremap j gj
 noremap k gk
 noremap Y y$
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MAC ONLY
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has('mac')
-    set guifont=Menlo:h12
-endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN RELATED
@@ -89,11 +87,10 @@ let NERDTreeChDirMode = 2
 let NERDTreeIgnore = ['\.pyc$']
 let NERDTreeQuitOnOpen = 1
 
-" -- Buffet
-nnoremap <c-b> :Bufferlist<CR>
-
-" -- Supertab
-let g:SuperTabDefaultCompletionType = "<c-n>"
-
 " -- Airline
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+
+" -- YouCompleteMe
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
+let g:ycm_confirm_extra_conf = 0
