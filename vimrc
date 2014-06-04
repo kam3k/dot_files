@@ -13,6 +13,7 @@ Bundle 'bling/vim-airline'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'mattdbridges/bufkill.vim'
 Bundle 'Raimondi/delimitMate'
+Bundle 'JuliaLang/julia-vim'
 
 " Filetype and syntax
 syntax on
