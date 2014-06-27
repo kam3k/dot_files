@@ -46,7 +46,7 @@ set number " show line numbers
 set laststatus=2 " always show status line
 
 " Appearance
-silent! colorscheme hybrid
+silent! colorscheme hybrid " bundle must be installed
 hi MatchParen gui=bold guifg=magenta
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
 
