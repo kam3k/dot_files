@@ -70,6 +70,7 @@ nnoremap <c-x> :BW<CR>
 " Other remaps
 inoremap {<CR> {<CR>}<esc>O
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
+nnoremap <Leader>" o""""""<esc>hhi
 vnoremap < <gv
 vnoremap > >gv
 noremap j gj
