@@ -35,7 +35,7 @@ import ycm_core
 # compilation database set (by default, one is not set).
 # CHANGE THIS LIST OF FLAGS. YES, THIS IS THE DROID YOU HAVE BEEN LOOKING FOR.
 flags = [
-'-std=c++03',
+'-std=c++11',
 '-x',
 'c++',
 '-isystem',

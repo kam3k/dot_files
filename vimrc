@@ -94,3 +94,6 @@ let g:airline_powerline_fonts = 1
 " -- YouCompleteMe
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 let g:ycm_confirm_extra_conf = 0
+
+" -- Syntastic
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
