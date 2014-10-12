@@ -14,6 +14,7 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'mattdbridges/bufkill.vim'
 Bundle 'Raimondi/delimitMate'
 Bundle 'JuliaLang/julia-vim'
+Bundle 'justinmk/vim-sneak'
 
 " Filetype and syntax
 syntax on
@@ -48,7 +49,7 @@ set laststatus=2 " always show status line
 " Appearance
 silent! colorscheme hybrid " bundle must be installed
 hi MatchParen gui=bold guifg=magenta
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
+set guifont=Liberation\ Mono\ for\ Powerline\ 9
 
 " Windowing commands
 nnoremap <silent> <c-q> <c-w>q
