@@ -3,6 +3,7 @@
     email = m.gallant@queensu.ca
 [core]
     editor = /usr/bin/vim
+	excludesfile = /home/marc/.gitignore_global
 [alias]
     co = checkout
     cm = commit
@@ -11,5 +12,8 @@
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
     type = cat-file -t
     dump = cat-file -p
+	undo-commit = reset --soft HEAD^
 [diff]
     tool = meld
+[github]
+	user = kam3k

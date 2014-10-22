@@ -42,6 +42,8 @@ flags = [
 '/usr/include/c++/4.6',
 '-isystem',
 '/usr/include/c++/4.8',
+'-isystem',
+'/home/marc/ros/src/axis_extraction/include',
 ]
 
 
