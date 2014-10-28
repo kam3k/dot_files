@@ -3,7 +3,7 @@
 cd ~
 dir=~/dot_files
 olddir=~/dot_files_old
-files="gitconfig vimrc ycm_extra_conf.py"
+files="gitconfig vimrc"
 
 if [ -d $olddir ]; then
     echo "ERROR: $olddir already exists. Delete, move, or rename it."
