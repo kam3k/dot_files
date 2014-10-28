@@ -14,6 +14,7 @@ Bundle 'mattdbridges/bufkill.vim'
 Bundle 'Raimondi/delimitMate'
 Bundle 'JuliaLang/julia-vim'
 Bundle 'davidhalter/jedi-vim'
+Bundle 'ervandew/supertab'
 
 " Filetype and syntax
 syntax on
@@ -49,6 +50,12 @@ set laststatus=2 " always show status line
 silent! colorscheme hybrid " bundle must be installed
 hi MatchParen gui=bold guifg=magenta
 set guifont=Liberation\ Mono\ for\ Powerline\ 9
+
+" Change cursor shape between insert and normal mode in iTerm2.app
+if $TERM_PROGRAM =~ "iTerm"
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+endif
 
 " Windowing commands
 nnoremap <silent> <c-q> <c-w>q
@@ -91,9 +98,11 @@ let NERDTreeQuitOnOpen = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
-" -- YouCompleteMe
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
-let g:ycm_confirm_extra_conf = 0
-
 " -- Syntastic
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
+
+" -- SuperTab
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
+" -- jedi-vim
+let g:jedi#use_tabs_not_buffers = 0
