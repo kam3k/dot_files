@@ -10,11 +10,10 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'w0ng/vim-hybrid'
 Bundle 'bling/vim-airline'
-Bundle 'Valloric/YouCompleteMe'
 Bundle 'mattdbridges/bufkill.vim'
 Bundle 'Raimondi/delimitMate'
 Bundle 'JuliaLang/julia-vim'
-Bundle 'justinmk/vim-sneak'
+Bundle 'davidhalter/jedi-vim'
 
 " Filetype and syntax
 syntax on
