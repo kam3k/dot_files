@@ -1,8 +1,8 @@
 #!/bin/bash
 
 cd ~
-dir=~/dot_files
-olddir=~/dot_files_old
+dir=~/.dot_files
+olddir=~/.dot_files_old
 files="gitconfig vimrc"
 
 if [ -d $olddir ]; then

@@ -23,7 +23,6 @@ autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype cpp setlocal ts=2 sts=2 sw=2
 
 " Settings
-set rnu " relative numbering
 set hidden " allow unsaved buffers to be hidden
 set showmode " shows the mode (insert, visual, normal) at bottom
 set wildmenu " better ex mode with autocomplete
@@ -45,6 +44,8 @@ set softtabstop=4 " always uses spaces, never tabs
 set scrolloff=5 " scroll limit number of rows from top/bottom
 set number " show line numbers
 set laststatus=2 " always show status line
+set cursorline " highlight current line occupied by cursor
+set cursorcolumn " highlight current column occupied by cursor
 
 " Appearance
 silent! colorscheme hybrid " bundle must be installed
