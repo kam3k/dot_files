@@ -17,3 +17,5 @@
     tool = meld
 [github]
 	user = kam3k
+[push]
+	default = simple
