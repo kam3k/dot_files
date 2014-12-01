@@ -3,7 +3,6 @@
     email = m.gallant@queensu.ca
 [core]
     editor = /usr/bin/vim
-	excludesfile = /home/marc/.gitignore_global
 [alias]
     co = checkout
     cm = commit
