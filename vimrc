@@ -50,8 +50,6 @@ set cursorcolumn " highlight current column occupied by cursor
 
 " Appearance
 silent! colorscheme hybrid " bundle must be installed
-hi MatchParen gui=bold guifg=magenta
-set guifont=Liberation\ Mono\ for\ Powerline\ 9
 
 " Change cursor shape between insert and normal mode in iTerm2.app
 if $TERM_PROGRAM =~ "iTerm"
