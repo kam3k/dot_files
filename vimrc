@@ -106,3 +106,6 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " -- jedi-vim
 let g:jedi#use_tabs_not_buffers = 0
+
+" -- julia-vim
+let g:latex_to_unicode_auto = 1
