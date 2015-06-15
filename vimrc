@@ -15,6 +15,7 @@ Bundle 'Raimondi/delimitMate'
 Bundle 'JuliaLang/julia-vim'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'ervandew/supertab'
+Bundle 'djoshea/vim-autoread'
 
 " Filetype and syntax
 syntax on
@@ -109,3 +110,4 @@ let g:jedi#use_tabs_not_buffers = 0
 
 " -- julia-vim
 let g:latex_to_unicode_auto = 1
+runtime macros/matchit.vim
