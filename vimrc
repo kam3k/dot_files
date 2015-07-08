@@ -13,7 +13,6 @@ Bundle 'bling/vim-airline'
 Bundle 'mattdbridges/bufkill.vim'
 Bundle 'Raimondi/delimitMate'
 Bundle 'JuliaLang/julia-vim'
-Bundle 'davidhalter/jedi-vim'
 Bundle 'ervandew/supertab'
 Bundle 'djoshea/vim-autoread'
 
@@ -104,9 +103,6 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11'
 
 " -- SuperTab
 let g:SuperTabDefaultCompletionType = "<c-n>"
-
-" -- jedi-vim
-let g:jedi#use_tabs_not_buffers = 0
 
 " -- julia-vim
 let g:latex_to_unicode_auto = 1
