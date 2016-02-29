@@ -3,25 +3,27 @@ set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " Vundle bundles
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'w0ng/vim-hybrid'
-Bundle 'bling/vim-airline'
-Bundle 'mattdbridges/bufkill.vim'
-Bundle 'Raimondi/delimitMate'
-Bundle 'JuliaLang/julia-vim'
-Bundle 'davidhalter/jedi-vim'
-Bundle 'ervandew/supertab'
-Bundle 'djoshea/vim-autoread'
+Plugin 'scrooloose/nerdtree'
+Plugin 'w0ng/vim-hybrid'
+Plugin 'bling/vim-airline'
+Plugin 'qpkorr/vim-bufkill'
+Plugin 'Raimondi/delimitMate'
+Plugin 'JuliaLang/julia-vim'
+Plugin 'djoshea/vim-autoread'
+Plugin 'Valloric/YouCompleteMe'
+
+" -- Syntastic
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
 
 " Filetype and syntax
 syntax on
 filetype plugin indent on
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype cpp setlocal ts=2 sts=2 sw=2
+autocmd Filetype julia setlocal ts=2 sts=2 sw=2
 
 " Settings
 set shell=/bin/sh " syntastic doesn't work with fish!
@@ -75,6 +77,9 @@ nnoremap <c-i> :bp<CR>
 nnoremap <c-o> :bn<CR>
 nnoremap <c-x> :BW<CR>
 
+" Paste toggle command
+set pastetoggle=<F2>
+
 " Other remaps
 inoremap {<CR> {<CR>}<esc>O
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
@@ -98,15 +103,6 @@ let NERDTreeQuitOnOpen = 1
 " -- Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-
-" -- Syntastic
-let g:syntastic_cpp_compiler_options = ' -std=c++11'
-
-" -- SuperTab
-let g:SuperTabDefaultCompletionType = "<c-n>"
-
-" -- jedi-vim
-let g:jedi#use_tabs_not_buffers = 0
 
 " -- julia-vim
 let g:latex_to_unicode_auto = 1
