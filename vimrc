@@ -13,6 +13,7 @@ Plugin 'qpkorr/vim-bufkill'
 Plugin 'Raimondi/delimitMate'
 Plugin 'JuliaLang/julia-vim'
 Plugin 'djoshea/vim-autoread'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'Valloric/YouCompleteMe'
 
 " -- Syntastic
@@ -50,6 +51,7 @@ set number " show line numbers
 set laststatus=2 " always show status line
 set cursorline " highlight current line occupied by cursor
 set cursorcolumn " highlight current column occupied by cursor
+set updatetime=250 " 250 ms between screen updates
 
 " Appearance
 silent! colorscheme hybrid " bundle must be installed
