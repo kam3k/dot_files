@@ -55,6 +55,7 @@ set updatetime=250 " 250 ms between screen updates
 
 " Appearance
 silent! colorscheme hybrid " bundle must be installed
+set background=dark
 
 " Change cursor shape between insert and normal mode in iTerm2.app
 if $TERM_PROGRAM =~ "iTerm"
@@ -109,3 +110,6 @@ let g:airline_powerline_fonts = 1
 " -- julia-vim
 let g:latex_to_unicode_auto = 1
 runtime macros/matchit.vim
+
+" -- YouCompleteMe
+let g:ycm_confirm_extra_conf = 1
