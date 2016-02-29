@@ -16,9 +16,6 @@ Plugin 'djoshea/vim-autoread'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'Valloric/YouCompleteMe'
 
-" -- Syntastic
-let g:syntastic_cpp_compiler_options = ' -std=c++11'
-
 " Filetype and syntax
 syntax on
 filetype plugin indent on
