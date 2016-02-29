@@ -109,4 +109,4 @@ let g:latex_to_unicode_auto = 1
 runtime macros/matchit.vim
 
 " -- YouCompleteMe
-let g:ycm_confirm_extra_conf = 1
+let g:ycm_confirm_extra_conf = 0
