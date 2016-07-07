@@ -15,7 +15,6 @@ Plugin 'JuliaLang/julia-vim'
 Plugin 'djoshea/vim-autoread'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
-Plugin 'SirVer/ultisnips'
 Plugin 'Valloric/YouCompleteMe'
 
 " Filetype and syntax
@@ -112,6 +111,3 @@ runtime macros/matchit.vim
 
 " -- YouCompleteMe
 let g:ycm_confirm_extra_conf = 0
-
-" -- UltiSnips
-let g:UltiSnipsExpandTrigger = "<c-j>"
