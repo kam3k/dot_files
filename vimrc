@@ -54,11 +54,21 @@ set updatetime=250 " 250 ms between screen updates
 " Appearance
 silent! colorscheme hybrid " bundle must be installed
 set background=dark
+if $COLORTERM == 'gnome-terminal'
+    set t_Co=256
+endif
 
 " Change cursor shape between insert and normal mode in iTerm2.app
 if $TERM_PROGRAM =~ "iTerm"
     let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
     let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+endif 
+
+" Change cursor shape between insert and normal mode in gnome-terminal
+if has("autocmd")
+  au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+  au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+  au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
 endif
 
 " Windowing commands
