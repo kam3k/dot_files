@@ -8,14 +8,21 @@ fi
 # Get fontawesome
 if [ ! -f ~/.fonts/fontawesome-webfont.ttf ]; then
     curl -fLo ~/.fonts/fontawesome-webfont.ttf --create-dirs https://github.com/FortAwesome/Font-Awesome/raw/master/fonts/fontawesome-webfont.ttf
-    fc-cache -vf ~/.fonts/
 fi
 
-# Get hack (font)
-if [ ! -f ~/.fonts/Hack-Regular.ttf ]; then
-    curl -fLo ~/.fonts/Hack-Regular.ttf https://github.com/powerline/fonts/blob/master/Hack/Hack-Regular.ttf
-    fc-cache -vf ~/.fonts/
+# Get some powerline fonts
+if [ ! -f ~/.fonts/Liberation\ Mono\ Powerline.ttf ]; then
+    git clone https://github.com/powerline/fonts.git /tmp/fonts
+    cd /tmp/fonts/LiberationMono
+    cp *.ttf ~/.fonts
+    cd /tmp/fonts/Hack
+    cp *.ttf ~/.fonts
+    cd /tmp/fonts/Meslo
+    cp *.otf ~/.fonts
 fi
+
+# Refresh fonts
+fc-cache -vf ~/.fonts/
 
 # Make sure stow is installed
 hash stow 2>/dev/null || { echo "Error: stow is not installed. Please install stow first."; exit 1;}
