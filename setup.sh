@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Make sure stow is installed
+hash stow 2>/dev/null || { echo "Error: stow is not installed. Please install stow first."; exit 1;}
+
 # Install vundle
 if [ ! -d ~/.vim/bundle/vundle ]; then
     git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
@@ -23,9 +26,6 @@ fi
 
 # Refresh fonts
 fc-cache -vf ~/.fonts/
-
-# Make sure stow is installed
-hash stow 2>/dev/null || { echo "Error: stow is not installed. Please install stow first."; exit 1;}
 
 # Use stow to link dot files in home directory
 cd ~/dot_files/stow
