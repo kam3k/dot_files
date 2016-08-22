@@ -15,6 +15,7 @@ Plugin 'JuliaLang/julia-vim'
 Plugin 'djoshea/vim-autoread'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
+Plugin 'mhinz/vim-startify'
 Plugin 'Valloric/YouCompleteMe'
 
 " Filetype and syntax
