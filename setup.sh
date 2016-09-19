@@ -1,11 +1,14 @@
 #!/bin/bash
 
+# Get directory of this script
+export SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+
 # Make sure stow is installed
 hash stow 2>/dev/null || { echo "Error: stow is not installed. Please install stow first."; exit 1;}
 
-# Install vundle
-if [ ! -d ~/.vim/bundle/vundle ]; then
-    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+# Install vim-plug
+if [ ! -f ~/.vim/autoload/plug.vim ]; then
+	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
 # Get fontawesome
@@ -28,7 +31,7 @@ fi
 fc-cache -vf ~/.fonts/
 
 # Use stow to link dot files in home directory
-cd ~/dot_files/stow
+cd $SCRIPT_DIR/stow
 for app in */; do
-	stow -t ${HOME} $app
+    stow -t ${HOME} $app
 done;

@@ -1,22 +1,22 @@
-" The below is required for Vundle
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
-Plugin 'gmarik/vundle'
-
-" Vundle bundles
-Plugin 'scrooloose/nerdtree'
-Plugin 'w0ng/vim-hybrid'
-Plugin 'bling/vim-airline'
-Plugin 'qpkorr/vim-bufkill'
-Plugin 'Raimondi/delimitMate'
-Plugin 'JuliaLang/julia-vim'
-Plugin 'djoshea/vim-autoread'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'mhinz/vim-startify'
-Plugin 'Valloric/YouCompleteMe'
+call plug#begin('~/.vim/plugged')
+Plug 'scrooloose/nerdtree'
+Plug 'w0ng/vim-hybrid'
+Plug 'bling/vim-airline'
+Plug 'qpkorr/vim-bufkill'
+Plug 'Raimondi/delimitMate'
+Plug 'JuliaLang/julia-vim'
+Plug 'djoshea/vim-autoread'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-startify'
+Plug 'Valloric/YouCompleteMe'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'rhysd/vim-clang-format'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'derekwyatt/vim-fswitch'
+call plug#end()
 
 " Filetype and syntax
 syntax on
@@ -65,15 +65,8 @@ if $TERM_PROGRAM =~ "iTerm"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif 
 
-" Change cursor shape between insert and normal mode in gnome-terminal
-if has("autocmd")
-  au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-  au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-  au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-endif
-
 " Windowing commands
-nnoremap <silent> <c-q> <c-w>q
+nnoremap <silent> <leader>q :bd<CR>
 nnoremap <silent> <c-j> <c-w>j
 nnoremap <silent> <c-k> <c-w>k
 nnoremap <silent> <c-l> <c-w>l
@@ -82,15 +75,20 @@ nnoremap <silent> <leader>mj <C-W>J
 nnoremap <silent> <leader>mk <C-W>K
 nnoremap <silent> <leader>ml <C-W>L
 nnoremap <silent> <leader>mh <C-W>H
+nnoremap <silent> <leader>nj :below new<CR>
+nnoremap <silent> <leader>nk :above new<CR>
+nnoremap <silent> <leader>nl :rightbelow vnew<CR>
+nnoremap <silent> <leader>nh :leftabove vnew<CR>
 
 " Buffer commands
 nnoremap <c-p> <c-^>
 nnoremap <c-i> :bp<CR>
 nnoremap <c-o> :bn<CR>
-nnoremap <c-x> :BW<CR>
+nnoremap <leader>x :BW!<CR>
+nnoremap <leader>X :bw<CR>
 
 " Paste toggle command
-set pastetoggle=<F2>
+set pastetoggle=<leader>p
 
 " Other remaps
 inoremap {<CR> {<CR>}<esc>O
@@ -101,6 +99,14 @@ vnoremap > >gv
 noremap j gj
 noremap k gk
 noremap Y y$
+
+" Don't automatically start a new comment on next line
+inoremap <expr> <enter> getline('.') =~ '^\s*//' ? '<enter><esc>S' : '<enter>'
+nnoremap <expr> O getline('.') =~ '^\s*//' ? 'O<esc>S' : 'O'
+nnoremap <expr> o getline('.') =~ '^\s*//' ? 'o<esc>S' : 'o'
+
+" To access UltiSnips directory with custom snippets
+set rtp+=~/DotFiles
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN RELATED
@@ -122,3 +128,38 @@ runtime macros/matchit.vim
 
 " -- YouCompleteMe
 let g:ycm_confirm_extra_conf = 0
+nnoremap <F2> :YcmCompleter GoTo<CR>
+nnoremap <F3> :YcmCompleter GetType<CR>
+nnoremap <F4> :YcmCompleter FixIt<CR>
+
+" -- fzf
+nnoremap <leader><space> :Files<CR>
+nnoremap <leader><Tab> :Buffers<CR>
+
+" -- clang-format
+let g:clang_format#detect_style_file = 1
+nnoremap <leader>c :ClangFormat<CR>
+
+" -- vim-startify
+let g:startify_change_to_dir = 0
+
+" -- Ultisnips
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-n>"
+
+" -- vim-fswitch
+nmap <silent> <Leader>ff :FSHere<cr>
+nmap <silent> <Leader>fl :FSRight<cr>
+nmap <silent> <Leader>fh :FSLeft<cr>
+nmap <silent> <Leader>fL :FSSplitRight<cr>
+nmap <silent> <Leader>fH :FSSplitLeft<cr>
+augroup fswitch_cpp
+   au!
+   au BufEnter *.h let b:fswitchdst  = 'cpp,hpp,cc,c'
+   au BufEnter *.h let b:fswitchlocs = 'reg:/include/src/,reg:/include.*/src/,../src,reg:|include/\w\+|src|,impl'
+   au BufEnter *.cpp let b:fswitchdst  = 'hpp,h'
+   au BufEnter *.cpp let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/**|,../include,reg:|src/\(\w\+\)/src|src/\1/include/**|'
+   au BufEnter *.hpp let b:fswitchdst  = 'h,cpp'
+   au BufEnter *.hpp let b:fswitchlocs = 'reg:/include/src/,reg:/include.*/src/,../src,..'
+augroup END
