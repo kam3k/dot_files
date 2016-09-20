@@ -35,3 +35,6 @@ cd $SCRIPT_DIR/stow
 for app in */; do
     stow -t ${HOME} $app
 done;
+
+# Set terminal colours to hybrid
+/bin/bash $SCRIPT_DIR/hybrid.sh
