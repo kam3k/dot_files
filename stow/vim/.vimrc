@@ -81,19 +81,15 @@ nnoremap <silent> <leader>nl :rightbelow vnew<CR>
 nnoremap <silent> <leader>nh :leftabove vnew<CR>
 
 " Buffer commands
-nnoremap <c-p> <c-^>
-nnoremap <c-i> :bp<CR>
-nnoremap <c-o> :bn<CR>
+nnoremap <c-p> :bp<CR>
+nnoremap <c-n> :bn<CR>
 nnoremap <leader>x :BW!<CR>
-nnoremap <leader>X :bw<CR>
 
 " Paste toggle command
 set pastetoggle=<leader>p
 
 " Other remaps
 inoremap {<CR> {<CR>}<esc>O
-nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
-nnoremap <Leader>" o""""""<esc>hhi
 vnoremap < <gv
 vnoremap > >gv
 noremap j gj
