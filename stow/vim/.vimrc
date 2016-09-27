@@ -122,6 +122,9 @@ let g:airline_powerline_fonts = 1
 let g:latex_to_unicode_auto = 1
 runtime macros/matchit.vim
 
+" -- vim-fugitive
+nnoremap <leader>g :Gblame<CR>
+
 " -- YouCompleteMe
 let g:ycm_confirm_extra_conf = 0
 nnoremap <F2> :YcmCompleter GoTo<CR>
