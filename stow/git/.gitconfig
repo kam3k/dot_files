@@ -14,6 +14,7 @@
     dump = cat-file -p
     undo-commit = reset --soft HEAD^
     d = difftool
+    dd = difftool --dir-diff
 [github]
     user = kam3k
 [push]
