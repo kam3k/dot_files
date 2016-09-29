@@ -13,7 +13,12 @@
     type = cat-file -t
     dump = cat-file -p
     undo-commit = reset --soft HEAD^
+    d = difftool
 [github]
     user = kam3k
 [push]
     default = simple
+[diff]
+    tool = meld
+[difftool]
+    prompt = false

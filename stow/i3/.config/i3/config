@@ -161,6 +161,9 @@ bindsym XF86AudioPrev exec playerctl previous
 # Disable trackpad when typing
 # exec_always syndaemon -k -i 0.15 -d
 
+# meld always fullscreen
+for_window [class="Meld"] fullscreen
+
 # Set wallpaper
 exec_always feh --bg-scale /home/mgallant/Pictures/wallpapers/stars.jpg
 
