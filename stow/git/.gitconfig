@@ -15,6 +15,7 @@
     undo-commit = reset --soft HEAD^
     d = difftool
     dd = difftool --dir-diff
+    m = mergetool
 [github]
     user = kam3k
 [push]
@@ -22,4 +23,9 @@
 [diff]
     tool = meld
 [difftool]
+    prompt = false
+[merge]
+    tool = meld
+[mergetool]
+    cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
     prompt = false
