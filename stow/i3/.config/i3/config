@@ -44,7 +44,7 @@ bindsym $mod+Shift+f floating toggle
 # Toggle the scratchpad
 bindsym $mod+minus scratchpad show
 
-set $workspace1 "1: "
+set $workspace1 "1: "
 set $workspace2 "2: "
 set $workspace3 "3: "
 
@@ -77,9 +77,9 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # start applications
-exec --no-startup-id i3-msg 'workspace $workspace1; exec firefox'
+exec --no-startup-id i3-msg 'workspace $workspace1; exec google-chrome'
 exec --no-startup-id i3-msg 'workspace $workspace2; exec gnome-terminal'
-exec --no-startup-id i3-msg 'workspace $workspace3; exec gnome-terminal -e vim'
+exec --no-startup-id i3-msg 'workspace $workspace3; exec gvim'
 exec gnome-terminal --disable-factory --class=scratch
 for_window [class="scratch"] move scratchpad
 for_window [class="scratch"] border pixel 1
