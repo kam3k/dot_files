@@ -23,3 +23,6 @@ alias ebt='ninja run_tests && catkin_test_results --verbose test_results'
 [ -f ~/workspace/devel/setup.zsh ] && source ~/workspace/devel/setup.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# from John to fix issue building with ccache
+export CCACHE_CPP2=true

@@ -1,7 +1,8 @@
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
-Plug 'w0ng/vim-hybrid'
+Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'qpkorr/vim-bufkill'
 Plug 'Raimondi/delimitMate'
 Plug 'JuliaLang/julia-vim'
@@ -16,14 +17,14 @@ Plug 'rhysd/vim-clang-format'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'derekwyatt/vim-fswitch'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
 call plug#end()
 
 " Filetype and syntax
 syntax on
 filetype plugin indent on
-autocmd Filetype python setlocal ts=4 sts=4 sw=4
-autocmd Filetype cpp setlocal ts=2 sts=2 sw=2
-autocmd Filetype julia setlocal ts=2 sts=2 sw=2
 
 " Settings
 set shell=/bin/sh " syntastic doesn't work with fish!
@@ -53,21 +54,26 @@ set cursorcolumn " highlight current column occupied by cursor
 set updatetime=250 " 250 ms between screen updates
 
 " Appearance
-silent! colorscheme hybrid " bundle must be installed
 set background=dark
 if $COLORTERM == 'gnome-terminal'
     set t_Co=256
 endif
-
-" Highlight past column 80
-let &colorcolumn=join(range(81,999),",")
-highlight ColorColumn ctermbg=235
+silent! colorscheme Tomorrow-Night-Eighties " bundle must be installed
 
 " Change cursor shape between insert and normal mode in iTerm2.app
 if $TERM_PROGRAM =~ "iTerm"
     let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
     let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif 
+
+" GUI font/look
+if has("gui_running")
+   set guifont=Hack\ 15
+   set guioptions-=m " remove menu bar
+   set guioptions-=T " remove toolbar
+   set guioptions-=r " remove right-hand scroll bar
+   set guioptions-=L " remove left-hand scroll bar
+endif
 
 " Windowing commands
 nnoremap <silent> <leader>q :bd<CR>
@@ -99,6 +105,7 @@ vnoremap > >gv
 noremap j gj
 noremap k gk
 noremap Y y$
+nnoremap <leader>ag :Ag<space>
 
 " Don't automatically start a new comment on next line
 inoremap <expr> <enter> getline('.') =~ '^\s*//' ? '<enter><esc>S' : '<enter>'
@@ -121,6 +128,9 @@ let NERDTreeQuitOnOpen = 1
 " -- Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_section_warning = ''
+let g:airline_theme='tomorrow'
 
 " -- julia-vim
 let g:latex_to_unicode_auto = 1
@@ -166,3 +176,6 @@ augroup fswitch_cpp
    au BufEnter *.hpp let b:fswitchdst  = 'h,cpp'
    au BufEnter *.hpp let b:fswitchlocs = 'reg:/include/src/,reg:/include.*/src/,../src,..'
 augroup END
+
+" -- vim-cpp-enhanced-highlight
+let g:cpp_class_scope_highlight = 1

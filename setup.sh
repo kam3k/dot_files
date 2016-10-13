@@ -25,6 +25,8 @@ if [ ! -f ~/.fonts/Liberation\ Mono\ Powerline.ttf ]; then
     cp *.ttf ~/.fonts
     cd /tmp/fonts/Meslo
     cp *.otf ~/.fonts
+    cd /tmp/fonts/FiraMono
+    cp *.otf ~/.fonts
 fi
 
 # Refresh fonts
@@ -36,5 +38,5 @@ for app in */; do
     stow -t ${HOME} $app
 done;
 
-# Set terminal colours to hybrid
-/bin/bash $SCRIPT_DIR/hybrid.sh
+# Set terminal colours to tomorrow night eighties
+wget -O xt  http://git.io/v3DRI && chmod +x xt && ./xt && rm xt
