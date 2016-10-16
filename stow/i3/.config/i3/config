@@ -79,7 +79,7 @@ bindsym $mod+Shift+0 move container to workspace 10
 # start applications
 exec --no-startup-id i3-msg 'workspace $workspace1; exec google-chrome'
 exec --no-startup-id i3-msg 'workspace $workspace2; exec gnome-terminal'
-exec --no-startup-id i3-msg 'workspace $workspace3; exec gvim'
+exec --no-startup-id i3-msg 'workspace $workspace3; exec gnome-terminal -e vim'
 exec gnome-terminal --disable-factory --class=scratch
 for_window [class="scratch"] move scratchpad
 for_window [class="scratch"] border pixel 1
