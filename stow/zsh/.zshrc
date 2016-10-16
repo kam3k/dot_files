@@ -6,7 +6,7 @@ plugins=(git z)
 
 source $ZSH/oh-my-zsh.sh
 
-setxkbmap -option ctrl:nocaps # Caps to control
+setxkbmap -layout us -option caps:escape
 
 export CCACHE_CPP2=true # required for ADTF
 
