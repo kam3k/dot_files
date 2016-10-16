@@ -20,11 +20,17 @@ Plug 'derekwyatt/vim-fswitch'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
+Plug 'lyuts/vim-rtags'
+Plug 'unblevable/quick-scope'
+Plug 'mrtazz/DoxygenToolkit.vim'
 call plug#end()
 
 " Filetype and syntax
 syntax on
 filetype plugin indent on
+autocmd Filetype python setlocal ts=4 sts=4 sw=4
+autocmd Filetype cpp setlocal ts=2 sts=2 sw=2
+autocmd Filetype julia setlocal ts=2 sts=2 sw=2
 
 " Settings
 set shell=/bin/sh " syntastic doesn't work with fish!
@@ -48,6 +54,7 @@ set autoindent " automatically indent previous line's indent
 set softtabstop=4 " always uses spaces, never tabs
 set scrolloff=5 " scroll limit number of rows from top/bottom
 set number " show line numbers
+set relativenumber " line numbers relative to cursor
 set laststatus=2 " always show status line
 set cursorline " highlight current line occupied by cursor
 set cursorcolumn " highlight current column occupied by cursor
@@ -141,6 +148,8 @@ nnoremap <leader>g :Gblame<CR>
 
 " -- YouCompleteMe
 let g:ycm_confirm_extra_conf = 0
+let g:ycm_show_diagnostics_ui = 1
+let g:ycm_enable_diagnostic_highlighting = 0
 nnoremap <F2> :YcmCompleter GoTo<CR>
 nnoremap <F3> :YcmCompleter GetType<CR>
 nnoremap <F4> :YcmCompleter FixIt<CR>
@@ -148,6 +157,7 @@ nnoremap <F4> :YcmCompleter FixIt<CR>
 " -- fzf
 nnoremap <leader><space> :Files<CR>
 nnoremap <leader><Tab> :Buffers<CR>
+let g:fzf_layout = { 'down': '~40%' }
 
 " -- clang-format
 let g:clang_format#detect_style_file = 1
@@ -162,11 +172,11 @@ let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-n>"
 
 " -- vim-fswitch
-nmap <silent> <Leader>ff :FSHere<cr>
-nmap <silent> <Leader>fl :FSRight<cr>
-nmap <silent> <Leader>fh :FSLeft<cr>
-nmap <silent> <Leader>fL :FSSplitRight<cr>
-nmap <silent> <Leader>fH :FSSplitLeft<cr>
+nmap <silent> <leader>ff :FSHere<CR>
+nmap <silent> <leader>fl :FSRight<CR>
+nmap <silent> <leader>fh :FSLeft<CR>
+nmap <silent> <leader>fL :FSSplitRight<CR>
+nmap <silent> <leader>fH :FSSplitLeft<CR>
 augroup fswitch_cpp
    au!
    au BufEnter *.h let b:fswitchdst  = 'cpp,hpp,cc,c'
@@ -179,3 +189,6 @@ augroup END
 
 " -- vim-cpp-enhanced-highlight
 let g:cpp_class_scope_highlight = 1
+
+" -- DoxygenToolkit.vim
+nnoremap <leader>d :Dox<CR>
