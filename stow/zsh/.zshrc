@@ -26,3 +26,10 @@ alias ebt='ninja run_tests && catkin_test_results --verbose test_results'
 
 # from John to fix issue building with ccache
 export CCACHE_CPP2=true
+
+# Make and change into a directory
+mkcd()
+{
+	mkdir -p -- "$1" &&
+	cd -P -- "$1"
+}
