@@ -5,7 +5,6 @@ Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'qpkorr/vim-bufkill'
 Plug 'Raimondi/delimitMate'
-Plug 'JuliaLang/julia-vim'
 Plug 'djoshea/vim-autoread'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -21,8 +20,8 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'lyuts/vim-rtags'
-Plug 'unblevable/quick-scope'
 Plug 'mrtazz/DoxygenToolkit.vim'
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 " Filetype and syntax
@@ -30,7 +29,6 @@ syntax on
 filetype plugin indent on
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype cpp setlocal ts=2 sts=2 sw=2
-autocmd Filetype julia setlocal ts=2 sts=2 sw=2
 
 " Settings
 set shell=/bin/sh " syntastic doesn't work with fish!
@@ -72,15 +70,6 @@ if $TERM_PROGRAM =~ "iTerm"
     let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
     let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif 
-
-" GUI font/look
-if has("gui_running")
-   set guifont=Hack\ 15
-   set guioptions-=m " remove menu bar
-   set guioptions-=T " remove toolbar
-   set guioptions-=r " remove right-hand scroll bar
-   set guioptions-=L " remove left-hand scroll bar
-endif
 
 " Windowing commands
 nnoremap <silent> <leader>q :bd<CR>
@@ -138,10 +127,6 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_section_warning = ''
 let g:airline_theme='tomorrow'
-
-" -- julia-vim
-let g:latex_to_unicode_auto = 1
-runtime macros/matchit.vim
 
 " -- vim-fugitive
 nnoremap <leader>g :Gblame<CR>
