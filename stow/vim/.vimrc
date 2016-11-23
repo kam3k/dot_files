@@ -1,11 +1,10 @@
 call plug#begin('~/.vim/plugged')
+Plug 'w0ng/vim-hybrid'
 Plug 'scrooloose/nerdtree'
-Plug 'chriskempson/vim-tomorrow-theme'
-Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'bling/vim-airline'
 Plug 'qpkorr/vim-bufkill'
 Plug 'Raimondi/delimitMate'
-Plug 'JuliaLang/julia-vim'
 Plug 'djoshea/vim-autoread'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -14,15 +13,14 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'rhysd/vim-clang-format'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'derekwyatt/vim-fswitch'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'lyuts/vim-rtags'
-Plug 'unblevable/quick-scope'
 Plug 'mrtazz/DoxygenToolkit.vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'edkolev/tmuxline.vim'
 call plug#end()
 
 " Filetype and syntax
@@ -30,7 +28,6 @@ syntax on
 filetype plugin indent on
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype cpp setlocal ts=2 sts=2 sw=2
-autocmd Filetype julia setlocal ts=2 sts=2 sw=2
 
 " Settings
 set shell=/bin/sh " syntastic doesn't work with fish!
@@ -56,31 +53,14 @@ set scrolloff=5 " scroll limit number of rows from top/bottom
 set number " show line numbers
 set relativenumber " line numbers relative to cursor
 set laststatus=2 " always show status line
-set cursorline " highlight current line occupied by cursor
-set cursorcolumn " highlight current column occupied by cursor
 set updatetime=250 " 250 ms between screen updates
 
 " Appearance
-set background=dark
 if $COLORTERM == 'gnome-terminal'
-    set t_Co=256
+  set t_Co=256
 endif
-silent! colorscheme Tomorrow-Night-Eighties " bundle must be installed
-
-" Change cursor shape between insert and normal mode in iTerm2.app
-if $TERM_PROGRAM =~ "iTerm"
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
-endif 
-
-" GUI font/look
-if has("gui_running")
-   set guifont=Hack\ 15
-   set guioptions-=m " remove menu bar
-   set guioptions-=T " remove toolbar
-   set guioptions-=r " remove right-hand scroll bar
-   set guioptions-=L " remove left-hand scroll bar
-endif
+colorscheme hybrid
+set background=dark
 
 " Windowing commands
 nnoremap <silent> <leader>q :bd<CR>
@@ -119,9 +99,6 @@ inoremap <expr> <enter> getline('.') =~ '^\s*//' ? '<enter><esc>S' : '<enter>'
 nnoremap <expr> O getline('.') =~ '^\s*//' ? 'O<esc>S' : 'O'
 nnoremap <expr> o getline('.') =~ '^\s*//' ? 'o<esc>S' : 'o'
 
-" To access UltiSnips directory with custom snippets
-set rtp+=~/DotFiles
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN RELATED
 """""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -137,11 +114,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_section_warning = ''
-let g:airline_theme='tomorrow'
-
-" -- julia-vim
-let g:latex_to_unicode_auto = 1
-runtime macros/matchit.vim
+let g:airline_theme = 'hybrid'
 
 " -- vim-fugitive
 nnoremap <leader>g :Gblame<CR>
@@ -166,11 +139,6 @@ nnoremap <leader>c :ClangFormat<CR>
 " -- vim-startify
 let g:startify_change_to_dir = 0
 
-" -- Ultisnips
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-n>"
-
 " -- vim-fswitch
 nmap <silent> <leader>ff :FSHere<CR>
 nmap <silent> <leader>fl :FSRight<CR>
@@ -192,3 +160,6 @@ let g:cpp_class_scope_highlight = 1
 
 " -- DoxygenToolkit.vim
 nnoremap <leader>d :Dox<CR>
+
+" -- tmuxline
+let g:tmuxline_preset = 'minimal'
