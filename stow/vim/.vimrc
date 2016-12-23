@@ -140,6 +140,7 @@ nnoremap <leader>c :ClangFormat<CR>
 
 " -- vim-startify
 let g:startify_change_to_dir = 0
+nnoremap <leader>s :Startify<CR>
 
 " -- vim-fswitch
 nmap <silent> <leader>ff :FSHere<CR>
