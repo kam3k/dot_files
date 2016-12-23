@@ -8,7 +8,7 @@ hash stow 2>/dev/null || { echo "Error: stow is not installed. Please install st
 
 # Install vim-plug
 if [ ! -f ~/.vim/autoload/plug.vim ]; then
-	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
 # Get fontawesome
@@ -18,6 +18,7 @@ fi
 
 # Get Hack
 if [ ! -f ~/.fonts/Hack-Regular.ttf ]; then
+    echo "Hack download not setup yet."
 fi
 
 # Refresh fonts
