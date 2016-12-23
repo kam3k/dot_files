@@ -13,7 +13,7 @@ floating_modifier $mod
 bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # change focus
 bindsym $mod+h focus left
@@ -47,9 +47,9 @@ bindsym $mod+Shift+f floating toggle
 # Toggle the scratchpad
 bindsym $mod+minus scratchpad show
 
-set $workspace1 "1: "
+set $workspace1 "1: "
 set $workspace2 "2: "
-set $workspace3 "3: "
+set $workspace3 "3: "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -80,9 +80,7 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # start applications
-exec --no-startup-id i3-msg 'workspace $workspace1; exec chromium-browser'
-exec --no-startup-id i3-msg 'workspace $workspace2; exec gnome-terminal'
-exec --no-startup-id i3-msg 'workspace $workspace3; exec gnome-terminal -e vim'
+exec --no-startup-id i3-msg 'workspace $workspace1; exec firefox; workspace $workspace2; exec gnome-terminal; workspace $workspace3; exec "spotify --force-device-scale-factor=1.5"'
 exec gnome-terminal --disable-factory --class=scratch
 for_window [class="scratch"] move scratchpad
 for_window [class="scratch"] border pixel 1
@@ -125,15 +123,16 @@ set $blue                #3399ff
 client.focused          $bg-color           $blue              $text-color          #00ff00
 client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
 client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
-client.urgent   		$urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+client.urgent       	$urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+    position bottom
     status_command i3blocks -c ~/.config/i3/i3blocks.conf
 	colors {
 		background $bg-color
-	    separator #757575
+		separator #757575
 		#                  border             background         text
 		focused_workspace  $bg-color          $bg-color          $text-color
 		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
