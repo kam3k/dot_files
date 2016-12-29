@@ -8,8 +8,6 @@ source $ZSH/oh-my-zsh.sh
 
 setxkbmap -layout us -option caps:escape
 
-export CCACHE_CPP2=true # required for ADTF
-
 # Set ccache to use distcc if distcc is available:
 if type distcc > /dev/null; then
   export CCACHE_PREFIX="distcc"
@@ -29,7 +27,6 @@ alias tmux='tmux -2'
 
 # Source ROS setup
 [ -f /opt/ros/indigo/setup.zsh ] && source /opt/ros/indigo/setup.zsh
-[ -f ~/workspace/devel/setup.zsh ] && source ~/workspace/devel/setup.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
