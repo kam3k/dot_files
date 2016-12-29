@@ -1,7 +1,8 @@
 # command key on Mac keyboards
 set $mod Mod1
 
-font pango:Hack 17
+# font
+font pango:Roboto 17
 
 # Hide title bars
 new_window 1pixel
@@ -111,16 +112,16 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $bg-color 	         #2f343f
-set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
-set $blue                #3399ff
+set $bg-color 	         #282a36
+set $inactive-bg-color   #282a36
+set $text-color          #f8f8f2
+set $inactive-text-color #6272a4
+set $urgent-bg-color     #ff5555
+set $purple              #bd93f9
 
 # window colors
 #                       border              background         text                 indicator
-client.focused          $bg-color           $blue              $text-color          #00ff00
+client.focused          $bg-color           $purple            $text-color          #00ff00
 client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
 client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
 client.urgent       	$urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
@@ -130,14 +131,15 @@ client.urgent       	$urgent-bg-color    $urgent-bg-color   $text-color         
 bar {
     position bottom
     status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	colors {
-		background $bg-color
-		separator #757575
-		#                  border             background         text
-		focused_workspace  $bg-color          $bg-color          $text-color
-		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-	}
+    strip_workspace_numbers yes
+    colors {
+	background $bg-color
+	separator #757575
+	#                  border             background         text
+	focused_workspace  $bg-color          $bg-color          $text-color
+	inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+	urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+    }
 }
 
 # lock screen
@@ -149,7 +151,7 @@ bindsym XF86AudioRaiseVolume exec pactl -- set-sink-volume @DEFAULT_SINK@ +8%; e
 bindsym XF86AudioLowerVolume exec pactl -- set-sink-volume @DEFAULT_SINK@ -8%; exec pactl -- set-sink-mute @DEFAULT_SINK@ 0
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
-# Sreen brightness controls
+# Screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
@@ -166,14 +168,15 @@ bindsym XF86AudioPrev exec playerctl previous
 for_window [class="Meld"] fullscreen
 
 # Set wallpaper
-exec_always feh --bg-scale /home/mgallant/Pictures/wallpapers/stars.jpg
+exec_always feh --bg-scale /home/mgallant/Pictures/wallpapers/blurry_nature.jpg
 
 # rofi
-bindsym $mod+space exec rofi -show run -fg "#f1f1f1" -bg "$bg-color" -hlfg "#ffffff" -hlbg "#336699" -o 85 -lines 5 -bw 0 -font "Hack 17"
-bindsym $mod+shift+space exec rofi -show window -fg "#f1f1f1" -bg "$bg-color" -hlfg "#ffffff" -hlbg "#336699" -o 85 -lines 10 -bw 0 -font "Hack 17"
+bindsym $mod+space exec rofi -modi drun -show drun -fg "$text-color" -bg "$bg-color" -hlfg "$text-color" -hlbg "$inactive-text-color" -o 85 -lines 5 -bw 0 -font "Roboto 17"
+bindsym $mod+shift+space exec rofi -show window -fg "$text-color" -bg "$bg-color" -hlfg "$text-color" -hlbg "$inactive-text-color" -o 85 -lines 5 -bw 0 -font "Roboto 17"
 
-# compton
-exec --no-startup-id compton -f
+# gaps
+smart_borders on
+gaps inner 40
 
 # nm-applet
 exec --no-startup-id nm-applet
