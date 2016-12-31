@@ -21,6 +21,7 @@ Plug 'lyuts/vim-rtags'
 Plug 'mrtazz/DoxygenToolkit.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
+Plug 'tpope/vim-obsession'
 call plug#end()
 
 " Filetype and syntax
