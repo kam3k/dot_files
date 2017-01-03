@@ -1,0 +1,48 @@
+[global]
+    font = "Roboto 17"
+    allow_markup = yes
+    format = "<b>%s</b> | <i>%b</i> | %a"
+    sort = yes
+    indicate_hidden = yes
+    alignment = center
+    bounce_freq = 0
+    show_age_threshold = 30
+    word_wrap = yes
+    ignore_newline = no
+    geometry = "x5+0-30"
+    transparency = 0
+    idle_threshold = 1800
+    monitor = 0
+    follow = keyboard
+    sticky_history = yes
+    line_height = 0
+    separator_height = 2
+    padding = 10
+    horizontal_padding = 10
+    separator_color = "#585858"
+    startup_notification = false
+
+[frame]
+    width = 0
+    color = "#383838"
+
+[shortcuts]
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    history = ctrl+grave
+    context = ctrl+shift+period
+
+[urgency_low]
+    background = "#282a36"
+    foreground = "#f8f8f2"
+    timeout = 0
+
+[urgency_normal]
+    background = "#282a36"
+    foreground = "#f8f8f2"
+    timeout = 0
+
+[urgency_critical]
+    background = "#282a36"
+    foreground = "#f8f8f2"
+    timeout = 0

@@ -181,5 +181,9 @@ gaps inner 40
 # nm-applet
 exec --no-startup-id nm-applet
 
+# use dunst for notifications
+exec killall -q notify-osd
+exec --no-startup-id dunst
+
 # make QView float
 for_window [class="Qview"] floating enable
