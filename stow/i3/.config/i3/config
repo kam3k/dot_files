@@ -186,4 +186,7 @@ exec killall -q notify-osd
 exec --no-startup-id dunst
 
 # make QView float
-for_window [class="Qview"] floating enable
+for_window [class="Quanergy_qview_gui"] floating enable
+
+# put monitor to left of laptop
+exec --no-startup-id xrandr --output DP-3 --auto --left-of DP-2
