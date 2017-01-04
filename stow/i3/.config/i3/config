@@ -2,7 +2,7 @@
 set $mod Mod1
 
 # font
-font pango:Roboto 17
+font pango:Roboto 18
 
 # Hide title bars
 new_window 1pixel
@@ -171,8 +171,8 @@ for_window [class="Meld"] fullscreen
 exec_always feh --bg-scale /home/mgallant/Pictures/wallpapers/blurry_nature.jpg
 
 # rofi
-bindsym $mod+space exec rofi -modi drun -show drun -fg "$text-color" -bg "$bg-color" -hlfg "$text-color" -hlbg "$inactive-text-color" -o 85 -lines 5 -bw 0 -font "Roboto 17"
-bindsym $mod+shift+space exec rofi -show window -fg "$text-color" -bg "$bg-color" -hlfg "$text-color" -hlbg "$inactive-text-color" -o 85 -lines 5 -bw 0 -font "Roboto 17"
+bindsym $mod+space exec rofi -modi drun -show drun -fg "$text-color" -bg "$bg-color" -hlfg "$text-color" -hlbg "$inactive-text-color" -o 85 -lines 5 -bw 0 -font "Roboto 18"
+bindsym $mod+shift+space exec rofi -show window -fg "$text-color" -bg "$bg-color" -hlfg "$text-color" -hlbg "$inactive-text-color" -o 85 -lines 5 -bw 0 -font "Roboto 18"
 
 # gaps
 smart_borders on
