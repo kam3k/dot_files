@@ -46,7 +46,3 @@
     background = "#ff5555"
     foreground = "#f8f8f2"
     timeout = 0
-
-[spotify]
-    summary = "*"
-    format = ""
