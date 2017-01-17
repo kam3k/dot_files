@@ -51,12 +51,13 @@ bindsym $mod+minus scratchpad show
 set $workspace1 "1: "
 set $workspace2 "2: "
 set $workspace3 "3: "
+set $workspace4 "4: "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
-bindsym $mod+4 workspace 4
+bindsym $mod+4 workspace $workspace4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
@@ -72,7 +73,7 @@ bindsym $mod+o workspace next
 bindsym $mod+Shift+1 move container to workspace $workspace1
 bindsym $mod+Shift+2 move container to workspace $workspace2
 bindsym $mod+Shift+3 move container to workspace $workspace3
-bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+4 move container to workspace $workspace4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
@@ -81,7 +82,7 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # start applications
-exec --no-startup-id i3-msg 'workspace $workspace1; exec firefox; workspace $workspace2; exec gnome-terminal; workspace $workspace3; exec "spotify --force-device-scale-factor=1.5"'
+exec --no-startup-id i3-msg 'workspace $workspace4; exec gnome-terminal -e ranger; workspace $workspace3; exec "spotify --force-device-scale-factor=1.5"; workspace $workspace2; exec gnome-terminal; workspace $workspace1; exec firefox;'
 exec gnome-terminal --disable-factory --class=scratch
 for_window [class="scratch"] move scratchpad
 for_window [class="scratch"] border pixel 1
