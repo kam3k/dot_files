@@ -138,6 +138,7 @@ let g:fzf_layout = { 'down': '~40%' }
 " -- clang-format
 let g:clang_format#detect_style_file = 1
 nnoremap <leader>c :ClangFormat<CR>
+vmap <leader>c :ClangFormat<CR>
 
 " -- vim-startify
 let g:startify_change_to_dir = 0

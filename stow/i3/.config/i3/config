@@ -190,4 +190,4 @@ exec --no-startup-id dunst
 for_window [class="Quanergy_qview_gui"] floating enable
 
 # put monitor to left of laptop
-exec --no-startup-id xrandr --output DP-3 --auto --left-of DP-2
+exec --no-startup-id xrandr --output DP-3 --auto --right-of DP-2
