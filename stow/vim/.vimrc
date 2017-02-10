@@ -12,7 +12,6 @@ Plug 'mhinz/vim-startify'
 Plug 'Valloric/YouCompleteMe'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'rhysd/vim-clang-format'
 Plug 'derekwyatt/vim-fswitch'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'tpope/vim-sleuth'
@@ -22,6 +21,7 @@ Plug 'mrtazz/DoxygenToolkit.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
 Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-commentary'
 call plug#end()
 
 " Filetype and syntax
@@ -102,6 +102,9 @@ inoremap <expr> <enter> getline('.') =~ '^\s*//' ? '<enter><esc>S' : '<enter>'
 nnoremap <expr> O getline('.') =~ '^\s*//' ? 'O<esc>S' : 'O'
 nnoremap <expr> o getline('.') =~ '^\s*//' ? 'o<esc>S' : 'o'
 
+" clang-format
+map <leader>c :pyf ~/.clang-format.py<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN RELATED
 """""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -134,11 +137,6 @@ nnoremap <F4> :YcmCompleter FixIt<CR>
 nnoremap <leader><space> :Files<CR>
 nnoremap <leader><Tab> :Buffers<CR>
 let g:fzf_layout = { 'down': '~40%' }
-
-" -- clang-format
-let g:clang_format#detect_style_file = 1
-nnoremap <leader>c :ClangFormat<CR>
-vmap <leader>c :ClangFormat<CR>
 
 " -- vim-startify
 let g:startify_change_to_dir = 0
