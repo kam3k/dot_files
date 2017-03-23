@@ -188,6 +188,8 @@ exec --no-startup-id dunst
 
 # make QView float
 for_window [class="Quanergy_qview_gui"] floating enable
+for_window [class="vtk"] floating enable
+for_window [class="Rviz"] floating enable
 
 # put monitor to left of laptop
 exec --no-startup-id xrandr --output DP-3 --auto --right-of DP-2
