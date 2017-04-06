@@ -9,13 +9,15 @@
     cm = commit
     st = status
     br = branch
-    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cn%Creset %Cblue(%cr)%Creset' --abbrev-commit --date=relative
     type = cat-file -t
     dump = cat-file -p
     undo-commit = reset --soft HEAD^
     d = difftool
     dd = difftool --dir-diff
     m = mergetool
+[status]
+    showUntrackedFiles = all
 [github]
     user = kam3k
 [push]
