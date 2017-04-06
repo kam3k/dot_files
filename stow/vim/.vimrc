@@ -22,6 +22,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-commentary'
+Plug 'benekastah/neomake'
 call plug#end()
 
 " Filetype and syntax
@@ -166,3 +167,11 @@ nnoremap <leader>d :Dox<CR>
 
 " -- tmuxline
 let g:tmuxline_preset = 'minimal'
+
+" -- neomake
+let g:neomake_cpp_enabled_makers = ['clangtidy']
+let g:neomake_cpp_clangtidy_maker = {
+   \ 'exe': '/usr/local/bin/clang-tidy',
+   \ 'args': ['-checks=-*,modernize-*,cppcoreguidelines-*,performance-*,readability-*,google-*,misc-*'],
+   \}
+nnoremap <leader>n :Neomake<CR>

@@ -82,7 +82,7 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # start applications
-exec --no-startup-id i3-msg 'workspace $workspace4; exec gnome-terminal -e ranger; workspace $workspace3; exec "spotify --force-device-scale-factor=1.5"; workspace $workspace2; exec gnome-terminal; workspace $workspace1; exec firefox;'
+exec --no-startup-id i3-msg 'workspace $workspace4; exec gnome-terminal -e ranger; workspace $workspace2; exec gnome-terminal; workspace $workspace1; exec firefox; workspace $workspace3; exec "spotify --force-device-scale-factor=1.5"'
 exec gnome-terminal --disable-factory --class=scratch
 for_window [class="scratch"] move scratchpad
 for_window [class="scratch"] border pixel 1
@@ -186,8 +186,17 @@ exec --no-startup-id nm-applet
 exec killall -q notify-osd
 exec --no-startup-id dunst
 
-# make QView float
+# floating windows
 for_window [class="Quanergy_qview_gui"] floating enable
+for_window [class="vtk"] floating enable
+
+# assignments
+assign [class="Spotify"] $workspace3
+assign [class="Firefox"] $workspace1
+assign [class="Nemiver"] 5
+assign [class="Rviz"] 5
 
 # put monitor to left of laptop
 exec --no-startup-id xrandr --output DP-3 --auto --right-of DP-2
+
+exec --no-startup-id compton -f
