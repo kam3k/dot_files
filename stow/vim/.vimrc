@@ -23,6 +23,7 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-commentary'
 Plug 'benekastah/neomake'
+Plug 'rust-lang/rust.vim'
 call plug#end()
 
 " Filetype and syntax
@@ -104,7 +105,7 @@ nnoremap <expr> O getline('.') =~ '^\s*//' ? 'O<esc>S' : 'O'
 nnoremap <expr> o getline('.') =~ '^\s*//' ? 'o<esc>S' : 'o'
 
 " clang-format
-map <leader>c :pyf ~/.clang-format.py<CR>
+map <leader>c :py3f ~/.clang-format.py<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN RELATED

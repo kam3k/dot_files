@@ -47,3 +47,5 @@ mkcd()
 # Search in certain file types
 alias agc='ag -G ".*\.(cpp|h|hpp|cc)"'
 alias agx='ag -G ".*\.(xml)"'
+
+xcape -e 'Control_L=Escape' 
