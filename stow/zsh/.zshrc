@@ -23,8 +23,13 @@ alias ebd='eb diff | less'
 alias ja='ninja -j32'
 alias jat='ja tests'
 alias run_tests='ja run_tests && catkin_test_results --verbose --all test_results'
-
 alias tmux='tmux -2'
+
+# ls colors
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+fi
 
 # Source ROS setup
 [ -f /opt/ros/indigo/setup.zsh ] && source /opt/ros/indigo/setup.zsh
