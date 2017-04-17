@@ -104,7 +104,10 @@ nnoremap <expr> O getline('.') =~ '^\s*//' ? 'O<esc>S' : 'O'
 nnoremap <expr> o getline('.') =~ '^\s*//' ? 'o<esc>S' : 'o'
 
 " clang-format
-map <leader>c :pyf ~/.clang-format.py<CR>
+map <leader>c :py3f ~/.clang-format.py<CR>
+
+" search for name of current file
+nnoremap <leader>h :Ag <C-R>=expand('%:t')<CR><CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN RELATED

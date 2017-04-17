@@ -2,11 +2,12 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="avit"
 
-plugins=(git zsh-autosuggestions)
+plugins=(git zsh-autosuggestions extract)
 
 source $ZSH/oh-my-zsh.sh
 
-setxkbmap -layout us -option caps:escape
+# Control is escape when tapped
+xcape -e 'Control_L=Escape'
 
 # Set ccache to use distcc if distcc is available:
 if type distcc > /dev/null; then
@@ -18,12 +19,12 @@ alias ebp='eb populate'
 alias ebgp='eb git pull --ff-only'
 alias ebm=CXX="'ccache /usr/bin/c++' eb make --no-cpack --extra --use-ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Release"
 alias ebmd=CXX="'ccache /usr/bin/c++' eb make --no-cpack --extra --use-ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Debug"
-alias ebc='eb clean'
+alias ebc='eb clean -y'
 alias ebd='eb diff | less'
+alias ebb='eb branch | egrep "\*|Module"'
 alias ja='ninja -j32'
 alias jat='ja tests'
 alias run_tests='ja run_tests && catkin_test_results --verbose --all test_results'
-
 alias tmux='tmux -2'
 
 # Source ROS setup
@@ -47,3 +48,6 @@ mkcd()
 # Search in certain file types
 alias agc='ag -G ".*\.(cpp|h|hpp|cc)"'
 alias agx='ag -G ".*\.(xml)"'
+
+# Get current time (seconds since epoch)
+alias now='watch -x -t -n 0.01 date +%s.%N' 
