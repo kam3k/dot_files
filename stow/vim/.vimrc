@@ -23,6 +23,7 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-commentary'
 Plug 'benekastah/neomake'
+Plug 'rust-lang/rust.vim'
 call plug#end()
 
 " Filetype and syntax
