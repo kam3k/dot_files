@@ -97,7 +97,6 @@ vnoremap > >gv
 noremap j gj
 noremap k gk
 noremap Y y$
-nnoremap <leader>ag :Ag<space>
 
 " Don't automatically start a new comment on next line
 inoremap <expr> <enter> getline('.') =~ '^\s*//' ? '<enter><esc>S' : '<enter>'
@@ -134,14 +133,35 @@ nnoremap <leader>g :Gblame<CR>
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_show_diagnostics_ui = 1
 let g:ycm_enable_diagnostic_highlighting = 0
-nnoremap <F2> :YcmCompleter GoTo<CR>
-nnoremap <F3> :YcmCompleter GetType<CR>
-nnoremap <F4> :YcmCompleter FixIt<CR>
+nnoremap <leader>t :YcmCompleter GetType<CR>
 
 " -- fzf
-nnoremap <leader><space> :Files<CR>
-nnoremap <leader><Tab> :Buffers<CR>
+nnoremap <leader>1 :GFiles<CR>
+nnoremap <leader>2 :Ag<space>
+nnoremap <leader>3 :History<CR>
+nnoremap <leader>4 :GFiles?<CR>
 let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%', '?'),
+  \                 <bang>0)
+command! -bang -nargs=? -complete=dir GFiles
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
 
 " -- vim-startify
 let g:startify_change_to_dir = 0
