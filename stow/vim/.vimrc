@@ -133,6 +133,7 @@ nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gw :Gwrite<CR>
 nnoremap <leader>gr :Gread<CR>
+nnoremap <leader>gp :Gpush<CR>
 
 " -- YouCompleteMe
 let g:ycm_confirm_extra_conf = 0
