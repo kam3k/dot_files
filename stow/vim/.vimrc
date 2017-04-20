@@ -141,10 +141,12 @@ let g:ycm_enable_diagnostic_highlighting = 0
 nnoremap <leader>t :YcmCompleter GetType<CR>
 
 " -- fzf
-nnoremap <leader>1 :Files<CR>
-nnoremap <leader>2 :Ag<space>
-nnoremap <leader>3 :History<CR>
-nnoremap <leader>4 :GFiles?<CR>
+nnoremap <leader><space>f :Files<CR>
+nnoremap <leader><space>b :Buffers<CR>
+nnoremap <leader><space>a :Ag<space>
+nnoremap <leader><space>h :History<CR>
+nnoremap <leader><space>c :History:<CR>
+nnoremap <leader><space>g :GFiles?<CR>
 let g:fzf_layout = { 'down': '~40%' }
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
