@@ -127,7 +127,12 @@ let g:airline_section_warning = ''
 let g:airline_theme = 'dracula'
 
 " -- vim-fugitive
-nnoremap <leader>g :Gblame<CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gw :Gwrite<CR>
+nnoremap <leader>gr :Gread<CR>
 
 " -- YouCompleteMe
 let g:ycm_confirm_extra_conf = 0
