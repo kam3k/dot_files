@@ -1,29 +1,29 @@
 call plug#begin('~/.vim/plugged')
-Plug 'dracula/vim'
-Plug 'scrooloose/nerdtree'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'bling/vim-airline'
-Plug 'qpkorr/vim-bufkill'
-Plug 'Raimondi/delimitMate'
-Plug 'djoshea/vim-autoread'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-startify'
-Plug 'Valloric/YouCompleteMe'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'derekwyatt/vim-fswitch'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-surround'
-Plug 'lyuts/vim-rtags'
-Plug 'mrtazz/DoxygenToolkit.vim'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'edkolev/tmuxline.vim'
-Plug 'tpope/vim-obsession'
-Plug 'tpope/vim-commentary'
-Plug 'benekastah/neomake'
-Plug 'rust-lang/rust.vim'
+Plug 'dracula/vim' " Colorscheme
+Plug 'scrooloose/nerdtree' " File browser
+Plug 'vim-airline/vim-airline-themes' "Airline themes
+Plug 'bling/vim-airline' " Pretty and useful status line
+Plug 'qpkorr/vim-bufkill' " Kill buffers well
+Plug 'Raimondi/delimitMate' " Auto-close brackets, parentheses, etc.
+Plug 'djoshea/vim-autoread' " Auto-reload buffers that have been changed elsewhere
+Plug 'airblade/vim-gitgutter' " Show git status of lines in gutter
+Plug 'tpope/vim-fugitive' " Git functionality in vim
+Plug 'mhinz/vim-startify' " Useful start screen
+Plug 'Valloric/YouCompleteMe' " Autocomplete and much more
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy search
+Plug 'junegunn/fzf.vim' " Vim bindings to various fuzzy searches
+Plug 'derekwyatt/vim-fswitch' " Switch between source and headers
+Plug 'octol/vim-cpp-enhanced-highlight' " Better highlighting in c++
+Plug 'tpope/vim-sleuth' " Adjust shiftwidth, expandtab based on current file
+Plug 'tpope/vim-surround' " Easily change surrounds (e.g., [ to {)
+Plug 'lyuts/vim-rtags' " Tags to jump around code and find symbols
+Plug 'mrtazz/DoxygenToolkit.vim' " Auto-insert Doxygen comments
+Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
+Plug 'edkolev/tmuxline.vim' " Make tmux look like vim colorscheme
+Plug 'tpope/vim-obsession' " Save sessions in vim
+Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
+Plug 'benekastah/neomake' " Used to call clang-tidy
+Plug 'rust-lang/rust.vim' " Rust highlighting, etc.
 call plug#end()
 
 " Filetype and syntax
@@ -136,7 +136,7 @@ let g:ycm_enable_diagnostic_highlighting = 0
 nnoremap <leader>t :YcmCompleter GetType<CR>
 
 " -- fzf
-nnoremap <leader>1 :GFiles<CR>
+nnoremap <leader>1 :Files<CR>
 nnoremap <leader>2 :Ag<space>
 nnoremap <leader>3 :History<CR>
 nnoremap <leader>4 :GFiles?<CR>
