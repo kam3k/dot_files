@@ -57,3 +57,6 @@ alias agx='ag -G ".*\.(xml)"'
 
 # Get current time (seconds since epoch)
 alias now='watch -x -t -n 0.01 date +%s.%N' 
+
+# Open websites or files in default applications
+alias o=xdg-open
