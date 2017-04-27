@@ -36,6 +36,7 @@ fi
 # Source ROS setup
 [ -f /opt/ros/indigo/setup.zsh ] && source /opt/ros/indigo/setup.zsh
 
+# Source fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # from John to fix issue building with ccache
@@ -60,3 +61,36 @@ alias now='watch -x -t -n 0.01 date +%s.%N'
 
 # Open websites or files in default applications
 alias o=xdg-open
+
+# Fuzzy checkout of git branches with fzf
+fbr() {
+  local branches branch
+  branches=$(git branch --all | grep -v HEAD) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+# Fuzzy cd to child directory (recursive) with fzf
+fd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+
+# Fuzzy cd to child directory containing file (recursive) with fzf
+fdf() {
+   local file
+   local dir
+   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+}
+
+# Fuzzy switch tmux sessions with fzf
+fs() {
+    local session
+      session=$(tmux list-sessions -F "#{session_name}" | \
+            fzf --query="$1" --select-1 --exit-0) &&
+              tmux switch-client -t "$session"
+    }
+}
