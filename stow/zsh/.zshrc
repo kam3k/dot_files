@@ -71,25 +71,18 @@ fbr() {
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
-# Fuzzy cd to child directory (recursive) with fzf
-fd() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
-}
-
-# Fuzzy cd to child directory containing file (recursive) with fzf
-fdf() {
-   local file
-   local dir
-   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
-}
-
 # Fuzzy switch tmux sessions with fzf
 fs() {
     local session
       session=$(tmux list-sessions -F "#{session_name}" | \
             fzf --query="$1" --select-1 --exit-0) &&
               tmux switch-client -t "$session"
+}
+
+# Fuzzy copying git commit hashes to clipboard with fzf
+fgc() {
+  local commits commit
+  commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
+  commit=$(echo "$commits" | fzf --tac +s +m -e) &&
+  echo -n $(echo "$commit" | sed "s/ .*//") | xclip -selection c
 }
