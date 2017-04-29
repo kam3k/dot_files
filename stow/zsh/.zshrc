@@ -1,9 +1,7 @@
+# oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh
-
 ZSH_THEME="avit"
-
-plugins=(git zsh-autosuggestions extract)
-
+plugins=(git zsh-autosuggestions extract k)
 source $ZSH/oh-my-zsh.sh
 
 # Control is escape when tapped
@@ -33,6 +31,7 @@ alias agc='ag -G ".*\.(cpp|h|hpp|cc)"'
 alias agx='ag -G ".*\.(xml)"'
 alias now='watch -x -t -n 0.01 date +%s.%N' 
 alias o=xdg-open
+alias k='k -h'
 
 # ls colors
 if [ -x /usr/bin/dircolors ]; then
