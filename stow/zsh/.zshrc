@@ -14,6 +14,7 @@ if type distcc > /dev/null; then
   export CCACHE_PREFIX="distcc"
 fi
 
+# Aliases (development)
 alias eb='elderberry'
 alias ebp='eb populate'
 alias ebgp='eb git pull --ff-only'
@@ -25,7 +26,13 @@ alias ebb='eb branch | egrep "\*|Module"'
 alias ja='ninja -j32'
 alias jat='ja tests'
 alias run_tests='ja run_tests && catkin_test_results --verbose --all test_results'
+
+# Aliases (general)
 alias tmux='tmux -2'
+alias agc='ag -G ".*\.(cpp|h|hpp|cc)"'
+alias agx='ag -G ".*\.(xml)"'
+alias now='watch -x -t -n 0.01 date +%s.%N' 
+alias o=xdg-open
 
 # ls colors
 if [ -x /usr/bin/dircolors ]; then
@@ -51,16 +58,6 @@ mkcd()
   mkdir -p -- "$1" &&
   cd -P -- "$1"
 }
-
-# Search in certain file types
-alias agc='ag -G ".*\.(cpp|h|hpp|cc)"'
-alias agx='ag -G ".*\.(xml)"'
-
-# Get current time (seconds since epoch)
-alias now='watch -x -t -n 0.01 date +%s.%N' 
-
-# Open websites or files in default applications
-alias o=xdg-open
 
 # Fuzzy checkout of git branches with fzf
 fbr() {
