@@ -59,7 +59,7 @@ mkcd()
 }
 
 # Fuzzy checkout of git branches with fzf
-fbr() {
+b() {
   local branches branch
   branches=$(git branch --all | grep -v HEAD) &&
   branch=$(echo "$branches" |
@@ -68,7 +68,7 @@ fbr() {
 }
 
 # Fuzzy copying git commit hashes to clipboard with fzf
-fgc() {
+c() {
   local commits commit
   commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
   commit=$(echo "$commits" | fzf --tac +s +m -e) &&
