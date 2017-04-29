@@ -71,14 +71,6 @@ fbr() {
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
-# Fuzzy switch tmux sessions with fzf
-fs() {
-    local session
-      session=$(tmux list-sessions -F "#{session_name}" | \
-            fzf --query="$1" --select-1 --exit-0) &&
-              tmux switch-client -t "$session"
-}
-
 # Fuzzy copying git commit hashes to clipboard with fzf
 fgc() {
   local commits commit
