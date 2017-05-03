@@ -24,11 +24,11 @@
 [push]
     default = simple
 [diff]
-    tool = meld
+    tool = vimdiff
 [difftool]
     prompt = false
 [merge]
-    tool = meld
+    tool = vimdiff
+    conflictstyle = diff3
 [mergetool]
-    cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
     prompt = false
