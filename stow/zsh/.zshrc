@@ -58,6 +58,16 @@ mkcd()
   cd -P -- "$1"
 }
 
+# Colorize output of less
+export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
+export LESS_TERMCAP_md=$'\e[1;33m'     # begin blink
+export LESS_TERMCAP_so=$'\e[01;44;37m' # begin reverse video
+export LESS_TERMCAP_us=$'\e[01;37m'    # begin underline
+export LESS_TERMCAP_me=$'\e[0m'        # reset bold/blink
+export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
+export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
+export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
+
 # Fuzzy checkout of git branches with fzf
 b() {
   local branches branch
@@ -73,4 +83,12 @@ c() {
   commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
   commit=$(echo "$commits" | fzf --tac +s +m -e) &&
   echo -n $(echo "$commit" | sed "s/ .*//") | xclip -selection c
+}
+
+# Fuzzy search for C++ man pages
++() {
+  local pages
+  pages=$(man -k ^std:: | awk '{print $1}') &&
+  page=$(echo "$pages" | fzf -i) &&
+  man $page
 }
