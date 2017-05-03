@@ -87,8 +87,16 @@ c() {
 
 # Fuzzy search for C++ man pages
 +() {
-  local pages
+  local pages page
   pages=$(man -k ^std:: | awk '{print $1}') &&
   page=$(echo "$pages" | fzf -i) &&
   man $page
+}
+
+# Fuzzy search apt packages (add --installed to search only installed packages)
+a() {
+  local packages package
+  packages=$(apt list $1 | sed 's/\/.*$//') &&
+  package=$(echo "$packages" | fzf -i --tac) &&
+  apt show $package
 }
