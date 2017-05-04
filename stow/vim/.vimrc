@@ -23,7 +23,7 @@ Plug 'edkolev/tmuxline.vim' " Make tmux look like vim colorscheme
 Plug 'tpope/vim-obsession' " Save sessions in vim
 Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
 Plug 'benekastah/neomake' " Used to call clang-tidy
-Plug 'rust-lang/rust.vim' " Rust highlighting, etc.
+Plug 'terryma/vim-smooth-scroll' " Vim scrolls smoothly
 call plug#end()
 
 " Filetype and syntax
@@ -207,3 +207,7 @@ let g:neomake_cpp_clangtidy_maker = {
    \ 'args': ['-checks=-*,modernize-*,cppcoreguidelines-*,performance-*,readability-*,google-*,misc-*'],
    \}
 nnoremap <leader>n :Neomake<CR>
+
+" -- vim-smooth-scroll
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
