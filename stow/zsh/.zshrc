@@ -68,8 +68,9 @@ export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
 export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
 export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 
-# Fuzzy checkout of git branches with fzf
-b() {
+# Fuzzy checkout git branch with fzf
+zb() 
+{
   local branches branch
   branches=$(git branch --all | grep -v HEAD) &&
   branch=$(echo "$branches" |
@@ -77,26 +78,38 @@ b() {
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
-# Fuzzy copying git commit hashes to clipboard with fzf
-c() {
+# Fuzzy checkout git commit with fzf
+zc()
+{
   local commits commit
   commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
   commit=$(echo "$commits" | fzf --tac +s +m -e) &&
-  echo -n $(echo "$commit" | sed "s/ .*//") | xclip -selection c
+  git checkout $(echo "$commit" | sed "s/ .*//")
 }
 
-# Fuzzy search for C++ man pages
-+() {
+# Fuzzy search for C++ man pages with fzf
+zm()
+{
   local pages page
   pages=$(man -k ^std:: | awk '{print $1}') &&
   page=$(echo "$pages" | fzf -i) &&
   man $page
 }
 
-# Fuzzy search apt packages (add --installed to search only installed packages)
-a() {
+# Fuzzy search apt packages with fzf (add --installed for installed packages)
+zs() 
+{
   local packages package
   packages=$(apt list $1 | sed 's/\/.*$//') &&
   package=$(echo "$packages" | fzf -i --tac) &&
   apt show $package
+}
+
+# Fuzzy install apt packages
+zi() 
+{
+  local packages package
+  packages=$(apt list $1 | sed 's/\/.*$//') &&
+  package=$(echo "$packages" | fzf -i --tac) &&
+  sudo apt install $package
 }
