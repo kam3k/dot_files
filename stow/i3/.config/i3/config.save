@@ -1,4 +1,5 @@
-set $mod Mod4
+    #command key on Mac keyboards
+set $mod Mod1
 
 # font
 font pango:Roboto 18
@@ -37,7 +38,7 @@ bindsym $mod+v split h
 bindsym $mod+f fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacked
+bindsym $mod+s layout stackinglo
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -167,9 +168,16 @@ bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer
 # meld always fullscreen
 for_window [class="Meld"] fullscreen
 
+# Set wallpaper
+exec_always feh --bg-scale /home/mgallant/Pictures/wallpapers/blurry_nature.jpg
+
 # rofi
 bindsym $mod+space exec rofi -modi drun -show drun -fg "$text-color" -bg "$bg-color" -hlfg "$text-color" -hlbg "$inactive-text-color" -o 85 -lines 5 -bw 0 -font "Roboto 18"
 bindsym $mod+shift+space exec rofi -show window -fg "$text-color" -bg "$bg-color" -hlfg "$text-color" -hlbg "$inactive-text-color" -o 85 -lines 5 -bw 0 -font "Roboto 18"
+
+# gaps
+smart_borders on
+gaps inner 40
 
 # nm-applet
 exec --no-startup-id nm-applet
