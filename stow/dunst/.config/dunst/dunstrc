@@ -49,9 +49,9 @@
     timeout = 0
 
 [spotify]
-    appname = spotify
+    appname = *spotify*
     urgency = low
 
 [firefox]
-    appname = firefox
+    appname = *firefox*
     urgency = critical
