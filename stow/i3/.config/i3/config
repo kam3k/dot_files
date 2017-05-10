@@ -51,13 +51,14 @@ set $workspace1 "1: "
 set $workspace2 "2: "
 set $workspace3 "3: "
 set $workspace4 "4: "
+set $workspace5 "5: "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $workspace4
-bindsym $mod+5 workspace 5
+bindsym $mod+5 workspace $workspace5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
@@ -73,7 +74,7 @@ bindsym $mod+Shift+1 move container to workspace $workspace1
 bindsym $mod+Shift+2 move container to workspace $workspace2
 bindsym $mod+Shift+3 move container to workspace $workspace3
 bindsym $mod+Shift+4 move container to workspace $workspace4
-bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+5 move container to workspace $workspace5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
@@ -185,10 +186,12 @@ for_window [class="vtk"] floating enable
 # assignments
 assign [class="Spotify"] $workspace3
 assign [class="Firefox"] $workspace1
-assign [class="Nemiver"] 5
-assign [class="Rviz"] 5
+assign [class="Nemiver"] $workspace5
+assign [class="Rviz"] $workspace5
+assign [class="Zathura"] $workspace5
 
 # put monitor to left of laptop
 exec --no-startup-id xrandr --output DP-3 --auto --right-of DP-2
 
+# fading transitions
 exec --no-startup-id compton -f
