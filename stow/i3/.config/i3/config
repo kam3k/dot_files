@@ -44,6 +44,9 @@ bindsym $mod+e layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+f floating toggle
 
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
 # Toggle the scratchpad
 bindsym $mod+minus scratchpad show
 
@@ -83,9 +86,6 @@ bindsym $mod+Shift+0 move container to workspace 10
 
 # start applications
 exec --no-startup-id i3-msg 'workspace $workspace4; exec gnome-terminal -e ranger; workspace $workspace2; exec gnome-terminal; workspace $workspace1; exec firefox; workspace $workspace3; exec "spotify --force-device-scale-factor=1.5"'
-exec gnome-terminal --disable-factory --class=scratch
-for_window [class="scratch"] move scratchpad
-for_window [class="scratch"] border pixel 1
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
