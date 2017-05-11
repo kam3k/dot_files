@@ -194,3 +194,6 @@ exec --no-startup-id xrandr --output DP-3 --auto --right-of DP-2
 
 # fading transitions
 exec --no-startup-id compton -f
+
+# set wallpaper
+exec --no-startup-id feh --bg-scale ~/.config/wallpapers/highway.jpg
