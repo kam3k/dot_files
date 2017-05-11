@@ -34,18 +34,18 @@
     context = ctrl+shift+period
 
 [urgency_low]
-    background = "#bd93f9"
-    foreground = "#f8f8f2"
+    background = "#393F45"
+    foreground = "#747C84"
     timeout = 3
 
 [urgency_normal]
-    background = "#ff5555"
-    foreground = "#f8f8f2"
+    background = "#565E65"
+    foreground = "#C7CCD1"
     timeout = 0
 
 [urgency_critical]
-    background = "#ff5555"
-    foreground = "#f8f8f2"
+    background = "#C7AE95"
+    foreground = "#DFE2E5"
     timeout = 0
 
 [spotify]

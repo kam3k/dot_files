@@ -45,6 +45,10 @@ fi
 # Source fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Load color schemes
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
 # from John to fix issue building with ccache
 export CCACHE_CPP2=true
 

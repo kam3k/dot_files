@@ -1,5 +1,5 @@
 call plug#begin('~/.vim/plugged')
-Plug 'dracula/vim' " Colorscheme
+Plug 'chriskempson/base16-vim' " Colorschemes
 Plug 'scrooloose/nerdtree' " File browser
 Plug 'vim-airline/vim-airline-themes' "Airline themes
 Plug 'bling/vim-airline' " Pretty and useful status line
@@ -63,10 +63,10 @@ set updatetime=250 " 250 ms between screen updates
 if $COLORTERM == 'gnome-terminal'
   set t_Co=256
 endif
-colorscheme dracula
-set background=dark
-highlight Pmenu ctermbg=135 ctermfg=055
-highlight PmenuSel ctermbg=055
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
 
 " Windowing commands
 nnoremap <silent> <leader>q :bd<CR>
@@ -125,7 +125,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_section_warning = ''
-let g:airline_theme = 'dracula'
+let g:airline_theme = 'base16'
 
 " -- vim-fugitive
 nnoremap <leader>gs :Gstatus<CR>
