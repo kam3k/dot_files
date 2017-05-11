@@ -1,7 +1,7 @@
 set $mod Mod1
 
 # font
-font pango:Roboto 18
+font pango:Iosevka 18
 
 # Hide title bars
 new_window 1pixel
