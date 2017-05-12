@@ -1,16 +1,20 @@
+# set mod key
 set $mod Mod1
+
+# set terminal
+set $term st
 
 # font
 font pango:Iosevka 18
 
-# Hide title bars
+# hide title bars
 new_window 1pixel
 
-# Use Mouse+$mod to drag floating windows to their wanted position
+# use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return exec $term
 
 # kill focused window
 bindsym $mod+q kill
@@ -36,6 +40,9 @@ bindsym $mod+v split h
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
 
+# show the scratchpad window
+bindsym $mod+minus scratchpad show
+
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacked
 bindsym $mod+w layout tabbed
@@ -45,25 +52,22 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+f floating toggle
 
 set $workspace1 "1: "
-set $workspace2 "2: "
-set $workspace3 "3: "
-set $workspace4 "4: "
-set $workspace5 "5: "
-set $workspace10 "10: "
+set $workspace2 "2: "
+set $workspace3 "3: "
+set $workspace4 "4: "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $workspace4
-bindsym $mod+5 workspace $workspace5
+bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace $workspace10
+bindsym $mod+0 workspace 10
 bindsym $mod+p workspace back_and_forth
-
 bindsym $mod+y workspace prev
 bindsym $mod+o workspace next
 
@@ -72,15 +76,33 @@ bindsym $mod+Shift+1 move container to workspace $workspace1
 bindsym $mod+Shift+2 move container to workspace $workspace2
 bindsym $mod+Shift+3 move container to workspace $workspace3
 bindsym $mod+Shift+4 move container to workspace $workspace4
-bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace $workspace10
+bindsym $mod+Shift+0 move container to workspace 10
 
-# start applications
-exec --no-startup-id i3-msg 'workspace $workspace4; exec gnome-terminal -e ranger; workspace $workspace10; exec gnome-terminal; workspace $workspace2; exec gnome-terminal; workspace $workspace1; exec firefox; workspace $workspace3; exec "spotify --force-device-scale-factor=1.5"'
+# assignments
+assign [class="Nemiver"] $workspace4
+assign [class="Rviz"] $workspace4
+assign [class="Zathura"] $workspace4
+
+# start browser
+for_window [class="Firefox"] move container to workspace $workspace1
+exec --no-startup-id firefox
+
+# start spotify
+for_window [class="Spotify"] move container to workspace $workspace2
+exec --no-startup-id spotify --force-device-scale-factor=1.5
+
+# start main terminal
+for_window [class="term_main"] move container to workspace $workspace3
+exec --no-startup-id $term -c term_main
+
+# start scratchpad
+exec $term -c term_scratch
+for_window [class="term_scratch"] move scratchpad
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -125,7 +147,7 @@ client.urgent       	$urgent-bg-color    $urgent-bg-color   $text-color         
 # hide borders
 hide_edge_borders both
 
-# Start i3bar to display a workspace bar (plus the system information i3status
+# start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
     position bottom
@@ -144,16 +166,16 @@ bar {
 # lock screen
 bindsym $mod+Shift+x exec i3lock
 
-# Pulse Audio controls
+# pulse audio controls
 bindsym XF86AudioRaiseVolume exec pactl -- set-sink-volume @DEFAULT_SINK@ +8%; exec pactl -- set-sink-mute @DEFAULT_SINK@ 0
 bindsym XF86AudioLowerVolume exec pactl -- set-sink-volume @DEFAULT_SINK@ -8%; exec pactl -- set-sink-mute @DEFAULT_SINK@ 0
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
-# Screen brightness controls
+# screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
-# Spotify player controls
+# spotify player controls
 bindsym XF86AudioPlay exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
 bindsym XF86AudioStop exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
 bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
@@ -176,13 +198,6 @@ exec --no-startup-id dunst
 # floating windows
 for_window [class="Quanergy_qview_gui"] floating enable
 for_window [class="vtk"] floating enable
-
-# assignments
-assign [class="Spotify"] $workspace3
-assign [class="Firefox"] $workspace1
-assign [class="Nemiver"] $workspace5
-assign [class="Rviz"] $workspace5
-assign [class="Zathura"] $workspace5
 
 # put monitor to left of laptop
 exec --no-startup-id xrandr --output DP-3 --auto --right-of DP-2
