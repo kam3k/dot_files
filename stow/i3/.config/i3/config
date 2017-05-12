@@ -2,7 +2,7 @@
 set $mod Mod1
 
 # set terminal
-set $term st
+set $term roxterm
 
 # font
 font pango:Iosevka 18
@@ -96,10 +96,10 @@ exec --no-startup-id spotify --force-device-scale-factor=1.5
 
 # start main terminal
 for_window [class="term_main"] move container to workspace $workspace3
-exec --no-startup-id $term -c term_main
+exec --no-startup-id $term --separate --class=term_main
 
 # start scratchpad
-exec $term -c term_scratch
+exec $term --separate --class=term_scratch
 for_window [class="term_scratch"] move scratchpad
 
 # reload the configuration file
@@ -185,10 +185,6 @@ for_window [class="Meld"] fullscreen
 # rofi
 bindsym $mod+space exec rofi -modi drun -show drun -fg "$text-color" -bg "$bg-color" -hlfg "$text-color" -hlbg "$inactive-text-color" -o 85 -lines 5 -bw 0 -font "Roboto 18"
 bindsym $mod+shift+space exec rofi -show window -fg "$text-color" -bg "$bg-color" -hlfg "$text-color" -hlbg "$inactive-text-color" -o 85 -lines 5 -bw 0 -font "Roboto 18"
-
-# gaps
-smart_borders on
-gaps inner 40
 
 # nm-applet
 exec --no-startup-id nm-applet
