@@ -44,17 +44,12 @@ bindsym $mod+e layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+f floating toggle
 
-# Make the currently focused window a scratchpad
-bindsym $mod+Shift+minus move scratchpad
-
-# Toggle the scratchpad
-bindsym $mod+minus scratchpad show
-
 set $workspace1 "1: "
 set $workspace2 "2: "
 set $workspace3 "3: "
 set $workspace4 "4: "
 set $workspace5 "5: "
+set $workspace10 "10: "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -66,7 +61,7 @@ bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+0 workspace $workspace10
 bindsym $mod+p workspace back_and_forth
 
 bindsym $mod+y workspace prev
@@ -82,10 +77,10 @@ bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+0 move container to workspace $workspace10
 
 # start applications
-exec --no-startup-id i3-msg 'workspace $workspace4; exec gnome-terminal -e ranger; workspace $workspace2; exec gnome-terminal; workspace $workspace1; exec firefox; workspace $workspace3; exec "spotify --force-device-scale-factor=1.5"'
+exec --no-startup-id i3-msg 'workspace $workspace4; exec gnome-terminal -e ranger; workspace $workspace10; exec gnome-terminal; workspace $workspace2; exec gnome-terminal; workspace $workspace1; exec firefox; workspace $workspace3; exec "spotify --force-device-scale-factor=1.5"'
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
