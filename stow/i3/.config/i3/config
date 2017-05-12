@@ -43,6 +43,9 @@ bindsym $mod+f fullscreen
 # show the scratchpad window
 bindsym $mod+minus scratchpad show
 
+# set default container layout
+workspace_layout tabbed
+
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacked
 bindsym $mod+w layout tabbed
@@ -82,11 +85,6 @@ bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
-
-# assignments
-assign [class="Nemiver"] $workspace4
-assign [class="Rviz"] $workspace4
-assign [class="Zathura"] $workspace4
 
 # start browser
 for_window [class="Firefox"] move container to workspace $workspace1
