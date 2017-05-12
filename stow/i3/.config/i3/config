@@ -139,7 +139,7 @@ set $purple              #ae95c7
 
 # window colors
 #                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color            $text-color          #00ff00
+client.focused          $bg-color           $bg-color          $text-color          #00ff00
 client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
 client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
 client.urgent       	$urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
@@ -187,6 +187,10 @@ for_window [class="Meld"] fullscreen
 # rofi
 bindsym $mod+space exec rofi -modi drun -show drun -fg "$text-color" -bg "$bg-color" -hlfg "$text-color" -hlbg "$inactive-text-color" -o 85 -lines 5 -bw 0 -font "Roboto 18"
 bindsym $mod+shift+space exec rofi -show window -fg "$text-color" -bg "$bg-color" -hlfg "$text-color" -hlbg "$inactive-text-color" -o 85 -lines 5 -bw 0 -font "Roboto 18"
+
+# gaps
+smart_borders on
+gaps inner 40
 
 # nm-applet
 exec --no-startup-id nm-applet
