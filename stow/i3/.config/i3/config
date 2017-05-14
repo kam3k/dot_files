@@ -2,7 +2,7 @@
 set $mod Mod1
 
 # set terminal
-set $term roxterm
+set $term rxvt-unicode
 
 # font
 font pango:Iosevka 18
@@ -95,12 +95,12 @@ for_window [class="Spotify"] move container to workspace $workspace2
 exec --no-startup-id spotify --force-device-scale-factor=1.5
 
 # start main terminal
-for_window [class="term_main"] move container to workspace $workspace3
-exec --no-startup-id $term --separate --class=term_main
+for_window [instance="term_main"] move container to workspace $workspace3
+exec --no-startup-id $term -name term_main
 
 # start scratchpad
-exec $term --separate --class=term_scratch
-for_window [class="term_scratch"] move scratchpad
+exec $term -name=term_scratch
+for_window [instance="term_scratch"] move scratchpad
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -204,4 +204,4 @@ exec --no-startup-id xrandr --output DP-3 --auto --right-of DP-2
 exec --no-startup-id compton -f
 
 # set wallpaper
-exec --no-startup-id feh --bg-scale ~/.config/wallpapers/highway.jpg
+exec --no-startup-id feh --bg-scale ~/.config/wallpapers/grid.jpg
