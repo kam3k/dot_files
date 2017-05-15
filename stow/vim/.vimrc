@@ -1,11 +1,7 @@
 call plug#begin('~/.vim/plugged')
 Plug 'chriskempson/base16-vim' " Colorschemes
-Plug 'scrooloose/nerdtree' " File browser
-Plug 'vim-airline/vim-airline-themes' "Airline themes
-Plug 'bling/vim-airline' " Pretty and useful status line
 Plug 'qpkorr/vim-bufkill' " Kill buffers well
 Plug 'Raimondi/delimitMate' " Auto-close brackets, parentheses, etc.
-Plug 'djoshea/vim-autoread' " Auto-reload buffers that have been changed elsewhere
 Plug 'airblade/vim-gitgutter' " Show git status of lines in gutter
 Plug 'tpope/vim-fugitive' " Git functionality in vim
 Plug 'mhinz/vim-startify' " Useful start screen
@@ -14,8 +10,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy search
 Plug 'junegunn/fzf.vim' " Vim bindings to various fuzzy searches
 Plug 'derekwyatt/vim-fswitch' " Switch between source and headers
 Plug 'octol/vim-cpp-enhanced-highlight' " Better highlighting in c++
-Plug 'tpope/vim-sleuth' " Adjust shiftwidth, expandtab based on current file
-Plug 'tpope/vim-surround' " Easily change surrounds (e.g., [ to {)
 Plug 'lyuts/vim-rtags' " Tags to jump around code and find symbols
 Plug 'mrtazz/DoxygenToolkit.vim' " Auto-insert Doxygen comments
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
@@ -34,7 +28,6 @@ autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype cpp setlocal ts=2 sts=2 sw=2
 
 " Settings
-set shell=/bin/sh " syntastic doesn't work with fish!
 set hidden " allow unsaved buffers to be hidden
 set showmode " shows the mode (insert, visual, normal) at bottom
 set wildmenu " better ex mode with autocomplete
@@ -48,21 +41,16 @@ set nostartofline " keep cursor in same column for long-range motion cmds
 set ignorecase " ignore case when using a search pattern
 set smartcase " override 'ignorecase' when pattern has upper case character
 set autoread " Automatically re-read files changed outside of vim
-set tabstop=4 " tab is four spaces
-set shiftwidth=4 " number of spaces indented using >> and << commands
 set expandtab " tab inserts spaces instead of tabs
 set autoindent " automatically indent previous line's indent
 set softtabstop=4 " always uses spaces, never tabs
 set scrolloff=5 " scroll limit number of rows from top/bottom
 set number " show line numbers
 set relativenumber " line numbers relative to cursor
-set laststatus=2 " always show status line
+set laststatus=0 " hide status line
 set updatetime=250 " 250 ms between screen updates
 
 " Appearance
-if $COLORTERM == 'gnome-terminal'
-  set t_Co=256
-endif
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
@@ -113,18 +101,6 @@ nnoremap <leader>h :Ag <C-R>=expand('%:t')<CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN RELATED
 """""""""""""""""""""""""""""""""""""""""""""""""""""
-" -- NERDTree
-nnoremap <c-f> :NERDTreeToggle<CR>
-let NERDTreeShowBookmarks = 1
-let NERDTreeChDirMode = 2
-let NERDTreeIgnore = ['\.pyc$']
-let NERDTreeQuitOnOpen = 1
-
-" -- Airline
-let g:airline_powerline_fonts = 1
-let g:airline_section_warning = ''
-let g:airline_theme = 'base16'
-
 " -- vim-fugitive
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>
@@ -210,3 +186,8 @@ nnoremap <leader>n :Neomake<CR>
 " -- vim-smooth-scroll
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+
+" -- vim-bufferline
+let g:bufferline_active_buffer_left = '['
+let g:bufferline_active_buffer_right = ']'
+let g:bufferline_show_bufnr = 0
