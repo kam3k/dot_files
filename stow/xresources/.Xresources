@@ -1,0 +1,11 @@
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+
+! font
+URxvt.font: xft:iosevka:size=18
+
+! turn off scrollbar
+URxvt.scrollBar: false
+
+! copy/paste to clipboard
+URxvt.perl-ext-common: selection-to-clipboard
