@@ -73,7 +73,7 @@ nnoremap <c-n> :bn<CR>
 nnoremap <leader>x :BW!<CR>
 
 " Paste toggle command
-set pastetoggle=<leader>p
+set pastetoggle=<leader>v
 
 " Other remaps
 inoremap {<CR> {<CR>}<esc>O
