@@ -21,36 +21,30 @@ Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
 Plug 'benekastah/neomake' " Used to call clang-tidy
 Plug 'terryma/vim-smooth-scroll' " Vim scrolls smoothly
 Plug 'justinmk/vim-sneak' " Simple motion command
+Plug 'tpope/vim-sensible' " Sensible default settings
 call plug#end()
-
-" Filetype and syntax
-syntax on
-filetype plugin indent on
-autocmd Filetype python setlocal ts=4 sts=4 sw=4
-autocmd Filetype cpp setlocal ts=2 sts=2 sw=2
 
 " Settings
 set hidden " allow unsaved buffers to be hidden
 set showmode " shows the mode (insert, visual, normal) at bottom
-set wildmenu " better ex mode with autocomplete
 set completeopt=menu,menuone,longest " don't auto-insert item (longest), show menu even for one item (menuone)
-set bs=2 " allow backspace over anything in insert mode
 set mouse=a " mouse use enabled
 set splitright " new vertical splits go to the right
 set splitbelow " new horizontal splits go below
-set incsearch " search as you type
 set nostartofline " keep cursor in same column for long-range motion cmds
 set ignorecase " ignore case when using a search pattern
 set smartcase " override 'ignorecase' when pattern has upper case character
-set autoread " Automatically re-read files changed outside of vim
 set expandtab " tab inserts spaces instead of tabs
-set autoindent " automatically indent previous line's indent
-set softtabstop=4 " always uses spaces, never tabs
+set tabstop=4 " always uses spaces, never tabs
 set scrolloff=5 " scroll limit number of rows from top/bottom
 set number " show line numbers
 set relativenumber " line numbers relative to cursor
 set laststatus=0 " always show status line
 set updatetime=250 " 250 ms between screen updates
+
+" Filetype and syntax
+autocmd Filetype python setlocal ts=4 sts=4 sw=4
+autocmd Filetype cpp setlocal ts=2 sts=2 sw=2
 
 " Appearance
 if filereadable(expand("~/.vimrc_background"))
