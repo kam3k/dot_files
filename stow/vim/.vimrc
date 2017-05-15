@@ -1,5 +1,7 @@
 call plug#begin('~/.vim/plugged')
 Plug 'chriskempson/base16-vim' " Colorschemes
+Plug 'bling/vim-airline' " Pretty and useful status line
+Plug 'vim-airline/vim-airline-themes' " Airline themes
 Plug 'qpkorr/vim-bufkill' " Kill buffers well
 Plug 'Raimondi/delimitMate' " Auto-close brackets, parentheses, etc.
 Plug 'airblade/vim-gitgutter' " Show git status of lines in gutter
@@ -19,7 +21,6 @@ Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
 Plug 'benekastah/neomake' " Used to call clang-tidy
 Plug 'terryma/vim-smooth-scroll' " Vim scrolls smoothly
 Plug 'justinmk/vim-sneak' " Simple motion command
-Plug 'bling/vim-bufferline' " Show buffers in command line
 call plug#end()
 
 " Filetype and syntax
@@ -48,7 +49,7 @@ set softtabstop=4 " always uses spaces, never tabs
 set scrolloff=5 " scroll limit number of rows from top/bottom
 set number " show line numbers
 set relativenumber " line numbers relative to cursor
-set laststatus=0 " hide status line
+set laststatus=0 " always show status line
 set updatetime=250 " 250 ms between screen updates
 
 " Appearance
@@ -102,6 +103,13 @@ nnoremap <leader>h :Ag <C-R>=expand('%:t')<CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN RELATED
 """""""""""""""""""""""""""""""""""""""""""""""""""""
+" -- Airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_section_warning = ''
+let g:airline_theme = 'base16'
+
 " -- vim-fugitive
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>
@@ -118,12 +126,11 @@ let g:ycm_enable_diagnostic_highlighting = 0
 nnoremap <leader>t :YcmCompleter GetType<CR>
 
 " -- fzf
-nnoremap <leader><leader>f :Files<CR>
-nnoremap <leader><space> :Buffers<CR>
-nnoremap <leader><leader>a :Ag<space>
-nnoremap <leader><leader>h :History<CR>
-nnoremap <leader><leader>c :History:<CR>
-nnoremap <leader><leader>g :GFiles?<CR>
+nnoremap <leader>o :Files<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>a :Ag<space>
+nnoremap <leader>p :History<CR>
+nnoremap <leader>: :History:<CR>
 let g:fzf_layout = { 'down': '~40%' }
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
@@ -187,8 +194,3 @@ nnoremap <leader>n :Neomake<CR>
 " -- vim-smooth-scroll
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
-
-" -- vim-bufferline
-let g:bufferline_active_buffer_left = '['
-let g:bufferline_active_buffer_right = ']'
-let g:bufferline_show_bufnr = 0
