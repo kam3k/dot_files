@@ -46,7 +46,7 @@ set softtabstop=4 " always uses spaces, never tabs
 set scrolloff=5 " scroll limit number of rows from top/bottom
 set number " show line numbers
 set relativenumber " line numbers relative to cursor
-set laststatus=0 " hide status line
+set laststatus=2 " always show status line
 set updatetime=250 " 250 ms between screen updates
 
 " Filetype and syntax
