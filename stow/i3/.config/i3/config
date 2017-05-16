@@ -54,15 +54,14 @@ bindsym $mod+Shift+f floating toggle
 set $workspace1 ""
 set $workspace2 ""
 set $workspace3 ""
-set $workspace4 ""
-set $workspace5 ""
+set $workspace4 ""
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $workspace4
-bindsym $mod+5 workspace $workspace5
+bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
@@ -77,7 +76,7 @@ bindsym $mod+Shift+1 move container to workspace $workspace1
 bindsym $mod+Shift+2 move container to workspace $workspace2
 bindsym $mod+Shift+3 move container to workspace $workspace3
 bindsym $mod+Shift+4 move container to workspace $workspace4
-bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
@@ -95,10 +94,6 @@ exec --no-startup-id spotify --force-device-scale-factor=1.5
 # start main terminal
 for_window [instance="term_main"] move container to workspace $workspace3
 exec --no-startup-id $term -name term_main
-
-# start vim terminal
-for_window [instance="term_vim"] move container to workspace $workspace4
-exec --no-startup-id $term -name term_vim
 
 # start scratchpad
 for_window [instance="term_scratch"] move scratchpad
@@ -156,6 +151,7 @@ bar {
         #                  border             background         text
         focused_workspace  $purple            $purple            $bg-color
         inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+        active_workspace   $inactive-bg-color $inactive-bg-color $inactive-text-color
         urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
     }
 }
