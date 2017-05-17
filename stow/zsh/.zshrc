@@ -7,25 +7,7 @@ source $ZSH/oh-my-zsh.sh
 # Control is escape when tapped
 xcape -e 'Control_L=Escape'
 
-# Set ccache to use distcc if distcc is available:
-if type distcc > /dev/null; then
-  export CCACHE_PREFIX="distcc"
-fi
-
-# Aliases (development)
-alias eb='elderberry'
-alias ebp='eb populate'
-alias ebgp='eb git pull --ff-only'
-alias ebm=CXX="'ccache /usr/bin/c++' eb make --no-cpack --extra --use-ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Release"
-alias ebmd=CXX="'ccache /usr/bin/c++' eb make --no-cpack --extra --use-ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Debug"
-alias ebc='eb clean -y'
-alias ebd='eb diff | less'
-alias ebb='eb branch | egrep "\*|Module"'
-alias ja='ninja -j32'
-alias jat='ja tests'
-alias run_tests='ja run_tests && catkin_test_results --verbose --all test_results'
-
-# Aliases (general)
+# Aliases
 alias tmux='tmux -2'
 alias agc='ag -G ".*\.(cpp|h|hpp|cc)"'
 alias agx='ag -G ".*\.(xml)"'
@@ -39,21 +21,12 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
 fi
 
-# Source ROS setup
-[ -f /opt/ros/indigo/setup.zsh ] && source /opt/ros/indigo/setup.zsh
-
 # Source fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Load color schemes
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-
-# from John to fix issue building with ccache
-export CCACHE_CPP2=true
-
-# Colour gtest output
-export GTEST_COLOR=yes
 
 # Make and change into a directory
 mkcd()
@@ -125,3 +98,6 @@ zt() {
     fzf --query="$1" --select-1 --exit-0) &&
   tmux switch-client -t "$session"
 }
+
+# Source localrc
+[ -f ~/.localrc ] && source ~/.localrc
