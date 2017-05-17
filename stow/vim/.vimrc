@@ -4,6 +4,7 @@ Plug 'bling/vim-airline' " Pretty and useful status line
 Plug 'vim-airline/vim-airline-themes' " Airline themes
 Plug 'qpkorr/vim-bufkill' " Kill buffers well
 Plug 'Raimondi/delimitMate' " Auto-close brackets, parentheses, etc.
+Plug 'djoshea/vim-autoread' " Auto-reload buffers that have been changed elsewhere
 Plug 'airblade/vim-gitgutter' " Show git status of lines in gutter
 Plug 'tpope/vim-fugitive' " Git functionality in vim
 Plug 'mhinz/vim-startify' " Useful start screen
