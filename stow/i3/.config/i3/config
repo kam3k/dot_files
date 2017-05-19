@@ -51,10 +51,10 @@ bindsym $mod+e layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+f floating toggle
 
-set $workspace1 ""
-set $workspace2 ""
-set $workspace3 ""
-set $workspace4 ""
+set $workspace1 "  Firefox "
+set $workspace2 "  Spotify "
+set $workspace3 "  Terminal "
+set $workspace4 "  Miscellaneous "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
