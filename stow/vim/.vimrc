@@ -139,6 +139,7 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>a :Ag<space>
 nnoremap <leader>p :History<CR>
 nnoremap <leader>: :History:<CR>
+let $FZF_DEFAULT_COMMAND = 'ag -g ""' " ignore files in .gitignore
 let g:fzf_layout = { 'down': '~40%' }
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
