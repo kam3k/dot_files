@@ -21,6 +21,7 @@ Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
 Plug 'benekastah/neomake' " Used to call clang-tidy
 Plug 'terryma/vim-smooth-scroll' " Vim scrolls smoothly
 Plug 'justinmk/vim-sneak' " Simple motion command
+Plug 'tpope/vim-obsession' " Session management, works well with tmux
 call plug#end()
 
 " Settings
