@@ -1,8 +1,32 @@
-# oh-my-zsh
-export ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="avit"
-plugins=(git zsh-autosuggestions extract k)
-source $ZSH/oh-my-zsh.sh
+export ZPLUG_HOME=~/.zplug
+
+# Get zplug if it doesn't exist
+if [[ ! -d $ZPLUG_HOME ]];then
+    git clone https://github.com/b4b4r07/zplug $ZPLUG_HOME
+fi
+
+# Source zplug
+source $ZPLUG_HOME/init.zsh
+
+# Plugins
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "supercrabtree/k"
+zplug "plugins/extract", from:oh-my-zsh 
+zplug "denysdovhan/spaceship-zsh-theme", use:spaceship.zsh, from:github, as:theme
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Source plugins
+zplug load
+
+# Load theme
 
 # Control is escape when tapped
 xcape -e 'Control_L=Escape'
@@ -44,6 +68,12 @@ export LESS_TERMCAP_me=$'\e[0m'        # reset bold/blink
 export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
 export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
 export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
+
+# Auto ls when entering a directory
+chpwd()
+{
+  ls
+}
 
 # Fuzzy checkout git branch with fzf
 zb() 
