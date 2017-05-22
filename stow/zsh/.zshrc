@@ -12,6 +12,7 @@ source $ZPLUG_HOME/init.zsh
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "supercrabtree/k"
+zplug "urbainvaes/fzf-marks"
 zplug "plugins/extract", from:oh-my-zsh 
 zplug "denysdovhan/spaceship-zsh-theme", use:spaceship.zsh, from:github, as:theme
 
