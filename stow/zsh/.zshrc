@@ -50,7 +50,10 @@ setopt inc_append_history
 setopt share_history
 
 # Control is escape when tapped
-xcape -e 'Control_L=Escape'
+if [ -z $XCAPE ]; then
+  export XCAPE=1
+  xcape -e 'Control_L=Escape'
+fi
 
 # Aliases
 alias tmux='tmux -2'
