@@ -145,13 +145,5 @@ zi()
   sudo apt install $package
 }
 
-# Fuzzy switch tmux session
-zt() {
-  local session
-  session=$(tmux list-sessions -F "#{session_name}" | \
-    fzf --query="$1" --select-1 --exit-0) &&
-  tmux switch-client -t "$session"
-}
-
 # Source localrc
 [ -f ~/.localrc ] && source ~/.localrc
