@@ -17,6 +17,7 @@
     dd = difftool --dir-diff
     m = mergetool
     changes = diff HEAD@{1} HEAD
+    diff = diff -w
 [status]
     showUntrackedFiles = all
 [github]
