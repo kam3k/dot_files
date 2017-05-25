@@ -21,7 +21,7 @@ Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
 Plug 'benekastah/neomake' " Used to call clang-tidy
 Plug 'terryma/vim-smooth-scroll' " Vim scrolls smoothly
 Plug 'justinmk/vim-sneak' " Simple motion command
-Plug 'tpope/vim-obsession' " Session management, works well with tmux
+Plug 'dominickng/fzf-session.vim' " Session management
 call plug#end()
 
 " Settings
@@ -203,3 +203,9 @@ nnoremap <leader>n :Neomake<CR>
 " -- vim-smooth-scroll
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+
+" -- fzf-session.vim
+let g:fzf_session_path = '~/.vim/session'
+nnoremap <leader>sn :Session<space>
+nnoremap <leader>sq :SQuit<CR>
+nnoremap <leader>ss :Sessions<CR>
