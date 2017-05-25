@@ -22,6 +22,7 @@ Plug 'benekastah/neomake' " Used to call clang-tidy
 Plug 'terryma/vim-smooth-scroll' " Vim scrolls smoothly
 Plug 'justinmk/vim-sneak' " Simple motion command
 Plug 'dominickng/fzf-session.vim' " Session management
+Plug 'junegunn/vim-peekaboo' " View registers automatically
 call plug#end()
 
 " Settings
