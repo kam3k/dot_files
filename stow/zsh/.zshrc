@@ -49,12 +49,6 @@ setopt hist_verify
 setopt inc_append_history
 setopt share_history
 
-# Control is escape when tapped
-if [ -z $XCAPE ]; then
-  export XCAPE=1
-  xcape -e 'Control_L=Escape'
-fi
-
 # Aliases
 alias tmux='tmux -2'
 alias agc='ag -G ".*\.(cpp|h|hpp|cc)"'
