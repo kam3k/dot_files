@@ -139,7 +139,7 @@ nnoremap <leader>t :YcmCompleter GetType<CR>
 
 " -- fzf
 nnoremap <leader>o :Files<CR>
-nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>i :Buffers<CR>
 nnoremap <leader>a :Ag<space>
 nnoremap <leader>p :History<CR>
 nnoremap <leader>: :History:<CR>
