@@ -24,6 +24,7 @@ Plug 'justinmk/vim-sneak' " Simple motion command
 Plug 'dominickng/fzf-session.vim' " Session management
 Plug 'junegunn/vim-peekaboo' " View registers automatically
 Plug 'kshenoy/vim-signature' " View/manage marks
+Plug 'Alok/notational-fzf-vim' " Note-taking / journal
 call plug#end()
 
 " Settings
@@ -84,9 +85,6 @@ nnoremap <leader>x :BW!<CR>
 
 " Paste toggle command
 set pastetoggle=<leader>v
-
-" Reload vimrc
-nnoremap <F5> :source ~/.vimrc<CR>
 
 " Other remaps
 inoremap {<CR> {<CR>}<esc>O
@@ -217,3 +215,10 @@ nnoremap <leader>ss :Sessions<CR>
 
 " -- vim-signature
 let g:SignatureMarkTextHL = 1
+
+" -- notational-fzf-vim
+let g:nv_directories = ['~/.notes']
+let g:nv_use_short_pathnames = 1
+let g:nv_wrap_preview_text = 1
+let g:nv_create_note_window = 'e'
+nnoremap <leader>nv :NV<CR>
