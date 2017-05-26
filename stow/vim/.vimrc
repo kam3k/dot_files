@@ -23,6 +23,7 @@ Plug 'terryma/vim-smooth-scroll' " Vim scrolls smoothly
 Plug 'justinmk/vim-sneak' " Simple motion command
 Plug 'dominickng/fzf-session.vim' " Session management
 Plug 'junegunn/vim-peekaboo' " View registers automatically
+Plug 'kshenoy/vim-signature' " View/manage marks
 call plug#end()
 
 " Settings
@@ -213,3 +214,6 @@ let g:fzf_session_path = '~/.vim/session'
 nnoremap <leader>sn :Session<space>
 nnoremap <leader>sq :SQuit<CR>
 nnoremap <leader>ss :Sessions<CR>
+
+" -- vim-signature
+let g:SignatureMarkTextHL = 1
