@@ -84,6 +84,9 @@ nnoremap <leader>x :BW!<CR>
 " Paste toggle command
 set pastetoggle=<leader>v
 
+" Reload vimrc
+nnoremap <F5> :source ~/.vimrc<CR>
+
 " Other remaps
 inoremap {<CR> {<CR>}<esc>O
 vnoremap < <gv
