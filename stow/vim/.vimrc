@@ -18,12 +18,10 @@ Plug 'mrtazz/DoxygenToolkit.vim' " Auto-insert Doxygen comments
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'edkolev/tmuxline.vim' " Make tmux look like vim colorscheme
 Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
-Plug 'benekastah/neomake' " Used to call clang-tidy
 Plug 'terryma/vim-smooth-scroll' " Vim scrolls smoothly
 Plug 'justinmk/vim-sneak' " Simple motion command
 Plug 'dominickng/fzf-session.vim' " Session management
 Plug 'junegunn/vim-peekaboo' " View registers automatically
-Plug 'kshenoy/vim-signature' " View/manage marks
 Plug 'Alok/notational-fzf-vim' " Note-taking / journal
 call plug#end()
 
@@ -195,14 +193,6 @@ nnoremap <leader>d :Dox<CR>
 " -- tmuxline
 let g:tmuxline_preset = 'minimal'
 
-" -- neomake
-let g:neomake_cpp_enabled_makers = ['clangtidy']
-let g:neomake_cpp_clangtidy_maker = {
-   \ 'exe': '/usr/local/bin/clang-tidy',
-   \ 'args': ['-checks=-*,modernize-*,cppcoreguidelines-*,performance-*,readability-*,google-*,misc-*'],
-   \}
-nnoremap <leader>n :Neomake<CR>
-
 " -- vim-smooth-scroll
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
@@ -212,9 +202,6 @@ let g:fzf_session_path = '~/.vim/session'
 nnoremap <leader>sn :Session<space>
 nnoremap <leader>sq :SQuit<CR>
 nnoremap <leader>ss :Sessions<CR>
-
-" -- vim-signature
-let g:SignatureMarkTextHL = 1
 
 " -- notational-fzf-vim
 let g:nv_directories = ['~/.notes']
