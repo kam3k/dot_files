@@ -22,11 +22,11 @@ Plug 'terryma/vim-smooth-scroll' " Vim scrolls smoothly
 Plug 'justinmk/vim-sneak' " Simple motion command
 Plug 'dominickng/fzf-session.vim' " Session management
 Plug 'junegunn/vim-peekaboo' " View registers automatically
-Plug 'Alok/notational-fzf-vim' " Note-taking / journal
+Plug 'Alok/notational-fzf-vim' " Note-taking / journal  
+Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background 
 call plug#end()
 
 " Settings
-set shell=/bin/sh " syntastic doesn't work with fish!
 set hidden " allow unsaved buffers to be hidden
 set showmode " shows the mode (insert, visual, normal) at bottom
 set wildmenu " better ex mode with autocomplete
@@ -103,6 +103,9 @@ map <leader>c :py3f ~/.clang-format.py<CR>
 " search for name of current file
 nnoremap <leader>h :Ag <C-R>=expand('%:t')<CR><CR>
 
+" build code in background
+nnoremap <leader>b :AsyncRun make -C build<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN RELATED
 """""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -116,7 +119,7 @@ let g:airline_section_b = '%{getcwd()}'
 let g:airline_section_x = ''
 let g:airline_section_y = ''
 let g:airline_section_z = '%c'
-let g:airline_section_error = ''
+let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
 let g:airline_section_warning = ''
 
 " -- vim-fugitive
@@ -209,3 +212,6 @@ let g:nv_use_short_pathnames = 1
 let g:nv_wrap_preview_text = 1
 let g:nv_create_note_window = 'e'
 nnoremap <leader>nv :NV<CR>
+
+" -- asyncrun
+noremap <leader><leader> :call asyncrun#quickfix_toggle(25)<cr>
