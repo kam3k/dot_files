@@ -80,6 +80,7 @@ nnoremap <silent> <leader>nh :leftabove vnew<CR>
 nnoremap <c-p> :bp<CR>
 nnoremap <c-n> :bn<CR>
 nnoremap <leader>x :BW!<CR>
+nnoremap <leader>X :bufdo bd<CR>
 
 " Paste toggle command
 set pastetoggle=<leader>v
@@ -102,9 +103,6 @@ map <leader>c :py3f ~/.clang-format.py<CR>
 
 " search for name of current file
 nnoremap <leader>h :Ag <C-R>=expand('%:t')<CR><CR>
-
-" build code in background
-nnoremap <leader>b :AsyncRun make -C build<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN RELATED
@@ -215,3 +213,12 @@ nnoremap <leader>nv :NV<CR>
 
 " -- asyncrun
 noremap <leader><leader> :call asyncrun#quickfix_toggle(25)<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SOURCE LOCAL VIM CONFIGURATION
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+try
+    source ~/.local.vim
+catch
+    " no local file, ignore
+endtry
