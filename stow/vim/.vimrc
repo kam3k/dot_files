@@ -24,6 +24,7 @@ Plug 'dominickng/fzf-session.vim' " Session management
 Plug 'junegunn/vim-peekaboo' " View registers automatically
 Plug 'Alok/notational-fzf-vim' " Note-taking / journal  
 Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background 
+Plug 'szw/vim-maximizer' " Temporarily maximize a pane
 call plug#end()
 
 " Settings
@@ -213,6 +214,9 @@ nnoremap <leader>nv :NV<CR>
 
 " -- asyncrun
 noremap <leader><leader> :call asyncrun#quickfix_toggle(25)<cr>
+
+" -- vim-maximizer
+nnoremap <leader>z :MaximizerToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION
