@@ -86,7 +86,6 @@ nnoremap <leader>X :bufdo bd<CR>
 set pastetoggle=<leader>v
 
 " Other remaps
-" if (cool)
 inoremap <c-l> <esc>o{<CR>}<esc>O
 inoremap <c-h> <esc>o{<CR>};<esc>O
 vnoremap < <gv
