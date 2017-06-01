@@ -22,7 +22,6 @@ Plug 'terryma/vim-smooth-scroll' " Vim scrolls smoothly
 Plug 'justinmk/vim-sneak' " Simple motion command
 Plug 'dominickng/fzf-session.vim' " Session management
 Plug 'junegunn/vim-peekaboo' " View registers automatically
-Plug 'Alok/notational-fzf-vim' " Note-taking / journal  
 Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background 
 Plug 'szw/vim-maximizer' " Temporarily maximize a pane
 call plug#end()
@@ -87,7 +86,9 @@ nnoremap <leader>X :bufdo bd<CR>
 set pastetoggle=<leader>v
 
 " Other remaps
-inoremap {<CR> {<CR>}<esc>O
+" if (cool)
+inoremap <c-l> <esc>o{<CR>}<esc>O
+inoremap <c-h> <esc>o{<CR>};<esc>O
 vnoremap < <gv
 vnoremap > >gv
 noremap j gj
@@ -204,13 +205,6 @@ let g:fzf_session_path = '~/.vim/session'
 nnoremap <leader>sn :Session<space>
 nnoremap <leader>sq :SQuit<CR>
 nnoremap <leader>ss :Sessions<CR>
-
-" -- notational-fzf-vim
-let g:nv_directories = ['~/.notes']
-let g:nv_use_short_pathnames = 1
-let g:nv_wrap_preview_text = 1
-let g:nv_create_note_window = 'e'
-nnoremap <leader>nv :NV<CR>
 
 " -- asyncrun
 noremap <leader><leader> :call asyncrun#quickfix_toggle(25)<cr>
