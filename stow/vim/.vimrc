@@ -105,6 +105,15 @@ map <leader>c :py3f ~/.clang-format.py<CR>
 " search for name of current file
 nnoremap <leader>h :Ag <C-R>=expand('%:t')<CR><CR>
 
+" Open / create journal entry
+silent !mkdir ~/.journal > /dev/null 2>&1
+function! OpenJournal()
+    let l:filename = strftime("%Y-%m-%d.txt")
+    execute "e ~/.journal/" . l:filename
+endfunction
+command! Journal call OpenJournal()
+nnoremap <leader>j :Journal<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN RELATED
 """""""""""""""""""""""""""""""""""""""""""""""""""""
