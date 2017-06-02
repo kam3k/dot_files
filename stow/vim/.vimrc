@@ -62,7 +62,7 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 
 " Windowing commands
-nnoremap <silent> <leader>q :bd<CR>
+nnoremap <c-b>q :bd<CR>
 nnoremap <silent> <c-j> <c-w>j
 nnoremap <silent> <c-k> <c-w>k
 nnoremap <silent> <c-l> <c-w>l
@@ -71,10 +71,8 @@ nnoremap <silent> <leader>mj <C-W>J
 nnoremap <silent> <leader>mk <C-W>K
 nnoremap <silent> <leader>ml <C-W>L
 nnoremap <silent> <leader>mh <C-W>H
-nnoremap <silent> <leader>nj :below new<CR>
-nnoremap <silent> <leader>nk :above new<CR>
-nnoremap <silent> <leader>nl :rightbelow vnew<CR>
-nnoremap <silent> <leader>nh :leftabove vnew<CR>
+nnoremap <c-b>- :below new<CR>
+nnoremap <c-b>\ :rightbelow vnew<CR>
 
 " Buffer commands
 nnoremap <c-p> :bp<CR>
@@ -177,7 +175,6 @@ command! -bang -nargs=? -complete=dir Files
 
 " -- vim-startify
 let g:startify_change_to_dir = 0
-nnoremap <leader>s :Startify<CR>
 
 " -- vim-fswitch
 nmap <silent> <leader>ff :FSHere<CR>
@@ -210,15 +207,15 @@ noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 
 " -- fzf-session.vim
 let g:fzf_session_path = '~/.vim/session'
-nnoremap <leader>sn :Session<space>
-nnoremap <leader>sq :SQuit<CR>
-nnoremap <leader>ss :Sessions<CR>
+nnoremap <c-b>n :Session<space>
+nnoremap <c-b>d :SQuit<CR>
+nnoremap <c-b>s :Sessions<CR>
 
 " -- asyncrun
 noremap <leader><leader> :call asyncrun#quickfix_toggle(25)<cr>
 
 " -- vim-maximizer
-nnoremap <leader>z :MaximizerToggle<CR>
+nnoremap <c-b>z :MaximizerToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION
