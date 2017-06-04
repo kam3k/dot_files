@@ -104,7 +104,6 @@ map <leader>c :py3f ~/.clang-format.py<CR>
 nnoremap <leader>h :Ag <C-R>=expand('%:t')<CR><CR>
 
 " Open / create journal entry
-silent !mkdir ~/.journal > /dev/null 2>&1
 function! OpenJournal()
     let l:filename = strftime("%Y-%m-%d.txt")
     execute "e ~/.journal/" . l:filename
