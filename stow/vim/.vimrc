@@ -141,7 +141,10 @@ nnoremap <leader>gp :Gpush<CR>
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_show_diagnostics_ui = 1
 let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_always_populate_location_list = 1
 nnoremap <leader>t :YcmCompleter GetType<CR>
+nnoremap ]e :lnext<CR>
+nnoremap [e :lprevious<CR>
 
 " -- fzf
 nnoremap <leader>o :Files<CR>
@@ -212,7 +215,16 @@ nnoremap <c-b>d :SQuit<CR>
 nnoremap <c-b>s :Sessions<CR>
 
 " -- asyncrun
-noremap <leader><leader> :call asyncrun#quickfix_toggle(25)<cr>
+noremap <leader><leader> :call asyncrun#quickfix_toggle(15)<CR>
+augroup vimrc
+    autocmd QuickFixCmdPost * call asyncrun#quickfix_toggle(15, 1)
+augroup END
+fun! OnAsyncRunExit()
+    if g:asyncrun_status == 'success'
+		call asyncrun#quickfix_toggle(15, 0)
+    endif
+endf
+let g:asyncrun_exit = "call OnAsyncRunExit()"
 
 " -- vim-maximizer
 nnoremap <c-b>z :MaximizerToggle<CR>
