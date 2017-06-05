@@ -16,7 +16,7 @@ Plug 'octol/vim-cpp-enhanced-highlight' " Better highlighting in c++
 Plug 'lyuts/vim-rtags' " Tags to jump around code and find symbols
 Plug 'mrtazz/DoxygenToolkit.vim' " Auto-insert Doxygen comments
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
-Plug 'edkolev/tmuxline.vim' " Make tmux look like vim colorscheme
+Plug 'TxHawks/tmuxline.vim', { 'branch': 'patch-1' } " Make tmux look like vim colorscheme
 Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
 Plug 'terryma/vim-smooth-scroll' " Vim scrolls smoothly
 Plug 'justinmk/vim-sneak' " Simple motion command
