@@ -19,36 +19,30 @@ Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'TxHawks/tmuxline.vim', { 'branch': 'patch-1' } " Make tmux look like vim colorscheme
 Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
 Plug 'terryma/vim-smooth-scroll' " Vim scrolls smoothly
-Plug 'justinmk/vim-sneak' " Simple motion command
 Plug 'dominickng/fzf-session.vim' " Session management
-Plug 'junegunn/vim-peekaboo' " View registers automatically
 Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background 
 Plug 'szw/vim-maximizer' " Temporarily maximize a pane
+Plug 'tpope/vim-sensible' " Sensible default settings
+Plug 'SirVer/ultisnips' " Snippet engine
+Plug 'honza/vim-snippets' " Snippets
 call plug#end()
 
 " Settings
 set hidden " allow unsaved buffers to be hidden
 set showmode " shows the mode (insert, visual, normal) at bottom
-set wildmenu " better ex mode with autocomplete
-set completeopt=menu,menuone,longest " don't auto-insert item (longest), show menu even for one item (menuone)
 set bs=2 " allow backspace over anything in insert mode
 set mouse=a " mouse use enabled
 set splitright " new vertical splits go to the right
 set splitbelow " new horizontal splits go below
-set incsearch " search as you type
 set nostartofline " keep cursor in same column for long-range motion cmds
 set ignorecase " ignore case when using a search pattern
 set smartcase " override 'ignorecase' when pattern has upper case character
-set autoread " Automatically re-read files changed outside of vim
 set tabstop=4 " tab is four spaces
 set shiftwidth=4 " number of spaces indented using >> and << commands
 set expandtab " tab inserts spaces instead of tabs
-set autoindent " automatically indent previous line's indent
 set softtabstop=4 " always uses spaces, never tabs
-set scrolloff=5 " scroll limit number of rows from top/bottom
 set number " show line numbers
 set relativenumber " line numbers relative to cursor
-set laststatus=2 " always show status line
 set updatetime=250 " 250 ms between screen updates
 
 " Filetype and syntax
@@ -84,24 +78,23 @@ nnoremap <leader>X :bufdo bd<CR>
 set pastetoggle=<leader>v
 
 " Other remaps
-inoremap <c-l> <esc>o{<CR>}<esc>O
-inoremap <c-h> <esc>o{<CR>};<esc>O
 vnoremap < <gv
 vnoremap > >gv
 noremap j gj
 noremap k gk
 noremap Y y$
 
-" Don't automatically start a new comment on next line
-inoremap <expr> <enter> getline('.') =~ '^\s*//' ? '<enter><esc>S' : '<enter>'
-nnoremap <expr> O getline('.') =~ '^\s*//' ? 'O<esc>S' : 'O'
-nnoremap <expr> o getline('.') =~ '^\s*//' ? 'o<esc>S' : 'o'
+" Never automatically continue comment when starting next line
+au FileType * set fo-=c fo-=r fo-=o
 
 " clang-format
 map <leader>c :py3f ~/.clang-format.py<CR>
 
-" search for name of current file
+" Search for name of current file
 nnoremap <leader>h :Ag <C-R>=expand('%:t')<CR><CR>
+
+" Close preview window when leaving insert mode
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 " Open / create journal entry
 function! OpenJournal()
@@ -227,6 +220,11 @@ let g:asyncrun_exit = "call OnAsyncRunExit()"
 
 " -- vim-maximizer
 nnoremap <c-b>z :MaximizerToggle<CR>
+
+" -- UltiSnip
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION
