@@ -23,8 +23,6 @@ Plug 'dominickng/fzf-session.vim' " Session management
 Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background 
 Plug 'szw/vim-maximizer' " Temporarily maximize a pane
 Plug 'tpope/vim-sensible' " Sensible default settings
-Plug 'SirVer/ultisnips' " Snippet engine
-Plug 'honza/vim-snippets' " Snippets
 call plug#end()
 
 " Settings
@@ -78,6 +76,7 @@ nnoremap <leader>X :bufdo bd<CR>
 set pastetoggle=<leader>v
 
 " Other remaps
+inoremap {<CR> {<CR>}<esc>O
 vnoremap < <gv
 vnoremap > >gv
 noremap j gj
@@ -220,11 +219,6 @@ let g:asyncrun_exit = "call OnAsyncRunExit()"
 
 " -- vim-maximizer
 nnoremap <c-b>z :MaximizerToggle<CR>
-
-" -- UltiSnip
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION
