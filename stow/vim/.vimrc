@@ -220,6 +220,13 @@ let g:asyncrun_exit = "call OnAsyncRunExit()"
 " -- vim-maximizer
 nnoremap <c-b>z :MaximizerToggle<CR>
 
+" -- vim-commentary
+augroup FTOptions 
+    autocmd!
+    autocmd FileType c,cpp  setlocal commentstring=//\ %s
+    autocmd FileType cmake  setlocal commentstring=#\ %s
+augroup END
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""
