@@ -18,7 +18,6 @@ Plug 'mrtazz/DoxygenToolkit.vim' " Auto-insert Doxygen comments
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'TxHawks/tmuxline.vim', { 'branch': 'patch-1' } " Make tmux look like vim colorscheme
 Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
-Plug 'terryma/vim-smooth-scroll' " Vim scrolls smoothly
 Plug 'dominickng/fzf-session.vim' " Session management
 Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background 
 Plug 'szw/vim-maximizer' " Temporarily maximize a pane
@@ -176,6 +175,7 @@ nmap <silent> <leader>fl :FSRight<CR>
 nmap <silent> <leader>fh :FSLeft<CR>
 nmap <silent> <leader>fL :FSSplitRight<CR>
 nmap <silent> <leader>fH :FSSplitLeft<CR>
+let g:fsnonewfiles = 'on'
 augroup fswitch_cpp
    au!
    au BufEnter *.h let b:fswitchdst  = 'cpp,hpp,cc,c'
@@ -194,10 +194,6 @@ nnoremap <leader>d :Dox<CR>
 
 " -- tmuxline
 let g:tmuxline_preset = 'minimal'
-
-" -- vim-smooth-scroll
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 
 " -- fzf-session.vim
 let g:fzf_session_path = '~/.vim/session'
