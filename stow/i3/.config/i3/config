@@ -5,7 +5,7 @@ set $mod Mod1
 set $term st
 
 # font
-font pango:Iosevka 17
+font pango:Iosevka Term 17
 
 # hide title bars
 new_window 1pixel
