@@ -88,14 +88,6 @@ nnoremap <leader>h :Ag <C-R>=expand('%:t')<CR><CR>
 " Close preview window when leaving insert mode
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
-" Open / create journal entry
-function! OpenJournal()
-    let l:filename = strftime("%Y-%m-%d.txt")
-    execute "e ~/.journal/" . l:filename
-endfunction
-command! Journal call OpenJournal()
-nnoremap <leader>j :Journal<CR>
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN RELATED
 """""""""""""""""""""""""""""""""""""""""""""""""""""
