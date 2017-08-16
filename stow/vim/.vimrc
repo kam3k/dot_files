@@ -46,12 +46,6 @@ set updatetime=250 " 250 ms between screen updates
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype cpp setlocal ts=2 sts=2 sw=2
 
-" Appearance
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
-
 " Windowing commands
 nnoremap <c-b>q :bd<CR>
 nnoremap <silent> <c-j> <c-w>j
