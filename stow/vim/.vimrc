@@ -1,7 +1,5 @@
 call plug#begin('~/.vim/plugged')
 Plug 'chriskempson/base16-vim' " Colorschemes
-Plug 'bling/vim-airline' " Pretty and useful status line
-Plug 'vim-airline/vim-airline-themes' " Airline themes
 Plug 'qpkorr/vim-bufkill' " Kill buffers well
 Plug 'Raimondi/delimitMate' " Auto-close brackets, parentheses, etc.
 Plug 'djoshea/vim-autoread' " Auto-reload buffers that have been changed elsewhere
@@ -18,10 +16,10 @@ Plug 'mrtazz/DoxygenToolkit.vim' " Auto-insert Doxygen comments
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'TxHawks/tmuxline.vim', { 'branch': 'patch-1' } " Make tmux look like vim colorscheme
 Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
-Plug 'dominickng/fzf-session.vim' " Session management
 Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background 
 Plug 'szw/vim-maximizer' " Temporarily maximize a pane
 Plug 'tpope/vim-sensible' " Sensible default settings
+Plug 'bling/vim-bufferline' " Buffers display in status/command line
 call plug#end()
 
 " Settings
@@ -53,17 +51,19 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 
 " Windowing commands
-nnoremap <c-b>q :bd<CR>
+nnoremap <leader>q :bd<CR>
 nnoremap <silent> <c-j> <c-w>j
 nnoremap <silent> <c-k> <c-w>k
 nnoremap <silent> <c-l> <c-w>l
 nnoremap <silent> <c-h> <c-w>h
-nnoremap <silent> <leader>mj <C-W>J
-nnoremap <silent> <leader>mk <C-W>K
-nnoremap <silent> <leader>ml <C-W>L
-nnoremap <silent> <leader>mh <C-W>H
-nnoremap <c-b>- :below new<CR>
-nnoremap <c-b>\ :rightbelow vnew<CR>
+nnoremap <silent> <leader>wj :below new<CR>
+nnoremap <silent> <leader>wk :above new<CR>
+nnoremap <silent> <leader>wl :rightbelow vnew<CR>
+nnoremap <silent> <leader>wh :leftabove vnew<CR>
+nnoremap <silent> <leader>WJ <C-W>J
+nnoremap <silent> <leader>WK <C-W>K
+nnoremap <silent> <leader>WL <C-W>L
+nnoremap <silent> <leader>WH <C-W>H
 
 " Buffer commands
 nnoremap <c-p> :bp<CR>
@@ -105,19 +105,6 @@ nnoremap <leader>j :Journal<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN RELATED
 """""""""""""""""""""""""""""""""""""""""""""""""""""
-" -- Airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_section_warning = ''
-let g:airline_theme = 'base16'
-let g:airline_section_b = '%{getcwd()}'
-let g:airline_section_x = ''
-let g:airline_section_y = ''
-let g:airline_section_z = '%c'
-let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
-let g:airline_section_warning = ''
-
 " -- vim-fugitive
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>
@@ -195,12 +182,6 @@ nnoremap <leader>d :Dox<CR>
 " -- tmuxline
 let g:tmuxline_preset = 'minimal'
 
-" -- fzf-session.vim
-let g:fzf_session_path = '~/.vim/session'
-nnoremap <c-b>n :Session<space>
-nnoremap <c-b>d :SQuit<CR>
-nnoremap <c-b>s :Sessions<CR>
-
 " -- asyncrun
 noremap <leader><leader> :call asyncrun#quickfix_toggle(15)<CR>
 augroup vimrc
@@ -214,7 +195,7 @@ endf
 let g:asyncrun_exit = "call OnAsyncRunExit()"
 
 " -- vim-maximizer
-nnoremap <c-b>z :MaximizerToggle<CR>
+nnoremap <c-z> :MaximizerToggle<CR>
 
 " -- vim-commentary
 augroup FTOptions 
@@ -222,6 +203,9 @@ augroup FTOptions
     autocmd FileType c,cpp  setlocal commentstring=//\ %s
     autocmd FileType cmake  setlocal commentstring=#\ %s
 augroup END
+
+" -- vim-bufferline
+let g:bufferline_show_bufnr = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION

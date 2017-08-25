@@ -5,7 +5,7 @@ set $mod Mod1
 set $term st
 
 # font
-font pango:Iosevka 17
+font pango:Iosevka Term 15
 
 # hide title bars
 new_window 1pixel
@@ -54,7 +54,7 @@ bindsym $mod+Shift+f floating toggle
 set $workspace1 "1:  Firefox "
 set $workspace2 "2:  Spotify "
 set $workspace3 "3:  Tmux "
-set $workspace4 "4:  Vim "
+set $workspace4 "4:  Hipchat "
 set $workspace5 "5:  Miscellaneous "
 
 # switch to workspace
@@ -92,13 +92,13 @@ exec --no-startup-id firefox
 for_window [class="Spotify"] move container to workspace $workspace2
 exec --no-startup-id spotify --force-device-scale-factor=1.5
 
+# start hipchat
+for_window [class="HipChat"] move container to workspace $workspace4
+exec --no-startup-id hipchat4
+
 # start main terminal
 for_window [class="term_main"] move container to workspace $workspace3
 exec --no-startup-id $term -c term_main
-
-# start vim terminal
-for_window [class="term_vim"] move container to workspace $workspace4
-exec --no-startup-id $term -c term_vim
 
 # start scratchpad
 for_window [class="term_scratch"] move scratchpad
@@ -142,7 +142,7 @@ client.focused_inactive $inactive-bg-color  $purple-bg-color   $inactive-text-co
 client.urgent       	$urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 
 # hide borders
-hide_edge_borders both
+for_window [class="^.*"] border pixel 0
 
 # start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -194,7 +194,7 @@ exec --no-startup-id dunst
 exec --no-startup-id xrandr --output DP-3 --auto --right-of DP-2
 
 # fading transitions
-exec --no-startup-id compton -f
+exec --no-startup-id compton -f -c -C
 
 # set wallpaper
 exec --no-startup-id feh --bg-scale ~/.config/wallpapers/grid.jpg
