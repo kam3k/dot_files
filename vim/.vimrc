@@ -18,7 +18,7 @@ Plug 'szw/vim-maximizer' " Temporarily maximize a pane
 Plug 'tpope/vim-sensible' " Sensible default settings
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'dylanaraps/wal.vim' " Automatically apply colorschemes
-Plug 'bling/vim-bufferline' " Buffer list in status line
+Plug 'ap/vim-buftabline' " Buffer display
 call plug#end()
 
 " Settings
