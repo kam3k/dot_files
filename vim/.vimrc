@@ -188,9 +188,6 @@ augroup FTOptions
     autocmd FileType cmake  setlocal commentstring=#\ %s
 augroup END
 
-" -- vim-bufferline
-let g:bufferline_show_bufnr = 0
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""
