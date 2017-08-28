@@ -106,10 +106,11 @@ zc()
 # Fuzzy search apt packages with fzf (add --installed for installed packages)
 zs() 
 {
-  local packages package
-  packages=$(apt list $1 | sed 's/\/.*$//') &&
-  package=$(echo "$packages" | fzf -i --tac) &&
-  apt show $package
+  fzf --preview='apt-cache show {1}' \
+      --query="$1" \
+    < <(apt-cache search '.*' | sort |
+      sed -u -r "s|^([^ ]+)|${c_green}\1${c_reset}|") |
+    cut -d' ' -f1
 }
 
 # Fuzzy install apt packages
