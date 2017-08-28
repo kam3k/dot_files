@@ -58,6 +58,7 @@ alias agx='ag -G ".*\.(xml)"'
 alias now='watch -x -t -n 0.01 date +%s.%N' 
 alias o=xdg-open
 alias k='k -h'
+alias zs='pkgsearch'
 
 # ls colors
 if [ -x /usr/bin/dircolors ]; then
@@ -69,8 +70,6 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Import colorscheme from 'wal'
-# &   # Run the process in the background.
-# ( ) # Hide shell job control messages.
 (wal -r &)
 
 # Make and change into a directory
@@ -78,10 +77,6 @@ mkcd()
 {
   mkdir -p -- "$1" &&
   cd -P -- "$1"
-}
-
-confirm()
-{
 }
 
 # Fuzzy checkout git branch with fzf
@@ -101,25 +96,6 @@ zc()
   commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
   commit=$(echo "$commits" | fzf --tac +s +m -e) &&
   git checkout $(echo "$commit" | sed "s/ .*//")
-}
-
-# Fuzzy search apt packages with fzf (add --installed for installed packages)
-zs() 
-{
-  fzf --preview='apt-cache show {1}' \
-      --query="$1" \
-    < <(apt-cache search '.*' | sort |
-      sed -u -r "s|^([^ ]+)|${c_green}\1${c_reset}|") |
-    cut -d' ' -f1
-}
-
-# Fuzzy install apt packages
-zi() 
-{
-  local packages package
-  packages=$(apt list $1 | sed 's/\/.*$//') &&
-  package=$(echo "$packages" | fzf -i --tac) &&
-  sudo apt install $package
 }
 
 # Source localrc
