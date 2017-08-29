@@ -1,7 +1,6 @@
 call plug#begin('~/.vim/plugged')
-Plug 'chriskempson/base16-vim' " Colorschemes
 Plug 'qpkorr/vim-bufkill' " Kill buffers well
-Plug 'Raimondi/delimitMate' " Auto-close brackets, parentheses, etc.
+Plug 'jiangmiao/auto-pairs' " Auto-handling of brackets, etc.
 Plug 'djoshea/vim-autoread' " Auto-reload buffers that have been changed elsewhere
 Plug 'airblade/vim-gitgutter' " Show git status of lines in gutter
 Plug 'tpope/vim-fugitive' " Git functionality in vim
@@ -13,13 +12,13 @@ Plug 'derekwyatt/vim-fswitch' " Switch between source and headers
 Plug 'octol/vim-cpp-enhanced-highlight' " Better highlighting in c++
 Plug 'lyuts/vim-rtags' " Tags to jump around code and find symbols
 Plug 'mrtazz/DoxygenToolkit.vim' " Auto-insert Doxygen comments
-Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
-Plug 'TxHawks/tmuxline.vim', { 'branch': 'patch-1' } " Make tmux look like vim colorscheme
 Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
 Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background 
 Plug 'szw/vim-maximizer' " Temporarily maximize a pane
 Plug 'tpope/vim-sensible' " Sensible default settings
-Plug 'bling/vim-bufferline' " Buffers display in status/command line
+Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
+Plug 'dylanaraps/wal.vim' " Automatically apply colorschemes
+Plug 'ap/vim-buftabline' " Buffer display
 call plug#end()
 
 " Settings
@@ -45,10 +44,7 @@ autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype cpp setlocal ts=2 sts=2 sw=2
 
 " Appearance
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
+colorscheme wal
 
 " Windowing commands
 nnoremap <leader>q :bd<CR>
@@ -56,14 +52,14 @@ nnoremap <silent> <c-j> <c-w>j
 nnoremap <silent> <c-k> <c-w>k
 nnoremap <silent> <c-l> <c-w>l
 nnoremap <silent> <c-h> <c-w>h
-nnoremap <silent> <leader>wj :below new<CR>
-nnoremap <silent> <leader>wk :above new<CR>
-nnoremap <silent> <leader>wl :rightbelow vnew<CR>
-nnoremap <silent> <leader>wh :leftabove vnew<CR>
-nnoremap <silent> <leader>WJ <C-W>J
-nnoremap <silent> <leader>WK <C-W>K
-nnoremap <silent> <leader>WL <C-W>L
-nnoremap <silent> <leader>WH <C-W>H
+nnoremap <silent> <leader>mj :below new<CR>
+nnoremap <silent> <leader>mk :above new<CR>
+nnoremap <silent> <leader>ml :rightbelow vnew<CR>
+nnoremap <silent> <leader>mh :leftabove vnew<CR>
+nnoremap <silent> <leader>MJ <C-W>J
+nnoremap <silent> <leader>MK <C-W>K
+nnoremap <silent> <leader>ML <C-W>L
+nnoremap <silent> <leader>MH <C-W>H
 
 " Buffer commands
 nnoremap <c-p> :bp<CR>
@@ -75,7 +71,6 @@ nnoremap <leader>X :bufdo bd<CR>
 set pastetoggle=<leader>v
 
 " Other remaps
-inoremap {<CR> {<CR>}<esc>O
 vnoremap < <gv
 vnoremap > >gv
 noremap j gj
@@ -93,14 +88,6 @@ nnoremap <leader>h :Ag <C-R>=expand('%:t')<CR><CR>
 
 " Close preview window when leaving insert mode
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
-" Open / create journal entry
-function! OpenJournal()
-    let l:filename = strftime("%Y-%m-%d.txt")
-    execute "e ~/.journal/" . l:filename
-endfunction
-command! Journal call OpenJournal()
-nnoremap <leader>j :Journal<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN RELATED
@@ -178,9 +165,6 @@ let g:cpp_class_scope_highlight = 1
 
 " -- DoxygenToolkit.vim
 nnoremap <leader>d :Dox<CR>
-
-" -- tmuxline
-let g:tmuxline_preset = 'minimal'
 
 " -- asyncrun
 noremap <leader><leader> :call asyncrun#quickfix_toggle(15)<CR>
