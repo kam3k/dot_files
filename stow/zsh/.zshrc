@@ -9,11 +9,12 @@ fi
 source $ZPLUG_HOME/init.zsh
 
 # Plugins
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "supercrabtree/k"
-zplug "plugins/extract", from:oh-my-zsh 
-zplug "denysdovhan/spaceship-zsh-theme", use:spaceship.zsh, from:github, as:theme
+zplug zsh-users/zsh-autosuggestions
+zplug zsh-users/zsh-syntax-highlighting
+zplug supercrabtree/k
+zplug plugins/extract, from:oh-my-zsh 
+zplug mafredri/zsh-async, from:github
+zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -70,7 +71,7 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Import colorscheme from 'wal'
-(wal -r &)
+# (wal -r &)
 
 # Make and change into a directory
 mkcd()
