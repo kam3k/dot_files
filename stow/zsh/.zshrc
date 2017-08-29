@@ -14,7 +14,7 @@ zplug zsh-users/zsh-syntax-highlighting
 zplug supercrabtree/k
 zplug plugins/extract, from:oh-my-zsh 
 zplug mafredri/zsh-async, from:github
-zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+zplug subnixr/minimal, use:minimal.zsh, from:github, as:theme
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
