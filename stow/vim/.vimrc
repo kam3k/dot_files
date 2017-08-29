@@ -1,4 +1,5 @@
 call plug#begin('~/.vim/plugged')
+Plug 'dracula/vim' " Colorscheme
 Plug 'qpkorr/vim-bufkill' " Kill buffers well
 Plug 'jiangmiao/auto-pairs' " Auto-handling of brackets, etc.
 Plug 'djoshea/vim-autoread' " Auto-reload buffers that have been changed elsewhere
@@ -46,7 +47,7 @@ autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype cpp setlocal ts=2 sts=2 sw=2
 
 " Appearance
-colorscheme wal
+colorscheme dracula
 
 " Windowing commands
 nnoremap <leader>q :bd<CR>
