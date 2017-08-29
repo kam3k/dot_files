@@ -9,12 +9,12 @@ fi
 source $ZPLUG_HOME/init.zsh
 
 # Plugins
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "supercrabtree/k"
-zplug "urbainvaes/fzf-marks"
-zplug "plugins/extract", from:oh-my-zsh 
-zplug "denysdovhan/spaceship-zsh-theme", use:spaceship.zsh, from:github, as:theme
+zplug zsh-users/zsh-autosuggestions
+zplug zsh-users/zsh-syntax-highlighting
+zplug supercrabtree/k
+zplug plugins/extract, from:oh-my-zsh 
+zplug mafredri/zsh-async, from:github
+zplug subnixr/minimal, use:minimal.zsh, from:github, as:theme
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -26,6 +26,9 @@ fi
 
 # Source plugins
 zplug load
+
+# Caps lock is Ctrl
+setxkbmap -option ctrl:nocaps
 
 # History management
 if [ -z "$HISTFILE" ]; then
@@ -56,6 +59,7 @@ alias agx='ag -G ".*\.(xml)"'
 alias now='watch -x -t -n 0.01 date +%s.%N' 
 alias o=xdg-open
 alias k='k -h'
+alias zs='pkgsearch'
 
 # ls colors
 if [ -x /usr/bin/dircolors ]; then
@@ -66,31 +70,14 @@ fi
 # Source fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Load color schemes
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+# Import colorscheme from 'wal'
+# (wal -r &)
 
 # Make and change into a directory
 mkcd()
 {
   mkdir -p -- "$1" &&
   cd -P -- "$1"
-}
-
-# Colorize output of less
-export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
-export LESS_TERMCAP_md=$'\e[1;33m'     # begin blink
-export LESS_TERMCAP_so=$'\e[01;44;37m' # begin reverse video
-export LESS_TERMCAP_us=$'\e[01;37m'    # begin underline
-export LESS_TERMCAP_me=$'\e[0m'        # reset bold/blink
-export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
-export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
-export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
-
-# Auto ls when entering a directory
-chpwd()
-{
-  ls
 }
 
 # Fuzzy checkout git branch with fzf
@@ -110,49 +97,6 @@ zc()
   commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
   commit=$(echo "$commits" | fzf --tac +s +m -e) &&
   git checkout $(echo "$commit" | sed "s/ .*//")
-}
-
-# Fuzzy search for C++ man pages with fzf
-zm()
-{
-  local pages page
-  pages=$(man -k ^std:: | awk '{print $1}') &&
-  page=$(echo "$pages" | fzf -i) &&
-  man $page
-}
-
-# Fuzzy search apt packages with fzf (add --installed for installed packages)
-zs() 
-{
-  local packages package
-  packages=$(apt list $1 | sed 's/\/.*$//') &&
-  package=$(echo "$packages" | fzf -i --tac) &&
-  apt show $package
-}
-
-# Fuzzy install apt packages
-zi() 
-{
-  local packages package
-  packages=$(apt list $1 | sed 's/\/.*$//') &&
-  package=$(echo "$packages" | fzf -i --tac) &&
-  sudo apt install $package
-}
-
-# Utility function for timing
-function preexec() {
-  timer=$(($(date +%s%N)/1000000))
-}
-
-# Show execution time for every command
-function precmd() {
-  if [ $timer ]; then
-    now=$(($(date +%s%N)/1000000))
-    elapsed=$(($now-$timer))
-
-    export RPROMPT="%F{cyan}${elapsed}ms %{$reset_color%}"
-    unset timer
-  fi
 }
 
 # Source localrc

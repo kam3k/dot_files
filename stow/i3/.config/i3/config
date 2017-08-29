@@ -2,10 +2,13 @@
 set $mod Mod1
 
 # set terminal
-set $term st
+set $term rxvt-unicode
 
 # font
 font pango:Iosevka Term 15
+
+# colorscheme with wal
+exec --no-startup-id wal -i ~/.config/wallpapers/rocks.jpg -o wal-set
 
 # hide title bars
 new_window 1pixel
@@ -40,8 +43,8 @@ bindsym $mod+f fullscreen
 # show the scratchpad window
 bindsym $mod+minus scratchpad show
 
-# set default container layout
-workspace_layout tabbed
+# set default container layout (default, stacking, or tabbed)
+workspace_layout default
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacked
@@ -53,8 +56,8 @@ bindsym $mod+Shift+f floating toggle
 
 set $workspace1 "1:  Firefox "
 set $workspace2 "2:  Spotify "
-set $workspace3 "3:  Tmux "
-set $workspace4 "4:  Hipchat "
+set $workspace3 "3:  Terminal "
+set $workspace4 "4:  Vim "
 set $workspace5 "5:  Miscellaneous "
 
 # switch to workspace
@@ -97,12 +100,16 @@ for_window [class="HipChat"] move container to workspace $workspace4
 exec --no-startup-id hipchat4
 
 # start main terminal
-for_window [class="term_main"] move container to workspace $workspace3
-exec --no-startup-id $term -c term_main
+for_window [instance="term_main"] move container to workspace $workspace3
+exec --no-startup-id $term -name term_main
+
+# start vim terminal
+for_window [instance="term_vim"] move container to workspace $workspace4
+exec --no-startup-id $term -name term_vim
 
 # start scratchpad
-for_window [class="term_scratch"] move scratchpad
-exec --no-startup-id $term -c term_scratch
+for_window [instance="term_scratch"] move scratchpad
+exec --no-startup-id $term -name term_scratch
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
@@ -113,36 +120,18 @@ bindsym $mod+Shift+e exit
 # move workspace to other monitor
 bindsym $mod+m move workspace to output right
 
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-
-bindsym $mod+r mode "resize"
-
-set $bg-color 	         #393f45
-set $inactive-bg-color   #393f45
-set $text-color          #f3f4f5
-set $inactive-text-color #747c84
-set $urgent-bg-color     #c79595
-set $purple              #ae95c7
-
-# window colors
-#                       border              background         text                 indicator
-client.focused          $purple             $purple            $bg-color            #00ff00
-client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $inactive-bg-color  $purple-bg-color   $inactive-text-color #00ff00
-client.urgent       	$urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+# get colors from wal
+set_from_resource $color1 i3wm.color1 #f0f0f0
+set_from_resource $color2 i3wm.color2 #f0f0f0
+set_from_resource $color3 i3wm.color3 #f0f0f0
+set_from_resource $color4 i3wm.color4 #f0f0f0
+set_from_resource $color5 i3wm.color5 #f0f0f0
+set_from_resource $color6 i3wm.color6 #f0f0f0
+set_from_resource $color7 i3wm.color7 #f0f0f0
 
 # hide borders
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 4
+client.focused $color1 $color1 $color1 $color1 $color1
 
 # start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -151,13 +140,13 @@ bar {
     status_command i3blocks -c ~/.config/i3/i3blocks.conf
     strip_workspace_numbers yes
     colors {
-        background $bg-color
-        separator #757575
-        #                  border             background         text
-        focused_workspace  $purple            $purple            $bg-color
-        inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-        active_workspace   $inactive-bg-color $inactive-bg-color $inactive-text-color
-        urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+        background $color1
+        separator $color1
+        #                   border      background     text
+        focused_workspace   $color4     $color4        #ffffff
+        inactive_workspace  $color1     $color1        #ffffff
+		active_workspace    $color1     $color1        #ffffff
+        urgent_workspace    $color1     $color1        #ffffff
     }
 }
 
@@ -179,12 +168,8 @@ bindsym XF86AudioStop exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer
 bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
 bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
 
-# rofi
-bindsym $mod+space exec rofi -modi drun -show drun -fg "$text-color" -bg "$bg-color" -hlfg "$text-color" -hlbg "$inactive-text-color" -o 85 -lines 5 -bw 0 -font "Roboto 18"
-bindsym $mod+shift+space exec rofi -show window -fg "$text-color" -bg "$bg-color" -hlfg "$text-color" -hlbg "$inactive-text-color" -o 85 -lines 5 -bw 0 -font "Roboto 18"
-
-# nm-applet
-exec --no-startup-id nm-applet
+# dmenu
+bindsym $mod+space exec dmenu_run -nb "$color1" -nf "$color7" -sb "$color7" -sf "$color1" -fn "Iosevka Term-17"
 
 # use dunst for notifications
 exec killall -q notify-osd
@@ -193,8 +178,12 @@ exec --no-startup-id dunst
 # put monitor to left of laptop
 exec --no-startup-id xrandr --output DP-3 --auto --right-of DP-2
 
-# fading transitions
-exec --no-startup-id compton -f -c -C
+# for shadows
+exec --no-startup-id compton -c --no-fading-openclose
 
-# set wallpaper
-exec --no-startup-id feh --bg-scale ~/.config/wallpapers/grid.jpg
+# redshift
+exec --no-startup-id redshift-gtk
+
+# gaps
+gaps inner 30
+gaps outer 30
