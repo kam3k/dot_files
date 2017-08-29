@@ -18,7 +18,9 @@ Plug 'szw/vim-maximizer' " Temporarily maximize a pane
 Plug 'tpope/vim-sensible' " Sensible default settings
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'dylanaraps/wal.vim' " Automatically apply colorschemes
-Plug 'ap/vim-buftabline' " Buffer display
+Plug 'bling/vim-airline' " Pretty and useful status line
+Plug 'vim-airline/vim-airline-themes' " Airline themes
+Plug 'TxHawks/tmuxline.vim', { 'branch': 'patch-1' } " Make tmux look like vim colorscheme
 call plug#end()
 
 " Settings
@@ -188,8 +190,21 @@ augroup FTOptions
     autocmd FileType cmake  setlocal commentstring=#\ %s
 augroup END
 
-" -- vim-bufferline
-let g:bufferline_show_bufnr = 0
+" -- Airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_section_warning = ''
+let g:airline_theme = 'dracula'
+let g:airline_section_b = '%{getcwd()}'
+let g:airline_section_x = ''
+let g:airline_section_y = ''
+let g:airline_section_z = '%c'
+let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+let g:airline_section_warning = ''
+
+" -- tmuxline
+let g:tmuxline_preset = 'minimal'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION
