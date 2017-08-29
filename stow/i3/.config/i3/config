@@ -96,7 +96,7 @@ for_window [class="Spotify"] move container to workspace $workspace2
 exec --no-startup-id spotify --force-device-scale-factor=1.5
 
 # start hipchat
-for_window [class="HipChat"] move container to workspace $workspace4
+for_window [class="HipChat"] move container to workspace $workspace5
 exec --no-startup-id hipchat4
 
 # start main terminal
