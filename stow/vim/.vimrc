@@ -202,6 +202,7 @@ let g:airline_section_y = ''
 let g:airline_section_z = '%c'
 let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
 let g:airline_section_warning = ''
+let g:airline_theme = 'dracula'
 
 " -- tmuxline
 let g:tmuxline_preset = 'minimal'
