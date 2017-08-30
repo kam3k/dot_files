@@ -1,4 +1,4 @@
 URxvt.termName: rxvt-256color
-URxvt.font: xft:iosevka term:size=16:antialias=true
+URxvt.font: xft:iosevka term:size=16:antialias=true,xft:DejaVu Sans Mono:size=16:antialias=true
 URxvt.scrollBar: false
 URxvt.internalBorder: 25
