@@ -58,7 +58,8 @@ set $workspace1 "1:  Firefox "
 set $workspace2 "2:  Spotify "
 set $workspace3 "3:  Terminal "
 set $workspace4 "4:  Vim "
-set $workspace5 "5:  Miscellaneous "
+set $workspace5 "5:  Slack"
+set $workspace6 "6:  Miscellaneous "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -66,7 +67,7 @@ bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $workspace4
 bindsym $mod+5 workspace $workspace5
-bindsym $mod+6 workspace 6
+bindsym $mod+6 workspace $workspace6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
@@ -81,7 +82,7 @@ bindsym $mod+Shift+2 move container to workspace $workspace2
 bindsym $mod+Shift+3 move container to workspace $workspace3
 bindsym $mod+Shift+4 move container to workspace $workspace4
 bindsym $mod+Shift+5 move container to workspace $workspace5
-bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+6 move container to workspace $workspace6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
@@ -95,9 +96,11 @@ exec --no-startup-id firefox
 for_window [class="Spotify"] move container to workspace $workspace2
 exec --no-startup-id spotify --force-device-scale-factor=1.5
 
-# start hipchat
+# start hipchat / slack
 for_window [class="HipChat"] move container to workspace $workspace5
 exec --no-startup-id hipchat4
+for_window [class="Slack"] move container to workspace $workspace5
+exec --no-startup-id slack
 
 # start main terminal
 for_window [instance="term_main"] move container to workspace $workspace3
@@ -168,7 +171,7 @@ bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer
 bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
 
 # dmenu
-bindsym $mod+space exec dmenu_run -nb "$color1" -nf "$color7" -sb "$color7" -sf "$color1" -fn "Iosevka Term-17"
+bindsym $mod+space exec dmenu_run -nb "$bg-color" -nf "$inactive-text-color" -sb "$purple" -sf "$text-color" -fn "Iosevka Term-17"
 
 # use dunst for notifications
 exec killall -q notify-osd
