@@ -79,6 +79,9 @@ vnoremap > >gv
 noremap j gj
 noremap k gk
 noremap Y y$
+nnoremap <leader>* ciw/*<C-R>"*/<Esc>
+vnoremap <leader>* c/*<C-R>"*/<Esc>
+nnoremap <leader>8 F/xxf*xx<Esc>
 
 " Never automatically continue comment when starting next line
 au FileType * set fo-=c fo-=r fo-=o
