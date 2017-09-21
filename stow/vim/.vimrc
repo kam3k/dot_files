@@ -19,8 +19,8 @@ Plug 'szw/vim-maximizer' " Temporarily maximize a pane
 Plug 'tpope/vim-sensible' " Sensible default settings
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'dylanaraps/wal.vim' " Automatically apply colorschemes
-Plug 'bling/vim-airline' " Pretty and useful status line
-Plug 'vim-airline/vim-airline-themes' " Airline themes
+Plug 'itchyny/lightline.vim' " Status line plugin
+Plug 'mgee/lightline-bufferline' " Buffer line plugin (uses lightline)
 Plug 'TxHawks/tmuxline.vim', { 'branch': 'patch-1' } " Make tmux look like vim colorscheme
 call plug#end()
 
@@ -82,6 +82,7 @@ noremap Y y$
 nnoremap <leader>* ciw/*<C-R>"*/<Esc>
 vnoremap <leader>* c/*<C-R>"*/<Esc>
 nnoremap <leader>8 F/xxf*xx<Esc>
+nnoremap <leader>s O/**<space><space>*/<Esc>F<space>i
 
 " Never automatically continue comment when starting next line
 au FileType * set fo-=c fo-=r fo-=o
@@ -194,18 +195,73 @@ augroup FTOptions
     autocmd FileType cmake  setlocal commentstring=#\ %s
 augroup END
 
-" -- Airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_section_warning = ''
-let g:airline_section_b = '%{getcwd()}'
-let g:airline_section_x = ''
-let g:airline_section_y = ''
-let g:airline_section_z = '%c'
-let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
-let g:airline_section_warning = ''
-let g:airline_theme = 'dracula'
+" -- lightline
+let g:lightline = {
+        \ 'colorscheme': 'solarized',
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ],
+        \   'right': [ [ 'lineinfo' ],
+        \              [ 'asyncrun_status' ] ] 
+        \ },
+        \ 'component': {
+        \   'lineinfo': ' %3l:%-2v',
+        \   'asyncrun_status': '%{g:asyncrun_status}'
+        \ },
+        \ 'component_function': {
+        \   'readonly': 'LightlineReadonly',
+        \   'fugitive': 'LightlineFugitive',
+        \ },
+        \ 'separator': { 'left': '', 'right': '' },
+        \ 'subseparator': { 'left': '', 'right': '' }
+        \ }
+
+function! LightlineReadonly()
+        return &readonly ? '' : ''
+endfunction
+
+" This function is taken from vim-airline, to shorten
+" the branch name when appropriate.
+function! LightlineShorten(text, winwidth, minwidth, ...)
+  if winwidth(0) < a:winwidth && len(split(a:text, '\zs')) > a:minwidth
+    if get(a:000, 0, 0)
+      " shorten from tail
+      return '…'.matchstr(a:text, '.\{'.a:minwidth.'}$')
+    else
+      " shorten from beginning of string
+      return matchstr(a:text, '^.\{'.a:minwidth.'}').'…'
+    endif
+  else
+    return a:text
+  endif
+endfunction
+
+" Show git branch
+function! LightlineFugitive()
+        if exists('*fugitive#head')
+                let branch = fugitive#head(7)
+                let branch = branch !=# '' ? ' '.branch : ''
+                return LightlineShorten(branch, 120, 15)
+        endif
+        return ''
+endfunction
+ 
+" -- lightline-bufferline
+set showtabline=2
+let g:lightline#bufferline#show_number = 2
+let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type   = {'buffers': 'tabsel'}
+nmap <Leader>1 <Plug>lightline#bufferline#go(1)
+nmap <Leader>2 <Plug>lightline#bufferline#go(2)
+nmap <Leader>3 <Plug>lightline#bufferline#go(3)
+nmap <Leader>4 <Plug>lightline#bufferline#go(4)
+nmap <Leader>5 <Plug>lightline#bufferline#go(5)
+nmap <Leader>6 <Plug>lightline#bufferline#go(6)
+nmap <Leader>7 <Plug>lightline#bufferline#go(7)
+nmap <Leader>8 <Plug>lightline#bufferline#go(8)
+nmap <Leader>9 <Plug>lightline#bufferline#go(9)
+nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 
 " -- tmuxline
 let g:tmuxline_preset = 'minimal'
