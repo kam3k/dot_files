@@ -81,7 +81,7 @@ noremap k gk
 noremap Y y$
 nnoremap <leader>* ciw/*<C-R>"*/<Esc>
 vnoremap <leader>* c/*<C-R>"*/<Esc>
-nnoremap <leader>8 F/xxf*xx<Esc>
+nnoremap <F8> F/xxf*xx<Esc>
 nnoremap <leader>s O/**<space><space>*/<Esc>F<space>i
 
 " Never automatically continue comment when starting next line
@@ -197,8 +197,14 @@ augroup END
 
 " -- lightline
 let g:lightline = {
-        \ 'colorscheme': 'solarized',
+        \ 'colorscheme': 'Dracula',
         \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ],
+        \   'right': [ [ 'lineinfo' ],
+        \              [ 'asyncrun_status' ] ] 
+        \ },
+        \ 'inactive': {
         \   'left': [ [ 'mode', 'paste' ],
         \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ],
         \   'right': [ [ 'lineinfo' ],
