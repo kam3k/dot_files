@@ -1,5 +1,6 @@
 call plug#begin('~/.vim/plugged')
-Plug 'dracula/vim' " Colorscheme
+Plug 'w0ng/vim-hybrid' " Colorscheme
+Plug 'cocopon/lightline-hybrid.vim' " Lightline vim-hybrid
 Plug 'qpkorr/vim-bufkill' " Kill buffers well
 Plug 'jiangmiao/auto-pairs' " Auto-handling of brackets, etc.
 Plug 'djoshea/vim-autoread' " Auto-reload buffers that have been changed elsewhere
@@ -18,9 +19,7 @@ Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background
 Plug 'szw/vim-maximizer' " Temporarily maximize a pane
 Plug 'tpope/vim-sensible' " Sensible default settings
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
-Plug 'dylanaraps/wal.vim' " Automatically apply colorschemes
 Plug 'itchyny/lightline.vim' " Status line plugin
-Plug 'mgee/lightline-bufferline' " Buffer line plugin (uses lightline)
 Plug 'TxHawks/tmuxline.vim', { 'branch': 'patch-1' } " Make tmux look like vim colorscheme
 call plug#end()
 
@@ -47,7 +46,9 @@ autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype cpp setlocal ts=2 sts=2 sw=2
 
 " Appearance
-colorscheme dracula
+set background=dark
+let g:hybrid_custom_term_colors = 1
+colorscheme hybrid
 
 " Windowing commands
 nnoremap <leader>q :bd<CR>
@@ -186,7 +187,7 @@ endf
 let g:asyncrun_exit = "call OnAsyncRunExit()"
 
 " -- vim-maximizer
-nnoremap <c-z> :MaximizerToggle<CR>
+nnoremap <leader>z :MaximizerToggle<CR>
 
 " -- vim-commentary
 augroup FTOptions 
@@ -197,7 +198,7 @@ augroup END
 
 " -- lightline
 let g:lightline = {
-        \ 'colorscheme': 'Dracula',
+        \ 'colorscheme': 'hybrid',
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ],
         \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ],
@@ -251,23 +252,6 @@ function! LightlineFugitive()
         endif
         return ''
 endfunction
- 
-" -- lightline-bufferline
-set showtabline=2
-let g:lightline#bufferline#show_number = 2
-let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
-let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
-let g:lightline.component_type   = {'buffers': 'tabsel'}
-nmap <Leader>1 <Plug>lightline#bufferline#go(1)
-nmap <Leader>2 <Plug>lightline#bufferline#go(2)
-nmap <Leader>3 <Plug>lightline#bufferline#go(3)
-nmap <Leader>4 <Plug>lightline#bufferline#go(4)
-nmap <Leader>5 <Plug>lightline#bufferline#go(5)
-nmap <Leader>6 <Plug>lightline#bufferline#go(6)
-nmap <Leader>7 <Plug>lightline#bufferline#go(7)
-nmap <Leader>8 <Plug>lightline#bufferline#go(8)
-nmap <Leader>9 <Plug>lightline#bufferline#go(9)
-nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 
 " -- tmuxline
 let g:tmuxline_preset = 'minimal'
