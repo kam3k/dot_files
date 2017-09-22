@@ -5,10 +5,7 @@ set $mod Mod1
 set $term rxvt-unicode
 
 # font
-font pango:Iosevka Term 15
-
-# colorscheme with wal
-exec --no-startup-id wal -i ~/.config/wallpapers/rocks.jpg -o wal-set
+font pango:Iosevka Term Bold 16
 
 # hide title bars
 new_window 1pixel
@@ -54,12 +51,12 @@ bindsym $mod+e layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+f floating toggle
 
-set $workspace1 "1:  Firefox "
-set $workspace2 "2:  Spotify "
-set $workspace3 "3:  Terminal "
-set $workspace4 "4:  Vim "
-set $workspace5 "5:  Slack"
-set $workspace6 "6:  Miscellaneous "
+set $workspace1 "1: Web "
+set $workspace2 "2: Spotify "
+set $workspace3 "3: Terminal "
+set $workspace4 "4: Vim "
+set $workspace5 "5: Slack"
+set $workspace6 "6: Miscellaneous "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -122,16 +119,16 @@ bindsym $mod+Shift+e exit
 bindsym $mod+m move workspace to output right
 
 # set colors
-set $bg-color            #282a36
+set $bg-color            #1d1f21
 set $inactive-bg-color   #282a36
-set $text-color          #f8f8f2
-set $inactive-text-color #6272a4
-set $urgent-bg-color     #ff5555
-set $purple              #bd93f9
+set $text-color          #282a2e
+set $inactive-text-color #707880
+set $urgent-bg-color     #a54242
+set $green               #8c9440
 
 # hide borders
 for_window [class="^.*"] border pixel 4
-client.focused $purple $purple $purple $purple $purple
+client.focused $green $green $green $green $green
 
 # start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -140,13 +137,13 @@ bar {
     status_command i3blocks -c ~/.config/i3/i3blocks.conf
     strip_workspace_numbers yes
     colors {
-        background $color1
-        separator $color1
-        #                   border      background         text
-        focused_workspace   $color4     $purple            $text-color
-        inactive_workspace  $color1     $color1            $inactive-text-color
-        active_workspace    $color1     $color1            $inactive-text-color
-        urgent_workspace    $color1     $urgent-bf-color   $inactive-text-color
+        background $bg-color
+        separator $bg-color
+        #                   border              background         text
+        focused_workspace   $green              $green             $text-color
+        inactive_workspace  $inactive-bg-color  $inactive-bg-color $inactive-text-color
+        active_workspace    $inactive-bg-color  $inactive-bg-color $inactive-text-color
+        urgent_workspace    $inactive-bg-color  $urgent-bf-color   $inactive-text-color
     }
 }
 
@@ -169,7 +166,7 @@ bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer
 bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
 
 # dmenu
-bindsym $mod+space exec dmenu_run -nb "$bg-color" -nf "$inactive-text-color" -sb "$purple" -sf "$text-color" -fn "Iosevka Term-17"
+bindsym $mod+space exec dmenu_run -nb "$bg-color" -nf "$inactive-text-color" -sb "$green" -sf "$text-color" -fn "Iosevka Term-17"
 
 # use dunst for notifications
 exec killall -q notify-osd
@@ -185,8 +182,8 @@ exec --no-startup-id compton -c --no-fading-openclose
 exec --no-startup-id redshift-gtk
 
 # gaps
-gaps inner 30
-gaps outer 30
+gaps inner 20
+gaps outer 20
 
 # set wallpaper
-exec --no-startup-id feh --bg-scale ~/.config/wallpapers/blade_runner.jpg
+exec --no-startup-id feh --bg-scale ~/.config/wallpapers/forest.jpg
