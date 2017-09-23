@@ -147,6 +147,24 @@ bar {
     }
 }
 
+# resize window
+mode "resize" {
+    # Pressing left will shrink the window’s width.
+    # Pressing right will grow the window’s width.
+    # Pressing up will shrink the window’s height.
+    # Pressing down will grow the window’s height.
+    bindsym h           resize shrink width 5 px or 5 ppt
+    bindsym j           resize grow height 5 px or 5 ppt
+    bindsym k           resize shrink height 5 px or 5 ppt
+    bindsym l           resize grow width 5 px or 5 ppt
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
 # lock screen
 bindsym $mod+Shift+x exec i3lock
 
@@ -166,7 +184,7 @@ bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer
 bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
 
 # dmenu
-bindsym $mod+space exec dmenu_run -nb "$bg-color" -nf "$inactive-text-color" -sb "$green" -sf "$text-color" -fn "Iosevka Term-17"
+bindsym $mod+space exec dmenu_run -nb "$bg-color" -nf "$inactive-text-color" -sb "$green" -sf "$text-color" -fn "Iosevka Term-18"
 
 # use dunst for notifications
 exec killall -q notify-osd

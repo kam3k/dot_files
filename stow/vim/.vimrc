@@ -82,7 +82,7 @@ noremap k gk
 noremap Y y$
 nnoremap <leader>* ciw/*<C-R>"*/<Esc>
 vnoremap <leader>* c/*<C-R>"*/<Esc>
-nnoremap <F8> F/xxf*xx<Esc>
+nnoremap <leader>8 F/xxf*xx<Esc>
 nnoremap <leader>s O/**<space><space>*/<Esc>F<space>i
 
 " Never automatically continue comment when starting next line
@@ -187,7 +187,7 @@ endf
 let g:asyncrun_exit = "call OnAsyncRunExit()"
 
 " -- vim-maximizer
-nnoremap <leader>z :MaximizerToggle<CR>
+nnoremap <c-b>z :MaximizerToggle<CR>
 
 " -- vim-commentary
 augroup FTOptions 
