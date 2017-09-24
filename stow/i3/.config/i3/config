@@ -141,9 +141,9 @@ bar {
         separator $bg-color
         #                   border              background         text
         focused_workspace   $green              $green             $text-color
-        inactive_workspace  $inactive-bg-color  $inactive-bg-color $inactive-text-color
-        active_workspace    $inactive-bg-color  $inactive-bg-color $inactive-text-color
-        urgent_workspace    $inactive-bg-color  $urgent-bf-color   $inactive-text-color
+        inactive_workspace  $bg-color           $bg-color          $inactive-text-color
+        active_workspace    $bg-color           $bg-color          $inactive-text-color
+        urgent_workspace    $urgent-bf-color    $urgent-bf-color   $inactive-text-color
     }
 }
 
