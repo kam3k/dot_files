@@ -1,7 +1,7 @@
 call plug#begin('~/.vim/plugged')
 Plug 'w0ng/vim-hybrid' " Colorscheme
 Plug 'cocopon/lightline-hybrid.vim' " Lightline vim-hybrid
-Plug 'qpkorr/vim-bufkill' " Kill buffers well
+Plug 'mhinz/vim-sayonara' " Kill buffers well
 Plug 'jiangmiao/auto-pairs' " Auto-handling of brackets, etc.
 Plug 'djoshea/vim-autoread' " Auto-reload buffers that have been changed elsewhere
 Plug 'airblade/vim-gitgutter' " Show git status of lines in gutter
@@ -51,7 +51,7 @@ let g:hybrid_custom_term_colors = 1
 colorscheme hybrid
 
 " Windowing commands
-nnoremap <leader>q :bd<CR>
+nnoremap <leader>q :Sayonara<CR>
 nnoremap <silent> <c-j> <c-w>j
 nnoremap <silent> <c-k> <c-w>k
 nnoremap <silent> <c-l> <c-w>l
@@ -68,7 +68,7 @@ nnoremap <silent> <leader>MH <C-W>H
 " Buffer commands
 nnoremap <c-p> :bp<CR>
 nnoremap <c-n> :bn<CR>
-nnoremap <leader>x :BW!<CR>
+nnoremap <leader>x :Sayonara!<CR>
 nnoremap <leader>X :bufdo bd<CR>
 
 " Paste toggle command
