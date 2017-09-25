@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 Plug 'w0ng/vim-hybrid' " Colorscheme
 Plug 'cocopon/lightline-hybrid.vim' " Lightline vim-hybrid
+Plug 'ap/vim-buftabline' " Show buffers in tabline
 Plug 'mhinz/vim-sayonara' " Kill buffers well
 Plug 'jiangmiao/auto-pairs' " Auto-handling of brackets, etc.
 Plug 'djoshea/vim-autoread' " Auto-reload buffers that have been changed elsewhere
@@ -82,7 +83,7 @@ noremap k gk
 noremap Y y$
 nnoremap <leader>* ciw/*<C-R>"*/<Esc>
 vnoremap <leader>* c/*<C-R>"*/<Esc>
-nnoremap <leader>8 F/xxf*xx<Esc>
+nnoremap <F8> F/xxf*xx<Esc>
 nnoremap <leader>s O/**<space><space>*/<Esc>F<space>i
 
 " Never automatically continue comment when starting next line
@@ -255,6 +256,24 @@ endfunction
 
 " -- tmuxline
 let g:tmuxline_preset = 'minimal'
+
+" -- buftabline
+let g:buftabline_numbers = 2
+let g:buftabline_indicators = 1
+nmap <leader>1 <Plug>BufTabLine.Go(1)
+nmap <leader>2 <Plug>BufTabLine.Go(2)
+nmap <leader>3 <Plug>BufTabLine.Go(3)
+nmap <leader>4 <Plug>BufTabLine.Go(4)
+nmap <leader>5 <Plug>BufTabLine.Go(5)
+nmap <leader>6 <Plug>BufTabLine.Go(6)
+nmap <leader>7 <Plug>BufTabLine.Go(7)
+nmap <leader>8 <Plug>BufTabLine.Go(8)
+nmap <leader>9 <Plug>BufTabLine.Go(9)
+nmap <leader>0 <Plug>BufTabLine.Go(10)
+hi! link BufTabLineFill TabLineSel
+hi! link BufTabLineCurrent LightlineLeft_normal_0
+hi! link BufTabLineHidden Comment
+hi! link BufTabLineActive Special
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION
