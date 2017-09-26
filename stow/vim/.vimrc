@@ -115,9 +115,10 @@ let g:ycm_confirm_extra_conf = 0
 let g:ycm_show_diagnostics_ui = 1
 let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_always_populate_location_list = 1
-nnoremap <leader>t :YcmCompleter GetType<CR>
-nnoremap ]e :lnext<CR>
-nnoremap [e :lprevious<CR>
+nnoremap <leader>yt :YcmCompleter GetType<CR>
+nnoremap <leader>yi :YcmCompleter GoToInclude<CR>
+nnoremap <leader>yd :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>yf :YcmCompleter FixIt<CR>
 
 " -- fzf
 nnoremap <leader>o :Files<CR>
