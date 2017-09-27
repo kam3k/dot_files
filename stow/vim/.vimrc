@@ -22,6 +22,7 @@ Plug 'tpope/vim-sensible' " Sensible default settings
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'itchyny/lightline.vim' " Status line plugin
 Plug 'TxHawks/tmuxline.vim', { 'branch': 'patch-1' } " Make tmux look like vim colorscheme
+Plug 'wellle/targets.vim' " Access to additional text objects (e.g., 'din)', 'vil{')
 call plug#end()
 
 " Settings
