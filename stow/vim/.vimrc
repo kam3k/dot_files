@@ -47,6 +47,11 @@ set updatetime=250 " 250 ms between screen updates
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype cpp setlocal ts=2 sts=2 sw=2
 
+" Different cursors in insert and normal mode
+let &t_SI = "\<esc>[5 q"
+let &t_SR = "\<esc>[5 q"
+let &t_EI = "\<esc>[2 q"
+
 " Appearance
 set background=dark
 let g:hybrid_custom_term_colors = 1
