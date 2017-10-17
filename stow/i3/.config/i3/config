@@ -125,10 +125,11 @@ set $text-color          #282a2e
 set $inactive-text-color #707880
 set $urgent-bg-color     #a54242
 set $green               #8c9440
+set $blue                #5f819d
 
 # hide borders
 for_window [class="^.*"] border pixel 4
-client.focused $green $green $green $green $green
+client.focused $blue $blue $blue $blue $blue
 
 # start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -140,7 +141,7 @@ bar {
         background $bg-color
         separator $bg-color
         #                   border              background         text
-        focused_workspace   $green              $green             $text-color
+        focused_workspace   $blue               $blue              $text-color
         inactive_workspace  $bg-color           $bg-color          $inactive-text-color
         active_workspace    $bg-color           $bg-color          $inactive-text-color
         urgent_workspace    $urgent-bf-color    $urgent-bf-color   $inactive-text-color

@@ -277,10 +277,10 @@ nmap <leader>7 <Plug>BufTabLine.Go(7)
 nmap <leader>8 <Plug>BufTabLine.Go(8)
 nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
-hi! link BufTabLineFill LightlineRight_normal_1_2
-hi! link BufTabLineCurrent LightlineLeft_normal_0
-hi! link BufTabLineHidden LightlineRight_normal_1_2
-hi! link BufTabLineActive LightlineLeft_active_0_1
+hi! link BufTabLineFill Folded
+hi! link BufTabLineCurrent DiffText
+hi! link BufTabLineHidden Folded
+hi! link BufTabLineActive Directory
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION
