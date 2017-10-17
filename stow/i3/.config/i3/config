@@ -204,4 +204,4 @@ gaps inner 20
 gaps outer 20
 
 # set wallpaper
-exec --no-startup-id feh --bg-scale ~/.config/wallpapers/forest.jpg
+exec --no-startup-id feh --bg-scale ~/.config/wallpapers/halifax.jpg
