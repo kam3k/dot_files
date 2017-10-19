@@ -23,6 +23,7 @@ Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'itchyny/lightline.vim' " Status line plugin
 Plug 'TxHawks/tmuxline.vim', { 'branch': 'patch-1' } " Make tmux look like vim colorscheme
 Plug 'wellle/targets.vim' " Access to additional text objects (e.g., 'din)', 'vil{')
+Plug 'machakann/vim-sandwich' " Easily add/remove/replace surrounds
 call plug#end()
 
 " Settings
