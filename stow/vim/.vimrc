@@ -1,5 +1,8 @@
 call plug#begin('~/.vim/plugged')
-Plug 'qpkorr/vim-bufkill' " Kill buffers well
+Plug 'w0ng/vim-hybrid' " Colorscheme
+Plug 'cocopon/lightline-hybrid.vim' " Lightline vim-hybrid
+Plug 'ap/vim-buftabline' " Show buffers in tabline
+Plug 'mhinz/vim-sayonara' " Kill buffers well
 Plug 'jiangmiao/auto-pairs' " Auto-handling of brackets, etc.
 Plug 'djoshea/vim-autoread' " Auto-reload buffers that have been changed elsewhere
 Plug 'airblade/vim-gitgutter' " Show git status of lines in gutter
@@ -17,10 +20,11 @@ Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background
 Plug 'szw/vim-maximizer' " Temporarily maximize a pane
 Plug 'tpope/vim-sensible' " Sensible default settings
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
-Plug 'dylanaraps/wal.vim' " Automatically apply colorschemes
-Plug 'bling/vim-airline' " Pretty and useful status line
-Plug 'vim-airline/vim-airline-themes' " Airline themes
+Plug 'itchyny/lightline.vim' " Status line plugin
 Plug 'TxHawks/tmuxline.vim', { 'branch': 'patch-1' } " Make tmux look like vim colorscheme
+Plug 'wellle/targets.vim' " Access to additional text objects (e.g., 'din)', 'vil{')
+Plug 'machakann/vim-sandwich' " Easily add/remove/replace surrounds
+Plug 'dominickng/fzf-session.vim' " Fuzzy session management
 call plug#end()
 
 " Settings
@@ -45,11 +49,18 @@ set updatetime=250 " 250 ms between screen updates
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype cpp setlocal ts=2 sts=2 sw=2
 
+" Different cursors in insert and normal mode
+let &t_SI = "\<esc>[5 q"
+let &t_SR = "\<esc>[5 q"
+let &t_EI = "\<esc>[2 q"
+
 " Appearance
-colorscheme wal
+set background=dark
+let g:hybrid_custom_term_colors = 1
+colorscheme hybrid
 
 " Windowing commands
-nnoremap <leader>q :bd<CR>
+nnoremap <leader>q :Sayonara<CR>
 nnoremap <silent> <c-j> <c-w>j
 nnoremap <silent> <c-k> <c-w>k
 nnoremap <silent> <c-l> <c-w>l
@@ -66,7 +77,7 @@ nnoremap <silent> <leader>MH <C-W>H
 " Buffer commands
 nnoremap <c-p> :bp<CR>
 nnoremap <c-n> :bn<CR>
-nnoremap <leader>x :BW!<CR>
+nnoremap <leader>x :Sayonara!<CR>
 nnoremap <leader>X :bufdo bd<CR>
 
 " Paste toggle command
@@ -78,6 +89,10 @@ vnoremap > >gv
 noremap j gj
 noremap k gk
 noremap Y y$
+nnoremap <leader>* ciw/*<C-R>"*/<Esc>
+vnoremap <leader>* c/*<C-R>"*/<Esc>
+nnoremap <F8> F/xxf*xx<Esc>
+nnoremap <leader>s O/**<space><space>*/<Esc>F<space>i
 
 " Never automatically continue comment when starting next line
 au FileType * set fo-=c fo-=r fo-=o
@@ -108,9 +123,10 @@ let g:ycm_confirm_extra_conf = 0
 let g:ycm_show_diagnostics_ui = 1
 let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_always_populate_location_list = 1
-nnoremap <leader>t :YcmCompleter GetType<CR>
-nnoremap ]e :lnext<CR>
-nnoremap [e :lprevious<CR>
+nnoremap <leader>yt :YcmCompleter GetType<CR>
+nnoremap <leader>yi :YcmCompleter GoToInclude<CR>
+nnoremap <leader>yd :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>yf :YcmCompleter FixIt<CR>
 
 " -- fzf
 nnoremap <leader>o :Files<CR>
@@ -181,7 +197,7 @@ endf
 let g:asyncrun_exit = "call OnAsyncRunExit()"
 
 " -- vim-maximizer
-nnoremap <c-z> :MaximizerToggle<CR>
+nnoremap <c-b>z :MaximizerToggle<CR>
 
 " -- vim-commentary
 augroup FTOptions 
@@ -190,17 +206,89 @@ augroup FTOptions
     autocmd FileType cmake  setlocal commentstring=#\ %s
 augroup END
 
-" -- Airline
-let g:airline_powerline_fonts = 1
-let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
-let g:airline_section_warning = ''
-let g:airline_section_b = '%{getcwd()}'
-let g:airline_section_x = ''
-let g:airline_section_y = ''
-let g:airline_section_z = '%c'
+" -- lightline
+let g:lightline = {
+        \ 'colorscheme': 'hybrid',
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ],
+        \   'right': [ [ 'lineinfo' ],
+        \              [ 'asyncrun_status' ] ] 
+        \ },
+        \ 'inactive': {
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ],
+        \   'right': [ [ 'lineinfo' ],
+        \              [ 'asyncrun_status' ] ] 
+        \ },
+        \ 'component': {
+        \   'lineinfo': ' %3l:%-2v',
+        \   'asyncrun_status': '%{g:asyncrun_status}'
+        \ },
+        \ 'component_function': {
+        \   'readonly': 'LightlineReadonly',
+        \   'fugitive': 'LightlineFugitive',
+        \ },
+        \ 'separator': { 'left': '', 'right': '' },
+        \ 'subseparator': { 'left': '', 'right': '' }
+        \ }
+
+function! LightlineReadonly()
+        return &readonly ? '' : ''
+endfunction
+
+" This function is taken from vim-airline, to shorten
+" the branch name when appropriate.
+function! LightlineShorten(text, winwidth, minwidth, ...)
+  if winwidth(0) < a:winwidth && len(split(a:text, '\zs')) > a:minwidth
+    if get(a:000, 0, 0)
+      " shorten from tail
+      return '…'.matchstr(a:text, '.\{'.a:minwidth.'}$')
+    else
+      " shorten from beginning of string
+      return matchstr(a:text, '^.\{'.a:minwidth.'}').'…'
+    endif
+  else
+    return a:text
+  endif
+endfunction
+
+" Show git branch
+function! LightlineFugitive()
+        if exists('*fugitive#head')
+                let branch = fugitive#head(7)
+                let branch = branch !=# '' ? ' '.branch : ''
+                return LightlineShorten(branch, 120, 15)
+        endif
+        return ''
+endfunction
 
 " -- tmuxline
 let g:tmuxline_preset = 'minimal'
+
+" -- buftabline
+let g:buftabline_numbers = 2
+let g:buftabline_indicators = 1
+nmap <leader>1 <Plug>BufTabLine.Go(1)
+nmap <leader>2 <Plug>BufTabLine.Go(2)
+nmap <leader>3 <Plug>BufTabLine.Go(3)
+nmap <leader>4 <Plug>BufTabLine.Go(4)
+nmap <leader>5 <Plug>BufTabLine.Go(5)
+nmap <leader>6 <Plug>BufTabLine.Go(6)
+nmap <leader>7 <Plug>BufTabLine.Go(7)
+nmap <leader>8 <Plug>BufTabLine.Go(8)
+nmap <leader>9 <Plug>BufTabLine.Go(9)
+nmap <leader>0 <Plug>BufTabLine.Go(10)
+hi! link BufTabLineFill Folded
+hi! link BufTabLineCurrent DiffText
+hi! link BufTabLineHidden Folded
+hi! link BufTabLineActive Directory
+
+" -- fzf-session.vim
+let g:fzf_session_path = '~/.vim/session'
+nnoremap <c-b>n :Session<space>
+nnoremap <c-b>q :SQuit<CR>
+nnoremap <c-b>s :Sessions<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION

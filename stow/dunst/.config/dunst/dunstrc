@@ -19,13 +19,13 @@
     separator_height = 2
     padding = 10
     horizontal_padding = 10
-    separator_color = "#585858"
+    separator_color = frame
     startup_notification = false
     browser = /usr/bin/firefox -new-tab
 
 [frame]
     width = 0
-    color = "#383838"
+    color = "#ffffff"
 
 [shortcuts]
     close = ctrl+space
@@ -34,8 +34,24 @@
     context = ctrl+shift+period
 
 [urgency_low]
+    background = "#282a36"
+    foreground = "#707880"
     timeout = 5
+
+[urgency_normal]
+    background = "#8c9440"
+    foreground = "#282a2e"
+    timeout = 5
+
+[urgency_critical]
+    background = "#a54242"
+    foreground = "#282a2e"
+    timeout = 0
 
 [spotify]
     appname = *spotify*
     urgency = low
+
+[slack]
+    appname = *slack*
+    urgency = critical

@@ -5,10 +5,7 @@ set $mod Mod1
 set $term rxvt-unicode
 
 # font
-font pango:Iosevka Term 15
-
-# colorscheme with wal
-exec --no-startup-id wal -i ~/.config/wallpapers/rocks.jpg -o wal-set
+font pango:Iosevka Term Bold 16
 
 # hide title bars
 new_window 1pixel
@@ -54,11 +51,12 @@ bindsym $mod+e layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+f floating toggle
 
-set $workspace1 "1:  Firefox "
-set $workspace2 "2:  Spotify "
-set $workspace3 "3:  Terminal "
-set $workspace4 "4:  Vim "
-set $workspace5 "5:  Miscellaneous "
+set $workspace1 "1: Web "
+set $workspace2 "2: Spotify "
+set $workspace3 "3: Terminal "
+set $workspace4 "4: Vim "
+set $workspace5 "5: Slack"
+set $workspace6 "6: Miscellaneous "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -66,7 +64,7 @@ bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $workspace4
 bindsym $mod+5 workspace $workspace5
-bindsym $mod+6 workspace 6
+bindsym $mod+6 workspace $workspace6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
@@ -81,7 +79,7 @@ bindsym $mod+Shift+2 move container to workspace $workspace2
 bindsym $mod+Shift+3 move container to workspace $workspace3
 bindsym $mod+Shift+4 move container to workspace $workspace4
 bindsym $mod+Shift+5 move container to workspace $workspace5
-bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+6 move container to workspace $workspace6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
@@ -95,9 +93,9 @@ exec --no-startup-id firefox
 for_window [class="Spotify"] move container to workspace $workspace2
 exec --no-startup-id spotify --force-device-scale-factor=1.5
 
-# start hipchat
-for_window [class="HipChat"] move container to workspace $workspace5
-exec --no-startup-id hipchat4
+# start slack
+for_window [class="Slack"] move container to workspace $workspace5
+exec --no-startup-id slack
 
 # start main terminal
 for_window [instance="term_main"] move container to workspace $workspace3
@@ -120,18 +118,18 @@ bindsym $mod+Shift+e exit
 # move workspace to other monitor
 bindsym $mod+m move workspace to output right
 
-# get colors from wal
-set_from_resource $color1 i3wm.color1 #f0f0f0
-set_from_resource $color2 i3wm.color2 #f0f0f0
-set_from_resource $color3 i3wm.color3 #f0f0f0
-set_from_resource $color4 i3wm.color4 #f0f0f0
-set_from_resource $color5 i3wm.color5 #f0f0f0
-set_from_resource $color6 i3wm.color6 #f0f0f0
-set_from_resource $color7 i3wm.color7 #f0f0f0
+# set colors
+set $bg-color            #1d1f21
+set $inactive-bg-color   #282a36
+set $text-color          #282a2e
+set $inactive-text-color #707880
+set $urgent-bg-color     #a54242
+set $green               #8c9440
+set $blue                #5f819d
 
 # hide borders
 for_window [class="^.*"] border pixel 4
-client.focused $color1 $color1 $color1 $color1 $color1
+client.focused $blue $blue $blue $blue $blue
 
 # start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -140,15 +138,33 @@ bar {
     status_command i3blocks -c ~/.config/i3/i3blocks.conf
     strip_workspace_numbers yes
     colors {
-        background $color1
-        separator $color1
-        #                   border      background     text
-        focused_workspace   $color4     $color4        #ffffff
-        inactive_workspace  $color1     $color1        #ffffff
-		active_workspace    $color1     $color1        #ffffff
-        urgent_workspace    $color1     $color1        #ffffff
+        background $bg-color
+        separator $bg-color
+        #                   border              background         text
+        focused_workspace   $blue               $blue              $text-color
+        inactive_workspace  $bg-color           $bg-color          $inactive-text-color
+        active_workspace    $bg-color           $bg-color          $inactive-text-color
+        urgent_workspace    $urgent-bf-color    $urgent-bf-color   $inactive-text-color
     }
 }
+
+# resize window
+mode "resize" {
+    # Pressing left will shrink the window’s width.
+    # Pressing right will grow the window’s width.
+    # Pressing up will shrink the window’s height.
+    # Pressing down will grow the window’s height.
+    bindsym h           resize shrink width 5 px or 5 ppt
+    bindsym j           resize grow height 5 px or 5 ppt
+    bindsym k           resize shrink height 5 px or 5 ppt
+    bindsym l           resize grow width 5 px or 5 ppt
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
 
 # lock screen
 bindsym $mod+Shift+x exec i3lock
@@ -169,7 +185,7 @@ bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer
 bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
 
 # dmenu
-bindsym $mod+space exec dmenu_run -nb "$color1" -nf "$color7" -sb "$color7" -sf "$color1" -fn "Iosevka Term-17"
+bindsym $mod+space exec dmenu_run -nb "$bg-color" -nf "$inactive-text-color" -sb "$green" -sf "$text-color" -fn "Iosevka Term-18"
 
 # use dunst for notifications
 exec killall -q notify-osd
@@ -185,5 +201,8 @@ exec --no-startup-id compton -c --no-fading-openclose
 exec --no-startup-id redshift-gtk
 
 # gaps
-gaps inner 30
-gaps outer 30
+gaps inner 20
+gaps outer 20
+
+# set wallpaper
+exec --no-startup-id feh --bg-scale ~/.config/wallpapers/halifax.jpg
