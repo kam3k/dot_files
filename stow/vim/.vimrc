@@ -24,6 +24,7 @@ Plug 'itchyny/lightline.vim' " Status line plugin
 Plug 'TxHawks/tmuxline.vim', { 'branch': 'patch-1' } " Make tmux look like vim colorscheme
 Plug 'wellle/targets.vim' " Access to additional text objects (e.g., 'din)', 'vil{')
 Plug 'machakann/vim-sandwich' " Easily add/remove/replace surrounds
+Plug 'dominickng/fzf-session.vim' " Fuzzy session management
 call plug#end()
 
 " Settings
@@ -282,6 +283,12 @@ hi! link BufTabLineFill Folded
 hi! link BufTabLineCurrent DiffText
 hi! link BufTabLineHidden Folded
 hi! link BufTabLineActive Directory
+
+" -- fzf-session.vim
+let g:fzf_session_path = '~/.vim/session'
+nnoremap <c-b>n :Session<space>
+nnoremap <c-b>q :SQuit<CR>
+nnoremap <c-b>s :Sessions<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION
