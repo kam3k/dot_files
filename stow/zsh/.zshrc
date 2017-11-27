@@ -13,7 +13,7 @@ zplug zsh-users/zsh-autosuggestions
 zplug zsh-users/zsh-syntax-highlighting
 zplug supercrabtree/k, from:github
 zplug plugins/extract, from:oh-my-zsh 
-zplug mafredri/zsh-async, from:github
+zplug mafredri/zsh-async, from:github # allows pure to check for git changes in background
 zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 
 # Install plugins if there are plugins that have not been installed
@@ -69,9 +69,6 @@ fi
 
 # Source fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Import colorscheme from 'wal'
-# (wal -r &)
 
 # Make and change into a directory
 mkcd()
