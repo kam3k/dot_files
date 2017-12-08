@@ -185,6 +185,7 @@ let g:cpp_class_scope_highlight = 1
 nnoremap <leader>d :Dox<CR>
 
 " -- asyncrun
+map <F8> :AsyncStop<CR>
 noremap <leader><leader> :call asyncrun#quickfix_toggle(15)<CR>
 augroup vimrc
     autocmd QuickFixCmdPost * call asyncrun#quickfix_toggle(15, 1)
