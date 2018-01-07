@@ -67,14 +67,14 @@ nnoremap <silent> <c-j> <c-w>j
 nnoremap <silent> <c-k> <c-w>k
 nnoremap <silent> <c-l> <c-w>l
 nnoremap <silent> <c-h> <c-w>h
-nnoremap <silent> <leader>mj :below new<CR>
-nnoremap <silent> <leader>mk :above new<CR>
-nnoremap <silent> <leader>ml :rightbelow vnew<CR>
-nnoremap <silent> <leader>mh :leftabove vnew<CR>
-nnoremap <silent> <leader>MJ <C-W>J
-nnoremap <silent> <leader>MK <C-W>K
-nnoremap <silent> <leader>ML <C-W>L
-nnoremap <silent> <leader>MH <C-W>H
+nnoremap <silent> <leader>wj :below new<CR>
+nnoremap <silent> <leader>wk :above new<CR>
+nnoremap <silent> <leader>wl :rightbelow vnew<CR>
+nnoremap <silent> <leader>wh :leftabove vnew<CR>
+nnoremap <silent> <leader>mj <C-W>J
+nnoremap <silent> <leader>mk <C-W>K
+nnoremap <silent> <leader>ml <C-W>L
+nnoremap <silent> <leader>mh <C-W>H
 
 " Buffer commands
 nnoremap <c-p> :bp<CR>
@@ -188,7 +188,7 @@ let g:cpp_class_scope_highlight = 1
 nnoremap <leader>d :Dox<CR>
 
 " -- asyncrun
-map <F8> :AsyncStop<CR>
+map <F11> :AsyncStop<CR>
 noremap <leader><leader> :call asyncrun#quickfix_toggle(15)<CR>
 augroup vimrc
     autocmd QuickFixCmdPost * call asyncrun#quickfix_toggle(15, 1)
