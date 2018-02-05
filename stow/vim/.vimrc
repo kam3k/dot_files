@@ -13,7 +13,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy search
 Plug 'junegunn/fzf.vim' " Vim bindings to various fuzzy searches
 Plug 'derekwyatt/vim-fswitch' " Switch between source and headers
 Plug 'octol/vim-cpp-enhanced-highlight' " Better highlighting in c++
-Plug 'lyuts/vim-rtags' " Tags to jump around code and find symbols
+Plug 'lyuts/vim-rtags', { 'commit': '8773238cdc2570ffa81aac18138dc773ff3e92d3' } " Tags to jump around code and find symbols
 Plug 'mrtazz/DoxygenToolkit.vim' " Auto-insert Doxygen comments
 Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
 Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background 
@@ -25,6 +25,8 @@ Plug 'TxHawks/tmuxline.vim', { 'branch': 'patch-1' } " Make tmux look like vim c
 Plug 'wellle/targets.vim' " Access to additional text objects (e.g., 'din)', 'vil{')
 Plug 'machakann/vim-sandwich' " Easily add/remove/replace surrounds
 Plug 'dominickng/fzf-session.vim' " Fuzzy session management
+Plug 'rust-lang/rust.vim' " RustFmt, rust with syntastic
+Plug 'w0rp/ale' " Asynchronous linting of rust
 call plug#end()
 
 " Settings
@@ -124,6 +126,7 @@ let g:ycm_show_diagnostics_ui = 1
 let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_always_populate_location_list = 1
 nnoremap <leader>yt :YcmCompleter GetType<CR>
+nnoremap <leader>yg :YcmCompleter GoTo<CR>
 nnoremap <leader>yi :YcmCompleter GoToInclude<CR>
 nnoremap <leader>yd :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>yf :YcmCompleter FixIt<CR>
@@ -290,6 +293,9 @@ let g:fzf_session_path = '~/.vim/session'
 nnoremap <c-b>n :Session<space>
 nnoremap <c-b>q :SQuit<CR>
 nnoremap <c-b>s :Sessions<CR>
+
+" -- rust.vim
+let g:rustfmt_autosave = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION
