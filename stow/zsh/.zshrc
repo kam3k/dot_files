@@ -54,6 +54,7 @@ setopt share_history
 
 # Aliases
 alias tmux='tmux -2'
+alias ta='tmux a -t'
 alias agc='ag -G ".*\.(cpp|h|hpp|cc)"'
 alias agx='ag -G ".*\.(xml)"'
 alias now='watch -x -t -n 0.01 date +%s.%N' 
