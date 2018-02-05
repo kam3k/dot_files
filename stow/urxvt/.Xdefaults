@@ -1,8 +1,9 @@
 URxvt.termName: rxvt-256color
 URxvt.font: xft:iosevka term:size=18:antialias=true,xft:DejaVu Sans Mono:size=18:antialias=true
 URxvt.scrollBar: false
-URxvt.internalBorder: 15
+URxvt.internalBorder: 25
 URxvt.letterSpace: -1
+URxvt.fading: 50
 
 ! hybrid
 *background: #1D1F21
