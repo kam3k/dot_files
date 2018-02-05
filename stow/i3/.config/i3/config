@@ -128,8 +128,7 @@ set $green               #8c9440
 set $blue                #5f819d
 
 # hide borders
-for_window [class="^.*"] border pixel 4
-client.focused $blue $blue $blue $blue $blue
+for_window [class="^.*"] border pixel 0
 
 # start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
