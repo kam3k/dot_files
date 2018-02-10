@@ -1,33 +1,40 @@
 URxvt.termName: rxvt-256color
 URxvt.font: xft:iosevka term:size=18:antialias=true,xft:DejaVu Sans Mono:size=18:antialias=true
 URxvt.scrollBar: false
-URxvt.internalBorder: 13
-URxvt.fading: 35
+URxvt.internalBorder: 20
+URxvt.fading: 45
+URxvt.transparent: true
+URxvt.shading: 8
 
-! hybrid
-*background: #1D1F21
-*foreground: #C5C8C6
-! black
-*color0: #282A2E
-*color8: #373B41
-! red
-*color1: #A54242
-*color9: #CC6666
-! green
-*color2: #8C9440
-*color10: #B5BD68
-! yellow
-*color3: #DE935F
-*color11: #F0C674
-! blue
-*color4: #5F819D
-*color12: #81A2BE
-! magenta
-*color5: #85678F
-*color13: #B294BB
-! cyan
-*color6: #5E8D87
-*color14: #8ABEB7
-! white
-*color7: #707880
-*color15: #C5C8C6
+#define bg    #312e39
+#define blk   #33303b
+#define fg    #c0a79a
+#define bblk  #4f4b58
+#define red   #87404f
+#define grn   #4c9882
+#define ylw   #71949a
+#define blu   #615772
+#define mag   #783e57
+#define cyn   #554757
+#define wht   #c0a79a
+
+*background:   bg
+*foreground:   fg
+*cursorColor:  cyn
+
+*color0:      blk
+*color8:      bblk
+*color1:      red
+*color9:      red
+*color2:      grn
+*color10:     grn
+*color3:      ylw
+*color11:     ylw
+*color4:      blu
+*color12:     blu
+*color5:      mag
+*color13:     mag
+*color6:      cyn
+*color14:     cyn
+*color7:      wht
+*color15:     wht

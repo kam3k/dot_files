@@ -1,6 +1,4 @@
 call plug#begin('~/.vim/plugged')
-Plug 'w0ng/vim-hybrid' " Colorscheme
-Plug 'cocopon/lightline-hybrid.vim' " Lightline vim-hybrid
 Plug 'ap/vim-buftabline' " Show buffers in tabline
 Plug 'mhinz/vim-sayonara' " Kill buffers well
 Plug 'jiangmiao/auto-pairs' " Auto-handling of brackets, etc.
@@ -12,7 +10,6 @@ Plug 'Valloric/YouCompleteMe' " Autocomplete and much more
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy search
 Plug 'junegunn/fzf.vim' " Vim bindings to various fuzzy searches
 Plug 'derekwyatt/vim-fswitch' " Switch between source and headers
-Plug 'octol/vim-cpp-enhanced-highlight' " Better highlighting in c++
 Plug 'lyuts/vim-rtags', { 'commit': '8773238cdc2570ffa81aac18138dc773ff3e92d3' } " Tags to jump around code and find symbols
 Plug 'mrtazz/DoxygenToolkit.vim' " Auto-insert Doxygen comments
 Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
@@ -22,11 +19,11 @@ Plug 'tpope/vim-sensible' " Sensible default settings
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'itchyny/lightline.vim' " Status line plugin
 Plug 'TxHawks/tmuxline.vim', { 'branch': 'patch-1' } " Make tmux look like vim colorscheme
-Plug 'wellle/targets.vim' " Access to additional text objects (e.g., 'din)', 'vil{')
-Plug 'machakann/vim-sandwich' " Easily add/remove/replace surrounds
 Plug 'dominickng/fzf-session.vim' " Fuzzy session management
 Plug 'rust-lang/rust.vim' " RustFmt, rust with syntastic
 Plug 'w0rp/ale' " Asynchronous linting of rust
+Plug 'sheerun/vim-polyglot' " Syntax highlighting language packs
+Plug 'joshdick/onedark.vim' " Colorscheme
 call plug#end()
 
 " Settings
@@ -56,10 +53,24 @@ let &t_SI = "\<esc>[5 q"
 let &t_SR = "\<esc>[5 q"
 let &t_EI = "\<esc>[2 q"
 
-" Appearance
-set background=dark
-let g:hybrid_custom_term_colors = 1
-colorscheme hybrid
+" Override onedark background to use terminal background
+if (has("autocmd") && !has("gui_running"))
+  augroup colorset
+    autocmd!
+    let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
+    autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
+  augroup END
+endif
+let g:onedark_termcolors=16
+colorscheme onedark
+
+" Color overrides
+highlight LineNr ctermfg=4
+highlight Visual ctermbg=3 ctermfg=0
+highlight Search ctermbg=3 ctermfg=0
+highlight VertSplit ctermbg=0 ctermfg=4
+highlight Comment ctermfg=8
+highlight! link StartifySpecial Normal
 
 " Windowing commands
 nnoremap <leader>q :Sayonara<CR>
@@ -212,7 +223,7 @@ augroup END
 
 " -- lightline
 let g:lightline = {
-        \ 'colorscheme': 'hybrid',
+        \ 'colorscheme': 'onedark',
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ],
         \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ],
@@ -283,10 +294,10 @@ nmap <leader>7 <Plug>BufTabLine.Go(7)
 nmap <leader>8 <Plug>BufTabLine.Go(8)
 nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
-hi! link BufTabLineFill Folded
-hi! link BufTabLineCurrent DiffText
-hi! link BufTabLineHidden Folded
-hi! link BufTabLineActive Directory
+hi! link BufTabLineFill VertSplit
+hi! link BufTabLineCurrent DiffAdd
+hi! link BufTabLineHidden VertSplit
+hi! link BufTabLineActive DiffText
 
 " -- fzf-session.vim
 let g:fzf_session_path = '~/.vim/session'
