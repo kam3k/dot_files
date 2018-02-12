@@ -61,6 +61,7 @@ alias now='watch -x -t -n 0.01 date +%s.%N'
 alias o=xdg-open
 alias k='k -h'
 alias zs='pkgsearch'
+alias cdg='cd "$(git rev-parse --show-cdup)"'
 
 # ls colors
 if [ -x /usr/bin/dircolors ]; then
