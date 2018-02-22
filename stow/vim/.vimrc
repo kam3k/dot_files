@@ -21,7 +21,7 @@ Plug 'itchyny/lightline.vim' " Status line plugin
 Plug 'TxHawks/tmuxline.vim', { 'branch': 'patch-1' } " Make tmux look like vim colorscheme
 Plug 'dominickng/fzf-session.vim' " Fuzzy session management
 Plug 'rust-lang/rust.vim' " RustFmt, rust with syntastic
-Plug 'w0rp/ale' " Asynchronous linting of rust
+Plug 'w0rp/ale' " Asynchronous linting
 Plug 'sheerun/vim-polyglot' " Syntax highlighting language packs
 Plug 'joshdick/onedark.vim' " Colorscheme
 call plug#end()
@@ -307,6 +307,15 @@ nnoremap <c-b>s :Sessions<CR>
 
 " -- rust.vim
 let g:rustfmt_autosave = 1
+
+" -- ale
+let g:ale_linters = {
+            \   'cpp': ['clangtidy'],
+            \}
+let g:ale_cpp_clangtidy_checks = ['clang-analyzer-*', 'modernize-*', 'performance-*', 'readability-*', 'cppcoreguidelines-*']
+" Set up mapping to move between errors
+nmap <silent> [w <Plug>(ale_previous_wrap)
+nmap <silent> ]w <Plug>(ale_next_wrap)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION
