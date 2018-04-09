@@ -50,6 +50,7 @@ bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+f floating toggle
+floating_modifier $mod
 
 set $workspace1 "1: Web "
 set $workspace2 "2: Spotify "
