@@ -145,6 +145,7 @@ nnoremap <leader>yf :YcmCompleter FixIt<CR>
 " -- fzf
 nnoremap <leader>o :Files<CR>
 nnoremap <leader>i :Buffers<CR>
+nnoremap <leader>/ :Lines<CR>
 nnoremap <leader>a :Ag<space>
 nnoremap <leader>p :History<CR>
 nnoremap <leader>: :History:<CR>
