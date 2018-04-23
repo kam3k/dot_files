@@ -116,8 +116,8 @@ map <leader>c :py3f ~/.clang-format.py<CR>
 " Search for name of current file
 nnoremap <leader>h :Ag <C-R>=expand('%:t')<CR><CR>
 
-" Close preview window when leaving insert mode
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+" Disable preview window on completions
+set completeopt-=preview
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN RELATED
