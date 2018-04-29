@@ -4,7 +4,7 @@ URxvt.scrollBar: false
 URxvt.internalBorder: 20
 URxvt.fading: 45
 URxvt.transparent: true
-URxvt.shading: 15
+URxvt.shading: 10
 
 #define bg    #312e39
 #define blk   #33303b
