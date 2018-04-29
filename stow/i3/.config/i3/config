@@ -53,16 +53,16 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+f floating toggle
 floating_modifier $mod
 
-set $workspace1 "  "
-set $workspace2 "  "
-set $workspace3 "  "
-set $workspace4 "  "
-set $workspace5 "  "
-set $workspace6 "  "
-set $workspace7 "  "
-set $workspace8 "  "
-set $workspace9 "  "
-set $workspace0 "  "
+set $workspace1 "1  "
+set $workspace2 "2  "
+set $workspace3 "3  "
+set $workspace4 "4  "
+set $workspace5 "5  "
+set $workspace6 "6  "
+set $workspace7 "7  "
+set $workspace8 "8  "
+set $workspace9 "9  "
+set $workspace0 "0  "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -148,7 +148,6 @@ bar {
     position top
     height 40
     status_command i3blocks -c ~/.config/i3/i3blocks.conf
-    strip_workspace_numbers yes
     colors {
         background $bg
         separator $bg
@@ -196,7 +195,7 @@ bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer
 bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
 
 # dmenu
-bindsym $mod+space exec i3-dmenu-desktop --dmenu='dmenu -b -i -nb "$blk" -nf "$fg" -sb "$grn" -sf "$bg" -fn "Iosevka Term-18"'
+bindsym $mod+space exec i3-dmenu-desktop --dmenu='dmenu -b -i -nb "$bg" -nf "$fg" -sb "$grn" -sf "$bg" -fn "Iosevka Term-18"'
 
 # use dunst for notifications
 exec killall -q notify-osd
