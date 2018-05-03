@@ -5,7 +5,7 @@ set $mod Mod1
 set $term rxvt-unicode
 
 # font
-font pango:Iosevka Term Medium 17
+font pango:Iosevka Term Bold 8
 
 # hide title bars
 new_window 1pixel
@@ -53,16 +53,16 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+f floating toggle
 floating_modifier $mod
 
-set $workspace1 "1  "
-set $workspace2 "2  "
-set $workspace3 "3  "
-set $workspace4 "4  "
-set $workspace5 "5  "
-set $workspace6 "6  "
-set $workspace7 "7  "
-set $workspace8 "8  "
-set $workspace9 "9  "
-set $workspace0 "0  "
+set $workspace1 "1 "
+set $workspace2 "2 "
+set $workspace3 "3 "
+set $workspace4 "4 "
+set $workspace5 "5 "
+set $workspace6 "6 "
+set $workspace7 "7 "
+set $workspace8 "8 "
+set $workspace9 "9 "
+set $workspace0 "0 "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -152,9 +152,10 @@ bar {
         background $bg
         separator $bg
         #                   border      background   text
-        focused_workspace   $grn        $grn         $bg
+        focused_workspace   $bg         $bg          $grn
+        active_workspace    $bg         $bg          $fg
         urgent_workspace    $red        $red         $bg
-        inactive_workspace  $bg         $bg          $grn
+        inactive_workspace  $bg         $bg          $bblk
     }
 }
 
@@ -195,7 +196,7 @@ bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer
 bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
 
 # dmenu
-bindsym $mod+space exec i3-dmenu-desktop --dmenu='dmenu -b -i -nb "$bg" -nf "$fg" -sb "$grn" -sf "$bg" -fn "Iosevka Term-18"'
+bindsym $mod+space exec i3-dmenu-desktop --dmenu='dmenu -b -i -nb "$bg" -nf "$fg" -sb "$grn" -sf "$bg" -fn "Iosevka Term-8"'
 
 # use dunst for notifications
 exec killall -q notify-osd
@@ -211,8 +212,7 @@ exec --no-startup-id compton -c --no-fading-openclose
 exec --no-startup-id redshift-gtk
 
 # gaps
-gaps inner 40
-gaps outer 20
+gaps inner 18
 
 # set wallpaper
 exec --no-startup-id feh --bg-scale ~/.config/wallpapers/blade_runner.jpg
