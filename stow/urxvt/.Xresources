@@ -1,5 +1,7 @@
+Xft.dpi: 220
+
 URxvt.termName: rxvt-256color
-URxvt.font: xft:iosevka term:size=18:antialias=true,xft:DejaVu Sans Mono:size=18:antialias=true
+URxvt.font: xft:iosevka term:size=9:antialias=true,xft:DejaVu Sans Mono:size=9:antialias=true
 URxvt.scrollBar: false
 URxvt.internalBorder: 20
 URxvt.fading: 45
