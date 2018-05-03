@@ -7,6 +7,7 @@ URxvt.internalBorder: 20
 URxvt.fading: 45
 URxvt.transparent: true
 URxvt.shading: 10
+URxvt.letterSpace: 0
 
 #define bg    #312e39
 #define blk   #33303b
