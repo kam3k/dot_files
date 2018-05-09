@@ -53,5 +53,5 @@
     urgency = low
 
 [slack]
-    appname = *slack*
+    appname = *Slack*
     urgency = critical
