@@ -14,7 +14,7 @@ zplug zsh-users/zsh-syntax-highlighting
 zplug supercrabtree/k, from:github
 zplug plugins/extract, from:oh-my-zsh 
 zplug mafredri/zsh-async, from:github # allows pure to check for git changes in background
-zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then

@@ -102,6 +102,7 @@ vnoremap > >gv
 noremap j gj
 noremap k gk
 noremap Y y$
+noremap g; g;zz
 nnoremap <leader>* ciw/*<C-R>"*/<Esc>
 vnoremap <leader>* c/*<C-R>"*/<Esc>
 nnoremap <F8> F/xxf*xx<Esc>
