@@ -194,8 +194,8 @@ bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer
 bindsym $mod+space exec i3-dmenu-desktop --dmenu='dmenu -b -i -nb "$bg" -nf "$fg" -sb "$grn" -sf "$bg" -fn "Iosevka Term-8"'
 
 # use dunst for notifications
-exec killall -q notify-osd
-exec --no-startup-id dunst
+exec_always killall -q notify-osd
+exec_always --no-startup-id dunst
 
 # put monitor to left of laptop
 exec --no-startup-id xrandr --output DP-3 --auto --right-of DP-2
