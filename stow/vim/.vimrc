@@ -9,7 +9,6 @@ Plug 'mhinz/vim-startify' " Useful start screen
 Plug 'Valloric/YouCompleteMe' " Autocomplete and much more
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy search
 Plug 'junegunn/fzf.vim' " Vim bindings to various fuzzy searches
-Plug 'derekwyatt/vim-fswitch' " Switch between source and headers
 Plug 'lyuts/vim-rtags', { 'commit': '8773238cdc2570ffa81aac18138dc773ff3e92d3' } " Tags to jump around code and find symbols
 Plug 'mrtazz/DoxygenToolkit.vim' " Auto-insert Doxygen comments
 Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
@@ -173,26 +172,25 @@ command! -bang -nargs=* Ag
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
+function! FZFSameName(sink, pre_command, post_command)
+    let current_file_no_extension = expand("%:t:r")
+    let current_file_with_extension = expand("%:t")
+    execute a:pre_command
+    call fzf#run(fzf#wrap({'source': 'find -name ' . current_file_no_extension . '.* | grep -Ev *' . current_file_with_extension . '$', 'options': -1, 'sink': a:sink}))
+    execute a:post_command
+endfunction
+nnoremap <leader>ff :call FZFSameName('e', '', '')<CR>
+nnoremap <leader>fh :call FZFSameName('e', 'wincmd h', '')<CR>
+nnoremap <leader>fl :call FZFSameName('e', 'wincmd l', '')<CR>
+nnoremap <leader>fk :call FZFSameName('e', 'wincmd k', '')<CR>
+nnoremap <leader>fj :call FZFSameName('e', 'wincmd j', '')<CR>
+nnoremap <leader>fH :call FZFSameName('leftabove vsplit', '', 'wincmd h')<CR>
+nnoremap <leader>fL :call FZFSameName('rightbelow vsplit', '', 'wincmd l')<CR>
+nnoremap <leader>fK :call FZFSameName('leftabove split', '', 'wincmd k')<CR>
+nnoremap <leader>fJ :call FZFSameName('rightbelow split', '', 'wincmd j')<CR>
 
 " -- vim-startify
 let g:startify_change_to_dir = 0
-
-" -- vim-fswitch
-nmap <silent> <leader>ff :FSHere<CR>
-nmap <silent> <leader>fl :FSRight<CR>
-nmap <silent> <leader>fh :FSLeft<CR>
-nmap <silent> <leader>fL :FSSplitRight<CR>
-nmap <silent> <leader>fH :FSSplitLeft<CR>
-let g:fsnonewfiles = 'on'
-augroup fswitch_cpp
-   au!
-   au BufEnter *.h let b:fswitchdst  = 'cpp,hpp,cc,c'
-   au BufEnter *.h let b:fswitchlocs = 'reg:/include/src/,reg:/include.*/src/,../src,reg:|include/\w\+|src|,impl'
-   au BufEnter *.cpp let b:fswitchdst  = 'hpp,h'
-   au BufEnter *.cpp let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/**|,../include,reg:|src/\(\w\+\)/src|src/\1/include/**|'
-   au BufEnter *.hpp let b:fswitchdst  = 'h,cpp'
-   au BufEnter *.hpp let b:fswitchlocs = 'reg:/include/src/,reg:/include.*/src/,../src,..'
-augroup END
 
 " -- vim-cpp-enhanced-highlight
 let g:cpp_class_scope_highlight = 1
