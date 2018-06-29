@@ -30,21 +30,6 @@ zplug load
 # Caps lock is Ctrl
 setxkbmap -option ctrl:nocaps
 
-# Directory stack
-DIRSTACKFILE="$HOME/.cache/zsh/dirs"
-if [[ -f $DIRSTACKFILE  ]] && [[ $#dirstack -eq 0  ]]; then
-      dirstack=( ${(f)"$(< $DIRSTACKFILE)"}  )
-        [[ -d $dirstack[1]  ]] && cd $dirstack[1]
-    fi
-    chpwd() {
-          print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
-
-    }
-DIRSTACKSIZE=20
-setopt AUTO_PUSHD PUSHD_SILENT PUSHD_TO_HOME
-setopt PUSHD_IGNORE_DUPS
-setopt PUSHD_MINUS
-
 # History management
 if [ -z "$HISTFILE" ]; then
     HISTFILE=$HOME/.zsh_history
@@ -86,6 +71,11 @@ fi
 
 # Source fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Enable Ctrl-x to edit command line in vim
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^x' edit-command-line
 
 # Make and change into a directory
 mkcd()
