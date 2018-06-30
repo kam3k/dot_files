@@ -19,10 +19,10 @@ Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'itchyny/lightline.vim' " Status line plugin
 Plug 'TxHawks/tmuxline.vim', { 'branch': 'patch-1' } " Make tmux look like vim colorscheme
 Plug 'dominickng/fzf-session.vim' " Fuzzy session management
-Plug 'rust-lang/rust.vim' " RustFmt, rust with syntastic
 Plug 'w0rp/ale' " Asynchronous linting
 Plug 'sheerun/vim-polyglot' " Syntax highlighting language packs
-Plug 'joshdick/onedark.vim' " Colorscheme
+Plug 'chriskempson/base16-vim' " Colorschemes
+Plug 'daviesjamie/vim-base16-lightline'
 call plug#end()
 
 " Settings
@@ -52,24 +52,14 @@ let &t_SI = "\<esc>[5 q"
 let &t_SR = "\<esc>[5 q"
 let &t_EI = "\<esc>[2 q"
 
-" Override onedark background to use terminal background
-if (has("autocmd") && !has("gui_running"))
-  augroup colorset
-    autocmd!
-    let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
-    autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
-  augroup END
-endif
-let g:onedark_termcolors=16
-colorscheme onedark
 
-" Color overrides
-highlight LineNr ctermfg=4
-highlight Visual ctermbg=3 ctermfg=0
-highlight Search ctermbg=3 ctermfg=0
-highlight VertSplit ctermbg=0 ctermfg=4
-highlight Comment ctermfg=8
-highlight! link StartifySpecial Normal
+" Colorscheme
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+  hi Normal ctermbg=NONE guibg=NONE
+  hi clear LineNr
+endif
 
 " Windowing commands
 nnoremap <leader>q :Sayonara<CR>
@@ -223,7 +213,7 @@ augroup END
 
 " -- lightline
 let g:lightline = {
-        \ 'colorscheme': 'onedark',
+        \ 'colorscheme': 'base16',
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ],
         \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ],
@@ -294,19 +284,15 @@ nmap <leader>7 <Plug>BufTabLine.Go(7)
 nmap <leader>8 <Plug>BufTabLine.Go(8)
 nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
-hi! link BufTabLineFill VertSplit
-hi! link BufTabLineCurrent DiffAdd
-hi! link BufTabLineHidden VertSplit
-hi! link BufTabLineActive DiffText
+hi! link BufTabLineCurrent Search
+hi! link BufTabLineHidden Folded
+hi! link BufTabLineActive DiffAdd
 
 " -- fzf-session.vim
 let g:fzf_session_path = '~/.vim/session'
 nnoremap <c-b>n :Session<space>
 nnoremap <c-b>q :SQuit<CR>
 nnoremap <c-b>s :Sessions<CR>
-
-" -- rust.vim
-let g:rustfmt_autosave = 1
 
 " -- ale
 let g:ale_linters = {
