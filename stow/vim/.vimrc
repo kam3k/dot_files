@@ -52,6 +52,8 @@ let &t_SI = "\<esc>[5 q"
 let &t_SR = "\<esc>[5 q"
 let &t_EI = "\<esc>[2 q"
 
+" Terminal
+set term=rxvt-unicode-256color
 
 " Colorscheme
 if filereadable(expand("~/.vimrc_background"))
@@ -59,6 +61,13 @@ if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background
   hi Normal ctermbg=NONE guibg=NONE
   hi clear LineNr
+  hi Comment cterm=italic ctermfg=8
+  hi Italic cterm=italic
+  hi GitGutterAdd ctermfg=41 ctermbg=NONE
+  hi GitGutterChange ctermfg=38 ctermbg=NONE
+  hi GitGutterDelete ctermfg=160 ctermbg=NONE
+  hi GitGutterChangeDelete ctermfg=172 ctermbg=NONE
+  hi YcmErrorSign ctermfg=124 ctermbg=NONE
 endif
 
 " Windowing commands
