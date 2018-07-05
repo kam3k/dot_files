@@ -33,3 +33,6 @@
     conflictstyle = diff3
 [mergetool]
     prompt = false
+[color "status"]
+	added = "green bold"
+	changed = "red italic"
