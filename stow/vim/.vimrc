@@ -5,7 +5,6 @@ Plug 'jiangmiao/auto-pairs' " Auto-handling of brackets, etc.
 Plug 'djoshea/vim-autoread' " Auto-reload buffers that have been changed elsewhere
 Plug 'airblade/vim-gitgutter' " Show git status of lines in gutter
 Plug 'tpope/vim-fugitive' " Git functionality in vim
-Plug 'mhinz/vim-startify' " Useful start screen
 Plug 'Valloric/YouCompleteMe' " Autocomplete and much more
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy search
 Plug 'junegunn/fzf.vim' " Vim bindings to various fuzzy searches
@@ -16,18 +15,21 @@ Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background
 Plug 'szw/vim-maximizer' " Temporarily maximize a pane
 Plug 'tpope/vim-sensible' " Sensible default settings
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
-Plug 'itchyny/lightline.vim' " Status line plugin
 Plug 'TxHawks/tmuxline.vim', { 'branch': 'patch-1' } " Make tmux look like vim colorscheme
-Plug 'dominickng/fzf-session.vim' " Fuzzy session management
 Plug 'w0rp/ale' " Asynchronous linting
-Plug 'sheerun/vim-polyglot' " Syntax highlighting language packs
 Plug 'chriskempson/base16-vim' " Colorschemes
-Plug 'daviesjamie/vim-base16-lightline'
 call plug#end()
+
+" Status line
+set statusline=
+set statusline+=\ %l/%L
+set statusline+=\ %c
+set statusline+=\ %=
+set statusline+=%{g:asyncrun_status}
+set statusline+=\ 
 
 " Settings
 set hidden " allow unsaved buffers to be hidden
-set showmode " shows the mode (insert, visual, normal) at bottom
 set bs=2 " allow backspace over anything in insert mode
 set mouse=a " mouse use enabled
 set splitright " new vertical splits go to the right
@@ -35,25 +37,18 @@ set splitbelow " new horizontal splits go below
 set nostartofline " keep cursor in same column for long-range motion cmds
 set ignorecase " ignore case when using a search pattern
 set smartcase " override 'ignorecase' when pattern has upper case character
-set tabstop=4 " tab is four spaces
-set shiftwidth=4 " number of spaces indented using >> and << commands
+set tabstop=2 " tab is four spaces
+set shiftwidth=2 " number of spaces indented using >> and << commands
 set expandtab " tab inserts spaces instead of tabs
-set softtabstop=4 " always uses spaces, never tabs
+set softtabstop=2 " always uses spaces, never tabs
 set number " show line numbers
-set relativenumber " line numbers relative to cursor
 set updatetime=250 " 250 ms between screen updates
-
-" Filetype and syntax
-autocmd Filetype python setlocal ts=4 sts=4 sw=4
-autocmd Filetype cpp setlocal ts=2 sts=2 sw=2
+set noshowmode " don't show mode (just look at cursor)
 
 " Different cursors in insert and normal mode
 let &t_SI = "\<esc>[5 q"
 let &t_SR = "\<esc>[5 q"
 let &t_EI = "\<esc>[2 q"
-
-" Terminal
-set term=rxvt-unicode-256color
 
 " Colorscheme
 if filereadable(expand("~/.vimrc_background"))
@@ -128,13 +123,7 @@ set completeopt-=preview
 " PLUGIN RELATED
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- vim-fugitive
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gb :Gblame<CR>
-nnoremap <leader>gd :Gdiff<CR>
-nnoremap <leader>gw :Gwrite<CR>
-nnoremap <leader>gr :Gread<CR>
-nnoremap <leader>gp :Gpush<CR>
 
 " -- YouCompleteMe
 let g:ycm_confirm_extra_conf = 0
@@ -142,9 +131,6 @@ let g:ycm_show_diagnostics_ui = 1
 let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_always_populate_location_list = 1
 nnoremap <leader>yt :YcmCompleter GetType<CR>
-nnoremap <leader>yg :YcmCompleter GoTo<CR>
-nnoremap <leader>yi :YcmCompleter GoToInclude<CR>
-nnoremap <leader>yd :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>yf :YcmCompleter FixIt<CR>
 
 " -- fzf
@@ -194,12 +180,6 @@ nnoremap <leader>fL :call FZFSameName('rightbelow vsplit', '', 'wincmd l')<CR>
 nnoremap <leader>fK :call FZFSameName('leftabove split', '', 'wincmd k')<CR>
 nnoremap <leader>fJ :call FZFSameName('rightbelow split', '', 'wincmd j')<CR>
 
-" -- vim-startify
-let g:startify_change_to_dir = 0
-
-" -- vim-cpp-enhanced-highlight
-let g:cpp_class_scope_highlight = 1
-
 " -- DoxygenToolkit.vim
 nnoremap <leader>d :Dox<CR>
 
@@ -226,63 +206,6 @@ augroup FTOptions
     autocmd FileType cmake  setlocal commentstring=#\ %s
 augroup END
 
-" -- lightline
-let g:lightline = {
-        \ 'colorscheme': 'base16',
-        \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ],
-        \   'right': [ [ 'lineinfo' ],
-        \              [ 'asyncrun_status' ] ] 
-        \ },
-        \ 'inactive': {
-        \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ],
-        \   'right': [ [ 'lineinfo' ],
-        \              [ 'asyncrun_status' ] ] 
-        \ },
-        \ 'component': {
-        \   'lineinfo': ' %3l:%-2v',
-        \   'asyncrun_status': '%{g:asyncrun_status}'
-        \ },
-        \ 'component_function': {
-        \   'readonly': 'LightlineReadonly',
-        \   'fugitive': 'LightlineFugitive',
-        \ },
-        \ 'separator': { 'left': '', 'right': '' },
-        \ 'subseparator': { 'left': '', 'right': '' }
-        \ }
-
-function! LightlineReadonly()
-        return &readonly ? '' : ''
-endfunction
-
-" This function is taken from vim-airline, to shorten
-" the branch name when appropriate.
-function! LightlineShorten(text, winwidth, minwidth, ...)
-  if winwidth(0) < a:winwidth && len(split(a:text, '\zs')) > a:minwidth
-    if get(a:000, 0, 0)
-      " shorten from tail
-      return '…'.matchstr(a:text, '.\{'.a:minwidth.'}$')
-    else
-      " shorten from beginning of string
-      return matchstr(a:text, '^.\{'.a:minwidth.'}').'…'
-    endif
-  else
-    return a:text
-  endif
-endfunction
-
-" Show git branch
-function! LightlineFugitive()
-        if exists('*fugitive#head')
-                let branch = fugitive#head(7)
-                let branch = branch !=# '' ? ' '.branch : ''
-                return LightlineShorten(branch, 120, 15)
-        endif
-        return ''
-endfunction
-
 " -- tmuxline
 let g:tmuxline_preset = 'minimal'
 
@@ -302,12 +225,6 @@ nmap <leader>0 <Plug>BufTabLine.Go(10)
 hi! link BufTabLineCurrent Search
 hi! link BufTabLineHidden Folded
 hi! link BufTabLineActive DiffAdd
-
-" -- fzf-session.vim
-let g:fzf_session_path = '~/.vim/session'
-nnoremap <c-b>n :Session<space>
-nnoremap <c-b>q :SQuit<CR>
-nnoremap <c-b>s :Sessions<CR>
 
 " -- ale
 let g:ale_linters = {
