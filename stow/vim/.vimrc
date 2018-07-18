@@ -13,22 +13,13 @@ Plug 'mrtazz/DoxygenToolkit.vim' " Auto-insert Doxygen comments
 Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
 Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background 
 Plug 'szw/vim-maximizer' " Temporarily maximize a pane
-Plug 'tpope/vim-sensible' " Sensible default settings
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
-Plug 'TxHawks/tmuxline.vim', { 'branch': 'patch-1' } " Make tmux look like vim colorscheme
 Plug 'w0rp/ale' " Asynchronous linting
 Plug 'chriskempson/base16-vim' " Colorschemes
 call plug#end()
 
-" Status line
-set statusline=
-set statusline+=\ %l/%L
-set statusline+=\ %c
-set statusline+=\ %=
-set statusline+=%{g:asyncrun_status}
-set statusline+=\ 
-
 " Settings
+set laststatus=0 " hide status line
 set hidden " allow unsaved buffers to be hidden
 set bs=2 " allow backspace over anything in insert mode
 set mouse=a " mouse use enabled
@@ -54,15 +45,6 @@ let &t_EI = "\<esc>[2 q"
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
-  hi Normal ctermbg=NONE guibg=NONE
-  hi clear LineNr
-  hi Comment cterm=italic ctermfg=8
-  hi Italic cterm=italic
-  hi GitGutterAdd ctermfg=41 ctermbg=NONE
-  hi GitGutterChange ctermfg=38 ctermbg=NONE
-  hi GitGutterDelete ctermfg=160 ctermbg=NONE
-  hi GitGutterChangeDelete ctermfg=172 ctermbg=NONE
-  hi YcmErrorSign ctermfg=124 ctermbg=NONE
 endif
 
 " Windowing commands
@@ -142,32 +124,14 @@ nnoremap <leader>p :History<CR>
 nnoremap <leader>: :History:<CR>
 let $FZF_DEFAULT_COMMAND = 'ag -g ""' " ignore files in .gitignore
 let g:fzf_layout = { 'down': '~40%' }
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'ErrorMsg'],
-  \ 'fg+':     ['fg', 'Normal'],
-  \ 'bg+':     ['bg', 'Normal'],
-  \ 'hl+':     ['fg', 'ErrorMsg'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Title'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%', '?'),
-  \                 <bang>0)
-command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 function! FZFSameName(sink, pre_command, post_command)
     let current_file_no_extension = expand("%:t:r")
     let current_file_with_extension = expand("%:t")
     execute a:pre_command
-    call fzf#run(fzf#wrap({'source': 'find -name ' . current_file_no_extension . '.* | grep -Ev *' . current_file_with_extension . '$', 'options': -1, 'sink': a:sink}))
+    call fzf#run(fzf#wrap({'source': 'find -name ' . current_file_no_extension \
+                           . '.* | grep -Ev *' . current_file_with_extension \
+                           . '$', 'options': -1, 'sink': a:sink}))
     execute a:post_command
 endfunction
 nnoremap <leader>ff :call FZFSameName('e', '', '')<CR>
@@ -205,9 +169,6 @@ augroup FTOptions
     autocmd FileType c,cpp  setlocal commentstring=//\ %s
     autocmd FileType cmake  setlocal commentstring=#\ %s
 augroup END
-
-" -- tmuxline
-let g:tmuxline_preset = 'minimal'
 
 " -- buftabline
 let g:buftabline_numbers = 2

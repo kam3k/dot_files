@@ -106,7 +106,7 @@ exec --no-startup-id $term -name term_main
 
 # start vim terminal
 for_window [instance="term_vim"] move container to workspace $workspace4
-exec --no-startup-id $term -name term_vim
+exec --no-startup-id $term -b 0 -name term_vim
 
 # start scratchpad
 for_window [instance="term_scratch"] move scratchpad
