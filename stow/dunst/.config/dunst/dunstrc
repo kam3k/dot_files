@@ -1,5 +1,5 @@
 [global]
-    font = "Iosevka Term Bold 8"
+    font = "Iosevka Term Bold 18"
     allow_markup = yes
     format = "<b>%s</b> | <i>%b</i> | %a"
     sort = no
@@ -34,23 +34,19 @@
     context = ctrl+shift+period
 
 [urgency_low]
-    background = "#101010"
-    foreground = "#464646"
+    background = "#2b303b"
+    foreground = "#4f5b66"
     timeout = 5
 
 [urgency_normal]
-    background = "#8e8e8e"
-    foreground = "#101010"
+    background = "#2b303b"
+    foreground = "#a7adba"
     timeout = 5
 
 [urgency_critical]
-    background = "#f7f7f7"
-    foreground = "#101010"
+    background = "#bf616a"
+    foreground = "#2b303b"
     timeout = 0
-
-[spotify]
-    appname = *spotify*
-    urgency = low
 
 [slack]
     appname = *Slack*

@@ -2,7 +2,10 @@
 set $mod Mod4
 
 # set terminal
-set $term rxvt-unicode
+set $term urxvt
+
+# load xresources
+exec_always --no-startup-id xrdb -load ~/.Xresources 
 
 # font
 font pango:Iosevka Term Bold 8
@@ -111,6 +114,7 @@ exec --no-startup-id $term -b 0 -name term_vim
 # start scratchpad
 for_window [instance="term_scratch"] move scratchpad
 exec --no-startup-id $term -name term_scratch
+bindsym $mod+n exec $term -name term_scratch
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
@@ -125,22 +129,22 @@ bindsym $mod+m move workspace to output right
 for_window [class="^.*"] border pixel 0
 
 # colors
-set $base00 #101010
-set $base01 #252525
-set $base02 #464646
-set $base03 #525252
-set $base04 #ababab
-set $base05 #b9b9b9
-set $base06 #e3e3e3
-set $base07 #f7f7f7
-set $base08 #7c7c7c
-set $base09 #999999
-set $base0A #a0a0a0
-set $base0B #8e8e8e
-set $base0C #868686
-set $base0D #686868
-set $base0E #747474
-set $base0F #5e5e5e
+set $base00 #2b303b
+set $base01 #343d46
+set $base02 #4f5b66
+set $base03 #65737e
+set $base04 #a7adba
+set $base05 #c0c5ce
+set $base06 #dfe1e8
+set $base07 #eff1f5
+set $base08 #bf616a
+set $base09 #d08770
+set $base0A #ebcb8b
+set $base0B #a3be8c
+set $base0C #96b5b4
+set $base0D #8fa1b3
+set $base0E #b48ead
+set $base0F #ab7967
 
 # start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -152,7 +156,7 @@ bar {
         background $base00
         separator $base00
         # state             border  bg      text
-        focused_workspace   $base00 $base00 $base05
+        focused_workspace   $base0B $base0B $base01
         active_workspace    $base00 $base00 $base03
         urgent_workspace    $base05 $base05 $base00
         inactive_workspace  $base00 $base00 $base02
@@ -196,7 +200,7 @@ bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer
 bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
 
 # dmenu
-bindsym $mod+space exec i3-dmenu-desktop --dmenu='dmenu -b -i -nb "$base00" -nf "$base0A" -sb "$base0A" -sf "$base00" -fn "Iosevka Term-8"'
+bindsym $mod+space exec i3-dmenu-desktop --dmenu='dmenu -b -i -nb "$base00" -nf "$base02" -sb "$base0B" -sf "$base00" -fn "Iosevka Term:bold:size=8"'
 
 # use dunst for notifications
 exec_always killall -q notify-osd
@@ -212,7 +216,7 @@ exec --no-startup-id compton -c --no-fading-openclose
 exec --no-startup-id redshift-gtk
 
 # gaps
-gaps inner 18
+gaps inner 19
 
 # set wallpaper
-exec --no-startup-id feh --bg-scale ~/.config/wallpapers/grayscale_forest_sky.jpg
+exec --no-startup-id feh --bg-scale ~/.config/wallpapers/hills.jpg
