@@ -23,10 +23,18 @@ Plug 'szw/vim-maximizer' " Temporarily maximize a pane
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'w0rp/ale' " Asynchronous linting
 Plug 'chriskempson/base16-vim' " Colorschemes
+Plug 'sheerun/vim-polyglot' " Better syntax highlighting
 call plug#end()
 
+" Status line
+set laststatus=2
+set statusline=
+set statusline+=\ %{g:asyncrun_status}
+set statusline+=\ %=
+set statusline+=\ %l/%L
+set statusline+=\ %c
+
 " Settings
-set laststatus=0 " hide status line
 set hidden " allow unsaved buffers to be hidden
 set bs=2 " allow backspace over anything in insert mode
 set mouse=a " mouse use enabled
@@ -136,9 +144,9 @@ function! FZFSameName(sink, pre_command, post_command)
     let current_file_no_extension = expand("%:t:r")
     let current_file_with_extension = expand("%:t")
     execute a:pre_command
-    call fzf#run(fzf#wrap({'source': 'find -name ' . current_file_no_extension \
-                           . '.* | grep -Ev *' . current_file_with_extension \
-                           . '$', 'options': -1, 'sink': a:sink}))
+    call fzf#run(fzf#wrap({
+          \ 'source': 'find -name ' . current_file_no_extension . '.* | grep -Ev *' . current_file_with_extension . '$',
+          \ 'options': -1, 'sink': a:sink}))
     execute a:post_command
 endfunction
 nnoremap <leader>ff :call FZFSameName('e', '', '')<CR>
@@ -166,6 +174,11 @@ fun! OnAsyncRunExit()
     endif
 endf
 let g:asyncrun_exit = "call OnAsyncRunExit()"
+let g:asyncrun_status = "stopped"
+augroup QuickfixStatus
+	au! BufWinEnter quickfix setlocal 
+		\ statusline=%t\ [%{g:asyncrun_status}]\ %{exists('w:quickfix_title')?\ '\ '.w:quickfix_title\ :\ ''}\ %=%-15(%l,%c%V%)\ %P
+augroup END
 
 " -- vim-maximizer
 nnoremap <c-b>z :MaximizerToggle<CR>
