@@ -7,7 +7,7 @@
 [alias]
     co = checkout
     cm = commit
-    st = status
+    st = status -s
     br = branch
     hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cn%Creset %Cblue(%cr)%Creset' --abbrev-commit --date=relative
     type = cat-file -t
