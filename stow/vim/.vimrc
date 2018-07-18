@@ -24,15 +24,18 @@ Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'w0rp/ale' " Asynchronous linting
 Plug 'chriskempson/base16-vim' " Colorschemes
 Plug 'sheerun/vim-polyglot' " Better syntax highlighting
+Plug 'xolox/vim-misc' " Dependency of vim-session
+Plug 'xolox/vim-session' " Session management
 call plug#end()
 
 " Status line
 set laststatus=2
 set statusline=
-set statusline+=\ %{g:asyncrun_status}
+set statusline+=\ %{xolox#session#find_current_session()}
 set statusline+=\ %=
 set statusline+=\ %l/%L
 set statusline+=\ %c
+set statusline+=\ %{g:asyncrun_status}
 
 " Settings
 set hidden " allow unsaved buffers to be hidden
@@ -102,7 +105,6 @@ nmap g; g;zz
 nnoremap <leader>* ciw/*<C-R>"*/<Esc>
 vnoremap <leader>* c/*<C-R>"*/<Esc>
 nnoremap <F8> F/xxf*xx<Esc>
-nnoremap <leader>s O/**<space><space>*/<Esc>F<space>i
 
 " Never automatically continue comment when starting next line
 au FileType * set fo-=c fo-=r fo-=o
@@ -160,7 +162,8 @@ nnoremap <leader>fK :call FZFSameName('leftabove split', '', 'wincmd k')<CR>
 nnoremap <leader>fJ :call FZFSameName('rightbelow split', '', 'wincmd j')<CR>
 
 " -- DoxygenToolkit.vim
-nnoremap <leader>d :Dox<CR>
+nnoremap <leader>dd :Dox<CR>
+nnoremap <leader>ds O/**<space><space>*/<Esc>F<space>i
 
 " -- asyncrun
 map <F11> :AsyncStop<CR>
@@ -215,6 +218,16 @@ let g:ale_cpp_clangtidy_checks = ['clang-analyzer-*', 'modernize-*', 'performanc
 " Set up mapping to move between errors
 nmap <silent> [w <Plug>(ale_previous_wrap)
 nmap <silent> ]w <Plug>(ale_next_wrap)
+
+" -- vim-session
+set sessionoptions-=help
+set sessionoptions-=options
+let g:session_autosave = 'yes'
+let g:session_autosave_periodic = 1
+let g:session_autosave_silent = 1
+nmap <leader>so :OpenSession<CR>
+nmap <leader>ss :SaveSession<CR>
+nmap <leader>sd :DeleteSession<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION
