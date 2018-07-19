@@ -72,6 +72,13 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
 fi
 
+# Set FZF colours
+export FZF_DEFAULT_OPTS="
+  --color=bg+:19,bg:0,spinner:12,hl:11
+  --color=fg:4,header:11,info:10,pointer:12
+  --color=marker:12,fg+:6,prompt:10,hl+:11
+"
+
 # Source fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -87,13 +94,6 @@ mkcd()
   cd -P -- "$1"
 }
 
-# Set FZF colours
-export FZF_DEFAULT_OPTS="
-  --color=bg+:19,bg:0,spinner:12,hl:11
-  --color=fg:4,header:11,info:10,pointer:12
-  --color=marker:12,fg+:6,prompt:10,hl+:11
-"
-
 # Fuzzy checkout git branch with fzf
 zb() 
 {
@@ -103,6 +103,9 @@ zb()
            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
+
+# Log CPU and memory usage of a process
+logpid() { while sleep 1; do  ps -p $1 -o pcpu= -o pmem= ; done; }
 
 # Source localrc
 [ -f ~/.localrc ] && source ~/.localrc
