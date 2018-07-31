@@ -26,6 +26,7 @@ Plug 'chriskempson/base16-vim' " Colorschemes
 Plug 'sheerun/vim-polyglot' " Better syntax highlighting
 Plug 'xolox/vim-misc' " Dependency of vim-session
 Plug 'xolox/vim-session' " Session management
+Plug 'mhinz/vim-startify' " Fancy start screen
 call plug#end()
 
 " Status line
@@ -228,6 +229,9 @@ let g:session_autosave_silent = 1
 nmap <leader>so :OpenSession<CR>
 nmap <leader>ss :SaveSession<CR>
 nmap <leader>sd :DeleteSession<CR>
+
+" -- Startify
+let g:startify_session_dir = '~/.vim/sessions'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION

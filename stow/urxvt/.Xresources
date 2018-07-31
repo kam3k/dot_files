@@ -9,3 +9,4 @@ URxvt.scrollBar: false
 URxvt.internalBorder: 25
 URxvt.fading: 30
 URxvt.letterSpace: 0
+URxvt.cursorColor: #a7adba
