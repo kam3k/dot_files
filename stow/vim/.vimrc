@@ -216,6 +216,7 @@ let g:ale_linters = {
             \   'cpp': ['clangtidy'],
             \}
 let g:ale_cpp_clangtidy_checks = ['clang-analyzer-*', 'modernize-*', 'performance-*', 'readability-*', 'cppcoreguidelines-*']
+let g:ale_set_highlights = 0
 " Set up mapping to move between errors
 nmap <silent> [w <Plug>(ale_previous_wrap)
 nmap <silent> ]w <Plug>(ale_next_wrap)
