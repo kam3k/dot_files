@@ -27,6 +27,7 @@ Plug 'sheerun/vim-polyglot' " Better syntax highlighting
 Plug 'xolox/vim-misc' " Dependency of vim-session
 Plug 'xolox/vim-session' " Session management
 Plug 'mhinz/vim-startify' " Fancy start screen
+Plug 'RRethy/vim-illuminate' " highlight other occurrences of words
 call plug#end()
 
 " Status line
@@ -228,7 +229,7 @@ let g:session_autosave = 'yes'
 let g:session_autosave_periodic = 1
 let g:session_autosave_silent = 1
 nmap <leader>so :OpenSession<CR>
-nmap <leader>ss :SaveSession<CR>
+nmap <leader>ss :SaveSession 
 nmap <leader>sd :DeleteSession<CR>
 
 " -- Startify
