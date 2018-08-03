@@ -21,8 +21,8 @@ if [[ ! -a $(which stow) ]]; then
   exit 1
 fi
 
-if [[ ! -a $(which extract) ]]; then
-  echo "Error: extract is not installed. Please install extract first."
+if [[ ! -a $(which unzip) ]]; then
+  echo "Error: unzip is not installed. Please install unzip first."
   exit 1
 fi
 
@@ -44,21 +44,21 @@ fi
 # Font Awesome (version 4.7)
 if [ ! -f ~/.fonts/fontawesome-webfont.ttf ]; then
   curl -fLo /tmp/fontawesome.zip https://fontawesome.com/v4.7.0/assets/font-awesome-4.7.0.zip
-	cd /tmp && extract fontawesome.zip
+	cd /tmp && unzip fontawesome.zip -d fontawesome
   cp /tmp/fontawesome/font-awesome-4.7.0/fonts/*.ttf ~/.fonts
 fi
 
 # Iosevka Term
 if [ ! -f ~/.fonts/iosevka-term-regular.ttf ]; then
   curl -fLo /tmp/iosevka-term.zip https://github.com/be6invis/Iosevka/releases/download/v2.0.0/02-iosevka-term-2.0.0.zip
-	cd /tmp && extract iosevka-term.zip
+	cd /tmp && unzip iosevka-term.zip -d iosevka-term
   cp /tmp/iosevka-term/ttf/*.ttf ~/.fonts
 fi
 
 # Noto Sans
 if [ ! -f ~/.fonts/iosevka-term-regular.ttf ]; then
   curl -fLo /tmp/noto-sans.zip https://noto-website-2.storage.googleapis.com/pkgs/NotoSans-hinted.zip
-	cd /tmp && extract noto-sans.zip
+	cd /tmp && unzip noto-sans.zip -d noto-sans
   cp /tmp/noto-sans/*.ttf ~/.fonts
 fi
 
