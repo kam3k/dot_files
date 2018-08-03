@@ -50,7 +50,7 @@ fi
 
 # Iosevka Term
 if [ ! -f ~/.fonts/iosevka-term-regular.ttf ]; then
-  curl -fLo /tmp/iosevka-term.zip https://github.com/be6invis/Iosevka/releases/download/v2.0.0/02-iosevka-term-2.0.0.zip
+  curl -fLo /tmp/iosevka-term.zip https://github.com/be5invis/Iosevka/releases/download/v2.0.0/02-iosevka-term-2.0.0.zip
 	cd /tmp && unzip iosevka-term.zip -d iosevka-term
   cp /tmp/iosevka-term/ttf/*.ttf ~/.fonts
 fi
