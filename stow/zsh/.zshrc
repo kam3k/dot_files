@@ -9,12 +9,14 @@ fi
 source $ZPLUG_HOME/init.zsh
 
 # Plugins
-zplug zsh-users/zsh-autosuggestions
-zplug zsh-users/zsh-syntax-highlighting
-zplug supercrabtree/k, from:github
-zplug plugins/extract, from:oh-my-zsh 
-zplug mafredri/zsh-async, from:github # allows pure to check for git changes in background
-zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "supercrabtree/k"
+zplug "plugins/extract", from:oh-my-zsh 
+zplug "lib/history", from:oh-my-zsh
+zplug "lib/directories", from:oh-my-zsh
+zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -32,44 +34,6 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && \
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"
-
-# History management
-if [ -z "$HISTFILE" ]; then
-    HISTFILE=$HOME/.zsh_history
-fi
-HISTSIZE=10000
-SAVEHIST=10000
-case $HIST_STAMPS in
-  "mm/dd/yyyy") alias history='fc -fl 1' ;;
-  "dd.mm.yyyy") alias history='fc -El 1' ;;
-  "yyyy-mm-dd") alias history='fc -il 1' ;;
-  *) alias history='fc -l 1' ;;
-esac
-setopt append_history
-setopt extended_history
-setopt hist_expire_dups_first
-setopt hist_ignore_dups
-setopt hist_ignore_space
-setopt hist_save_no_dups
-setopt hist_verify
-setopt inc_append_history
-setopt share_history
-
-# Directory history
-setopt auto_pushd
-setopt pushd_ignore_dups
-setopt pushdminus
-alias d='dirs -v | head -10'
-alias 0='cd -0'
-alias 1='cd -1'
-alias 2='cd -2'
-alias 3='cd -3'
-alias 4='cd -4'
-alias 5='cd -5'
-alias 6='cd -6'
-alias 7='cd -7'
-alias 8='cd -8'
-alias 9='cd -9'
 
 # Aliases
 alias tmux='tmux -2'
