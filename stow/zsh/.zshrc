@@ -10,7 +10,6 @@ source $ZPLUG_HOME/init.zsh
 
 # Plugins
 zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "supercrabtree/k"
 zplug "plugins/extract", from:oh-my-zsh 
