@@ -40,6 +40,9 @@ if [ ! -d ~/.config/base16-shell ]; then
 fi
 
 # Set up fonts
+if [ ! -d ~/.fonts ]; then
+  mkdir -p ~/.fonts
+fi
 
 # Font Awesome (version 4.7)
 if [ ! -f ~/.fonts/fontawesome-webfont.ttf ]; then
