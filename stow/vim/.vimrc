@@ -226,6 +226,7 @@ nmap <silent> ]w <Plug>(ale_next_wrap)
 set sessionoptions-=help
 set sessionoptions-=options
 let g:session_autosave = 'yes'
+let g:session_autoload = 'no'
 let g:session_autosave_periodic = 1
 let g:session_autosave_silent = 1
 nmap <leader>so :OpenSession<CR>
