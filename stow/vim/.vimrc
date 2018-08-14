@@ -33,10 +33,10 @@ call plug#end()
 " Status line
 set laststatus=2
 set statusline=
-set statusline+=\ %{xolox#session#find_current_session()}
+if !empty(glob("~/.vim/plugged/vim-session"))
+  set statusline+=\ %{xolox#session#find_current_session()}
+endif
 set statusline+=\ %=
-set statusline+=\ %l/%L
-set statusline+=\ %c
 set statusline+=\ %{g:asyncrun_status}
 
 " Settings
@@ -232,6 +232,7 @@ let g:session_autosave_silent = 1
 nmap <leader>so :OpenSession<CR>
 nmap <leader>ss :SaveSession 
 nmap <leader>sd :DeleteSession<CR>
+nmap <leader>sq :CloseSession!<CR>
 
 " -- Startify
 let g:startify_session_dir = '~/.vim/sessions'
