@@ -34,6 +34,21 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
+# Configure spaceship prompt
+SPACESHIP_PROMPT_ORDER=(
+  user          # Username section
+  dir           # Current directory section
+  host          # Hostname section
+  git           # Git section (git_branch + git_status)
+  docker        # Docker section
+  line_sep      # Line break
+  char          # Prompt character
+)
+SPACESHIP_DIR_TRUNC=0
+
+# Stop prompt from setting tmux title
+DISABLE_AUTO_TITLE=true
+
 # Aliases
 alias tmux='tmux -2'
 alias ta='tmux a -t'
