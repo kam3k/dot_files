@@ -55,6 +55,7 @@ set softtabstop=2 " always uses spaces, never tabs
 set number " show line numbers
 set updatetime=250 " 250 ms between screen updates
 set noshowmode " don't show mode (just look at cursor)
+set wildmode=list:longest,full " list completions on command line, cycle through with tab
 
 " Different cursors in insert and normal mode
 let &t_SI = "\<esc>[5 q"
