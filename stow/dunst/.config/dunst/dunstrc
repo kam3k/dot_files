@@ -1,5 +1,5 @@
 [global]
-    font = "Iosevka Term Bold 18"
+    font = "Iosevka Term Bold 8"
     allow_markup = yes
     format = "<b>%s</b> | <i>%b</i> | %a"
     sort = no
