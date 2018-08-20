@@ -116,6 +116,9 @@ for_window [instance="term_scratch"] move scratchpad
 exec --no-startup-id $term -name term_scratch
 bindsym $mod+n exec $term -name term_scratch
 
+# applications that should always float
+for_window [class="SimpleScreenRecorder"] floating enable
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
