@@ -110,8 +110,9 @@ nnoremap <leader>* ciw/*<C-R>"*/<Esc>
 vnoremap <leader>* c/*<C-R>"*/<Esc>
 nnoremap <F8> F/xxf*xx<Esc>
 
-" Never automatically continue comment when starting next line
-au FileType * set fo-=c fo-=r fo-=o
+" Never automatically continue comment when starting next line and 
+" delete comment character when joining commented lines
+au FileType * set fo-=c fo-=r fo-=o fo+=j
 
 " clang-format
 map <leader>c :py3f ~/.clang-format.py<CR>
