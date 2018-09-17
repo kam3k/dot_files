@@ -27,7 +27,8 @@ Plug 'sheerun/vim-polyglot' " Better syntax highlighting
 Plug 'xolox/vim-misc' " Dependency of vim-session
 Plug 'xolox/vim-session' " Session management
 Plug 'mhinz/vim-startify' " Fancy start screen
-Plug 'RRethy/vim-illuminate' " highlight other occurrences of words
+Plug 'RRethy/vim-illuminate' " Highlight other occurrences of words
+Plug 'Asheq/close-buffers.vim' " Close hidden buffers easily
 call plug#end()
 
 " Status line
@@ -87,7 +88,7 @@ nnoremap <silent> <leader>mh <C-W>H
 nnoremap <c-p> :bp<CR>
 nnoremap <c-n> :bn<CR>
 nnoremap <leader>x :Sayonara!<CR>
-nnoremap <leader>X :bufdo bd<CR>
+nnoremap <silent> Q :CloseBuffersMenu<CR>
 
 " Paste toggle command
 set pastetoggle=<leader>v
