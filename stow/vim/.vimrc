@@ -22,25 +22,18 @@ Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background
 Plug 'szw/vim-maximizer' " Temporarily maximize a pane
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'w0rp/ale' " Asynchronous linting
-Plug 'chriskempson/base16-vim' " Colorschemes
 Plug 'sheerun/vim-polyglot' " Better syntax highlighting
 Plug 'xolox/vim-misc' " Dependency of vim-session
 Plug 'xolox/vim-session' " Session management
 Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'RRethy/vim-illuminate' " Highlight other occurrences of words
 Plug 'Asheq/close-buffers.vim' " Close hidden buffers easily
+Plug 'itchyny/lightline.vim' " Statusline
+Plug 'kaicataldo/material.vim' " Colorscheme
 call plug#end()
 
-" Status line
-set laststatus=2
-set statusline=
-if !empty(glob("~/.vim/plugged/vim-session"))
-  set statusline+=\ %{xolox#session#find_current_session()}
-endif
-set statusline+=\ %=
-set statusline+=\ %{g:asyncrun_status}
-
 " Settings
+set laststatus=2 " always show statusline
 set hidden " allow unsaved buffers to be hidden
 set bs=2 " allow backspace over anything in insert mode
 set mouse=a " mouse use enabled
@@ -64,10 +57,12 @@ let &t_SR = "\<esc>[5 q"
 let &t_EI = "\<esc>[2 q"
 
 " Colorscheme
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+let g:material_theme_style = 'palenight'
+let g:material_terminal_italics = 1
+set termguicolors
+colorscheme material
 
 " Windowing commands
 nnoremap <leader>q :Sayonara<CR>
@@ -197,6 +192,69 @@ augroup FTOptions
     autocmd FileType c,cpp  setlocal commentstring=//\ %s
     autocmd FileType cmake  setlocal commentstring=#\ %s
 augroup END
+
+" -- lightline
+let g:lightline = {
+        \ 'colorscheme': 'material_vim',
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'fugitive', 'readonly', 'dir', 'modified' ] ],
+        \   'right': [ [ 'lineinfo' ],
+        \              [ 'session' ],
+        \              [ 'asyncrun_status' ] ] 
+        \ },
+        \ 'inactive': {
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'fugitive', 'readonly', 'dir', 'modified' ] ],
+        \   'right': [ [ 'lineinfo' ],
+        \              [ 'session' ],
+        \              [ 'asyncrun_status' ] ] 
+        \ },
+        \ 'component': {
+        \   'lineinfo': ' %3l:%-2v',
+        \   'asyncrun_status': '%{g:asyncrun_status}',
+        \   'session': '%{xolox#session#find_current_session()}',
+        \ },
+        \ 'component_function': {
+        \   'dir': 'LightLineFilename',
+        \   'readonly': 'LightlineReadonly',
+        \   'fugitive': 'LightlineFugitive',
+        \ }
+        \ }
+
+function! LightLineFilename()
+				return expand('%:p:h')
+endfunction
+
+function! LightlineReadonly()
+        return &readonly ? '' : ''
+endfunction
+
+" This function is taken from vim-airline, to shorten
+" the branch name when appropriate.
+function! LightlineShorten(text, winwidth, minwidth, ...)
+  if winwidth(0) < a:winwidth && len(split(a:text, '\zs')) > a:minwidth
+    if get(a:000, 0, 0)
+      " shorten from tail
+      return '…'.matchstr(a:text, '.\{'.a:minwidth.'}$')
+    else
+      " shorten from beginning of string
+      return matchstr(a:text, '^.\{'.a:minwidth.'}').'…'
+    endif
+  else
+    return a:text
+  endif
+endfunction
+
+" Show git branch
+function! LightlineFugitive()
+        if exists('*fugitive#head')
+                let branch = fugitive#head(7)
+                let branch = branch !=# '' ? ' '.branch : ''
+                return LightlineShorten(branch, 120, 15)
+        endif
+        return ''
+endfunction
 
 " -- buftabline
 let g:buftabline_numbers = 2
