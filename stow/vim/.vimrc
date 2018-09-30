@@ -269,9 +269,8 @@ nmap <leader>7 <Plug>BufTabLine.Go(7)
 nmap <leader>8 <Plug>BufTabLine.Go(8)
 nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
-hi! link BufTabLineCurrent Search
-hi! link BufTabLineHidden Folded
-hi! link BufTabLineActive DiffAdd
+hi! link BufTabLineCurrent LightlineLeft_normal_0
+hi! link BufTabLineActive DiffText
 
 " -- ale
 let g:ale_linters = {

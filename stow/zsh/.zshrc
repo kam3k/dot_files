@@ -40,6 +40,13 @@ SPACESHIP_PROMPT_ORDER=(
 )
 SPACESHIP_DIR_TRUNC=0
 
+# fzf colors (material palenight)
+export FZF_DEFAULT_OPTS='
+  --color=bg+:#444267,bg:#292d3e,spinner:#719e07,hl:#ffcb6b
+  --color=fg:#959dcb,header:#ffffff,info:#F07178,pointer:#ff5370
+  --color=marker:#ffffff,fg+:#82aaff,prompt:#959dcb,hl+:#ffcb6b
+'
+
 # Stop prompt from setting tmux title
 DISABLE_AUTO_TITLE=true
 
