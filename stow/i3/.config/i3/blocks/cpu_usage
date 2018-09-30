@@ -46,9 +46,9 @@ printf "%.2f%%\n", $cpu_usage;
 
 # Print color, if needed
 if ($cpu_usage >= $t_crit) {
-    print "#bf616a\n";
+    print "#F07178\n";
 } elsif ($cpu_usage >= $t_warn) {
-    print "#ebcb8b\n";
+    print "#FFCB6B\n";
 }
 
 exit 0;

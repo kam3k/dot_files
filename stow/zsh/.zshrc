@@ -28,12 +28,6 @@ fi
 # Source plugins
 zplug load
 
-# Base16 Shell
-BASE16_SHELL="$HOME/.config/base16-shell/"
-[ -n "$PS1" ] && \
-    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-        eval "$("$BASE16_SHELL/profile_helper.sh")"
-
 # Configure spaceship prompt
 SPACESHIP_PROMPT_ORDER=(
   user          # Username section
@@ -50,7 +44,6 @@ SPACESHIP_DIR_TRUNC=0
 DISABLE_AUTO_TITLE=true
 
 # Aliases
-alias tmux='tmux -2'
 alias ta='tmux a -t'
 alias agc='ag -G ".*\.(cpp|h|hpp|cc)"'
 alias agx='ag -G ".*\.(xml)"'
@@ -65,13 +58,6 @@ if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
 fi
-
-# Set FZF colours
-export FZF_DEFAULT_OPTS="
-  --color=bg+:19,bg:0,spinner:12,hl:11
-  --color=fg:4,header:11,info:10,pointer:12
-  --color=marker:12,fg+:6,prompt:10,hl+:11
-"
 
 # Source fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
