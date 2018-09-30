@@ -8,7 +8,7 @@ set $term termite
 exec_always --no-startup-id xrdb -load ~/.Xresources 
 
 # font
-font pango:Iosevka Term Bold 8
+font pango:Iosevka Term 8
 
 # hide title bars
 new_window 1pixel
@@ -160,7 +160,7 @@ bar {
         separator  $base00
 
         # State             Border  BG      Text
-        focused_workspace   $base00 $base00 $base0A
+        focused_workspace   $base0D $base0D $base00
         active_workspace    $base00 $base00 $base0E
         inactive_workspace  $base00 $base00 $base03
         urgent_workspace    $base08 $base08 $base00
@@ -205,7 +205,7 @@ bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer
 bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
 
 # dmenu
-bindsym $mod+space exec i3-dmenu-desktop --dmenu='dmenu -b -i -nb "$base00" -nf "$base02" -sb "$base0B" -sf "$base00" -fn "Iosevka Term:bold:size=8"'
+bindsym $mod+space exec i3-dmenu-desktop --dmenu='dmenu -b -i -nb "$base00" -nf "$base04" -sb "$base0D" -sf "$base00" -fn "Iosevka Term:size=8"'
 
 # use dunst for notifications
 exec_always killall -q notify-osd
@@ -221,7 +221,7 @@ exec --no-startup-id compton -c --no-fading-openclose
 exec --no-startup-id redshift-gtk
 
 # gaps
-gaps inner 19
+gaps inner 16
 
 # set wallpaper
 exec --no-startup-id feh --bg-scale ~/.config/wallpapers/sunset.jpg
