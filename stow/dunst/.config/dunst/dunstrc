@@ -1,5 +1,5 @@
 [global]
-    font = "Iosevka Term Bold 8"
+    font = "Iosevka Term 8"
     allow_markup = yes
     format = "<b>%s</b> | <i>%b</i> | %a"
     sort = no
@@ -34,20 +34,20 @@
     context = ctrl+shift+period
 
 [urgency_low]
-    background = "#2b303b"
-    foreground = "#4f5b66"
+    background = "#292D3E"
+    foreground = "#676E95"
     timeout = 5
 
 [urgency_normal]
-    background = "#2b303b"
-    foreground = "#a7adba"
+    background = "#292D3E"
+    foreground = "#8796B0"
     timeout = 5
 
 [urgency_critical]
-    background = "#bf616a"
-    foreground = "#2b303b"
+    background = "#F07178"
+    foreground = "#292D3E"
     timeout = 0
 
 [slack]
-    appname = *Slack*
+    summary = *Slack*
     urgency = critical
