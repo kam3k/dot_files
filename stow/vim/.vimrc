@@ -62,7 +62,7 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let g:material_theme_style = 'palenight'
 let g:material_terminal_italics = 1
 set termguicolors
-colorscheme material
+silent! colorscheme material
 
 " Windowing commands
 nnoremap <leader>q :Sayonara<CR>
@@ -266,6 +266,8 @@ nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
 hi! link BufTabLineCurrent LightlineLeft_normal_0
 hi! link BufTabLineActive DiffText
+hi! link BufTabLineHidden NonText
+hi! link BufTabLineFill FoldColumn
 
 " -- ale
 let g:ale_linters = {
