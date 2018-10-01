@@ -198,17 +198,17 @@ let g:lightline = {
         \ 'colorscheme': 'material_vim',
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'fugitive', 'readonly', 'dir', 'modified' ] ],
+        \             [ 'session', 'readonly', 'modified' ] ],
         \   'right': [ [ 'lineinfo' ],
-        \              [ 'session' ],
-        \              [ 'asyncrun_status' ] ] 
+        \              [ 'asyncrun_status' ],
+        \              [ 'fugitive' ]] 
         \ },
         \ 'inactive': {
         \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'fugitive', 'readonly', 'dir', 'modified' ] ],
+        \             [ 'session', 'readonly', 'modified' ] ],
         \   'right': [ [ 'lineinfo' ],
-        \              [ 'session' ],
-        \              [ 'asyncrun_status' ] ] 
+        \              [ 'asyncrun_status' ],
+        \              [ 'fugitive' ]] 
         \ },
         \ 'component': {
         \   'lineinfo': ' %3l:%-2v',
@@ -216,18 +216,13 @@ let g:lightline = {
         \   'session': '%{xolox#session#find_current_session()}',
         \ },
         \ 'component_function': {
-        \   'dir': 'LightLineFilename',
         \   'readonly': 'LightlineReadonly',
         \   'fugitive': 'LightlineFugitive',
         \ }
         \ }
 
-function! LightLineFilename()
-				return expand('%:p:h')
-endfunction
-
 function! LightlineReadonly()
-        return &readonly ? '' : ''
+  return &readonly ? '' : ''
 endfunction
 
 " This function is taken from vim-airline, to shorten
