@@ -266,6 +266,8 @@ nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
 hi! link BufTabLineCurrent LightlineLeft_normal_0
 hi! link BufTabLineActive DiffText
+hi! link BufTabLineHidden NonText
+hi! link BufTabLineFill FoldColumn
 
 " -- ale
 let g:ale_linters = {
