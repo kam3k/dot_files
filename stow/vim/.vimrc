@@ -30,6 +30,7 @@ Plug 'RRethy/vim-illuminate' " Highlight other occurrences of words
 Plug 'Asheq/close-buffers.vim' " Close hidden buffers easily
 Plug 'itchyny/lightline.vim' " Statusline
 Plug 'kaicataldo/material.vim' " Colorscheme
+Plug 'tpope/vim-sleuth' " Heuristically determine spacing to use when tabbing
 call plug#end()
 
 " Settings
@@ -63,6 +64,7 @@ let g:material_theme_style = 'palenight'
 let g:material_terminal_italics = 1
 set termguicolors
 silent! colorscheme material
+hi! link MatchParen Search
 
 " Windowing commands
 nnoremap <leader>q :Sayonara<CR>
@@ -101,6 +103,9 @@ nmap # #zz
 nmap g* g*zz
 nmap g# g#zz
 nmap g; g;zz
+nmap % %zz
+nmap <C-o> <C-o>zz
+nmap <C-i> <C-i>zz
 nnoremap <leader>* ciw/*<C-R>"*/<Esc>
 vnoremap <leader>* c/*<C-R>"*/<Esc>
 nnoremap <F8> F/xxf*xx<Esc>
@@ -129,6 +134,8 @@ let g:ycm_confirm_extra_conf = 0
 let g:ycm_show_diagnostics_ui = 1
 let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_always_populate_location_list = 1
+nnoremap <leader>yd :YcmDebugInfo<CR>
+nnoremap <leader>yr :YcmRestartServer<CR>
 nnoremap <leader>yt :YcmCompleter GetType<CR>
 nnoremap <leader>yf :YcmCompleter FixIt<CR>
 
@@ -166,7 +173,7 @@ nnoremap <leader>dd :Dox<CR>
 nnoremap <leader>ds O/**<space><space>*/<Esc>F<space>i
 
 " -- asyncrun
-map <F11> :AsyncStop<CR>
+map <F12> :AsyncStop<CR>
 noremap <leader><leader> :call asyncrun#quickfix_toggle(15)<CR>
 augroup vimrc
     autocmd QuickFixCmdPost * call asyncrun#quickfix_toggle(15, 1)
@@ -246,7 +253,7 @@ function! LightlineFugitive()
         if exists('*fugitive#head')
                 let branch = fugitive#head(7)
                 let branch = branch !=# '' ? ' '.branch : ''
-                return LightlineShorten(branch, 120, 15)
+                return LightlineShorten(branch, 120, 30)
         endif
         return ''
 endfunction
