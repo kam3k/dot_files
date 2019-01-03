@@ -74,6 +74,10 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^x' edit-command-line
 
+# Install Ruby Gems to ~/.gems
+export GEM_HOME="$HOME/.gems"
+export PATH="$HOME/.gems/bin:$PATH"
+
 # Make and change into a directory
 mkcd()
 {
