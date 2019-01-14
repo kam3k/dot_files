@@ -144,7 +144,6 @@ set $bg-color #1D1F21
 set $inactive-bg-color #282A36
 set $text-color #282A2E
 set $inactive-text-color #707880
-set $urgent-bg-color #A54242
 
 # Basic bar configuration using the Base16 variables.
 bar {
@@ -158,7 +157,7 @@ bar {
         focused_workspace   $magenta            $magenta           $text-color
         inactive_workspace  $bg-color           $bg-color          $inactive-text-color
         active_workspace    $bg-color           $bg-color          $inactive-text-color
-        urgent_workspace    $urgent-bf-color    $urgent-bf-color   $inactive-text-color
+        urgent_workspace    $red                $red               $inactive-text-color
     }
 }
 

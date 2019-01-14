@@ -34,18 +34,18 @@
     context = ctrl+shift+period
 
 [urgency_low]
-    background = "#292D3E"
-    foreground = "#8796B0"
+    background = "#282a2e"
+    foreground = "#707880"
     timeout = 5
 
 [urgency_normal]
-    background = "#F07178"
-    foreground = "#292D3E"
+    background = "#282a2e"
+    foreground = "#81a2be"
     timeout = 0
 
 [urgency_critical]
-    background = "#F07178"
-    foreground = "#292D3E"
+    background = "#cc6666"
+    foreground = "#282a2e"
     timeout = 0
 
 [slack]
