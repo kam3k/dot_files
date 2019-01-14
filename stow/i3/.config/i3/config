@@ -157,7 +157,7 @@ bar {
         focused_workspace   $magenta            $magenta           $text-color
         inactive_workspace  $bg-color           $bg-color          $inactive-text-color
         active_workspace    $bg-color           $bg-color          $inactive-text-color
-        urgent_workspace    $red                $red               $inactive-text-color
+        urgent_workspace    $red                $red               $text-color
     }
 }
 
