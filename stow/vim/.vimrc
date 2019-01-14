@@ -29,8 +29,9 @@ Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'RRethy/vim-illuminate' " Highlight other occurrences of words
 Plug 'Asheq/close-buffers.vim' " Close hidden buffers easily
 Plug 'itchyny/lightline.vim' " Statusline
-Plug 'kaicataldo/material.vim' " Colorscheme
 Plug 'tpope/vim-sleuth' " Heuristically determine spacing to use when tabbing
+Plug 'w0ng/vim-hybrid' " Colorscheme
+Plug 'cocopon/lightline-hybrid.vim' " Hybrid for lightline
 call plug#end()
 
 " Settings
@@ -58,13 +59,9 @@ let &t_SR = "\<esc>[5 q"
 let &t_EI = "\<esc>[2 q"
 
 " Colorscheme
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-let g:material_theme_style = 'palenight'
-let g:material_terminal_italics = 1
-set termguicolors
-silent! colorscheme material
-hi! link MatchParen Search
+set background=dark
+let g:hybrid_custom_term_colors = 1
+colorscheme hybrid
 
 " Windowing commands
 nnoremap <leader>q :Sayonara<CR>
@@ -202,7 +199,7 @@ augroup END
 
 " -- lightline
 let g:lightline = {
-        \ 'colorscheme': 'material_vim',
+        \ 'colorscheme': 'hybrid',
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ],
         \             [ 'session', 'readonly', 'modified' ] ],
@@ -271,10 +268,10 @@ nmap <leader>7 <Plug>BufTabLine.Go(7)
 nmap <leader>8 <Plug>BufTabLine.Go(8)
 nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
-hi! link BufTabLineCurrent LightlineLeft_normal_0
-hi! link BufTabLineActive DiffText
-hi! link BufTabLineHidden NonText
-hi! link BufTabLineFill FoldColumn
+hi! link BufTabLineCurrent DiffText
+hi! link BufTabLineActive Folded
+hi! link BufTabLineHidden LineNr
+hi! link BufTabLineFill CursorColumn
 
 " -- ale
 let g:ale_linters = {
@@ -300,6 +297,9 @@ nmap <leader>sq :CloseSession!<CR>
 
 " -- Startify
 let g:startify_session_dir = '~/.vim/sessions'
+
+" -- gruvbox
+let g:gruvbox_italic = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION
