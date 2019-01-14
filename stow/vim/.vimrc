@@ -145,6 +145,20 @@ nnoremap <leader>p :History<CR>
 nnoremap <leader>: :History:<CR>
 let $FZF_DEFAULT_COMMAND = 'ag -g ""' " ignore files in .gitignore
 let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 function! FZFSameName(sink, pre_command, post_command)
     let current_file_no_extension = expand("%:t:r")
@@ -268,10 +282,10 @@ nmap <leader>7 <Plug>BufTabLine.Go(7)
 nmap <leader>8 <Plug>BufTabLine.Go(8)
 nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
-hi! link BufTabLineCurrent DiffText
-hi! link BufTabLineActive Folded
-hi! link BufTabLineHidden LineNr
-hi! link BufTabLineFill CursorColumn
+hi! BufTabLineCurrent ctermbg=12 ctermfg=0
+hi! BufTabLineActive ctermbg=7 ctermfg=0
+hi! BufTabLineHidden ctermbg=0 ctermfg=7
+hi! BufTabLineFill ctermbg=0
 
 " -- ale
 let g:ale_linters = {
