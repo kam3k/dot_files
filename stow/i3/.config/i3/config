@@ -145,7 +145,7 @@ set $inactive-bg-color #282A36
 set $text-color #282A2E
 set $inactive-text-color #707880
 
-# Basic bar configuration using the Base16 variables.
+# bar configuration 
 bar {
     position top
     status_command i3blocks -c ~/.config/i3/i3blocks.conf
@@ -161,22 +161,17 @@ bar {
     }
 }
 
-# resize window
+# resize windows
 mode "resize" {
-    # Pressing left will shrink the window’s width.
-    # Pressing right will grow the window’s width.
-    # Pressing up will shrink the window’s height.
-    # Pressing down will grow the window’s height.
-    bindsym h           resize shrink width 5 px or 5 ppt
-    bindsym j           resize grow height 5 px or 5 ppt
-    bindsym k           resize shrink height 5 px or 5 ppt
-    bindsym l           resize grow width 5 px or 5 ppt
+    bindsym h resize shrink width 5 px or 5 ppt
+    bindsym j resize grow height 5 px or 5 ppt
+    bindsym k resize shrink height 5 px or 5 ppt
+    bindsym l resize grow width 5 px or 5 ppt
 
-    # back to normal: Enter or Escape
+    # press enter or escape to go back to normal
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-
 bindsym $mod+r mode "resize"
 
 # lock screen
@@ -186,10 +181,6 @@ bindsym $mod+Shift+x exec i3lock
 bindsym XF86AudioRaiseVolume exec pactl -- set-sink-volume @DEFAULT_SINK@ +8%; exec pactl -- set-sink-mute @DEFAULT_SINK@ 0
 bindsym XF86AudioLowerVolume exec pactl -- set-sink-volume @DEFAULT_SINK@ -8%; exec pactl -- set-sink-mute @DEFAULT_SINK@ 0
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-
-# screen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 # spotify player controls
 bindsym XF86AudioPlay exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
