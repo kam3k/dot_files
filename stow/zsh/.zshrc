@@ -53,14 +53,7 @@ alias agx='ag -G ".*\.(xml)"'
 alias now='watch -x -t -n 0.01 date +%s.%N' 
 alias o=xdg-open
 alias k='k -h'
-alias zs='pkgsearch'
 alias cdg='cd "$(git rev-parse --show-cdup)"'
-
-# ls colors
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-fi
 
 # Source fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
