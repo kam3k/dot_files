@@ -47,6 +47,7 @@ export FZF_DEFAULT_OPTS='--color=hl:#b294bb,hl+:#cc6666,prompt:#b5bd68,pointer:#
 DISABLE_AUTO_TITLE=true
 
 # Aliases
+alias ls='ls --color=auto'
 alias ta='tmux a -t'
 alias agc='ag -G ".*\.(cpp|h|hpp|cc)"'
 alias agx='ag -G ".*\.(xml)"'
