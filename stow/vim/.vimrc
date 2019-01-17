@@ -298,9 +298,6 @@ nmap <leader>sq :CloseSession!<CR>
 " -- Startify
 let g:startify_session_dir = '~/.vim/sessions'
 
-" -- gruvbox
-let g:gruvbox_italic = 1
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""
