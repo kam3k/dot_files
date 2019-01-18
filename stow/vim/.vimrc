@@ -32,6 +32,7 @@ Plug 'itchyny/lightline.vim' " Statusline
 Plug 'tpope/vim-sleuth' " Heuristically determine spacing to use when tabbing
 Plug 'w0ng/vim-hybrid' " Colorscheme
 Plug 'cocopon/lightline-hybrid.vim' " Hybrid for lightline
+Plug 'SirVer/ultisnips' " Snippets engine
 call plug#end()
 
 " Settings
@@ -297,6 +298,12 @@ nmap <leader>sq :CloseSession!<CR>
 
 " -- Startify
 let g:startify_session_dir = '~/.vim/sessions'
+
+" -- UltiSnips
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-n>"
+set rtp+=~/.config
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION
