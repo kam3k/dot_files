@@ -62,9 +62,6 @@ fi
 # Refresh font cache
 fc-cache -v
 
-# Change shell to zsh
-chsh -s $(which zsh)
-
 # Symlink everything in stow directory to home directory
 cd ${base}/stow
 for app in */; do
