@@ -41,4 +41,5 @@ apt-get install -y \
   build-essential \
   gdb \
   rtags \
-  meld
+  meld \
+  ncdu
