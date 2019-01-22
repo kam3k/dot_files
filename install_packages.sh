@@ -42,4 +42,6 @@ apt-get install -y \
   gdb \
   rtags \
   meld \
-  ncdu
+  ncdu \
+  suckless-tools \
+  pulseaudio
