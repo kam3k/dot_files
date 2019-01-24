@@ -128,9 +128,6 @@ bindsym $mod+Shift+e exit
 # move workspace to other monitor
 bindsym $mod+m move workspace to output right
 
-# hide borders
-for_window [class="^.*"] border pixel 0
-
 # set colors
 set $black #373B41
 set $red #CC6666
@@ -144,6 +141,14 @@ set $bg-color #1D1F21
 set $inactive-bg-color #282A36
 set $text-color #282A2E
 set $inactive-text-color #707880
+
+# borders
+hide_edge_borders smart # no borders when only one window
+# class                 border      backgr.     text         indicator child_border
+client.focused          $magenta    $magenta    $bg-color    $green    $magenta
+client.focused_inactive $magenta    $magenta    $bg-color    $green    $bg-color
+client.unfocused        $magenta    $magenta    $bg-color    $green    $bg-color
+client.urgent           $red        $red        $bg-color    $green    $red
 
 # bar configuration 
 bar {
