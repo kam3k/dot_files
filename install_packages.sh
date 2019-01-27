@@ -44,4 +44,5 @@ apt-get install -y \
   meld \
   ncdu \
   suckless-tools \
-  pulseaudio
+  pulseaudio \
+  zathura
