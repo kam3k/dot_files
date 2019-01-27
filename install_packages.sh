@@ -45,4 +45,5 @@ apt-get install -y \
   ncdu \
   suckless-tools \
   pulseaudio \
-  zathura
+  zathura \
+  udiskie
