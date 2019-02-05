@@ -46,4 +46,5 @@ apt-get install -y \
   suckless-tools \
   pulseaudio \
   zathura \
-  udiskie
+  udiskie \
+  rsync
