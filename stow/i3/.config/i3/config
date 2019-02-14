@@ -201,4 +201,4 @@ exec_always killall -q notify-osd
 exec_always --no-startup-id dunst
 
 # set wallpaper
-exec --no-startup-id feh --bg-scale ~/.config/wallpapers/dark-solid.jpg
+exec --no-startup-id feh --bg-scale ~/.config/wallpapers/city.jpg
