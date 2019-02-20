@@ -274,6 +274,9 @@ hi! BufTabLineActive ctermbg=7 ctermfg=0
 hi! BufTabLineHidden ctermbg=0 ctermfg=7
 hi! BufTabLineFill ctermbg=0
 
+" -- vim-gitgutter 
+hi! link GitGutterDelete Constant
+
 " -- ale
 let g:ale_linters = {
             \   'cpp': ['clangtidy'],
