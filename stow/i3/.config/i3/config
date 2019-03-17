@@ -55,11 +55,11 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+f floating toggle
 floating_modifier $mod
 
-set $workspace1 "1 "
-set $workspace2 "2 "
-set $workspace3 "3 "
-set $workspace4 "4 "
-set $workspace5 "5 "
+set $workspace1 "1 "
+set $workspace2 "2 "
+set $workspace3 "3 "
+set $workspace4 "4 "
+set $workspace5 "5 "
 set $workspace6 "6 "
 set $workspace7 "7 "
 set $workspace8 "8 "
@@ -100,16 +100,12 @@ for_window [class="Spotify"] move container to workspace $workspace2
 exec --no-startup-id spotify --force-device-scale-factor=1.5
 
 # start slack
-for_window [class="Slack"] move container to workspace $workspace5
+for_window [class="Slack"] move container to workspace $workspace3
 exec --no-startup-id slack
 
 # start main terminal
-for_window [instance="term_main"] move container to workspace $workspace3
+for_window [instance="term_main"] move container to workspace $workspace4
 exec --no-startup-id $term -name term_main
-
-# start vim terminal
-for_window [instance="term_vim"] move container to workspace $workspace4
-exec --no-startup-id $term -name term_vim
 
 # start scratchpad
 for_window [instance="term_scratch"] move scratchpad

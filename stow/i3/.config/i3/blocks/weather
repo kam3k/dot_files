@@ -6,7 +6,7 @@
 API_KEY="ee5bed2b75a21a42c9e3769b742c0576"
 
 # Check on http://openweathermap.org/find
-CITY_ID="7626289"
+CITY_ID="6094817"
 
 URGENT_LOWER=-20
 URGENT_HIGHER=35
@@ -17,7 +17,7 @@ ICON_RAINY=""
 ICON_STORM=""
 ICON_SNOW=""
 
-SYMBOL_CELSIUS="℃"
+SYMBOL_CELSIUS=""
 
 WEATHER_URL="http://api.openweathermap.org/data/2.5/weather?id=${CITY_ID}&appid=${API_KEY}&units=metric"
 
