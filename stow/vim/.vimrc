@@ -171,20 +171,8 @@ nnoremap <leader>ds O/**<space><space>*/<Esc>F<space>i
 " -- asyncrun
 map <F12> :AsyncStop<CR>
 noremap <leader><leader> :call asyncrun#quickfix_toggle(15)<CR>
-augroup vimrc
-    autocmd QuickFixCmdPost * call asyncrun#quickfix_toggle(15, 1)
-augroup END
-fun! OnAsyncRunExit()
-    if g:asyncrun_status == 'success'
-		call asyncrun#quickfix_toggle(15, 0)
-    endif
-endf
-let g:asyncrun_exit = "call OnAsyncRunExit()"
+let g:asyncrun_open = 15
 let g:asyncrun_status = "stopped"
-augroup QuickfixStatus
-	au! BufWinEnter quickfix setlocal 
-		\ statusline=%t\ [%{g:asyncrun_status}]\ %{exists('w:quickfix_title')?\ '\ '.w:quickfix_title\ :\ ''}\ %=%-15(%l,%c%V%)\ %P
-augroup END
 
 " -- vim-maximizer
 nnoremap <c-b>z :MaximizerToggle<CR>
@@ -270,6 +258,9 @@ hi! BufTabLineCurrent ctermbg=12 ctermfg=0
 hi! BufTabLineActive ctermbg=7 ctermfg=0
 hi! BufTabLineHidden ctermbg=0 ctermfg=7
 hi! BufTabLineFill ctermbg=0
+
+" -- vim-gitgutter 
+hi! link GitGutterDelete Constant
 
 " -- ale
 let g:ale_linters = {
