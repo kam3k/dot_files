@@ -1,6 +1,6 @@
 [user]
     name = Marc Gallant
-    email = marc.gallant@quanergy.com
+    email = marc.j.gallant@gmail.com
 [core]
     editor = /usr/bin/vim
     excludesfile = ~/.gitignore_global

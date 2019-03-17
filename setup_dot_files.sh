@@ -38,11 +38,12 @@ if [ ! -d ${fonts} ]; then
   mkdir -p ${fonts}
 fi
 
-# Font Awesome (version 4.7)
-if [ ! -f ${fonts}/fontawesome-webfont.ttf ]; then
-  curl -fLo /tmp/fontawesome.zip https://fontawesome.com/v4.7.0/assets/font-awesome-4.7.0.zip
-  cd /tmp && unzip fontawesome.zip -d fontawesome
-  cp /tmp/fontawesome/font-awesome-4.7.0/fonts/*.ttf ${fonts}
+# Font Awesome (version 5.7.2)
+fontawesome_5_file="Font Awesome 5 Free-Regular-400.otf"
+if [[ ! -f ${fonts}/$fontawesome_5_file ]]; then
+  curl -fLo /tmp/font-awesome-5.zip https://use.fontawesome.com/releases/v5.7.2/fontawesome-free-5.7.2-desktop.zip
+  cd /tmp && unzip font-awesome-5.zip
+  cp /tmp/fontawesome-free-5.7.2-desktop/otfs/*.otf ${fonts}
 fi
 
 # Iosevka Term

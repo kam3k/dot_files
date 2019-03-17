@@ -23,8 +23,6 @@ Plug 'szw/vim-maximizer' " Temporarily maximize a pane
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'w0rp/ale' " Asynchronous linting
 Plug 'sheerun/vim-polyglot' " Better syntax highlighting
-Plug 'xolox/vim-misc' " Dependency of vim-session
-Plug 'xolox/vim-session' " Session management
 Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'RRethy/vim-illuminate' " Highlight other occurrences of words
 Plug 'Asheq/close-buffers.vim' " Close hidden buffers easily
@@ -203,14 +201,14 @@ let g:lightline = {
         \ 'colorscheme': 'hybrid',
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'session', 'readonly', 'modified' ] ],
+        \             [ 'readonly', 'modified' ] ],
         \   'right': [ [ 'lineinfo' ],
         \              [ 'asyncrun_status' ],
         \              [ 'fugitive' ]] 
         \ },
         \ 'inactive': {
         \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'session', 'readonly', 'modified' ] ],
+        \             [ 'readonly', 'modified' ] ],
         \   'right': [ [ 'lineinfo' ],
         \              [ 'asyncrun_status' ],
         \              [ 'fugitive' ]] 
@@ -218,7 +216,6 @@ let g:lightline = {
         \ 'component': {
         \   'lineinfo': ' %3l:%-2v',
         \   'asyncrun_status': '%{g:asyncrun_status}',
-        \   'session': '%{xolox#session#find_current_session()}',
         \ },
         \ 'component_function': {
         \   'readonly': 'LightlineReadonly',
@@ -283,21 +280,6 @@ let g:ale_set_highlights = 0
 " Set up mapping to move between errors
 nmap <silent> [w <Plug>(ale_previous_wrap)
 nmap <silent> ]w <Plug>(ale_next_wrap)
-
-" -- vim-session
-set sessionoptions-=help
-set sessionoptions-=options
-let g:session_autosave = 'yes'
-let g:session_autoload = 'no'
-let g:session_autosave_periodic = 1
-let g:session_autosave_silent = 1
-nmap <leader>so :OpenSession<CR>
-nmap <leader>ss :SaveSession 
-nmap <leader>sd :DeleteSession<CR>
-nmap <leader>sq :CloseSession!<CR>
-
-" -- Startify
-let g:startify_session_dir = '~/.vim/sessions'
 
 " -- UltiSnips
 let g:UltiSnipsExpandTrigger="<c-j>"
