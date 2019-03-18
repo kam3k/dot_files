@@ -115,7 +115,7 @@ _UPTIME_ () {
     [ -z "$1" ] && icon="" || icon="$1"
 
     uptime=$(uptime -p \
-	| sed -E 's/ hour/H/g; s/ hours/H/g; s/ minutes/M/g; s/ minute/M/g; s/ day/D/g; s/ days/D/; s/up //g') 
+	| sed -E 's/ weeks/W/g; s/ week/W/g; s/ hours/H/g; s/ hour/H/g; s/ minutes/M/g; s/ minute/M/g; s/ days/D/g; s/ day/D/; s/up //g') 
 
     echo "$icon $uptime"
 }
