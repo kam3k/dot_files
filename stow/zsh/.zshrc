@@ -65,6 +65,9 @@ bindkey '^x' edit-command-line
 export GEM_HOME="$HOME/.gems"
 export PATH="$HOME/.gems/bin:$PATH"
 
+# Add local to path
+export PATH="$HOME/.local/bin:$PATH"
+
 # Make and change into a directory
 mkcd()
 {
