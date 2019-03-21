@@ -1,10 +1,5 @@
 #!/bin/zsh
 
-# This script sets up symlinks to all the dotfiles
-# in the user's home directory.
-
-declare base=${HOME}/.dot
-
 # Check for required dependencies before continuing:
 if [[ ! -a $(which git) ]]; then
   echo "Error: git is not installed. Please install git first."
@@ -26,11 +21,35 @@ if [[ ! -a $(which unzip) ]]; then
   exit 1
 fi
 
+if [[ ! -a $(which vim) ]]; then
+  echo "Error: vim is not installed. Please install vim first."
+  exit 1
+fi
+
+if [[ ! -a $(which tmux) ]]; then
+  echo "Error: tmux is not installed. Please install tmux first."
+  exit 1
+fi
+
+# Install vim plugins
+vim +PlugInstall +qall
+
+# Compile YouCompleteMe
+~/.vim/plugged/YouCompleteMe/install.py --clang-completer
+
 # Set up tmux plugin manager
 mkdir -p ~/.tmux/plugins
 if [ ! -d ~/.tmux/plugins/tpm ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
+
+# Install tmux plugins by starting a server (but not attaching to it),
+# creating a new session (but not attaching to it), installing the
+# plugins, then killing the server
+tmux start-server
+tmux new-session -d
+~/.tmux/plugins/tpm/scripts/install_plugins.sh
+tmux kill-server
 
 # Set up font directory
 declare fonts=${HOME}/.local/share/fonts
@@ -61,10 +80,10 @@ if [ ! -f ${fonts}/NotoSans-Regular.ttf ]; then
 fi
 
 # Refresh font cache
-fc-cache -v
+fc-cache
 
 # Symlink everything in stow directory to home directory
-cd ${base}/stow
+cd ${HOME}/.dot/stow
 for app in */; do
 	stow -t ${HOME} $app
 done;

@@ -3,12 +3,9 @@
 apt-get update
 
 apt-get install -y \
-  i3-wm \
-  i3blocks \
-  vim-gtk \
+  vim-nox \
   rxvt-unicode-256color \
   tmux \
-  firefox-esr \
   gawk \
   git \
   htop \
@@ -22,8 +19,6 @@ apt-get install -y \
   stow \
   nmap \
   unzip \
-  feh \
-  dunst \
   tree \
   g++ \
   libclang-dev \
@@ -41,10 +36,5 @@ apt-get install -y \
   build-essential \
   gdb \
   rtags \
-  meld \
   ncdu \
-  suckless-tools \
-  pulseaudio \
-  zathura \
-  udiskie \
   rsync
