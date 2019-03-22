@@ -35,6 +35,5 @@ apt-get install -y \
   ninja-build \
   build-essential \
   gdb \
-  rtags \
   ncdu \
   rsync
