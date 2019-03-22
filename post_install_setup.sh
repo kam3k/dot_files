@@ -31,6 +31,12 @@ if [[ ! -a $(which tmux) ]]; then
   exit 1
 fi
 
+# Symlink everything in stow directory to home directory
+cd ${HOME}/.dot/stow
+for app in */; do
+	stow -t ${HOME} $app
+done;
+
 # Install vim plugins
 vim +PlugInstall +qall
 
@@ -81,9 +87,3 @@ fi
 
 # Refresh font cache
 fc-cache
-
-# Symlink everything in stow directory to home directory
-cd ${HOME}/.dot/stow
-for app in */; do
-	stow -t ${HOME} $app
-done;
