@@ -36,4 +36,5 @@ apt-get install -y \
   build-essential \
   gdb \
   ncdu \
-  rsync
+  rsync \
+  fontconfig
