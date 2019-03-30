@@ -7,8 +7,6 @@ apt-get install -y \
   i3blocks \
   feh \
   dunst \
-  meld \
   suckless-tools \
   pulseaudio \
-  zathura \
   udiskie
