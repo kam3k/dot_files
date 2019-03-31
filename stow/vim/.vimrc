@@ -169,7 +169,9 @@ nnoremap <leader>dd :Dox<CR>
 nnoremap <leader>ds O/**<space><space>*/<Esc>F<space>i
 
 " -- asyncrun
-map <F12> :AsyncStop<CR>
+map <F9> :AsyncRun -cwd=<root> ninja -j12 -C build/release<CR>
+map <F10> :AsyncRun -cwd=<root> ninja -j12 -C build/debug<CR>
+map <F11> :AsyncStop<CR>
 noremap <leader><leader> :call asyncrun#quickfix_toggle(15)<CR>
 let g:asyncrun_open = 15
 let g:asyncrun_status = "stopped"
