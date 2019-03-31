@@ -52,6 +52,10 @@ alias now='watch -x -t -n 0.01 date +%s.%N'
 alias o=xdg-open
 alias k='k -h'
 alias cdg='cd "$(git rev-parse --show-cdup)"'
+alias cmr='cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_EXPORT_COMPILE_COMMANDS=On -GNinja ../..'
+alias cmd='cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=On -GNinja ../..'
+alias ja='ninja -j12'
+alias jat='ninja test'
 
 # Source fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
