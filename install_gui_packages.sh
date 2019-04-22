@@ -6,4 +6,5 @@ apt-get install -y \
   meld \
   zathura \
   shutter \
-  simplescreenrecorder
+  simplescreenrecorder \
+  nemiver

@@ -52,6 +52,8 @@ alias now='watch -x -t -n 0.01 date +%s.%N'
 alias o=xdg-open
 alias k='k -h'
 alias cdg='cd "$(git rev-parse --show-cdup)"'
+alias ja='ninja -j12'
+alias ctest='ctest --output-on-failure'
 
 # Source fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -9,4 +9,7 @@ apt-get install -y \
   dunst \
   suckless-tools \
   pulseaudio \
-  udiskie
+  udiskie \
+  volumeicon-alsa \
+  clipit \
+  network-manager-gnome

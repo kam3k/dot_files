@@ -103,6 +103,18 @@ exec --no-startup-id spotify --force-device-scale-factor=1.5
 for_window [class="Slack"] move container to workspace $workspace3
 exec --no-startup-id slack
 
+# start nm-applet in background
+exec --no-startup-id nm-applet &
+
+# start udiskie in background
+exec --no-startup-id udiskie -Nt2 &
+
+# start volumeicon in background
+exec --no-startup-id volumeicon &
+
+# start clipit in background
+exec --no-startup-id clipit &
+
 # start main terminal
 for_window [instance="term_main"] move container to workspace $workspace4
 exec --no-startup-id $term -name term_main

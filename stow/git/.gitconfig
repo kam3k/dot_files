@@ -16,6 +16,7 @@
     changes = diff HEAD@{1} HEAD
     diff = diff -w
     ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    smu = submodule update --init --recursive
 [status]
     showUntrackedFiles = all
 [github]
