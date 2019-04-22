@@ -169,12 +169,18 @@ nnoremap <leader>dd :Dox<CR>
 nnoremap <leader>ds O/**<space><space>*/<Esc>F<space>i
 
 " -- asyncrun
-map <F9> :AsyncRun -cwd=<root> ninja -j12 -C build/release<CR>
-map <F10> :AsyncRun -cwd=<root> ninja -j12 -C build/debug<CR>
+map <F9> :AsyncRun -cwd=<root> ninja -j12 -C ../release<CR>
+map <F10> :AsyncRun -cwd=<root> ninja -j12 -C ../debug<CR>
 map <F11> :AsyncStop<CR>
 noremap <leader><leader> :call asyncrun#quickfix_toggle(15)<CR>
 let g:asyncrun_open = 15
 let g:asyncrun_status = "stopped"
+fun! OnAsyncRunExit()
+    if g:asyncrun_status == 'success'
+		call asyncrun#quickfix_toggle(15)
+    endif
+endf
+let g:asyncrun_exit = "call OnAsyncRunExit()"
 
 " -- vim-maximizer
 nnoremap <c-b>z :MaximizerToggle<CR>
@@ -268,8 +274,8 @@ hi! link GitGutterDelete Constant
 let g:ale_linters = {
             \   'cpp': ['clangtidy'],
             \}
-let g:ale_cpp_clangtidy_checks = ['clang-analyzer-*', 'modernize-*', 'performance-*', 'readability-*', 'cppcoreguidelines-*']
 let g:ale_set_highlights = 0
+let g:ale_c_build_dir_names = ['build', 'release', 'debug']
 " Set up mapping to move between errors
 nmap <silent> [w <Plug>(ale_previous_wrap)
 nmap <silent> ]w <Plug>(ale_next_wrap)
