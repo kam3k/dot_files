@@ -130,10 +130,12 @@ bindsym $mod+n exec $term -name term_scratch
 
 # applications that should always float
 for_window [class="SimpleScreenRecorder"] floating enable
+for_window [class="zoom"] floating enable
 
 # applications pinned to a workspace
 for_window [class="Nemiver"] move container to workspace $workspace6
 for_window [class="Meld"] move container to workspace $workspace7
+for_window [class="zoom"] move container to workspace $workspace8
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
