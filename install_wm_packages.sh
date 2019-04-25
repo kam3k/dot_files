@@ -11,5 +11,4 @@ apt-get install -y \
   pulseaudio \
   udiskie \
   volumeicon-alsa \
-  clipit \
   network-manager-gnome
