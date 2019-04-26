@@ -134,6 +134,8 @@ nnoremap <leader>yd :YcmDebugInfo<CR>
 nnoremap <leader>yr :YcmRestartServer<CR>
 nnoremap <leader>yt :YcmCompleter GetType<CR>
 nnoremap <leader>yf :YcmCompleter FixIt<CR>
+nnoremap <leader>yc :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>yn :YcmCompleter GoToDefinition<CR>
 
 " -- fzf
 nnoremap <leader>o :Files<CR>
@@ -266,6 +268,9 @@ hi! BufTabLineCurrent ctermbg=12 ctermfg=0
 hi! BufTabLineActive ctermbg=7 ctermfg=0
 hi! BufTabLineHidden ctermbg=0 ctermfg=7
 hi! BufTabLineFill ctermbg=0
+
+" -- vim-startify
+let g:startify_change_to_dir = 0
 
 " -- vim-gitgutter 
 hi! link GitGutterDelete Constant
