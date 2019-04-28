@@ -3,7 +3,7 @@
 apt-get update
 
 apt-get install -y \
-  vim-nox \
+  vim-gtk \
   rxvt-unicode-256color \
   tmux \
   gawk \
@@ -37,4 +37,6 @@ apt-get install -y \
   gdb \
   ncdu \
   rsync \
-  fontconfig
+  fontconfig \
+  cppreference-doc-en-html \ 
+  wmctrl
