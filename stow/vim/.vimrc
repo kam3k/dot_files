@@ -177,7 +177,7 @@ function! FZFCppReference()
         \ 'options': '--multi --select-1 --exit-0', 
         \ 'down': '40%'})
 endfunction
-nnoremap <leader>fc :call FZFCppReference()<CR>
+nnoremap <leader>cr :call FZFCppReference()<CR>
 
 " -- DoxygenToolkit.vim
 nnoremap <leader>dd :Dox<CR>
