@@ -34,7 +34,6 @@ SPACESHIP_PROMPT_ORDER=(
   dir           # Current directory section
   host          # Hostname section
   git           # Git section (git_branch + git_status)
-  docker        # Docker section
   line_sep      # Line break
   char          # Prompt character
 )
