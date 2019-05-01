@@ -34,6 +34,12 @@ Plug 'SirVer/ultisnips' " Snippets engine
 Plug 'maximbaz/lightline-ale' " Ale status in lightline
 call plug#end()
 
+" Activate and configure debugger
+packadd termdebug
+let g:termdebug_wide = 163
+hi! link debugPC DiffText
+hi! link debugBreakpoint ErrorMsg
+
 " Settings
 set laststatus=2 " always show statusline
 set hidden " allow unsaved buffers to be hidden
@@ -199,7 +205,7 @@ endf
 let g:asyncrun_exit = "call OnAsyncRunExit()"
 
 " -- vim-maximizer
-nnoremap <c-b>z :MaximizerToggle<CR>
+nnoremap <c-w>z :MaximizerToggle<CR>
 
 " -- vim-commentary
 augroup FTOptions 
