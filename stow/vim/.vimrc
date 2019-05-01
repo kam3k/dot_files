@@ -31,6 +31,7 @@ Plug 'tpope/vim-sleuth' " Heuristically determine spacing to use when tabbing
 Plug 'w0ng/vim-hybrid' " Colorscheme
 Plug 'cocopon/lightline-hybrid.vim' " Hybrid for lightline
 Plug 'SirVer/ultisnips' " Snippets engine
+Plug 'maximbaz/lightline-ale' " Ale status in lightline
 call plug#end()
 
 " Settings
@@ -208,60 +209,43 @@ augroup FTOptions
 augroup END
 
 " -- lightline
-let g:lightline = {
-        \ 'colorscheme': 'hybrid',
-        \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'readonly', 'modified' ] ],
-        \   'right': [ [ 'lineinfo' ],
-        \              [ 'asyncrun_status' ],
-        \              [ 'fugitive' ]] 
-        \ },
-        \ 'inactive': {
-        \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'readonly', 'modified' ] ],
-        \   'right': [ [ 'lineinfo' ],
-        \              [ 'asyncrun_status' ],
-        \              [ 'fugitive' ]] 
-        \ },
-        \ 'component': {
+let g:lightline = {}
+let g:lightline.component = {
         \   'lineinfo': ' %3l:%-2v',
         \   'asyncrun_status': '%{g:asyncrun_status}',
-        \ },
-        \ 'component_function': {
+        \ }
+let g:lightline.component_function = {
         \   'readonly': 'LightlineReadonly',
-        \   'fugitive': 'LightlineFugitive',
         \ }
+let g:lightline.component_expand = {
+        \  'linter_checking': 'lightline#ale#checking',
+        \  'linter_warnings': 'lightline#ale#warnings',
+        \  'linter_errors': 'lightline#ale#errors',
+        \  'linter_ok': 'lightline#ale#ok',
         \ }
-
+let g:lightline.component_type = {
+        \     'linter_checking': 'right',
+        \     'linter_warnings': 'warning',
+        \     'linter_errors': 'error',
+        \     'linter_ok': 'right',
+        \ }
+let g:lightline.colorscheme = 'hybrid'
+let g:lightline.active = {
+        \   'left': [ [ 'mode' ],
+        \             [ 'paste', 'readonly', 'modified' ]],
+        \   'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+        \              [ 'lineinfo' ],
+        \              [ 'asyncrun_status' ]]
+        \ }
+let g:lightline.inactive = {
+        \   'left': [ [ 'mode' ],
+        \             [ 'paste', 'readonly', 'modified' ]],
+        \   'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+        \              [ 'lineinfo' ],
+        \              [ 'asyncrun_status' ]]
+        \ }
 function! LightlineReadonly()
   return &readonly ? '' : ''
-endfunction
-
-" This function is taken from vim-airline, to shorten
-" the branch name when appropriate.
-function! LightlineShorten(text, winwidth, minwidth, ...)
-  if winwidth(0) < a:winwidth && len(split(a:text, '\zs')) > a:minwidth
-    if get(a:000, 0, 0)
-      " shorten from tail
-      return '…'.matchstr(a:text, '.\{'.a:minwidth.'}$')
-    else
-      " shorten from beginning of string
-      return matchstr(a:text, '^.\{'.a:minwidth.'}').'…'
-    endif
-  else
-    return a:text
-  endif
-endfunction
-
-" Show git branch
-function! LightlineFugitive()
-        if exists('*fugitive#head')
-                let branch = fugitive#head(7)
-                let branch = branch !=# '' ? ' '.branch : ''
-                return LightlineShorten(branch, 120, 30)
-        endif
-        return ''
 endfunction
 
 " -- buftabline
