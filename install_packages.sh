@@ -38,5 +38,5 @@ apt-get install -y \
   ncdu \
   rsync \
   fontconfig \
-  cppreference-doc-en-html \ 
-  wmctrl
+  wmctrl \
+  cppreference-doc-en-html
