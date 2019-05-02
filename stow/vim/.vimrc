@@ -15,7 +15,6 @@ Plug 'tpope/vim-fugitive' " Git functionality in vim
 Plug 'Valloric/YouCompleteMe' " Autocomplete and much more
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy search
 Plug 'junegunn/fzf.vim' " Vim bindings to various fuzzy searches
-Plug 'lyuts/vim-rtags', { 'commit': '8773238cdc2570ffa81aac18138dc773ff3e92d3' } " Tags to jump around code and find symbols
 Plug 'mrtazz/DoxygenToolkit.vim' " Auto-insert Doxygen comments
 Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
 Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background 
@@ -118,7 +117,8 @@ nnoremap <F8> F/xxf*xx<Esc>
 au FileType * set fo-=c fo-=r fo-=o fo+=j
 
 " clang-format
-map <leader>c :py3f ~/.clang-format.py<CR>
+nmap <leader>c :py3f ~/.clang-format.py<CR>
+imap <C-I> <c-o>:py3f ~/.clang-format.py<CR>
 
 " Search for name of current file
 nnoremap <leader>h :Ag <C-R>=expand('%:t')<CR><CR>
@@ -187,19 +187,20 @@ endfunction
 nnoremap <leader>cr :call FZFCppReference()<CR>
 
 " -- DoxygenToolkit.vim
+let g:DoxygenToolkit_paramTag_pre = "@param[in] "
 nnoremap <leader>dd :Dox<CR>
 nnoremap <leader>ds O/**<space><space>*/<Esc>F<space>i
 
 " -- asyncrun
-map <F9> :AsyncRun -cwd=<root> ninja -j12 -C ../release<CR>
-map <F10> :AsyncRun -cwd=<root> ninja -j12 -C ../debug<CR>
+map <F9> :AsyncRun -cwd=<root> ninja -v -j12 -C ../release<CR>
+map <F10> :AsyncRun -cwd=<root> ninja -v -j12 -C ../debug<CR>
 map <F11> :AsyncStop<CR>
 noremap <leader><leader> :call asyncrun#quickfix_toggle(15)<CR>
 let g:asyncrun_open = 15
 let g:asyncrun_status = "stopped"
 fun! OnAsyncRunExit()
     if g:asyncrun_status == 'success'
-		call asyncrun#quickfix_toggle(15)
+      cclose
     endif
 endf
 let g:asyncrun_exit = "call OnAsyncRunExit()"
