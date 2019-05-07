@@ -51,6 +51,7 @@ alias now='watch -x -t -n 0.01 date +%s.%N'
 alias o=xdg-open
 alias k='k -h'
 alias cdg='cd "$(git rev-parse --show-cdup)"'
+alias cds='cd "$(git rev-parse --show-superproject-working-tree)"'
 alias ja='ninja -j12'
 alias ctest='ctest --output-on-failure'
 
