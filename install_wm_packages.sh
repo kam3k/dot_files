@@ -9,6 +9,5 @@ apt-get install -y \
   dunst \
   suckless-tools \
   pulseaudio \
-  udiskie \
   volumeicon-alsa \
   network-manager-gnome
