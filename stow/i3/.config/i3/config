@@ -106,9 +106,6 @@ exec --no-startup-id slack
 # start nm-applet in background
 exec --no-startup-id nm-applet &
 
-# start udiskie in background
-exec --no-startup-id udiskie -Nt2 &
-
 # start volumeicon in background
 exec --no-startup-id volumeicon &
 
