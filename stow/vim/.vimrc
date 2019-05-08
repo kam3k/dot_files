@@ -192,15 +192,20 @@ nnoremap <leader>dd :Dox<CR>
 nnoremap <leader>ds O/**<space><space>*/<Esc>F<space>i
 
 " -- asyncrun
-map <F9> :AsyncRun -cwd=<root> ninja -v -j12 -C ../release<CR>
-map <F10> :AsyncRun -cwd=<root> ninja -v -j12 -C ../debug<CR>
-map <F11> :AsyncStop<CR>
-noremap <leader><leader> :call asyncrun#quickfix_toggle(15)<CR>
-let g:asyncrun_open = 15
+map <F7> :AsyncRun -cwd=<root> ninja -v -j12 -C ../release<CR>
+map <F8> :AsyncRun -cwd=<root> ninja -v -j12 -C ../debug<CR>
+map <F9> :AsyncRun -cwd=<root> ../release/bin/$(VIM_FILENOEXT)<CR>
+map <F10> :AsyncStop<CR>
+noremap <leader><leader> :call asyncrun#quickfix_toggle(40)<CR>
+let g:asyncrun_open = 2
 let g:asyncrun_status = "stopped"
 fun! OnAsyncRunExit()
     if g:asyncrun_status == 'success'
+      sleep 1
       cclose
+    else
+      call asyncrun#quickfix_toggle(30)
+      call asyncrun#quickfix_toggle(30)
     endif
 endf
 let g:asyncrun_exit = "call OnAsyncRunExit()"
