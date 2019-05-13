@@ -110,14 +110,14 @@ nmap <C-o> <C-o>zz
 nmap <C-i> <C-i>zz
 nnoremap <leader>* ciw/*<C-R>"*/<Esc>
 vnoremap <leader>* c/*<C-R>"*/<Esc>
-nnoremap <F8> F/xxf*xx<Esc>
+nnoremap <leader>& F/xxf*xx<Esc>
 
 " Never automatically continue comment when starting next line and 
 " delete comment character when joining commented lines
 au FileType * set fo-=c fo-=r fo-=o fo+=j
 
 " clang-format
-nmap <leader>c :py3f ~/.clang-format.py<CR>
+map <leader>c :py3f ~/.clang-format.py<CR>
 imap <C-I> <c-o>:py3f ~/.clang-format.py<CR>
 
 " Search for name of current file
@@ -184,7 +184,7 @@ function! FZFCppReference()
         \ 'options': '--multi --select-1 --exit-0', 
         \ 'down': '40%'})
 endfunction
-nnoremap <leader>cr :call FZFCppReference()<CR>
+nnoremap <leader>r :call FZFCppReference()<CR>
 
 " -- DoxygenToolkit.vim
 let g:DoxygenToolkit_paramTag_pre = "@param[in] "
@@ -196,7 +196,7 @@ map <F7> :AsyncRun -cwd=<root> ninja -v -j12 -C ../release<CR>
 map <F8> :AsyncRun -cwd=<root> ninja -v -j12 -C ../debug<CR>
 map <F9> :AsyncRun -cwd=<root> ../release/bin/$(VIM_FILENOEXT)<CR>
 map <F10> :AsyncStop<CR>
-noremap <leader><leader> :call asyncrun#quickfix_toggle(40)<CR>
+noremap <leader><leader> :call asyncrun#quickfix_toggle(30)<CR>
 let g:asyncrun_open = 2
 let g:asyncrun_status = "stopped"
 fun! OnAsyncRunExit()
