@@ -110,7 +110,7 @@ nmap <C-o> <C-o>zz
 nmap <C-i> <C-i>zz
 nnoremap <leader>* ciw/*<C-R>"*/<Esc>
 vnoremap <leader>* c/*<C-R>"*/<Esc>
-nnoremap <F8> F/xxf*xx<Esc>
+nnoremap <leader>& F/xxf*xx<Esc>
 
 " Never automatically continue comment when starting next line and 
 " delete comment character when joining commented lines
@@ -196,7 +196,7 @@ map <F7> :AsyncRun -cwd=<root> ninja -v -j12 -C ../release<CR>
 map <F8> :AsyncRun -cwd=<root> ninja -v -j12 -C ../debug<CR>
 map <F9> :AsyncRun -cwd=<root> ../release/bin/$(VIM_FILENOEXT)<CR>
 map <F10> :AsyncStop<CR>
-noremap <leader><leader> :call asyncrun#quickfix_toggle(40)<CR>
+noremap <leader><leader> :call asyncrun#quickfix_toggle(30)<CR>
 let g:asyncrun_open = 2
 let g:asyncrun_status = "stopped"
 fun! OnAsyncRunExit()
