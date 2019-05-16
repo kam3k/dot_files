@@ -117,7 +117,7 @@ nnoremap <F8> F/xxf*xx<Esc>
 au FileType * set fo-=c fo-=r fo-=o fo+=j
 
 " clang-format
-nmap <leader>c :py3f ~/.clang-format.py<CR>
+map <leader>c :py3f ~/.clang-format.py<CR>
 imap <C-I> <c-o>:py3f ~/.clang-format.py<CR>
 
 " Search for name of current file
@@ -184,7 +184,7 @@ function! FZFCppReference()
         \ 'options': '--multi --select-1 --exit-0', 
         \ 'down': '40%'})
 endfunction
-nnoremap <leader>cr :call FZFCppReference()<CR>
+nnoremap <leader>r :call FZFCppReference()<CR>
 
 " -- DoxygenToolkit.vim
 let g:DoxygenToolkit_paramTag_pre = "@param[in] "
