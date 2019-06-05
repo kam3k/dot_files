@@ -119,7 +119,10 @@ exec --no-startup-id $term -name term_scratch
 bindsym $mod+n exec $term -name term_scratch
 
 # applications that should always float
+floating_minimum_size 75 x 50
+floating_maximum_size 2000 x 1600
 for_window [class="SimpleScreenRecorder"] floating enable
+for_window [class="Shutter"] floating enable
 for_window [class="zoom"] floating enable
 
 # applications pinned to a workspace
