@@ -7,5 +7,4 @@ apt-get install -y \
   zathura \
   shutter \
   simplescreenrecorder \
-  nemiver \
   arandr
