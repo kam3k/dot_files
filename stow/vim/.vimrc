@@ -192,8 +192,8 @@ nnoremap <leader>dd :Dox<CR>
 nnoremap <leader>ds O/**<space><space>*/<Esc>F<space>i
 
 " -- asyncrun
-map <F7> :AsyncRun -cwd=<root> ninja -v -j12 -C ../release<CR>
-map <F8> :AsyncRun -cwd=<root> ninja -v -j12 -C ../debug<CR>
+map <F7> :AsyncRun -cwd=<root> ninja -v -j6 -C ../release<CR>
+map <F8> :AsyncRun -cwd=<root> ninja -v -j6 -C ../debug<CR>
 map <F9> :AsyncRun -cwd=<root> ../release/bin/$(VIM_FILENOEXT)<CR>
 map <F10> :AsyncStop<CR>
 noremap <leader><leader> :call asyncrun#quickfix_toggle(20)<CR>
