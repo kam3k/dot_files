@@ -52,7 +52,7 @@ alias o=xdg-open
 alias k='k -h'
 alias cdg='cd "$(git rev-parse --show-cdup)"'
 alias cds='cd "$(git rev-parse --show-superproject-working-tree)"'
-alias ja='ninja -j12'
+alias ja='ninja'
 alias ctest='ctest --output-on-failure'
 
 # Source fzf
