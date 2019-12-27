@@ -29,8 +29,8 @@ Plug 'itchyny/lightline.vim' " Statusline
 Plug 'tpope/vim-sleuth' " Heuristically determine spacing to use when tabbing
 Plug 'w0ng/vim-hybrid' " Colorscheme
 Plug 'cocopon/lightline-hybrid.vim' " Hybrid for lightline
-Plug 'SirVer/ultisnips' " Snippets engine
 Plug 'maximbaz/lightline-ale' " Ale status in lightline
+Plug 'rhysd/clever-f.vim' " Highlight F/f results
 call plug#end()
 
 " Activate and configure debugger
@@ -192,9 +192,9 @@ nnoremap <leader>dd :Dox<CR>
 nnoremap <leader>ds O/**<space><space>*/<Esc>F<space>i
 
 " -- asyncrun
-map <F7> :AsyncRun -cwd=<root> ninja -v -j12 -C ../release<CR>
-map <F8> :AsyncRun -cwd=<root> ninja -v -j12 -C ../debug<CR>
-map <F9> :AsyncRun -cwd=<root> ../release/bin/$(VIM_FILENOEXT)<CR>
+map <F7> :AsyncRun -cwd=<root> ninja -v -j6 -C ../release<CR>
+map <F8> :AsyncRun -cwd=<root> ninja -v -j6 -C ../debug<CR>
+map <F9> :AsyncRun -cwd=<root> ../release/$(VIM_FILENOEXT)<CR>
 map <F10> :AsyncStop<CR>
 noremap <leader><leader> :call asyncrun#quickfix_toggle(20)<CR>
 let g:asyncrun_open = 2
@@ -284,9 +284,6 @@ let g:startify_change_to_dir = 0
 " -- vim-gitgutter 
 hi! link GitGutterDelete Constant
 
-" -- vim-tmux-pilot
-let g:pilot_boundary='create'
-
 " -- ale
 let g:ale_linters = {
             \   'cpp': ['clangtidy'],
@@ -296,12 +293,6 @@ let g:ale_c_build_dir_names = ['build', 'release', 'debug']
 " Set up mapping to move between errors
 nmap <silent> [w <Plug>(ale_previous_wrap)
 nmap <silent> ]w <Plug>(ale_next_wrap)
-
-" -- UltiSnips
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-n>"
-set rtp+=~/.config
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION
