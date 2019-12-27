@@ -30,6 +30,7 @@ Plug 'tpope/vim-sleuth' " Heuristically determine spacing to use when tabbing
 Plug 'w0ng/vim-hybrid' " Colorscheme
 Plug 'cocopon/lightline-hybrid.vim' " Hybrid for lightline
 Plug 'maximbaz/lightline-ale' " Ale status in lightline
+Plug 'psliwka/vim-smoothie' " Smooth scrolling
 Plug 'rhysd/clever-f.vim' " Highlight F/f results
 call plug#end()
 
@@ -197,7 +198,7 @@ map <F8> :AsyncRun -cwd=<root> ninja -v -j6 -C ../debug<CR>
 map <F9> :AsyncRun -cwd=<root> ../release/$(VIM_FILENOEXT)<CR>
 map <F10> :AsyncStop<CR>
 noremap <leader><leader> :call asyncrun#quickfix_toggle(20)<CR>
-let g:asyncrun_open = 2
+let g:asyncrun_open = 4
 let g:asyncrun_status = "stopped"
 fun! OnAsyncRunExit()
     if g:asyncrun_status == 'success'
