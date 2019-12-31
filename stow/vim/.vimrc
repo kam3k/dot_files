@@ -31,7 +31,6 @@ Plug 'w0ng/vim-hybrid' " Colorscheme
 Plug 'cocopon/lightline-hybrid.vim' " Hybrid for lightline
 Plug 'maximbaz/lightline-ale' " Ale status in lightline
 Plug 'psliwka/vim-smoothie' " Smooth scrolling
-Plug 'rhysd/clever-f.vim' " Highlight F/f results
 call plug#end()
 
 " Activate and configure debugger
