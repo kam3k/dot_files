@@ -31,7 +31,6 @@ Plug 'w0ng/vim-hybrid' " Colorscheme
 Plug 'cocopon/lightline-hybrid.vim' " Hybrid for lightline
 Plug 'maximbaz/lightline-ale' " Ale status in lightline
 Plug 'psliwka/vim-smoothie' " Smooth scrolling
-Plug 'rhysd/clever-f.vim' " Highlight F/f results
 call plug#end()
 
 " Activate and configure debugger
@@ -88,7 +87,7 @@ nnoremap <silent> <leader>mh <C-W>H
 nnoremap <c-p> :bp<CR>
 nnoremap <c-n> :bn<CR>
 nnoremap <leader>x :Sayonara!<CR>
-nnoremap <silent> Q :CloseBuffersMenu<CR>
+nnoremap <silent> Q :Bdelete menu<CR>
 
 " Paste toggle command
 set pastetoggle=<leader>v
