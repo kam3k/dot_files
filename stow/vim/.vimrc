@@ -19,7 +19,7 @@ Plug 'mrtazz/DoxygenToolkit.vim' " Auto-insert Doxygen comments
 Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
 Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background 
 Plug 'szw/vim-maximizer' " Temporarily maximize a pane
-Plug 'urbainvaes/vim-tmux-pilot' " Seamless navigation between vim and tmux
+Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'w0rp/ale' " Asynchronous linting
 Plug 'sheerun/vim-polyglot' " Better syntax highlighting
 Plug 'mhinz/vim-startify' " Fancy start screen
