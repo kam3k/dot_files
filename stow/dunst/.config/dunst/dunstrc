@@ -34,20 +34,16 @@
     context = ctrl+shift+period
 
 [urgency_low]
-    background = "#cc6666"
-    foreground = "#282a2e"
+    background = "#1d1f21"
+    foreground = "#c5c8c6"
     timeout = 5
 
 [urgency_normal]
-    background = "#cc6666"
-    foreground = "#282a2e"
-    timeout = 0
+    background = "#81a2be"
+    foreground = "#1d1f21"
+    timeout = 5
 
 [urgency_critical]
     background = "#cc6666"
     foreground = "#282a2e"
     timeout = 0
-
-[slack]
-    summary = *Slack*
-    urgency = critical

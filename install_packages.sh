@@ -25,7 +25,6 @@ apt-get install -y \
   clang-format \
   clang-tidy \
   ccache \
-  distcc \
   doxygen \
   libpython-dev \
   cppcheck \

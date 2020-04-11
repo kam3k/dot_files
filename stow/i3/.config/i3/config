@@ -99,10 +99,6 @@ exec --no-startup-id firefox
 for_window [class="Spotify"] move container to workspace $workspace2
 exec --no-startup-id spotify
 
-# start slack
-for_window [class="Slack"] move container to workspace $workspace3
-exec --no-startup-id slack
-
 # start nm-applet in background
 exec --no-startup-id nm-applet &
 
@@ -126,8 +122,7 @@ for_window [class="Shutter"] floating enable
 for_window [class="zoom"] floating enable
 
 # applications pinned to a workspace
-for_window [class="Nemiver"] move container to workspace $workspace5
-for_window [class="Meld"] move container to workspace $workspace5
+for_window [class="Meld"] move container to workspace $workspace10
 for_window [class="zoom"] move container to workspace $workspace10
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
