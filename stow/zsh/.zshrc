@@ -16,6 +16,7 @@ zplug "plugins/extract", from:oh-my-zsh
 zplug "lib/history", from:oh-my-zsh
 zplug "lib/directories", from:oh-my-zsh
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+zplug "arzzen/calc.plugin.zsh"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
