@@ -7,4 +7,5 @@ apt-get install -y \
   zathura \
   shutter \
   simplescreenrecorder \
-  arandr
+  arandr \
+  transmission
