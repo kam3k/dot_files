@@ -194,3 +194,9 @@ exec_always --no-startup-id dunst
 
 # set wallpaper
 exec --no-startup-id feh --bg-scale ~/.config/wallpapers/city.jpg
+
+# tap-to-click on trackpad
+exec xinput set-prop 13 325 1
+
+# disable touchscreen
+exec xinput set-prop 10 168 0
