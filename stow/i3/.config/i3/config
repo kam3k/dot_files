@@ -190,7 +190,7 @@ exec_always killall -q notify-osd
 exec_always --no-startup-id dunst
 
 # set wallpaper
-exec --no-startup-id feh --bg-scale ~/.config/wallpapers/city.jpg
+exec --no-startup-id feh --bg-scale ~/.config/wallpapers/outrun_car.png
 
 # tap-to-click on trackpad
 exec xinput set-prop 13 325 1
