@@ -38,4 +38,8 @@ apt-get install -y \
   rsync \
   fontconfig \
   wmctrl \
-  cppreference-doc-en-html
+  cppreference-doc-en-html \
+  python-pkg-resources \
+  python-psutil \
+  python-tk \
+  python-requests
