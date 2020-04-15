@@ -21,6 +21,12 @@ if [[ ! -a $(which tmux) ]]; then
   exit 1
 fi
 
+# Download bumblebee-status
+mkdir -p ~/.local/src
+if [ ! -d ~/.local/src/bumblebee-status ]; then
+  git clone https://github.com/tobi-wan-kenobi/bumblebee-status.git ~/.local/src/bumblebee-status
+fi
+
 # Symlink everything in stow directory to home directory
 cd ${HOME}/.dot/stow
 for app in */; do
