@@ -55,11 +55,11 @@ configuration {
 /*	show-match: true;*/
 /*	theme: ;*/
 /*                'bg',     'fg',    'bgalt', 'hlbg',  'hlfg' */
-	  color-normal: "#1D1F21, #C5C8C6, #2D3033, #B294BB, #1D1F21";
-	  color-urgent: "#1D1F21, #C5C8C6, #2D3033, #B294BB, #1D1F21";
-	  color-active: "#1D1F21, #C5C8C6, #2D3033, #B294BB, #1D1F21";
+    color-normal: "#1D1F21, #C5C8C6, #2D3033, #B294BB, #1D1F21";
+    color-urgent: "#1D1F21, #C5C8C6, #2D3033, #B294BB, #1D1F21";
+    color-active: "#1D1F21, #C5C8C6, #2D3033, #B294BB, #1D1F21";
 /*                'bg',     'border' */
-	  color-window: "#1D1F21, #B294BB, #B294BB";
+    color-window: "#1D1F21, #B294BB, #B294BB";
 /*	max-history-size: 25;*/
 /*	combi-hide-mode-prefix: false;*/
 /*	matching-negate-char: '-' /* unsupported */;*/
