@@ -30,9 +30,11 @@ apt-get install -y \
   dunst \
   firefox-esr \
   xinput \
+  pulseaudio \
   pulseaudio-utils \
   xclip \
   libpython3-dev \
   rofi \
   gawk \
   xsel \
+  python3-psutil \
