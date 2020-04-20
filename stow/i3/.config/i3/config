@@ -99,17 +99,9 @@ bindsym $mod+n exec $term -name term_scratch
 # applications that should always float
 floating_minimum_size 75 x 50
 floating_maximum_size 2000 x 1600
-for_window [class="SimpleScreenRecorder"] floating enable
-for_window [class="Shutter"] floating enable
-
-# applications pinned to a workspace
-for_window [class="Meld"] move container to workspace $workspace10
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exit
 
 # move workspace to other monitor
 bindsym $mod+m move workspace to output right
@@ -142,7 +134,10 @@ client.urgent           $red        $red        $bg-color    $green    $red
 bar {
     position top
     tray_output none
-    status_command ~/.local/src/bumblebee-status/bumblebee-status -m weather disk battery cpu pasink time system -p time.format="%H:%M" disk.format="{left}" battery.warning=30 battery.critical=15 -t hybrid-powerline 
+    status_command python3 ~/.local/src/bumblebee-status/bumblebee-status \
+                   -m weather disk battery cpu pasink time \
+                   -p time.format="%H:%M" disk.format="{left}" battery.warning=30 battery.critical=15 cpu.left-click="urxvt -e htop" disk.left-click="urxvt -e ncdu" \
+                   -t hybrid-powerline 
 
     colors {
         background $bg-color
@@ -154,6 +149,16 @@ bar {
         urgent_workspace    $red                $red                $text-color
     }
 }
+
+# exit
+mode "exit: [l]ogout, [r]eboot, [s]hutdown" {
+  bindsym l exec i3-msg exit
+  bindsym r exec systemctl reboot
+  bindsym s exec systemctl shutdown
+  bindsym Escape mode "default"
+  bindsym Return mode "default"
+}
+bindsym $mod+Shift+e mode "exit: [l]ogout, [r]eboot, [s]hutdown"
 
 # resize windows
 mode "resize" {
@@ -168,6 +173,9 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+# rofi
+bindsym $mod+space exec --no-startup-id "rofi -show drun -theme hybrid"
+
 # lock screen
 bindsym $mod+Shift+x exec i3lock
 
@@ -175,15 +183,6 @@ bindsym $mod+Shift+x exec i3lock
 bindsym XF86AudioRaiseVolume exec pactl -- set-sink-volume @DEFAULT_SINK@ +8%; exec pactl -- set-sink-mute @DEFAULT_SINK@ 0
 bindsym XF86AudioLowerVolume exec pactl -- set-sink-volume @DEFAULT_SINK@ -8%; exec pactl -- set-sink-mute @DEFAULT_SINK@ 0
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-
-# spotify player controls
-bindsym XF86AudioPlay exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
-bindsym XF86AudioStop exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
-bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
-bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
-
-# dmenu
-bindsym $mod+space exec i3-dmenu-desktop --dmenu='dmenu -b -i -nb "$bg-color" -nf "$inactive-text-color" -sb "$green" -sf "$text-color" -fn "Iosevka Term:size=8"'
 
 # use dunst for notifications
 exec_always killall -q notify-osd
