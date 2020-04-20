@@ -31,13 +31,6 @@ if [ ! -f ${fonts}/iosevka-term-regular.ttf ]; then
   cp /tmp/iosevka-term/ttf/*.ttf ${fonts}
 fi
 
-# San Francisco
-if [ ! -f ${fonts}/SanFranciscoDisplay-Regular.otf ]; then
-  curl -fLo /tmp/san-francisco.zip https://github.com/AppleDesignResources/SanFranciscoFont/archive/master.zip
-  cd /tmp && unzip san-francisco.zip -d san-francisco
-  cp /tmp/san-francisco/SanFranciscoFont-master/*Display* ${fonts}
-fi
-
 # Refresh font cache
 fc-cache
 
