@@ -150,16 +150,6 @@ bar {
     }
 }
 
-# exit
-mode "exit: [l]ogout, [r]eboot, [s]hutdown" {
-  bindsym l exec i3-msg exit
-  bindsym r exec systemctl reboot
-  bindsym s exec systemctl shutdown
-  bindsym Escape mode "default"
-  bindsym Return mode "default"
-}
-bindsym $mod+Shift+e mode "exit: [l]ogout, [r]eboot, [s]hutdown"
-
 # resize windows
 mode "resize" {
     bindsym h resize shrink width 5 px or 5 ppt
