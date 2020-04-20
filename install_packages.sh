@@ -34,3 +34,5 @@ apt-get install -y \
   xclip \
   libpython3-dev \
   rofi \
+  gawk \
+  xsel \
