@@ -3,43 +3,34 @@
 apt-get update
 
 apt-get install -y \
+  xorg \
   vim-gtk \
   rxvt-unicode-256color \
   tmux \
-  gawk \
   git \
   htop \
   openssh-server \
   zsh \
-  autossh \
   curl \
-  cifs-utils \
-  xsel \
   silversearcher-ag \
   stow \
-  nmap \
   unzip \
-  tree \
-  g++ \
   libclang-dev \
   clang-format \
   clang-tidy \
-  ccache \
-  doxygen \
-  libpython-dev \
-  cppcheck \
   cmake \
   cmake-curses-gui \
-  make \
   ninja-build \
   build-essential \
   gdb \
   ncdu \
   rsync \
-  fontconfig \
-  wmctrl \
-  cppreference-doc-en-html \
-  python-pkg-resources \
-  python-psutil \
-  python-tk \
-  python-requests
+  i3 \
+  feh \
+  dunst \
+  firefox-esr \
+  xinput \
+  pulseaudio-utils \
+  xclip \
+  libpython3-dev \
+  rofi \

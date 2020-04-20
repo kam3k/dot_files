@@ -88,14 +88,6 @@ zb()
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
-zpp() {
-  pushd /usr/share/cppreference/doc/html/en/cpp/ > /dev/null
-  local files
-  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
-  [[ -n "$files" ]] && xdg-open "${files[@]}" && wmctrl -a firefox
-  popd
-}
-
 # Log CPU and memory usage of a process
 logpid() { while sleep 1; do  ps -p $1 -o pcpu= -o pmem= ; done; }
 

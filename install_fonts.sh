@@ -31,11 +31,11 @@ if [ ! -f ${fonts}/iosevka-term-regular.ttf ]; then
   cp /tmp/iosevka-term/ttf/*.ttf ${fonts}
 fi
 
-# Noto Sans
-if [ ! -f ${fonts}/NotoSans-Regular.ttf ]; then
-  curl -fLo /tmp/noto-sans.zip https://noto-website-2.storage.googleapis.com/pkgs/NotoSans-hinted.zip
-  cd /tmp && unzip noto-sans.zip -d noto-sans
-  cp /tmp/noto-sans/*.ttf ${fonts}
+# San Francisco
+if [ ! -f ${fonts}/SanFranciscoDisplay-Regular.otf ]; then
+  curl -fLo /tmp/san-francisco.zip https://github.com/AppleDesignResources/SanFranciscoFont/archive/master.zip
+  cd /tmp && unzip san-francisco.zip -d san-francisco
+  cp /tmp/san-francisco/SanFranciscoFont-master/*Display* ${fonts}
 fi
 
 # Refresh font cache

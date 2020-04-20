@@ -173,19 +173,6 @@ nnoremap <leader>fL :call FZFSameName('rightbelow vsplit', '', 'wincmd l')<CR>
 nnoremap <leader>fK :call FZFSameName('leftabove split', '', 'wincmd k')<CR>
 nnoremap <leader>fJ :call FZFSameName('rightbelow split', '', 'wincmd j')<CR>
 
-let $cppreference_path = "/usr/share/cppreference/doc/html/en/cpp/"
-function! OpenInBrowser(link)
-  call system('firefox ' . $cppreference_path . a:link)
-  call system('wmctrl -a firefox')
-endfunction
-function! FZFCppReference()
-  call fzf#run({'source': "find " . $cppreference_path . " -name *.html | cut -d'/' -f9-", 
-        \ 'sink': function('OpenInBrowser'),
-        \ 'options': '--multi --select-1 --exit-0', 
-        \ 'down': '40%'})
-endfunction
-nnoremap <leader>r :call FZFCppReference()<CR>
-
 " -- DoxygenToolkit.vim
 let g:DoxygenToolkit_paramTag_pre = "@param[in] "
 nnoremap <leader>dd :Dox<CR>
