@@ -38,3 +38,4 @@ apt-get install -y \
   gawk \
   xsel \
   python3-psutil \
+  brightnessctl \

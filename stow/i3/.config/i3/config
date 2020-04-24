@@ -135,8 +135,8 @@ bar {
     position top
     tray_output none
     status_command python3 ~/.local/src/bumblebee-status/bumblebee-status \
-                   -m weather disk battery cpu pasink date time \
-                   -p time.format="%H:%M" disk.format="{left}" battery.warning=30 battery.critical=15 cpu.left-click="urxvt -e htop" disk.left-click="urxvt -e ncdu" date.left-click="gsimplecal" \
+                   -m weather disk battery cpu pasink brightness date time \
+                   -p time.format="%H:%M" disk.format="{left}" battery.warning=30 battery.critical=15 cpu.left-click="urxvt -e htop" disk.left-click="urxvt -e ncdu" date.left-click="gsimplecal" brightness.step=5 \
                    -t hybrid-powerline 
 
     colors {
