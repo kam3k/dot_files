@@ -185,7 +185,7 @@ exec_always --no-startup-id dunst
 exec --no-startup-id feh --bg-scale ~/.config/wallpapers/outrun_car.png
 
 # tap-to-click on trackpad
-exec xinput set-prop 13 325 1
+exec --no-startup-id xinput set-prop "Elan Touchpad" "libinput Tapping Enabled" 1
 
 # disable touchscreen
-exec xinput set-prop 10 168 0
+exec --no-startup-id xinput --disable "ELAN Touchscreen"
