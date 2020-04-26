@@ -39,3 +39,4 @@ apt-get install -y \
   xsel \
   python3-psutil \
   brightnessctl \
+  network-manager-gnome \
