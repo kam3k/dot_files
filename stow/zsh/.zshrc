@@ -53,6 +53,7 @@ alias cdg='cd "$(git rev-parse --show-cdup)"'
 alias cds='cd "$(git rev-parse --show-superproject-working-tree)"'
 alias ja='ninja'
 alias ctest='ctest --output-on-failure'
+alias cm='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=On'
 
 # Source fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
