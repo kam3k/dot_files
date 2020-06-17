@@ -13,6 +13,7 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "supercrabtree/k"
 zplug "plugins/extract", from:oh-my-zsh 
+zplug "lib/history", from:oh-my-zsh
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 zplug "arzzen/calc.plugin.zsh"
 
@@ -53,7 +54,8 @@ alias cdg='cd "$(git rev-parse --show-cdup)"'
 alias cds='cd "$(git rev-parse --show-superproject-working-tree)"'
 alias ja='ninja'
 alias ctest='ctest --output-on-failure'
-alias cm='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=On'
+alias cm='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=RelWithDebInfo'
+alias cmd='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=Debug'
 
 # Source fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

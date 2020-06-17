@@ -40,3 +40,4 @@ apt-get install -y \
   python3-psutil \
   brightnessctl \
   network-manager-gnome \
+  meld \
