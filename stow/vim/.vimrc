@@ -27,10 +27,8 @@ Plug 'RRethy/vim-illuminate' " Highlight other occurrences of words
 Plug 'Asheq/close-buffers.vim' " Close hidden buffers easily
 Plug 'itchyny/lightline.vim' " Statusline
 Plug 'tpope/vim-sleuth' " Heuristically determine spacing to use when tabbing
-Plug 'w0ng/vim-hybrid' " Colorscheme
-Plug 'cocopon/lightline-hybrid.vim' " Hybrid for lightline
 Plug 'maximbaz/lightline-ale' " Ale status in lightline
-Plug 'psliwka/vim-smoothie' " Smooth scrolling
+Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
 " Activate and configure debugger
@@ -64,9 +62,7 @@ let &t_SR = "\<esc>[5 q"
 let &t_EI = "\<esc>[2 q"
 
 " Colorscheme
-set background=dark
-let g:hybrid_custom_term_colors = 1
-silent! colorscheme hybrid
+silent! colorscheme nord
 
 " Windowing commands
 nnoremap <leader>q :Sayonara<CR>
@@ -137,6 +133,7 @@ let g:ycm_confirm_extra_conf = 0
 let g:ycm_show_diagnostics_ui = 1
 let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_always_populate_location_list = 1
+let g:ycm_auto_hover=''
 nnoremap <leader>yd :YcmDebugInfo<CR>
 nnoremap <leader>yr :YcmRestartServer<CR>
 nnoremap <leader>yt :YcmCompleter GetType<CR>
@@ -228,7 +225,7 @@ let g:lightline.component_type = {
         \     'linter_errors': 'error',
         \     'linter_ok': 'right',
         \ }
-let g:lightline.colorscheme = 'hybrid'
+let g:lightline.colorscheme = 'nord'
 let g:lightline.active = {
         \   'left': [ [ 'mode' ],
         \             [ 'paste', 'readonly', 'modified' ]],
@@ -260,16 +257,13 @@ nmap <leader>7 <Plug>BufTabLine.Go(7)
 nmap <leader>8 <Plug>BufTabLine.Go(8)
 nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
-hi! BufTabLineCurrent ctermbg=12 ctermfg=0
-hi! BufTabLineActive ctermbg=7 ctermfg=0
-hi! BufTabLineHidden ctermbg=0 ctermfg=7
+hi! BufTabLineCurrent ctermbg=6 ctermfg=0
+hi! BufTabLineActive ctermbg=0 ctermfg=12
+hi! BufTabLineHidden ctermbg=0 ctermfg=255
 hi! BufTabLineFill ctermbg=0
 
 " -- vim-startify
 let g:startify_change_to_dir = 0
-
-" -- vim-gitgutter 
-hi! link GitGutterDelete Constant
 
 " -- ale
 let g:ale_linters = {

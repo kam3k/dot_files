@@ -24,4 +24,5 @@ apt-get install -y \
   rsync \
   meld \
   python3-dev \
-  tree
+  tree \
+  tilix
