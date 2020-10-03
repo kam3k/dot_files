@@ -25,4 +25,5 @@ apt-get install -y \
   meld \
   python3-dev \
   tree \
-  tilix
+  tilix \
+  xsel
