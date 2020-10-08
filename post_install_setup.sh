@@ -31,6 +31,11 @@ done;
 cd ${HOME}/.dot/dconf
 dconf load /com/gexperts/Tilix/ < tilix.dconf
 
+# Set theme/icons
+gsettings set org.gnome.desktop.interface gtk-theme Nordic-darker
+gsettings set org.gnome.desktop.wm.preferences theme Nordic-darker
+gsettings set org.gnome.desktop.interface icon-theme Nordic
+
 # Install vim plugins
 vim +PlugInstall +qall
 
