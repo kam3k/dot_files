@@ -27,10 +27,6 @@ for app in */; do
 	stow -t ${HOME} $app
 done;
 
-# Load all dconf settings
-cd ${HOME}/.dot/dconf
-dconf load /com/gexperts/Tilix/ < tilix.dconf
-
 # Set theme/icons
 gsettings set org.gnome.desktop.interface gtk-theme Nordic-darker
 gsettings set org.gnome.desktop.wm.preferences theme Nordic-darker
