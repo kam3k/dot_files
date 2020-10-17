@@ -25,5 +25,5 @@ apt-get install -y \
   meld \
   python3-dev \
   tree \
-  tilix \
+  xfce4-terminal \
   xsel
