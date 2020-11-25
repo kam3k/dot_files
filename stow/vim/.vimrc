@@ -176,7 +176,7 @@ nnoremap <leader>dd :Dox<CR>
 nnoremap <leader>ds O/**<space><space>*/<Esc>F<space>i
 
 " -- asyncrun
-map <F7> :AsyncRun catkin build -j4<CR>
+map <F7> :AsyncRun catkin build -j2<CR>
 map <F10> :AsyncStop<CR>
 noremap <leader><leader> :call asyncrun#quickfix_toggle(20)<CR>
 let g:asyncrun_open = 4
@@ -268,7 +268,7 @@ let g:ale_linters = {
             \   'cpp': ['clangtidy'],
             \}
 let g:ale_set_highlights = 0
-let g:ale_c_build_dir_names = ['build', 'release', 'debug']
+let g:ale_cpp_clangtidy_checks = ['-*,cppcoreguidelines*,modernize*,readability*,bugprone*,performance*,-modernize-use-trailing-return-type,-google-runtime-references,-cppcoreguidelines-pro-bounds-array-to-pointer-decay']
 " Set up mapping to move between errors
 nmap <silent> [w <Plug>(ale_previous_wrap)
 nmap <silent> ]w <Plug>(ale_next_wrap)
