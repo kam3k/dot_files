@@ -1,6 +1,7 @@
 ---
-Language:        Cpp
-BasedOnStyle:  Google
-ColumnLimit:     100
+Language: Cpp
+BasedOnStyle: Google
+ColumnLimit: 100
+DerivePointerAlignment: false
+PointerAlignment: Left
 ...
-
