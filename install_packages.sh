@@ -26,4 +26,6 @@ apt-get install -y \
   python3-dev \
   tree \
   xfce4-terminal \
-  xsel
+  xsel \
+  wmctrl \
+  xdotool

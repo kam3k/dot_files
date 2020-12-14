@@ -24,13 +24,8 @@ fi
 # Symlink everything in stow directory to home directory
 cd ${HOME}/.dot/stow
 for app in */; do
-	stow -t ${HOME} $app
+  stow -t ${HOME} $app
 done;
-
-# Set theme/icons
-gsettings set org.gnome.desktop.interface gtk-theme Nordic-darker
-gsettings set org.gnome.desktop.wm.preferences theme Nordic-darker
-gsettings set org.gnome.desktop.interface icon-theme Nordic
 
 # Install vim plugins
 vim +PlugInstall +qall
