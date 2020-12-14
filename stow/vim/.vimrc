@@ -12,33 +12,28 @@ Plug 'jiangmiao/auto-pairs' " Auto-handling of brackets, etc.
 Plug 'djoshea/vim-autoread' " Auto-reload buffers that have been changed elsewhere
 Plug 'airblade/vim-gitgutter' " Show git status of lines in gutter
 Plug 'tpope/vim-fugitive' " Git functionality in vim
-Plug 'Valloric/YouCompleteMe' " Autocomplete and much more
+Plug 'Valloric/YouCompleteMe', { 'commit': 'f84351c851b29ede64caf6e47f39ad4472f5e68a' } " Autocomplete and much more
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy search
 Plug 'junegunn/fzf.vim' " Vim bindings to various fuzzy searches
 Plug 'mrtazz/DoxygenToolkit.vim' " Auto-insert Doxygen comments
 Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
 Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background 
-Plug 'szw/vim-maximizer' " Temporarily maximize a pane
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'w0rp/ale' " Asynchronous linting
 Plug 'sheerun/vim-polyglot' " Better syntax highlighting
 Plug 'mhinz/vim-startify' " Fancy start screen
-Plug 'RRethy/vim-illuminate' " Highlight other occurrences of words
 Plug 'Asheq/close-buffers.vim' " Close hidden buffers easily
-Plug 'itchyny/lightline.vim' " Statusline
-Plug 'tpope/vim-sleuth' " Heuristically determine spacing to use when tabbing
-Plug 'maximbaz/lightline-ale' " Ale status in lightline
-Plug 'arcticicestudio/nord-vim'
+Plug 'w0ng/vim-hybrid' " Colorscheme
 call plug#end()
 
-" Activate and configure debugger
-packadd termdebug
-let g:termdebug_wide = 163
-hi! link debugPC DiffText
-hi! link debugBreakpoint ErrorMsg
+" Status line
+set laststatus=2
+set statusline=
+set statusline=%#CursorLine#
+set statusline+=\ %=
+set statusline+=\ %{g:asyncrun_status}
 
 " Settings
-set laststatus=2 " always show statusline
 set hidden " allow unsaved buffers to be hidden
 set bs=2 " allow backspace over anything in insert mode
 set mouse=a " mouse use enabled
@@ -56,13 +51,9 @@ set updatetime=250 " 250 ms between screen updates
 set noshowmode " don't show mode (just look at cursor)
 set wildmode=list:longest,full " list completions on command line, cycle through with tab
 
-" Different cursors in insert and normal mode
-let &t_SI = "\<esc>[5 q"
-let &t_SR = "\<esc>[5 q"
-let &t_EI = "\<esc>[2 q"
-
 " Colorscheme
-silent! colorscheme nord
+set background=dark
+silent! colorscheme hybrid
 
 " Windowing commands
 nnoremap <leader>q :Sayonara<CR>
@@ -80,8 +71,6 @@ nnoremap <silent> <leader>ml <C-W>L
 nnoremap <silent> <leader>mh <C-W>H
 
 " Buffer commands
-nnoremap <c-p> :bp<CR>
-nnoremap <c-n> :bn<CR>
 nnoremap <leader>x :Sayonara!<CR>
 nnoremap <silent> Q :Bdelete menu<CR>
 
@@ -114,7 +103,6 @@ au FileType * set fo-=c fo-=r fo-=o fo+=j
 
 " clang-format
 map <leader>c :py3f ~/.clang-format.py<CR>
-imap <C-I> <c-o>:py3f ~/.clang-format.py<CR>
 
 " Search for name of current file
 nnoremap <leader>h :Ag <C-R>=expand('%:t')<CR><CR>
@@ -192,55 +180,12 @@ fun! OnAsyncRunExit()
 endf
 let g:asyncrun_exit = "call OnAsyncRunExit()"
 
-" -- vim-maximizer
-nnoremap <c-w>z :MaximizerToggle<CR>
-
 " -- vim-commentary
 augroup FTOptions 
     autocmd!
     autocmd FileType c,cpp  setlocal commentstring=//\ %s
     autocmd FileType cmake  setlocal commentstring=#\ %s
 augroup END
-
-" -- lightline
-let g:lightline = {}
-let g:lightline.component = {
-        \   'lineinfo': ' %3l:%-2v',
-        \   'asyncrun_status': '%{g:asyncrun_status}',
-        \ }
-let g:lightline.component_function = {
-        \   'readonly': 'LightlineReadonly',
-        \ }
-let g:lightline.component_expand = {
-        \  'linter_checking': 'lightline#ale#checking',
-        \  'linter_warnings': 'lightline#ale#warnings',
-        \  'linter_errors': 'lightline#ale#errors',
-        \  'linter_ok': 'lightline#ale#ok',
-        \ }
-let g:lightline.component_type = {
-        \     'linter_checking': 'right',
-        \     'linter_warnings': 'warning',
-        \     'linter_errors': 'error',
-        \     'linter_ok': 'right',
-        \ }
-let g:lightline.colorscheme = 'nord'
-let g:lightline.active = {
-        \   'left': [ [ 'mode' ],
-        \             [ 'paste', 'readonly', 'modified' ]],
-        \   'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
-        \              [ 'lineinfo' ],
-        \              [ 'asyncrun_status' ]]
-        \ }
-let g:lightline.inactive = {
-        \   'left': [ [ 'mode' ],
-        \             [ 'paste', 'readonly', 'modified' ]],
-        \   'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
-        \              [ 'lineinfo' ],
-        \              [ 'asyncrun_status' ]]
-        \ }
-function! LightlineReadonly()
-  return &readonly ? '' : ''
-endfunction
 
 " -- buftabline
 let g:buftabline_numbers = 2
@@ -255,9 +200,9 @@ nmap <leader>7 <Plug>BufTabLine.Go(7)
 nmap <leader>8 <Plug>BufTabLine.Go(8)
 nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
-hi! BufTabLineCurrent ctermbg=6 ctermfg=0
-hi! BufTabLineActive ctermbg=0 ctermfg=12
-hi! BufTabLineHidden ctermbg=0 ctermfg=255
+hi! BufTabLineCurrent ctermbg=0 ctermfg=12
+hi! BufTabLineActive ctermbg=0 ctermfg=7
+hi! BufTabLineHidden ctermbg=0 ctermfg=7
 hi! BufTabLineFill ctermbg=0
 
 " -- vim-startify

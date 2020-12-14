@@ -28,6 +28,9 @@ fi
 # Source plugins
 zplug load
 
+# Options
+setopt autopushd pushdignoredups
+
 # Configure spaceship prompt
 SPACESHIP_PROMPT_ORDER=(
   user          # Username section
@@ -45,8 +48,6 @@ DISABLE_AUTO_TITLE=true
 # Aliases
 alias ls='ls --color=auto'
 alias ta='tmux a -t'
-alias agc='ag -G ".*\.(cpp|h|hpp|cc)"'
-alias agx='ag -G ".*\.(xml)"'
 alias now='watch -x -t -n 0.01 date +%s.%N' 
 alias o=xdg-open
 alias k='k -h'
