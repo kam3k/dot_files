@@ -200,10 +200,10 @@ nmap <leader>7 <Plug>BufTabLine.Go(7)
 nmap <leader>8 <Plug>BufTabLine.Go(8)
 nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
-hi! BufTabLineCurrent ctermbg=none ctermfg=12
-hi! BufTabLineActive ctermbg=none ctermfg=237
-hi! BufTabLineHidden ctermbg=none ctermfg=237
-hi! BufTabLineFill ctermbg=none
+hi! BufTabLineCurrent cterm=bold ctermbg=8 ctermfg=4
+hi! BufTabLineActive cterm=bold ctermbg=8 ctermfg=15
+hi! BufTabLineHidden cterm=bold ctermbg=8 ctermfg=15
+hi! BufTabLineFill ctermbg=8
 
 " -- vim-startify
 let g:startify_change_to_dir = 0
