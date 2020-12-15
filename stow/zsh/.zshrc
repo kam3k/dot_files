@@ -45,6 +45,9 @@ SPACESHIP_DIR_TRUNC=0
 # Stop prompt from setting tmux title
 DISABLE_AUTO_TITLE=true
 
+# Autosuggestion colour
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#707880"
+
 # Aliases
 alias ls='ls --color=auto'
 alias ta='tmux a -t'
