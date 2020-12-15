@@ -25,7 +25,5 @@ apt-get install -y \
   meld \
   python3-dev \
   tree \
-  xfce4-terminal \
   xsel \
-  wmctrl \
-  xdotool
+  tilix
