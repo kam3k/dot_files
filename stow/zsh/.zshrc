@@ -60,6 +60,7 @@ alias ja='ninja'
 alias ctest='ctest --output-on-failure'
 alias cm='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=RelWithDebInfo'
 alias cmd='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=Debug'
+alias fd='fdfind'
 
 # Source fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
