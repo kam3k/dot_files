@@ -26,4 +26,5 @@ apt-get install -y \
   python3-dev \
   tree \
   xsel \
-  tilix
+  tilix \
+  fd-find
