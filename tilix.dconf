@@ -1,0 +1,25 @@
+[/]
+window-style='borderless'
+quake-height-percent=90
+terminal-title-show-when-single=false
+quake-specific-monitor=0
+use-overlay-scrollbar=false
+quake-width-percent=68
+
+[profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d]
+foreground-color='#B7BCBA'
+visible-name='Hybrid'
+palette=['#2A2E33', '#B84D51', '#B3BF5A', '#E4B55E', '#6E90B0', '#A17EAC', '#7FBFB4', '#B5B9B6', '#1D1F22', '#8D2E32', '#798431', '#E58A50', '#4B6B88', '#6E5079', '#4D7B74', '#5A626A']
+bold-is-bright=false
+badge-color='#AC7EA8'
+badge-color-set=false
+show-scrollbar=false
+use-system-font=false
+cursor-colors-set=false
+highlight-colors-set=false
+use-theme-colors=false
+bold-color-set=false
+font='Iosevka Term 12'
+terminal-bell='none'
+background-color='#1D1D1F1F2121'
+background-transparency-percent=0
