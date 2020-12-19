@@ -28,7 +28,10 @@ for app in */; do
 done;
 
 # Load dconf settings
-cat ~/.dot/dconf-settings.ini | dconf load /
+cat ~/.dot/gnome/dconf-settings.ini | dconf load /
+
+# Install gnome extensions
+~/.dot/gnome/install-gnome-extensions.sh --enable --file ~/.dot/gnome/extensions.txt
 
 # Install vim plugins
 vim +PlugInstall +qall
