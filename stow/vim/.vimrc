@@ -54,6 +54,7 @@ set wildmode=list:longest,full " list completions on command line, cycle through
 " Colorscheme
 set background=dark
 silent! colorscheme hybrid
+hi! Normal ctermbg=NONE
 
 " Windowing commands
 nnoremap <leader>q :Sayonara<CR>
