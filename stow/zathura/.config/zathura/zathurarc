@@ -1,7 +1,0 @@
-set advance-pages-per-row true
-set highlight-color "#33acff"
-set highlight-active-color "#ff4233"
-set pages-per-row 2
-set font "monospace normal 14"
-set inputbar-bg "#ffffff"
-set inputbar-fg "#000000"

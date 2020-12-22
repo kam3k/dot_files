@@ -14,8 +14,8 @@ zplug "zsh-users/zsh-syntax-highlighting"
 zplug "supercrabtree/k"
 zplug "plugins/extract", from:oh-my-zsh 
 zplug "lib/history", from:oh-my-zsh
-zplug "lib/directories", from:oh-my-zsh
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+zplug "arzzen/calc.plugin.zsh"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -27,6 +27,9 @@ fi
 
 # Source plugins
 zplug load
+
+# Options
+setopt autopushd pushdignoredups
 
 # Configure spaceship prompt
 SPACESHIP_PROMPT_ORDER=(
@@ -42,11 +45,12 @@ SPACESHIP_DIR_TRUNC=0
 # Stop prompt from setting tmux title
 DISABLE_AUTO_TITLE=true
 
+# Autosuggestion colour
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#707880"
+
 # Aliases
 alias ls='ls --color=auto'
 alias ta='tmux a -t'
-alias agc='ag -G ".*\.(cpp|h|hpp|cc)"'
-alias agx='ag -G ".*\.(xml)"'
 alias now='watch -x -t -n 0.01 date +%s.%N' 
 alias o=xdg-open
 alias k='k -h'
@@ -54,6 +58,10 @@ alias cdg='cd "$(git rev-parse --show-cdup)"'
 alias cds='cd "$(git rev-parse --show-superproject-working-tree)"'
 alias ja='ninja'
 alias ctest='ctest --output-on-failure'
+alias cm='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=RelWithDebInfo'
+alias cmd='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=Debug'
+alias fd='fdfind'
+alias a="apt-cache search '' | sort | cut --delimiter ' ' --fields 1 | fzf --multi --cycle --reverse --preview 'apt-cache show {1}' | xargs -r sudo apt install -y"
 
 # Source fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -85,14 +93,6 @@ zb()
   branch=$(echo "$branches" |
            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-}
-
-zpp() {
-  pushd /usr/share/cppreference/doc/html/en/cpp/ > /dev/null
-  local files
-  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
-  [[ -n "$files" ]] && xdg-open "${files[@]}" && wmctrl -a firefox
-  popd
 }
 
 # Log CPU and memory usage of a process

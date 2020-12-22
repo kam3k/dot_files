@@ -24,14 +24,20 @@ fi
 # Symlink everything in stow directory to home directory
 cd ${HOME}/.dot/stow
 for app in */; do
-	stow -t ${HOME} $app
+  stow -t ${HOME} $app
 done;
+
+# Load dconf settings
+cat ~/.dot/gnome/dconf-settings.ini | dconf load /
+
+# Install gnome extensions
+~/.dot/gnome/install-gnome-extensions.sh --enable --file ~/.dot/gnome/extensions.txt
 
 # Install vim plugins
 vim +PlugInstall +qall
 
 # Compile YouCompleteMe
-~/.vim/plugged/YouCompleteMe/install.py --clang-completer
+~/.vim/plugged/YouCompleteMe/install.py --clangd-completer
 
 # Set up tmux plugin manager
 mkdir -p ~/.tmux/plugins
