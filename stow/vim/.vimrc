@@ -12,35 +12,28 @@ Plug 'jiangmiao/auto-pairs' " Auto-handling of brackets, etc.
 Plug 'djoshea/vim-autoread' " Auto-reload buffers that have been changed elsewhere
 Plug 'airblade/vim-gitgutter' " Show git status of lines in gutter
 Plug 'tpope/vim-fugitive' " Git functionality in vim
-Plug 'Valloric/YouCompleteMe' " Autocomplete and much more
+Plug 'Valloric/YouCompleteMe', { 'commit': 'f84351c851b29ede64caf6e47f39ad4472f5e68a' } " Autocomplete and much more
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy search
 Plug 'junegunn/fzf.vim' " Vim bindings to various fuzzy searches
 Plug 'mrtazz/DoxygenToolkit.vim' " Auto-insert Doxygen comments
 Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
 Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background 
-Plug 'szw/vim-maximizer' " Temporarily maximize a pane
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'w0rp/ale' " Asynchronous linting
 Plug 'sheerun/vim-polyglot' " Better syntax highlighting
 Plug 'mhinz/vim-startify' " Fancy start screen
-Plug 'RRethy/vim-illuminate' " Highlight other occurrences of words
 Plug 'Asheq/close-buffers.vim' " Close hidden buffers easily
-Plug 'itchyny/lightline.vim' " Statusline
-Plug 'tpope/vim-sleuth' " Heuristically determine spacing to use when tabbing
 Plug 'w0ng/vim-hybrid' " Colorscheme
-Plug 'cocopon/lightline-hybrid.vim' " Hybrid for lightline
-Plug 'maximbaz/lightline-ale' " Ale status in lightline
-Plug 'psliwka/vim-smoothie' " Smooth scrolling
 call plug#end()
 
-" Activate and configure debugger
-packadd termdebug
-let g:termdebug_wide = 163
-hi! link debugPC DiffText
-hi! link debugBreakpoint ErrorMsg
+" Status line
+set laststatus=2
+set statusline=
+set statusline=%#CursorLine#
+set statusline+=\ %=
+set statusline+=\ %{g:asyncrun_status}
 
 " Settings
-set laststatus=2 " always show statusline
 set hidden " allow unsaved buffers to be hidden
 set bs=2 " allow backspace over anything in insert mode
 set mouse=a " mouse use enabled
@@ -58,15 +51,10 @@ set updatetime=250 " 250 ms between screen updates
 set noshowmode " don't show mode (just look at cursor)
 set wildmode=list:longest,full " list completions on command line, cycle through with tab
 
-" Different cursors in insert and normal mode
-let &t_SI = "\<esc>[5 q"
-let &t_SR = "\<esc>[5 q"
-let &t_EI = "\<esc>[2 q"
-
 " Colorscheme
 set background=dark
-let g:hybrid_custom_term_colors = 1
 silent! colorscheme hybrid
+hi! Normal ctermbg=NONE
 
 " Windowing commands
 nnoremap <leader>q :Sayonara<CR>
@@ -84,8 +72,6 @@ nnoremap <silent> <leader>ml <C-W>L
 nnoremap <silent> <leader>mh <C-W>H
 
 " Buffer commands
-nnoremap <c-p> :bp<CR>
-nnoremap <c-n> :bn<CR>
 nnoremap <leader>x :Sayonara!<CR>
 nnoremap <silent> Q :Bdelete menu<CR>
 
@@ -118,7 +104,6 @@ au FileType * set fo-=c fo-=r fo-=o fo+=j
 
 " clang-format
 map <leader>c :py3f ~/.clang-format.py<CR>
-imap <C-I> <c-o>:py3f ~/.clang-format.py<CR>
 
 " Search for name of current file
 nnoremap <leader>h :Ag <C-R>=expand('%:t')<CR><CR>
@@ -137,6 +122,7 @@ let g:ycm_confirm_extra_conf = 0
 let g:ycm_show_diagnostics_ui = 1
 let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_always_populate_location_list = 1
+let g:ycm_auto_hover=''
 nnoremap <leader>yd :YcmDebugInfo<CR>
 nnoremap <leader>yr :YcmRestartServer<CR>
 nnoremap <leader>yt :YcmCompleter GetType<CR>
@@ -173,28 +159,13 @@ nnoremap <leader>fL :call FZFSameName('rightbelow vsplit', '', 'wincmd l')<CR>
 nnoremap <leader>fK :call FZFSameName('leftabove split', '', 'wincmd k')<CR>
 nnoremap <leader>fJ :call FZFSameName('rightbelow split', '', 'wincmd j')<CR>
 
-let $cppreference_path = "/usr/share/cppreference/doc/html/en/cpp/"
-function! OpenInBrowser(link)
-  call system('firefox ' . $cppreference_path . a:link)
-  call system('wmctrl -a firefox')
-endfunction
-function! FZFCppReference()
-  call fzf#run({'source': "find " . $cppreference_path . " -name *.html | cut -d'/' -f9-", 
-        \ 'sink': function('OpenInBrowser'),
-        \ 'options': '--multi --select-1 --exit-0', 
-        \ 'down': '40%'})
-endfunction
-nnoremap <leader>r :call FZFCppReference()<CR>
-
 " -- DoxygenToolkit.vim
 let g:DoxygenToolkit_paramTag_pre = "@param[in] "
 nnoremap <leader>dd :Dox<CR>
 nnoremap <leader>ds O/**<space><space>*/<Esc>F<space>i
 
 " -- asyncrun
-map <F7> :AsyncRun -cwd=<root> ninja -v -j6 -C ../release<CR>
-map <F8> :AsyncRun -cwd=<root> ninja -v -j6 -C ../debug<CR>
-map <F9> :AsyncRun -cwd=<root> ../release/$(VIM_FILENOEXT)<CR>
+map <F7> :AsyncRun catkin build -j4<CR>
 map <F10> :AsyncStop<CR>
 noremap <leader><leader> :call asyncrun#quickfix_toggle(20)<CR>
 let g:asyncrun_open = 4
@@ -210,55 +181,12 @@ fun! OnAsyncRunExit()
 endf
 let g:asyncrun_exit = "call OnAsyncRunExit()"
 
-" -- vim-maximizer
-nnoremap <c-w>z :MaximizerToggle<CR>
-
 " -- vim-commentary
 augroup FTOptions 
     autocmd!
     autocmd FileType c,cpp  setlocal commentstring=//\ %s
     autocmd FileType cmake  setlocal commentstring=#\ %s
 augroup END
-
-" -- lightline
-let g:lightline = {}
-let g:lightline.component = {
-        \   'lineinfo': ' %3l:%-2v',
-        \   'asyncrun_status': '%{g:asyncrun_status}',
-        \ }
-let g:lightline.component_function = {
-        \   'readonly': 'LightlineReadonly',
-        \ }
-let g:lightline.component_expand = {
-        \  'linter_checking': 'lightline#ale#checking',
-        \  'linter_warnings': 'lightline#ale#warnings',
-        \  'linter_errors': 'lightline#ale#errors',
-        \  'linter_ok': 'lightline#ale#ok',
-        \ }
-let g:lightline.component_type = {
-        \     'linter_checking': 'right',
-        \     'linter_warnings': 'warning',
-        \     'linter_errors': 'error',
-        \     'linter_ok': 'right',
-        \ }
-let g:lightline.colorscheme = 'hybrid'
-let g:lightline.active = {
-        \   'left': [ [ 'mode' ],
-        \             [ 'paste', 'readonly', 'modified' ]],
-        \   'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
-        \              [ 'lineinfo' ],
-        \              [ 'asyncrun_status' ]]
-        \ }
-let g:lightline.inactive = {
-        \   'left': [ [ 'mode' ],
-        \             [ 'paste', 'readonly', 'modified' ]],
-        \   'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
-        \              [ 'lineinfo' ],
-        \              [ 'asyncrun_status' ]]
-        \ }
-function! LightlineReadonly()
-  return &readonly ? '' : ''
-endfunction
 
 " -- buftabline
 let g:buftabline_numbers = 2
@@ -273,23 +201,20 @@ nmap <leader>7 <Plug>BufTabLine.Go(7)
 nmap <leader>8 <Plug>BufTabLine.Go(8)
 nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
-hi! BufTabLineCurrent ctermbg=12 ctermfg=0
-hi! BufTabLineActive ctermbg=7 ctermfg=0
-hi! BufTabLineHidden ctermbg=0 ctermfg=7
-hi! BufTabLineFill ctermbg=0
+hi! BufTabLineCurrent cterm=bold ctermbg=8 ctermfg=4
+hi! BufTabLineActive cterm=bold ctermbg=8 ctermfg=15
+hi! BufTabLineHidden cterm=bold ctermbg=8 ctermfg=15
+hi! BufTabLineFill ctermbg=8
 
 " -- vim-startify
 let g:startify_change_to_dir = 0
-
-" -- vim-gitgutter 
-hi! link GitGutterDelete Constant
 
 " -- ale
 let g:ale_linters = {
             \   'cpp': ['clangtidy'],
             \}
 let g:ale_set_highlights = 0
-let g:ale_c_build_dir_names = ['build', 'release', 'debug']
+let g:ale_cpp_clangtidy_checks = ['-*,cppcoreguidelines*,modernize*,readability*,bugprone*,performance*,-modernize-use-trailing-return-type,-google-runtime-references,-cppcoreguidelines-pro-bounds-array-to-pointer-decay']
 " Set up mapping to move between errors
 nmap <silent> [w <Plug>(ale_previous_wrap)
 nmap <silent> ]w <Plug>(ale_next_wrap)

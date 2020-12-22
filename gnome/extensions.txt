@@ -1,0 +1,3 @@
+https://extensions.gnome.org/extension/1160/dash-to-panel/
+https://extensions.gnome.org/extension/723/pixel-saver/
+https://extensions.gnome.org/extension/120/system-monitor/
