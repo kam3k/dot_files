@@ -21,6 +21,11 @@ if [[ ! -a $(which tmux) ]]; then
   exit 1
 fi
 
+if [[ ! -a $(which jq) ]]; then
+  echo "Error: jq is not installed. Please install jq first."
+  exit 1
+fi
+
 # Symlink everything in stow directory to home directory
 cd ${HOME}/.dot/stow
 for app in */; do
