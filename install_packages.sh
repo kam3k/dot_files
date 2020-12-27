@@ -3,6 +3,11 @@
 apt-get update
 
 apt-get install -y \
+  gdm3 \
+  budgie-desktop \
+  firefox-esr \
+  papirus-icon-theme \
+  fonts-noto-core \
   vim-gtk \
   tmux \
   htop \
@@ -11,7 +16,6 @@ apt-get install -y \
   curl \
   silversearcher-ag \
   stow \
-  unzip \
   libclang-dev \
   clang-format \
   clang-tidy \
@@ -28,7 +32,4 @@ apt-get install -y \
   xsel \
   tilix \
   fd-find \
-  gir1.2-gtop-2.0 \
-  gir1.2-nm-1.0 \
-  gir1.2-clutter-1.0 \
-  jq
+  gedit \
