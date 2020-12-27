@@ -165,8 +165,8 @@ nnoremap <leader>dd :Dox<CR>
 nnoremap <leader>ds O/**<space><space>*/<Esc>F<space>i
 
 " -- asyncrun
-map <F7> :AsyncRun catkin build -j4<CR>
-map <F10> :AsyncStop<CR>
+map <leader>b :AsyncRun catkin build -j4<CR>
+map <leader>n :AsyncStop<CR>
 noremap <leader><leader> :call asyncrun#quickfix_toggle(20)<CR>
 let g:asyncrun_open = 4
 let g:asyncrun_status = "stopped"
