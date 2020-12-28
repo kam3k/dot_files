@@ -29,6 +29,10 @@ overrides={'Gtk/ShellShowsAppMenu': <0>, 'Gtk/DecorationLayout': <'menu:minimize
 toggle-tiled-right=['F3']
 toggle-tiled-left=['F2']
 
+[org/gnome/desktop/peripherals/touchpad]
+natural-scroll=false
+tap-to-click=true
+
 [org/gnome/desktop/wm/preferences]
 button-layout='appmenu:minimize,maximize,close'
 titlebar-font='Noto Sans Bold 11'
@@ -52,6 +56,7 @@ enable-animations=true
 cursor-theme='Adwaita'
 gtk-theme='Materia-light-compact'
 icon-theme='Papirus'
+monospace-font-name='Iosevka Term 11'
 
 [com/gexperts/Tilix]
 window-style='borderless'
@@ -89,15 +94,15 @@ panels=['172ccd26-47f8-11eb-a4d5-52540076892a']
 size=40
 dock-mode=false
 enable-shadow=false
-applets=['1737b47a-47f8-11eb-a4d5-52540076892a', '173dde86-47f8-11eb-a4d5-52540076892a', 'ce689fb4-47f9-11eb-a4d5-52540076892a', '173e6c48-47f8-11eb-a4d5-52540076892a', '173ec9ea-47f8-11eb-a4d5-52540076892a', '1733f718-47f8-11eb-a4d5-52540076892a', '1738412e-47f8-11eb-a4d5-52540076892a', 'e22bc3b4-47f9-11eb-a4d5-52540076892a', 'da8845e2-47f9-11eb-a4d5-52540076892a', '1737a7be-47f8-11eb-a4d5-52540076892a', 'ef5f6536-47f9-11eb-a4d5-52540076892a']
+applets=['1cce1cce-48c2-11eb-826a-a86daaa11819', '6bca8fb0-48c2-11eb-826a-a86daaa11819', '173ec9ea-47f8-11eb-a4d5-52540076892a', '1737b47a-47f8-11eb-a4d5-52540076892a', '1738412e-47f8-11eb-a4d5-52540076892a', 'ce689fb4-47f9-11eb-a4d5-52540076892a', 'da8845e2-47f9-11eb-a4d5-52540076892a', '1737a7be-47f8-11eb-a4d5-52540076892a', 'ef5f6536-47f9-11eb-a4d5-52540076892a', '3149223e-48c2-11eb-826a-a86daaa11819', '1733f718-47f8-11eb-a4d5-52540076892a', '173dde86-47f8-11eb-a4d5-52540076892a', '03ce0734-48c2-11eb-826a-a86daaa11819']
 transparency='none'
 location='left'
 theme-regions=false
 
-[com/solus-project/budgie-panel/applets/{1738412e-47f8-11eb-a4d5-52540076892a}]
-position=3
+[com/solus-project/budgie-panel/applets/{da8845e2-47f9-11eb-a4d5-52540076892a}]
+position=5
 alignment='end'
-name='Notifications'
+name='Spacer'
 
 [com/solus-project/budgie-panel/applets/{1733f718-47f8-11eb-a4d5-52540076892a}]
 position=0
@@ -105,46 +110,56 @@ alignment='start'
 name='Icon Task List'
 
 [com/solus-project/budgie-panel/applets/{173dde86-47f8-11eb-a4d5-52540076892a}]
-position=7
+position=8
 alignment='end'
 name='User Indicator'
 
+[com/solus-project/budgie-panel/applets/{03ce0734-48c2-11eb-826a-a86daaa11819}]
+position=0
+alignment='end'
+name='Night Light'
+
 [com/solus-project/budgie-panel/applets/{1737b47a-47f8-11eb-a4d5-52540076892a}]
-position=1
+position=2
 alignment='end'
 name='System Tray'
 
+[com/solus-project/budgie-panel/applets/{3149223e-48c2-11eb-826a-a86daaa11819}]
+position=3
+alignment='end'
+name='Spacer'
+
+[com/solus-project/budgie-panel/applets/{1cce1cce-48c2-11eb-826a-a86daaa11819}]
+position=4
+alignment='end'
+name='Places'
+
 [com/solus-project/budgie-panel/applets/{ce689fb4-47f9-11eb-a4d5-52540076892a}]
-position=5
+position=10
 alignment='end'
 name='Status Indicator'
 
-[com/solus-project/budgie-panel/applets/{e22bc3b4-47f9-11eb-a4d5-52540076892a}]
-position=4
+[com/solus-project/budgie-panel/applets/{1738412e-47f8-11eb-a4d5-52540076892a}]
+position=6
 alignment='end'
-name='Spacer'
+name='Notifications'
 
-[com/solus-project/budgie-panel/applets/{da8845e2-47f9-11eb-a4d5-52540076892a}]
-position=2
+[com/solus-project/budgie-panel/applets/{6bca8fb0-48c2-11eb-826a-a86daaa11819}]
+position=9
 alignment='end'
-name='Spacer'
+name='Separator'
 
 [com/solus-project/budgie-panel/applets/{173ec9ea-47f8-11eb-a4d5-52540076892a}]
-position=9
+position=11
 alignment='end'
 name='Clock'
 
-[com/solus-project/budgie-panel/applets/{173e6c48-47f8-11eb-a4d5-52540076892a}]
-position=8
-alignment='end'
-name='Spacer'
-
 [com/solus-project/budgie-panel/applets/{ef5f6536-47f9-11eb-a4d5-52540076892a}]
-position=6
+position=7
 alignment='end'
 name='Spacer'
 
 [com/solus-project/budgie-panel/applets/{1737a7be-47f8-11eb-a4d5-52540076892a}]
-position=0
+position=1
 alignment='end'
 name='Spacer'
