@@ -4,24 +4,15 @@ apt-get update
 
 # Desktop
 apt-get install -y \
-  gdm3 \
+  gnome-core \
   budgie-desktop \
   papirus-icon-theme \
   materia-gtk-theme \
-  fonts-noto-core \
-  openssh-server \
-  nautilus
+  fonts-noto-core
 
-# Applications
+# Additional Applications
 apt-get install -y \
-  firefox-esr \
-  gedit \
-  nomacs \
-  evince \
-  gnome-calculator \
-  gnome-disk-utility \
   gnome-mpv \
-  gnome-screenshot \
   tilix
 
 # Utilities
@@ -51,4 +42,4 @@ apt-get install -y \
   build-essential \
   gdb \
   meld \
-  python3-dev \
+  python3-dev
