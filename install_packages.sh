@@ -34,3 +34,7 @@ apt-get install -y \
   tilix \
   fd-find \
   gedit \
+  xdg-utils \
+  gnome-screenshot \
+  nomacs \
+  evince
