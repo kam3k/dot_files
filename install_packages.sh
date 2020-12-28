@@ -7,6 +7,7 @@ apt-get install -y \
   budgie-desktop \
   firefox-esr \
   papirus-icon-theme \
+  materia-gtk-theme \
   fonts-noto-core \
   vim-gtk \
   tmux \
