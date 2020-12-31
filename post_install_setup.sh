@@ -28,7 +28,7 @@ for app in */; do
 done;
 
 # Load dconf settings
-cat ~/.dot/budgie/settings.dconf | dconf load /
+cat ~/.dot/cinnamon/settings.dconf | dconf load /
 
 # Install vim plugins
 vim +PlugInstall +qall

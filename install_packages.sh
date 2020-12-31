@@ -2,34 +2,15 @@
 
 apt-get update
 
-# Desktop
-apt-get install -y \
-  gnome-core \
-  budgie-desktop \
-  papirus-icon-theme \
-  materia-gtk-theme \
-  fonts-noto-core
-
-# Additional Applications
-apt-get install -y \
-  gnome-mpv \
-  tilix
-
-# Utilities
 apt-get install -y \
   htop \
-  curl \
   stow \
   ncdu \
-  rsync \
   tree \
   xsel \
   fd-find \
-  xdg-utils \
-  silversearcher-ag
-
-# Development
-apt-get install -y \
+  silversearcher-ag \
+  tilix \
   vim-gtk \
   tmux \
   zsh \
@@ -40,6 +21,21 @@ apt-get install -y \
   cmake-curses-gui \
   ninja-build \
   build-essential \
-  gdb \
   meld \
   python3-dev
+
+# Install jumpapp
+
+if [[ -a $(which jumpapp) ]]; then
+  echo "Jumpapp is already installed."
+  exit 0
+fi
+
+if [[ ! -a $(which curl) ]]; then
+  echo "Error: curl is not installed. Please install curl first."
+  exit 1
+fi
+
+curl -fLo /tmp/jumpapp.deb https://github.com/mkropat/jumpapp/releases/download/v1.1/jumpapp_1.1-1_all.deb
+cd /tmp
+apt install ./jumpapp.deb -y
