@@ -22,7 +22,8 @@ apt-get install -y \
   ninja-build \
   build-essential \
   meld \
-  python3-dev
+  python3-dev \
+  papirus-icon-theme
 
 # Install jumpapp
 
