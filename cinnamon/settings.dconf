@@ -38,11 +38,26 @@ visible-name='Hybrid'
 ignored-reports=['install-language-packs']
 
 [com/linuxmint/updates]
-refresh-last-run=1609640660
+autorefresh-hours=2
+refresh-last-run=1609880208
+refresh-minutes=10
 show-welcome-page=false
 window-height=570
 window-pane-position=280
 window-width=790
+
+[io/github/celluloid-player/celluloid]
+settings-migrated=true
+
+[io/github/celluloid-player/celluloid/window-state]
+height=480
+loop-playlist=false
+maximized=false
+playlist-width=250
+show-controls=true
+show-playlist=false
+volume=1.0
+width=640
 
 [org/cinnamon]
 alttab-switcher-delay=100
@@ -75,17 +90,17 @@ desktop-effects-unmaximize-time=100
 desktop-effects-unmaximize-transition='easeOutBounce'
 device-aliases=['/org/freedesktop/UPower/devices/battery_BAT0:=']
 enable-vfade=false
-enabled-applets=['panel1:left:0:menu@cinnamon.org:13', 'panel1:left:2:grouped-window-list@cinnamon.org:15', 'panel1:right:4:systray@cinnamon.org:16', 'panel1:right:6:xapp-status@cinnamon.org:17', 'panel1:right:7:notifications@cinnamon.org:18', 'panel1:right:8:printers@cinnamon.org:19', 'panel1:right:9:removable-drives@cinnamon.org:20', 'panel1:right:10:keyboard@cinnamon.org:21', 'panel1:right:11:network@cinnamon.org:22', 'panel1:right:12:sound@cinnamon.org:23', 'panel1:right:13:power@cinnamon.org:24', 'panel1:right:14:calendar@cinnamon.org:25']
+enabled-applets=['panel1:left:0:menu@cinnamon.org:13', 'panel1:left:2:grouped-window-list@cinnamon.org:15', 'panel1:right:2:systray@cinnamon.org:16', 'panel1:right:3:xapp-status@cinnamon.org:17', 'panel1:right:4:notifications@cinnamon.org:18', 'panel1:right:5:printers@cinnamon.org:19', 'panel1:right:6:removable-drives@cinnamon.org:20', 'panel1:right:7:keyboard@cinnamon.org:21', 'panel1:right:8:network@cinnamon.org:22', 'panel1:right:9:sound@cinnamon.org:23', 'panel1:right:10:power@cinnamon.org:24', 'panel1:right:12:calendar@cinnamon.org:25', 'panel1:right:11:spacer@cinnamon.org:40']
 enabled-desklets=@as []
 enabled-extensions=@as []
 extension-cache-updated=1609380573
 hotcorner-layout=['expo:false:0', 'scale:false:0', 'scale:false:0', 'desktop:false:0']
-next-applet-id=40
+next-applet-id=42
 panel-autohide=false
 panel-edit-mode=false
 panel-launchers=['DEPRECATED']
-panel-zone-icon-sizes='[{"panelId": 1, "left": 22, "center": 0, "right": 22}]'
-panel-zone-symbolic-icon-sizes='[{"panelId": 1, "left": 24, "center": 24, "right": 18}]'
+panel-zone-icon-sizes='[{"panelId": 1, "left": 22, "center": 22, "right": 22}]'
+panel-zone-symbolic-icon-sizes='[{"panelId": 1, "left": 16, "center": 16, "right": 16}]'
 panels-autohide=['1:false']
 panels-enabled=['1:0:right']
 panels-height=['1:38']
@@ -128,8 +143,9 @@ cursor-size=24
 font-name='Nimbus Sans 11'
 gtk-theme='Mint-Y-Blue'
 icon-theme='Papirus'
-scaling-factor=uint32 0
+scaling-factor=uint32 2
 text-scaling-factor=1.0
+toolkit-accessibility=true
 
 [org/cinnamon/desktop/keybindings]
 custom-list=['__dummy__', 'custom0']
@@ -140,6 +156,9 @@ show-desklets=@as []
 binding=['F12']
 command='tilix --quake'
 name='Tilix Quake'
+
+[org/cinnamon/desktop/keybindings/media-keys]
+suspend=['XF86Sleep', '<Primary><Alt>s']
 
 [org/cinnamon/desktop/keybindings/wm]
 close=['<Alt>F4', '<Super>q']
@@ -184,11 +203,11 @@ event-sounds=false
 
 [org/cinnamon/desktop/wm/preferences]
 min-window-opacity=30
-theme='Mint-Y'
+theme='Mint-Y-Dark'
 titlebar-font='Nimbus Sans Bold 11'
 
 [org/cinnamon/muffin]
-desktop-effects=true
+desktop-effects=false
 resize-threshold=24
 tile-hud-threshold=25
 workspace-cycle=true
@@ -228,6 +247,10 @@ switch-enabled=false
 name='Mint-Y-Dark-Blue'
 theme-cache-updated=1609379692
 
+[org/gnome/baobab/ui]
+window-size=(960, 600)
+window-state=87168
+
 [org/gnome/boxes]
 first-run=false
 view='icon-view'
@@ -249,7 +272,6 @@ window-position=(785, 343)
 word-size=64
 
 [org/gnome/desktop/a11y/applications]
-screen-keyboard-enabled=false
 screen-reader-enabled=false
 
 [org/gnome/desktop/a11y/mouse]
@@ -262,7 +284,7 @@ secondary-click-time=1.2
 [org/gnome/desktop/interface]
 document-font-name='Sans 11'
 monospace-font-name='Iosevka Term 11'
-toolkit-accessibility=false
+toolkit-accessibility=true
 
 [org/gnome/desktop/privacy]
 disable-microphone=false
@@ -284,8 +306,15 @@ window-state=(700, 500, 50, 50)
 col-6-visible=true
 col-6-width=0
 
+[org/gnome/libgnomekbd/keyboard]
+options=['caps\tcaps:ctrl_modifier']
+
 [org/gnome/nm-applet]
 disable-connected-notifications=true
+
+[org/gtk/settings/color-chooser]
+custom-colors=[(1.0, 1.0, 0.0, 0.5)]
+selected-color=(true, 0.80000000000000004, 0.0, 0.0, 1.0)
 
 [org/gtk/settings/file-chooser]
 date-format='regular'
@@ -298,7 +327,7 @@ sort-column='name'
 sort-directories-first=true
 sort-order='ascending'
 type-format='category'
-window-position=(412, 105)
+window-position=(393, 129)
 window-size=(1096, 822)
 
 [org/nemo/desktop]
@@ -306,7 +335,7 @@ desktop-layout='false::false'
 font='Nimbus Sans 11'
 
 [org/nemo/window-state]
-geometry='800x513+550+263'
+geometry='800x513+550+262'
 maximized=false
 sidebar-bookmark-breakpoint=5
 start-with-sidebar=true
@@ -323,3 +352,7 @@ side-panel-active-page=827629879
 side-panel-size=200
 size=(650, 500)
 state=43908
+
+[org/x/viewer/view]
+background-color='rgb(0,0,0)'
+use-background-color=true
