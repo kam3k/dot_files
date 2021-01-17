@@ -1,2 +1,0 @@
-https://extensions.gnome.org/extension/723/pixel-saver/
-https://extensions.gnome.org/extension/545/hide-top-bar/

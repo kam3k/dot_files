@@ -1,0 +1,402 @@
+[ca/desrt/dconf-editor]
+saved-pathbar-path='/org/cinnamon/desktop/wm/preferences/'
+saved-view='/org/cinnamon/desktop/wm/preferences/'
+window-height=500
+window-is-maximized=false
+window-width=540
+
+[com/gexperts/Tilix]
+auto-hide-mouse=true
+quake-height-percent=90
+quake-hide-lose-focus=true
+quake-specific-monitor=0
+quake-width-percent=60
+terminal-title-show-when-single=false
+unsafe-paste-alert=false
+use-overlay-scrollbar=false
+window-style='borderless'
+
+[com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d]
+background-color='#161719'
+badge-color-set=false
+bold-color-set=false
+bold-is-bright=false
+cursor-blink-mode='off'
+cursor-colors-set=false
+font='Iosevka Term 11'
+foreground-color='#B7BCBA'
+highlight-colors-set=false
+login-shell=true
+palette=['#2A2E33', '#B84D51', '#B3BF5A', '#E4B55E', '#6E90B0', '#A17EAC', '#7FBFB4', '#B5B9B6', '#1D1F22', '#8D2E32', '#798431', '#E58A50', '#4B6B88', '#6E5079', '#4D7B74', '#5A626A']
+show-scrollbar=false
+terminal-bell='none'
+use-system-font=true
+use-theme-colors=false
+visible-name='Hybrid'
+
+[com/linuxmint/report]
+ignored-reports=['install-language-packs']
+
+[com/linuxmint/updates]
+autorefresh-hours=2
+refresh-last-run=1610241164
+refresh-minutes=10
+show-welcome-page=false
+window-height=570
+window-pane-position=280
+window-width=790
+
+[io/github/celluloid-player/celluloid]
+settings-migrated=true
+
+[io/github/celluloid-player/celluloid/window-state]
+height=716
+loop-playlist=false
+maximized=false
+playlist-width=250
+show-controls=true
+show-playlist=false
+volume=1.0
+width=1056
+
+[org/cinnamon]
+alttab-switcher-delay=100
+alttab-switcher-enforce-primary-monitor=false
+alttab-switcher-show-all-workspaces=true
+alttab-switcher-style='icons+preview'
+app-menu-label=''
+applet-cache-updated=1609989682
+command-history=['lg', 'r']
+desklet-snap-interval=25
+desktop-effects-close-effect='fade'
+desktop-effects-close-time=250
+desktop-effects-close-transition='easeInQuart'
+desktop-effects-map-effect='fade'
+desktop-effects-map-time=250
+desktop-effects-map-transition='easeOutQuart'
+desktop-effects-maximize-effect='scale'
+desktop-effects-maximize-time=100
+desktop-effects-maximize-transition='easeInBack'
+desktop-effects-minimize-effect='fade'
+desktop-effects-minimize-time=250
+desktop-effects-minimize-transition='easeInQuart'
+desktop-effects-on-dialogs=false
+desktop-effects-on-menus=false
+desktop-effects-style='fade'
+desktop-effects-tile-effect='scale'
+desktop-effects-tile-time=100
+desktop-effects-tile-transition='easeInBack'
+desktop-effects-unmaximize-effect='scale'
+desktop-effects-unmaximize-time=100
+desktop-effects-unmaximize-transition='easeOutBounce'
+device-aliases=['/org/freedesktop/UPower/devices/battery_BAT0:=']
+enable-vfade=false
+enabled-applets=['panel1:left:0:menu@cinnamon.org:13', 'panel1:left:2:grouped-window-list@cinnamon.org:15', 'panel1:right:3:systray@cinnamon.org:16', 'panel1:right:4:xapp-status@cinnamon.org:17', 'panel1:right:5:notifications@cinnamon.org:18', 'panel1:right:6:printers@cinnamon.org:19', 'panel1:right:7:removable-drives@cinnamon.org:20', 'panel1:right:9:network@cinnamon.org:22', 'panel1:right:10:sound@cinnamon.org:23', 'panel1:right:11:power@cinnamon.org:24', 'panel1:right:15:calendar@cinnamon.org:25', 'panel1:right:13:spacer@cinnamon.org:40', 'panel1:center:0:workspace-switcher@cinnamon.org:49']
+enabled-desklets=@as []
+enabled-extensions=['gTile@shuairan']
+extension-cache-updated=1610147057
+hotcorner-layout=['expo:false:0', 'scale:false:0', 'scale:false:0', 'desktop:false:0']
+next-applet-id=50
+number-workspaces=4
+panel-autohide=false
+panel-edit-mode=false
+panel-launchers=['DEPRECATED']
+panel-zone-icon-sizes='[{"panelId": 1, "left": 22, "center": 22, "right": 22}]'
+panel-zone-symbolic-icon-sizes='[{"panelId": 1, "left": 16, "center": 16, "right": 16}]'
+panels-autohide=['1:false']
+panels-enabled=['1:0:right']
+panels-height=['1:38']
+startup-animation=false
+workspace-expo-view-as-grid=true
+workspace-osd-visible=false
+
+[org/cinnamon/cinnamon-session]
+quit-time-delay=60
+
+[org/cinnamon/desktop/a11y/keyboard]
+bouncekeys-delay=300
+mousekeys-accel-time=300
+mousekeys-init-delay=300
+mousekeys-max-speed=10
+slowkeys-delay=300
+
+[org/cinnamon/desktop/a11y/mouse]
+dwell-threshold=10
+dwell-time=1.2
+secondary-click-time=1.2
+
+[org/cinnamon/desktop/applications/calculator]
+exec='gnome-calculator'
+
+[org/cinnamon/desktop/applications/terminal]
+exec='tilix'
+
+[org/cinnamon/desktop/background]
+picture-options='zoom'
+picture-uri='file:///home/mgallant/Pictures/landscape.jpg'
+
+[org/cinnamon/desktop/background/slideshow]
+delay=15
+image-source='directory:///home/mgallant/Pictures'
+
+[org/cinnamon/desktop/interface]
+cursor-blink-time=1200
+cursor-size=24
+font-name='Nimbus Sans 11'
+gtk-theme='Mint-Y-Blue'
+icon-theme='Papirus'
+scaling-factor=uint32 1
+text-scaling-factor=1.0
+toolkit-accessibility=true
+
+[org/cinnamon/desktop/keybindings]
+custom-list=['custom2', 'custom1', 'custom0', '__dummy__']
+looking-glass-keybinding=@as []
+show-desklets=@as []
+
+[org/cinnamon/desktop/keybindings/custom-keybindings/custom0]
+binding=['F12']
+command='tilix --quake'
+name='Tilix Quake'
+
+[org/cinnamon/desktop/keybindings/custom-keybindings/custom1]
+binding=['<Super>equal']
+command='/home/mgallant/.dot/scripts/append_workspace.sh'
+name='Add New Workspace'
+
+[org/cinnamon/desktop/keybindings/custom-keybindings/custom2]
+binding=['<Super>minus']
+command='/home/mgallant/.dot/scripts/remove_workspace.sh'
+name='Remove Workspace'
+
+[org/cinnamon/desktop/keybindings/media-keys]
+suspend=['XF86Sleep', '<Primary><Alt>s']
+
+[org/cinnamon/desktop/keybindings/wm]
+close=['<Alt>F4', '<Super>q']
+decrease-opacity=@as []
+increase-opacity=@as []
+lower=@as []
+move-to-workspace-1=['<Super>F1']
+move-to-workspace-2=['<Super>F2']
+move-to-workspace-3=['<Super>F3']
+move-to-workspace-4=['<Super>F4']
+move-to-workspace-5=['<Super>F5']
+move-to-workspace-6=['<Super>F6']
+move-to-workspace-7=['<Super>F7']
+move-to-workspace-8=['<Super>F8']
+move-to-workspace-new=['<Super>End']
+push-tile-down=['<Super>Down', '<Super>j']
+push-tile-left=['<Super>Left', '<Super>h']
+push-tile-right=['<Super>Right', '<Super>l']
+push-tile-up=['<Super>Up', '<Super>k']
+raise=@as []
+switch-to-workspace-1=['F1']
+switch-to-workspace-2=['F2']
+switch-to-workspace-3=['F3']
+switch-to-workspace-4=['F4']
+switch-to-workspace-5=['F5']
+switch-to-workspace-6=['F6']
+switch-to-workspace-7=['F7']
+switch-to-workspace-8=['F8']
+switch-to-workspace-down=['<Control><Alt>Down', '<Super>w']
+switch-to-workspace-up=['<Control><Alt>Up', '<Alt>F1', 'F9']
+switch-windows=['<Alt>Tab', '<Super>Tab']
+toggle-fullscreen=@as []
+toggle-maximized=['<Alt>F10', '<Super>m']
+toggle-shaded=@as []
+
+[org/cinnamon/desktop/media-handling]
+autorun-never=false
+
+[org/cinnamon/desktop/notifications]
+bottom-notifications=false
+display-notifications=true
+remove-old=true
+
+[org/cinnamon/desktop/screensaver]
+font-date='Nimbus Sans 24'
+font-time='Nimbus Sans 64'
+show-clock=false
+
+[org/cinnamon/desktop/sound]
+event-sounds=false
+
+[org/cinnamon/desktop/wm/preferences]
+min-window-opacity=30
+num-workspaces=4
+theme='Mint-Y-Dark'
+titlebar-font='Nimbus Sans Bold 11'
+workspace-names=@as []
+
+[org/cinnamon/muffin]
+desktop-effects=false
+resize-threshold=24
+tile-hud-threshold=25
+workspace-cycle=true
+
+[org/cinnamon/settings-daemon/peripherals/keyboard]
+delay=uint32 500
+numlock-state='off'
+repeat-interval=uint32 30
+
+[org/cinnamon/settings-daemon/peripherals/mouse]
+double-click=400
+drag-threshold=8
+motion-threshold=1
+natural-scroll=false
+
+[org/cinnamon/settings-daemon/peripherals/touchpad]
+motion-threshold=1
+natural-scroll=false
+
+[org/cinnamon/settings-daemon/plugins/power]
+critical-battery-action='nothing'
+lid-close-ac-action='suspend'
+lid-close-battery-action='suspend'
+sleep-display-ac=1800
+sleep-display-battery=1800
+sleep-inactive-ac-timeout=0
+sleep-inactive-battery-timeout=0
+
+[org/cinnamon/settings-daemon/plugins/xsettings]
+buttons-have-icons=false
+
+[org/cinnamon/sounds]
+login-enabled=true
+switch-enabled=false
+
+[org/cinnamon/theme]
+name='Mint-Y-Dark-Blue'
+theme-cache-updated=1609379692
+
+[org/gnome/baobab/ui]
+window-size=(960, 600)
+window-state=87168
+
+[org/gnome/boxes]
+first-run=false
+view='icon-view'
+window-maximized=true
+window-position=[941, 0]
+window-size=[941, 1033]
+
+[org/gnome/calculator]
+accuracy=9
+angle-units='degrees'
+base=10
+button-mode='basic'
+number-format='automatic'
+show-thousands=false
+show-zeroes=false
+source-currency=''
+source-units='degree'
+target-currency=''
+target-units='radian'
+window-position=(785, 343)
+word-size=64
+
+[org/gnome/desktop/a11y/applications]
+screen-reader-enabled=false
+
+[org/gnome/desktop/a11y/mouse]
+dwell-click-enabled=false
+dwell-threshold=10
+dwell-time=1.2
+secondary-click-enabled=false
+secondary-click-time=1.2
+
+[org/gnome/desktop/interface]
+document-font-name='Sans 11'
+monospace-font-name='Iosevka Term 11'
+toolkit-accessibility=true
+
+[org/gnome/desktop/privacy]
+disable-microphone=false
+
+[org/gnome/evolution-data-server]
+migrated=true
+network-monitor-gio-name=''
+
+[org/gnome/gnome-screenshot]
+last-save-directory='file:///home/mgallant/Pictures'
+
+[org/gnome/gnome-system-monitor]
+current-tab='processes'
+maximized=false
+show-dependencies=false
+show-whose-processes='user'
+window-state=(700, 500, 50, 50)
+
+[org/gnome/gnome-system-monitor/disktreenew]
+col-6-visible=true
+col-6-width=0
+
+[org/gnome/gnome-system-monitor/proctree]
+columns-order=[0, 1, 2, 3, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+sort-col=15
+sort-order=0
+
+[org/gnome/libgnomekbd/keyboard]
+options=['caps\tcaps:ctrl_modifier']
+
+[org/gnome/meld]
+highlight-syntax=true
+indent-width=2
+insert-spaces-instead-of-tabs=true
+show-line-numbers=true
+vc-status-filters=['flatten', 'modified']
+wrap-mode='none'
+
+[org/gnome/meld/window-state]
+height=400
+is-maximized=true
+width=1140
+
+[org/gnome/nm-applet]
+disable-connected-notifications=true
+
+[org/gtk/settings/color-chooser]
+custom-colors=[(1.0, 1.0, 0.0, 0.5)]
+selected-color=(true, 0.80000000000000004, 0.0, 0.0, 1.0)
+
+[org/gtk/settings/file-chooser]
+date-format='regular'
+location-mode='path-bar'
+show-hidden=false
+show-size-column=true
+show-type-column=true
+sidebar-width=148
+sort-column='name'
+sort-directories-first=true
+sort-order='ascending'
+type-format='category'
+window-position=(412, 129)
+window-size=(1096, 822)
+
+[org/nemo/desktop]
+desktop-layout='false::false'
+font='Nimbus Sans 11'
+
+[org/nemo/window-state]
+geometry='940x1055+0+0'
+maximized=false
+sidebar-bookmark-breakpoint=5
+start-with-sidebar=true
+
+[org/x/editor/plugins]
+active-plugins=['spell', 'textsize', 'sort', 'modelines', 'open-uri-context-menu', 'joinlines', 'time', 'filebrowser', 'docinfo']
+
+[org/x/editor/preferences/ui]
+statusbar-visible=true
+
+[org/x/editor/state/window]
+bottom-panel-size=140
+side-panel-active-page=827629879
+side-panel-size=200
+size=(650, 500)
+state=43908
+
+[org/x/viewer/view]
+background-color='rgb(0,0,0)'
+use-background-color=true

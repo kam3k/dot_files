@@ -21,11 +21,6 @@ if [[ ! -a $(which tmux) ]]; then
   exit 1
 fi
 
-if [[ ! -a $(which jq) ]]; then
-  echo "Error: jq is not installed. Please install jq first."
-  exit 1
-fi
-
 # Symlink everything in stow directory to home directory
 cd ${HOME}/.dot/stow
 for app in */; do
@@ -33,10 +28,7 @@ for app in */; do
 done;
 
 # Load dconf settings
-cat ~/.dot/gnome/dconf-settings.ini | dconf load /
-
-# Install gnome extensions
-~/.dot/gnome/install-gnome-extensions.sh --enable --file ~/.dot/gnome/extensions.txt
+cat ~/.dot/cinnamon/settings.dconf | dconf load /
 
 # Install vim plugins
 vim +PlugInstall +qall
