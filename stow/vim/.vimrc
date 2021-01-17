@@ -29,9 +29,9 @@ call plug#end()
 " Status line
 set laststatus=2
 set statusline=
-set statusline=%#CursorLine#
+set statusline=%#Folded#
 set statusline+=\ %=
-set statusline+=\ %{g:asyncrun_status}
+set statusline+=\ %{g:asyncrun_status}\ \ 
 
 " Settings
 set hidden " allow unsaved buffers to be hidden
@@ -55,6 +55,7 @@ set wildmode=list:longest,full " list completions on command line, cycle through
 set background=dark
 silent! colorscheme hybrid
 hi! Normal ctermbg=NONE
+hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
 
 " Windowing commands
 nnoremap <leader>q :Sayonara<CR>
@@ -165,8 +166,8 @@ nnoremap <leader>dd :Dox<CR>
 nnoremap <leader>ds O/**<space><space>*/<Esc>F<space>i
 
 " -- asyncrun
-map <F7> :AsyncRun catkin build -j4<CR>
-map <F10> :AsyncStop<CR>
+map <leader>b :AsyncRun catkin build -j4<CR>
+map <leader>n :AsyncStop<CR>
 noremap <leader><leader> :call asyncrun#quickfix_toggle(20)<CR>
 let g:asyncrun_open = 4
 let g:asyncrun_status = "stopped"
@@ -201,10 +202,10 @@ nmap <leader>7 <Plug>BufTabLine.Go(7)
 nmap <leader>8 <Plug>BufTabLine.Go(8)
 nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
-hi! BufTabLineCurrent cterm=bold ctermbg=8 ctermfg=4
-hi! BufTabLineActive cterm=bold ctermbg=8 ctermfg=15
-hi! BufTabLineHidden cterm=bold ctermbg=8 ctermfg=15
-hi! BufTabLineFill ctermbg=8
+hi! BufTabLineCurrent cterm=bold ctermbg=234 ctermfg=4
+hi! BufTabLineActive cterm=bold ctermbg=234 ctermfg=15
+hi! BufTabLineHidden cterm=bold ctermbg=234 ctermfg=15
+hi! BufTabLineFill ctermbg=234
 
 " -- vim-startify
 let g:startify_change_to_dir = 0
