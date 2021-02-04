@@ -20,7 +20,7 @@ fi
 if [ ! -f ${fonts}/iosevka-term-regular.ttf ]; then
   curl -fLo /tmp/iosevka-term.zip https://github.com/be5invis/Iosevka/releases/download/v4.5.0/ttf-iosevka-term-4.5.0.zip
   cd /tmp && unzip iosevka-term.zip -d iosevka-term
-  cp /tmp/iosevka-term/ttf/*.ttf ${fonts}
+  cp /tmp/iosevka-term/*.ttf ${fonts}
 fi
 
 # Refresh font cache

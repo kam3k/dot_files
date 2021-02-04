@@ -3,6 +3,12 @@
 apt-get update
 
 apt-get install -y \
+  libx11-dev \
+  libxft-dev \
+  libxinerama-dev \
+  libxext-dev \
+  libxrandr-dev \
+  libimlib2-dev \
   xorg \
   vim-gtk \
   tmux \
@@ -37,4 +43,9 @@ apt-get install -y \
   network-manager \
   zathura \
   scrot \
-  mpv
+  mpv \
+  dunst \
+  sxhkd \
+  arandr \
+  firefox-esr \
+  xterm \
