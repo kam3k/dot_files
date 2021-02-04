@@ -3,17 +3,16 @@
 apt-get update
 
 apt-get install -y \
-  htop \
-  stow \
-  ncdu \
-  tree \
-  xsel \
-  fd-find \
-  silversearcher-ag \
-  tilix \
+  xorg \
   vim-gtk \
   tmux \
+  git \
+  htop \
   zsh \
+  curl \
+  silversearcher-ag \
+  stow \
+  unzip \
   libclang-dev \
   clang-format \
   clang-tidy \
@@ -21,6 +20,21 @@ apt-get install -y \
   cmake-curses-gui \
   ninja-build \
   build-essential \
+  gdb \
+  ncdu \
+  rsync \
+  xinput \
+  xclip \
+  libpython3-dev \
+  gawk \
+  xsel \
   meld \
-  python3-dev \
-  papirus-icon-theme
+  tree \
+  fd-find \
+  feh \
+  alsa-utils \
+  fonts-font-awesome \
+  network-manager \
+  zathura \
+  scrot \
+  mpv

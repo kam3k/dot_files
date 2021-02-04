@@ -1,0 +1,9 @@
+#!/bin/sh
+
+time=$(date +"%H:%M")
+isodate=$(date +"%Y-%m-%d")
+vol=$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')
+bat=$(cat /sys/class/power_supply/BAT0/capacity)
+
+# echo " $vol  $bat  $isodate  $time"
+echo " $isodate  $time"

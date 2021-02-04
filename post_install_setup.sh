@@ -27,9 +27,6 @@ for app in */; do
   stow -t ${HOME} $app
 done;
 
-# Load dconf settings
-cat ~/.dot/cinnamon/settings.dconf | dconf load /
-
 # Install vim plugins
 vim +PlugInstall +qall
 

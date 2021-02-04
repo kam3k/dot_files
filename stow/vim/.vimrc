@@ -6,13 +6,12 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'ap/vim-buftabline' " Show buffers in tabline
 Plug 'mhinz/vim-sayonara' " Kill buffers well
 Plug 'jiangmiao/auto-pairs' " Auto-handling of brackets, etc.
 Plug 'djoshea/vim-autoread' " Auto-reload buffers that have been changed elsewhere
 Plug 'airblade/vim-gitgutter' " Show git status of lines in gutter
 Plug 'tpope/vim-fugitive' " Git functionality in vim
-Plug 'Valloric/YouCompleteMe', { 'commit': 'f84351c851b29ede64caf6e47f39ad4472f5e68a' } " Autocomplete and much more
+Plug 'Valloric/YouCompleteMe' " Autocomplete and much more
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy search
 Plug 'junegunn/fzf.vim' " Vim bindings to various fuzzy searches
 Plug 'mrtazz/DoxygenToolkit.vim' " Auto-insert Doxygen comments
@@ -26,14 +25,8 @@ Plug 'Asheq/close-buffers.vim' " Close hidden buffers easily
 Plug 'w0ng/vim-hybrid' " Colorscheme
 call plug#end()
 
-" Status line
-set laststatus=2
-set statusline=
-set statusline=%#Folded#
-set statusline+=\ %=
-set statusline+=\ %{g:asyncrun_status}\ \ 
-
 " Settings
+set ruler " show row and column
 set hidden " allow unsaved buffers to be hidden
 set bs=2 " allow backspace over anything in insert mode
 set mouse=a " mouse use enabled
@@ -51,9 +44,15 @@ set updatetime=250 " 250 ms between screen updates
 set noshowmode " don't show mode (just look at cursor)
 set wildmode=list:longest,full " list completions on command line, cycle through with tab
 
+" Different cursors in insert and normal mode
+let &t_SI = "\<esc>[5 q"
+let &t_SR = "\<esc>[5 q"
+let &t_EI = "\<esc>[2 q"
+
 " Colorscheme
 set background=dark
 silent! colorscheme hybrid
+let g:hybrid_custom_term_colors = 1
 hi! Normal ctermbg=NONE
 hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
 
@@ -73,6 +72,8 @@ nnoremap <silent> <leader>ml <C-W>L
 nnoremap <silent> <leader>mh <C-W>H
 
 " Buffer commands
+nnoremap <c-p> :bp<CR>
+nnoremap <c-n> :bn<CR>
 nnoremap <leader>x :Sayonara!<CR>
 nnoremap <silent> Q :Bdelete menu<CR>
 
@@ -85,6 +86,11 @@ vnoremap > >gv
 noremap j gj
 noremap k gk
 noremap Y y$
+nnoremap <leader>* ciw/*<C-R>"*/<Esc>
+vnoremap <leader>* c/*<C-R>"*/<Esc>
+nnoremap <leader>& F/xxf*xx<Esc>
+
+" Centre cursor in screen after some jumps
 nmap n nzz
 nmap N Nzz
 nmap * *zz
@@ -95,9 +101,6 @@ nmap g; g;zz
 nmap % %zz
 nmap <C-o> <C-o>zz
 nmap <C-i> <C-i>zz
-nnoremap <leader>* ciw/*<C-R>"*/<Esc>
-vnoremap <leader>* c/*<C-R>"*/<Esc>
-nnoremap <leader>& F/xxf*xx<Esc>
 
 " Never automatically continue comment when starting next line and 
 " delete comment character when joining commented lines
@@ -166,21 +169,21 @@ nnoremap <leader>dd :Dox<CR>
 nnoremap <leader>ds O/**<space><space>*/<Esc>F<space>i
 
 " -- asyncrun
-map <leader>b :AsyncRun catkin build -j4<CR>
-map <leader>n :AsyncStop<CR>
+map <F7> :AsyncRun -cwd=<root> ninja -v -j6 -C ../release<CR>
+map <F8> :AsyncRun -cwd=<root> ninja -v -j6 -C ../debug<CR>
+map <F9> :AsyncRun -cwd=<root> ../release/bin/$(VIM_FILENOEXT)<CR>
+map <F10> :AsyncStop<CR>
 noremap <leader><leader> :call asyncrun#quickfix_toggle(20)<CR>
 let g:asyncrun_open = 4
-let g:asyncrun_status = "stopped"
-fun! OnAsyncRunExit()
+fun! OnAsyncRunFinished()
     if g:asyncrun_status == 'success'
       sleep 1
       cclose
     else
       call asyncrun#quickfix_toggle(20)
-      call asyncrun#quickfix_toggle(20)
     endif
 endf
-let g:asyncrun_exit = "call OnAsyncRunExit()"
+let g:asyncrun_exit = "call OnAsyncRunFinished()"
 
 " -- vim-commentary
 augroup FTOptions 
@@ -189,36 +192,21 @@ augroup FTOptions
     autocmd FileType cmake  setlocal commentstring=#\ %s
 augroup END
 
-" -- buftabline
-let g:buftabline_numbers = 2
-let g:buftabline_indicators = 1
-nmap <leader>1 <Plug>BufTabLine.Go(1)
-nmap <leader>2 <Plug>BufTabLine.Go(2)
-nmap <leader>3 <Plug>BufTabLine.Go(3)
-nmap <leader>4 <Plug>BufTabLine.Go(4)
-nmap <leader>5 <Plug>BufTabLine.Go(5)
-nmap <leader>6 <Plug>BufTabLine.Go(6)
-nmap <leader>7 <Plug>BufTabLine.Go(7)
-nmap <leader>8 <Plug>BufTabLine.Go(8)
-nmap <leader>9 <Plug>BufTabLine.Go(9)
-nmap <leader>0 <Plug>BufTabLine.Go(10)
-hi! BufTabLineCurrent cterm=bold ctermbg=234 ctermfg=4
-hi! BufTabLineActive cterm=bold ctermbg=234 ctermfg=15
-hi! BufTabLineHidden cterm=bold ctermbg=234 ctermfg=15
-hi! BufTabLineFill ctermbg=234
-
 " -- vim-startify
 let g:startify_change_to_dir = 0
+
+" -- vim-gitgutter 
+hi! link GitGutterDelete Constant
 
 " -- ale
 let g:ale_linters = {
             \   'cpp': ['clangtidy'],
             \}
 let g:ale_set_highlights = 0
-let g:ale_cpp_clangtidy_checks = ['-*,cppcoreguidelines*,modernize*,readability*,bugprone*,performance*,-modernize-use-trailing-return-type,-google-runtime-references,-cppcoreguidelines-pro-bounds-array-to-pointer-decay']
-" Set up mapping to move between errors
-nmap <silent> [w <Plug>(ale_previous_wrap)
-nmap <silent> ]w <Plug>(ale_next_wrap)
+let g:ale_cpp_clangtidy_checks = ['-*,cppcoreguidelines*,modernize*,readability*,
+      \ bugprone*,performance*,-modernize-use-trailing-return-type,
+      \ -google-runtime-references,-cppcoreguidelines-pro-bounds-array-to-pointer-decay']
+let g:ale_c_build_dir_names = ['build', 'release', 'debug']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION

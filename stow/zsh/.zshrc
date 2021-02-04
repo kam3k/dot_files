@@ -11,11 +11,8 @@ source $ZPLUG_HOME/init.zsh
 # Plugins
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting"
-zplug "supercrabtree/k"
-zplug "plugins/extract", from:oh-my-zsh 
 zplug "lib/history", from:oh-my-zsh
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
-zplug "arzzen/calc.plugin.zsh"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -53,11 +50,9 @@ alias ls='ls --color=auto'
 alias ta='tmux a -t'
 alias now='watch -x -t -n 0.01 date +%s.%N' 
 alias o=xdg-open
-alias k='k -h'
 alias cdg='cd "$(git rev-parse --show-cdup)"'
 alias cds='cd "$(git rev-parse --show-superproject-working-tree)"'
 alias ja='ninja'
-alias ctest='ctest --output-on-failure'
 alias cm='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=RelWithDebInfo'
 alias cmd='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=Debug'
 alias fd='fdfind'
@@ -70,10 +65,6 @@ alias a="apt-cache search '' | sort | cut --delimiter ' ' --fields 1 | fzf --mul
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^x' edit-command-line
-
-# Install Ruby Gems to ~/.gems
-export GEM_HOME="$HOME/.gems"
-export PATH="$HOME/.gems/bin:$PATH"
 
 # Add local to path
 export PATH="$HOME/.local/bin:$PATH"

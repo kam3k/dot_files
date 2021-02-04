@@ -1,0 +1,12 @@
+# lock screen
+alt + shift + l
+  slock
+
+# manage wifi
+alt + shift + n
+  xterm -e nmtui
+
+# take screenshot (sleep needed for scrot to grab keyboard)
+alt + shift + equal
+  sleep 0.2; \
+  scrot -s $HOME/'pictures/screenshots/%Y-%m-%d_%H%M%S-$wx$h.png'
