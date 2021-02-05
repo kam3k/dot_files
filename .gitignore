@@ -2,3 +2,4 @@
 *.swo
 stow/i3/.config/*
 !stow/i3/.config/i3
+*dconf*
