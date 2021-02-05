@@ -5,7 +5,7 @@ do
   sleep 1
 done &
 
-feh --bg-scale ~/sunrise.jpg
+feh --bg-scale ~/pictures/wallpapers/sunrise.jpg
 
 sxhkd &
 dunst &
