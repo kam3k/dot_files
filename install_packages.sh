@@ -49,3 +49,5 @@ apt-get install -y \
   arandr \
   firefox-esr \
   xterm \
+  papirus-icon-theme \
+  screenfetch \
