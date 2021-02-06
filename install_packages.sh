@@ -50,4 +50,5 @@ apt-get install -y \
   xterm \
   papirus-icon-theme \
   screenfetch \
-  fzf
+  fzf \
+  fish
