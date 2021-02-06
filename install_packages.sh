@@ -51,4 +51,5 @@ apt-get install -y \
   papirus-icon-theme \
   screenfetch \
   fzf \
-  fish
+  fish \
+  brightnessctl

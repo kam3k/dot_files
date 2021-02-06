@@ -2,8 +2,8 @@
 
 time=$(date +"%H:%M")
 isodate=$(date +"%Y-%m-%d")
-vol=$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')
-bat=$(cat /sys/class/power_supply/BAT0/capacity)
+vol="$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')%"
+bright="$(brightnessctl -m -d intel_backlight | awk -F, '{print substr($4, 0, length($4)-1)}')"%
+bat="$(cat /sys/class/power_supply/BAT0/capacity)%"
 
-# echo " $vol  $bat  $isodate  $time"
-echo " $isodate  $time"
+echo " $vol   $bright   $bat   $isodate   $time"

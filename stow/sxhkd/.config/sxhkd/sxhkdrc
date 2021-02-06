@@ -10,3 +10,17 @@ alt + shift + n
 alt + shift + equal
   sleep 0.2; \
   scrot -s $HOME/'pictures/screenshots/%Y-%m-%d_%H%M%S-$wx$h.png'
+
+# Manage volume
+XF86AudioRaiseVolume
+  amixer -q set Master 8%+
+XF86AudioLowerVolume
+  amixer -q set Master 8%-
+XF86AudioMute
+  amixer -q set Master toggle
+
+# Screen brightness
+XF86MonBrightnessUp
+  brightnessctl set 10%+ intel_backlight
+XF86MonBrightnessDown
+  brightnessctl set 10%- intel_backlight
