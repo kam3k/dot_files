@@ -4,6 +4,9 @@ set -x PATH $HOME/.local/bin $PATH
 # Environment variables
 set -x EDITOR vim
 
+# Disable greeting
+set -U fish_greeting
+
 # Aliases
 alias ta='tmux a -t'
 alias o=xdg-open
