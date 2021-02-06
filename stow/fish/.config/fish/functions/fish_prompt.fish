@@ -27,6 +27,16 @@ function fish_prompt
       set -l dirty "$yellow !"
       set git_info "$git_info$dirty"
     end
+
+    if [ (_is_git_stashed) ]
+      set -l stashed "$cyan ☰"
+      set git_info "$git_info$stashed"
+    end
+
+    if [ (_is_git_unpushed) ]
+      set -l unpushed "$green ↑"
+      set git_info "$git_info$unpushed"
+    end
   end
 
   # Notify if a command took more than 5 minutes
@@ -43,4 +53,12 @@ end
 
 function _is_git_dirty
   echo (command git status -s --ignore-submodules=dirty ^/dev/null)
+end
+
+function _is_git_unpushed
+  echo (command git cherry -v ^/dev/null)
+end
+
+function _is_git_stashed
+  echo (command git stash list ^/dev/null)
 end
