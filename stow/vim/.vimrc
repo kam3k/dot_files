@@ -26,6 +26,7 @@ Plug 'w0ng/vim-hybrid' " Colorscheme
 call plug#end()
 
 " Settings
+set laststatus=0 " always hide statusline
 set ruler " show row and column
 set hidden " allow unsaved buffers to be hidden
 set bs=2 " allow backspace over anything in insert mode

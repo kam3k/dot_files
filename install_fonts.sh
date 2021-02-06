@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 if [[ ! -a $(which curl) ]]; then
   echo "Error: curl is not installed. Please install curl first."

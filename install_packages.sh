@@ -14,7 +14,6 @@ apt-get install -y \
   tmux \
   git \
   htop \
-  zsh \
   curl \
   silversearcher-ag \
   stow \
@@ -51,3 +50,4 @@ apt-get install -y \
   xterm \
   papirus-icon-theme \
   screenfetch \
+  fzf

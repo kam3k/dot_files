@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # Check for required dependencies before continuing:
 if [[ ! -a $(which git) ]]; then
