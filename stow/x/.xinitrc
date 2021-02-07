@@ -10,6 +10,8 @@ feh --bg-scale ~/pictures/wallpapers/sunrise.jpg
 sxhkd &
 dunst &
 
+xset -b # turn off system beep
+
 while :; do
   ssh-agent dwm
 done
