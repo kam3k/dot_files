@@ -1,0 +1,5 @@
+#!/usr/bin/sh
+
+echo "Xft.dpi : 96" > /tmp/x96
+xrdb -merge /tmp/x96
+pidof dwm | xargs kill
