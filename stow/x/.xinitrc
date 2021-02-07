@@ -1,16 +1,16 @@
-sh ~/.screenlayout/laptop-display.sh &
-
 while xsetroot -name "`bar`"
 do
   sleep 1
 done &
 
-feh --bg-scale ~/pictures/wallpapers/sunrise.jpg
+feh --bg-scale ~/.wallpaper
 
 sxhkd &
 dunst &
 
 xset -b # turn off system beep
+
+setxkbmap -option caps:escape
 
 while :; do
   ssh-agent dwm
