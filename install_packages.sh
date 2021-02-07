@@ -52,4 +52,5 @@ apt-get install -y \
   screenfetch \
   fzf \
   fish \
-  brightnessctl
+  brightnessctl \
+  autorandr
