@@ -3,3 +3,4 @@
 echo "Xft.dpi : 140" > /tmp/x140
 xrdb -merge /tmp/x140
 pidof dwm | xargs kill
+feh --bg-scale ~/.wallpaper
