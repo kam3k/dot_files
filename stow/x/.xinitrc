@@ -1,6 +1,6 @@
 while xsetroot -name "`bar`"
 do
-  sleep 1
+  sleep 0.5
 done &
 
 feh --bg-scale ~/.wallpaper

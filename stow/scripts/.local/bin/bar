@@ -3,7 +3,9 @@
 time=$(date +"%H:%M")
 isodate=$(date +"%Y-%m-%d")
 vol="$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')%"
-bright="$(brightnessctl -m -d intel_backlight | awk -F, '{print substr($4, 0, length($4)-1)}')"%
+bright="$(brightnessctl -m -d intel_backlight | awk -F, '{print substr($4, 0, length($4)-1)}')%"
 bat="$(cat /sys/class/power_supply/BAT0/capacity)%"
+cpu="$(top -b -n1 | grep "Cpu(s)" | awk '{printf "%2.0f", $2 + $4}')%"
+mem="$(free | awk 'NR == 2 {printf "%2.0f", $3 * 100 / $2}')%"
 
-echo " $vol   $bright   $bat   $isodate   $time"
+echo " $cpu   $mem   $vol   $bright   $bat   $isodate   $time"
