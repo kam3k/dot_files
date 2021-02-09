@@ -7,6 +7,7 @@ feh --bg-scale ~/.wallpaper
 
 sxhkd &
 dunst &
+udiskie &
 
 xset -b # turn off system beep
 

@@ -53,4 +53,5 @@ apt-get install -y \
   fzf \
   fish \
   brightnessctl \
-  autorandr
+  autorandr \
+  udiskie
