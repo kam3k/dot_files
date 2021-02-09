@@ -8,5 +8,5 @@ bat="$(cat /sys/class/power_supply/BAT0/capacity)%"
 #cpu="$(top -b -n1 | grep "Cpu(s)" | awk '{printf "%2.0f", $2 + $4}')%"
 #mem="$(free | awk 'NR == 2 {printf "%2.0f", $3 * 100 / $2}')%"
 
-#echo " $cpu   $mem   $vol   $bright   $bat   $isodate   $time"
-echo " $vol   $bright   $bat   $isodate   $time"
+#echo " $cpu   $mem   $vol   $bright   $bat   $isodate   $time"
+echo " $vol   $bright   $bat   $isodate   $time"
