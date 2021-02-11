@@ -9,7 +9,6 @@ apt-get install -y \
   libxext-dev \
   libxrandr-dev \
   libimlib2-dev \
-  xorg \
   vim-gtk \
   tmux \
   git \
@@ -46,7 +45,6 @@ apt-get install -y \
   dunst \
   sxhkd \
   arandr \
-  firefox-esr \
   xterm \
   papirus-icon-theme \
   screenfetch \
