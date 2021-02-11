@@ -50,8 +50,7 @@ apt-get install -y \
   xterm \
   papirus-icon-theme \
   screenfetch \
-  fzf \
-  fish \
+  zsh \
   brightnessctl \
   autorandr \
   udiskie

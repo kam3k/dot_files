@@ -1,3 +1,5 @@
+#!/bin/bash
+
 while xsetroot -name "`bar`"
 do
   sleep 0.5

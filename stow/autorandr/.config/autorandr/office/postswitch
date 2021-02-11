@@ -1,6 +1,6 @@
 #!/usr/bin/sh
 
-echo "Xft.dpi : 140" > /tmp/x140
-xrdb -merge /tmp/x140
+echo "Xft.dpi : 132" > /tmp/x132
+xrdb -merge /tmp/x132
 pidof dwm | xargs kill
 feh --bg-scale ~/.wallpaper
