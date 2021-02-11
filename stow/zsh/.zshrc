@@ -39,6 +39,7 @@ SPACESHIP_PROMPT_ORDER=(
   char          # Prompt character
 )
 SPACESHIP_DIR_TRUNC=0
+SPACESHIP_PROMPT_ADD_NEWLINE=0
 
 # Stop prompt from setting tmux title
 DISABLE_AUTO_TITLE=true
