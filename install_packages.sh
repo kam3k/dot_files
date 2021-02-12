@@ -38,7 +38,6 @@ apt-get install -y \
   fd-find \
   feh \
   alsa-utils \
-  fonts-font-awesome \
   network-manager \
   zathura \
   scrot \

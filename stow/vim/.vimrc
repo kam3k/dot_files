@@ -46,7 +46,7 @@ set noshowmode " don't show mode (just look at cursor)
 set wildmode=list:longest,full " list completions on command line, cycle through with tab
 
 " Ruler has column and AsyncRun status
-set rulerformat=%=%c\ %{g:asyncrun_status}
+set rulerformat=%60(%=%t\ %c\ %{g:asyncrun_status}%)
 
 " Different cursors in insert and normal mode
 let &t_SI = "\<esc>[5 q"
