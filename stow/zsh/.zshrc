@@ -93,11 +93,6 @@ zb()
 # Log CPU and memory usage of a process
 logpid() { while sleep 1; do  ps -p $1 -o pcpu= -o pmem= ; done; }
 
-test() 
-{
-  echo $1
-}
-
 set_wallpaper() 
 {
   ln -sf $1 ~/.wallpaper
