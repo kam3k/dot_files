@@ -6,12 +6,12 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+
 Plug 'mhinz/vim-sayonara' " Kill buffers well
 Plug 'jiangmiao/auto-pairs' " Auto-handling of brackets, etc.
 Plug 'djoshea/vim-autoread' " Auto-reload buffers that have been changed elsewhere
 Plug 'airblade/vim-gitgutter' " Show git status of lines in gutter
 Plug 'tpope/vim-fugitive' " Git functionality in vim
-Plug 'Valloric/YouCompleteMe' " Autocomplete and much more
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy search
 Plug 'junegunn/fzf.vim' " Vim bindings to various fuzzy searches
 Plug 'mrtazz/DoxygenToolkit.vim' " Auto-insert Doxygen comments
@@ -23,6 +23,13 @@ Plug 'sheerun/vim-polyglot' " Better syntax highlighting
 Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'Asheq/close-buffers.vim' " Close hidden buffers easily
 Plug 'w0ng/vim-hybrid' " Colorscheme
+
+if has('patch-8.1.2269')
+  Plug 'ycm-core/YouCompleteMe' " Autocomplete and much more
+else
+  Plug 'ycm-core/YouCompleteMe', { 'commit':'d98f896' }
+endif
+  
 call plug#end()
 
 " Settings
