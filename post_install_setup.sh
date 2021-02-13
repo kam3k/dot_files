@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # Check for required dependencies before continuing:
 if [[ ! -a $(which git) ]]; then
@@ -27,8 +27,9 @@ for app in */; do
   stow -t ${HOME} $app
 done;
 
-# Load dconf settings
-cat ~/.dot/cinnamon/settings.dconf | dconf load /
+# Make directories in home directory
+cd ${HOME}
+mkdir -p pictures/screenshots pictures/wallpapers documents downloads code
 
 # Install vim plugins
 vim +PlugInstall +qall

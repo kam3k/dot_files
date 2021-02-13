@@ -11,8 +11,6 @@ source $ZPLUG_HOME/init.zsh
 # Plugins
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting"
-zplug "supercrabtree/k"
-zplug "plugins/extract", from:oh-my-zsh 
 zplug "lib/history", from:oh-my-zsh
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 zplug "arzzen/calc.plugin.zsh"
@@ -41,6 +39,7 @@ SPACESHIP_PROMPT_ORDER=(
   char          # Prompt character
 )
 SPACESHIP_DIR_TRUNC=0
+SPACESHIP_PROMPT_ADD_NEWLINE=0
 
 # Stop prompt from setting tmux title
 DISABLE_AUTO_TITLE=true
@@ -71,10 +70,6 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^x' edit-command-line
 
-# Install Ruby Gems to ~/.gems
-export GEM_HOME="$HOME/.gems"
-export PATH="$HOME/.gems/bin:$PATH"
-
 # Add local to path
 export PATH="$HOME/.local/bin:$PATH"
 
@@ -97,6 +92,13 @@ zb()
 
 # Log CPU and memory usage of a process
 logpid() { while sleep 1; do  ps -p $1 -o pcpu= -o pmem= ; done; }
+
+set_wallpaper() 
+{
+  ln -sf $1 ~/.wallpaper
+  feh --bg-scale ~/.wallpaper
+}
+
 
 # Source localrc
 [ -f ~/.localrc ] && source ~/.localrc
