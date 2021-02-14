@@ -15,8 +15,6 @@ xset -b # turn off system beep
 
 setxkbmap -option caps:escape
 
-enact --pos left --watch &
-
 while :; do
   ssh-agent dwm
 done
