@@ -1,8 +1,14 @@
 #!/bin/sh
 
-clock=$(date +"%H:%M")
 vol="$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')%"
+mute_str="$(amixer get Master | sed 5q | grep '\[on\]')" # empty when muted
+if [ -z "$mute_str" ]
+then
+  vol="mute"
+fi
+
 bright="$(brightnessctl -m -d intel_backlight | awk -F, '{print substr($4, 0, length($4)-1)}')%"
 bat="$(cat /sys/class/power_supply/BAT0/capacity)%"
+clock=$(date +"%H:%M")
 
 echo "vol $vol   bright $bright   bat $bat   $clock"
