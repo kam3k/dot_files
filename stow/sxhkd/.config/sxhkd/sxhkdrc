@@ -17,7 +17,7 @@ XF86AudioRaiseVolume
 XF86AudioLowerVolume
   amixer -q set Master 8%-
 XF86AudioMute
-  amixer -q set Master toggle
+  pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # Media controls
 XF86AudioPlay
