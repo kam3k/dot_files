@@ -181,7 +181,7 @@ nnoremap <leader>ds O/**<space><space>*/<Esc>F<space>i
 
 " -- asyncrun
 map <leader>b :AsyncRun catkin build -j6<CR>
-map <leader>t :AsyncRun catkin build --make-args tests -- avidbots_slam<CR>
+map <leader>t :AsyncRun catkin build --make-args tests<CR>
 map <leader>n :AsyncStop<CR>
 noremap <leader><leader> :call asyncrun#quickfix_toggle(20)<CR>
 let g:asyncrun_open = 4
