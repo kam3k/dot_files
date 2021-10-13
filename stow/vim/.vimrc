@@ -12,7 +12,7 @@ Plug 'jiangmiao/auto-pairs' " Auto-handling of brackets, etc.
 Plug 'djoshea/vim-autoread' " Auto-reload buffers that have been changed elsewhere
 Plug 'airblade/vim-gitgutter' " Show git status of lines in gutter
 Plug 'tpope/vim-fugitive' " Git functionality in vim
-Plug 'Valloric/YouCompleteMe', { 'commit': 'f84351c851b29ede64caf6e47f39ad4472f5e68a' } " Autocomplete and much more
+Plug 'Valloric/YouCompleteMe', " Autocomplete and much more
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy search
 Plug 'junegunn/fzf.vim' " Vim bindings to various fuzzy searches
 Plug 'mrtazz/DoxygenToolkit.vim' " Auto-insert Doxygen comments
