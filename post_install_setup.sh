@@ -27,10 +27,6 @@ for app in */; do
   stow -t ${HOME} $app
 done;
 
-# Make directories in home directory
-cd ${HOME}
-mkdir -p pictures/screenshots pictures/wallpapers documents downloads code
-
 # Install vim plugins
 vim +PlugInstall +qall
 

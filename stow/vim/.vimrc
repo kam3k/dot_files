@@ -130,7 +130,7 @@ set completeopt-=preview
 " PLUGIN RELATED
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- vim-fugitive
-nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gb :Git blame<CR>
 
 " -- YouCompleteMe
 let g:ycm_confirm_extra_conf = 0
@@ -138,6 +138,7 @@ let g:ycm_show_diagnostics_ui = 1
 let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_always_populate_location_list = 1
 let g:ycm_auto_hover=''
+let g:ycm_clangd_args=['--header-insertion=never']
 nnoremap <leader>yd :YcmDebugInfo<CR>
 nnoremap <leader>yr :YcmRestartServer<CR>
 nnoremap <leader>yt :YcmCompleter GetType<CR>
@@ -160,7 +161,7 @@ function! FZFSameName(sink, pre_command, post_command)
     let current_file_with_extension = expand("%:t")
     execute a:pre_command
     call fzf#run(fzf#wrap({
-          \ 'source': 'find -name ' . current_file_no_extension . '.* | grep -Ev *' . current_file_with_extension . '$',
+          \ 'source': 'find -name "' . current_file_no_extension . '.*" | grep -Ev "*' . current_file_with_extension . '$"',
           \ 'options': -1, 'sink': a:sink}))
     execute a:post_command
 endfunction
@@ -180,10 +181,9 @@ nnoremap <leader>dd :Dox<CR>
 nnoremap <leader>ds O/**<space><space>*/<Esc>F<space>i
 
 " -- asyncrun
-map <F7> :AsyncRun -cwd=<root> ninja -v -j6 -C ../release<CR>
-map <F8> :AsyncRun -cwd=<root> ninja -v -j6 -C ../debug<CR>
-map <F9> :AsyncRun -cwd=<root> ../release/bin/$(VIM_FILENOEXT)<CR>
-map <F10> :AsyncStop<CR>
+noremap <leader>b :AsyncRun -cwd=<root> catkin build<CR>
+noremap <leader>t :AsyncRun -cwd=<root> catkin build --make-args tests<CR>
+noremap <leader>n :AsyncStop<CR>
 noremap <leader><leader> :call asyncrun#quickfix_toggle(20)<CR>
 let g:asyncrun_open = 4
 fun! OnAsyncRunFinished()
