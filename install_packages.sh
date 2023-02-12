@@ -3,6 +3,10 @@
 apt-get update
 
 apt-get install -y \
+  gnome-core \
+  network-manager-gnome \
+  firefox \
+  curl \
   htop \
   stow \
   ncdu \
@@ -11,16 +15,14 @@ apt-get install -y \
   fd-find \
   silversearcher-ag \
   tilix \
-  vim-gtk \
+  vim-gtk3 \
   tmux \
   zsh \
   libclang-dev \
   clang-format \
   clang-tidy \
   cmake \
-  cmake-curses-gui \
   ninja-build \
   build-essential \
   meld \
-  python3-dev \
-  papirus-icon-theme
+  python3-dev

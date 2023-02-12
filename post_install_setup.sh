@@ -27,8 +27,8 @@ for app in */; do
   stow -t ${HOME} $app
 done;
 
-# Load dconf settings
-cat ~/.dot/cinnamon/settings.dconf | dconf load /
+# Load tilix settings
+dconf load '/com/gexperts/Tilix/' < ${HOME}/.dot/dconf/tilix-settings.dconf
 
 # Install vim plugins
 vim +PlugInstall +qall

@@ -1,0 +1,26 @@
+[/]
+quake-height-percent=90
+quake-hide-headerbar=true
+quake-specific-monitor=0
+quake-width-percent=60
+terminal-title-style='none'
+theme-variant='dark'
+window-style='borderless'
+
+[profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d]
+background-color='#161719'
+background-transparency-percent=0
+badge-color-set=false
+bold-color-set=false
+bold-is-bright=false
+cursor-colors-set=false
+dim-transparency-percent=0
+font='Iosevka Term 12'
+foreground-color='#B7BCBA'
+highlight-colors-set=false
+palette=['#2A2E33', '#B84D51', '#B3BF5A', '#E4B55E', '#6E90B0', '#A17EAC', '#7FBFB4', '#B5B9B6', '#1D1F22', '#8D2E32', '#798431', '#E58A50', '#4B6B88', '#6E5079', '#4D7B74', '#5A626A']
+show-scrollbar=false
+terminal-bell='none'
+use-system-font=false
+use-theme-colors=false
+visible-name='Default'

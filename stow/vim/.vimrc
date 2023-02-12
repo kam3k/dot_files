@@ -203,8 +203,8 @@ nmap <leader>8 <Plug>BufTabLine.Go(8)
 nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
 hi! BufTabLineCurrent cterm=bold ctermbg=234 ctermfg=4
-hi! BufTabLineActive cterm=bold ctermbg=234 ctermfg=15
-hi! BufTabLineHidden cterm=bold ctermbg=234 ctermfg=15
+hi! BufTabLineActive ctermbg=234 ctermfg=12
+hi! BufTabLineHidden ctermbg=234 ctermfg=15
 hi! BufTabLineFill ctermbg=234
 
 " -- vim-startify
