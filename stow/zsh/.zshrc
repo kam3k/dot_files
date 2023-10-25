@@ -55,6 +55,7 @@ alias cdg='cd "$(git rev-parse --show-cdup)"'
 alias cds='cd "$(git rev-parse --show-superproject-working-tree)"'
 alias fd='fdfind'
 alias a="apt-cache search '' | sort | cut --delimiter ' ' --fields 1 | fzf --multi --cycle --reverse --preview 'apt-cache show {1}' | xargs -r sudo apt install -y"
+alias lt='ls -alhrt'
 
 # Source fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
