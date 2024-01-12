@@ -8,14 +8,10 @@
     co = checkout
     cm = commit
     st = status -s
-    br = branch
     undo-commit = reset --soft HEAD^
-    d = difftool
     dd = difftool --dir-diff
-    m = mergetool
     changes = diff HEAD@{1} HEAD
     diff = diff -w
-    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
     smu = submodule update --init --recursive
 [status]
     showUntrackedFiles = all
@@ -32,8 +28,3 @@
     conflictstyle = diff3
 [mergetool]
     prompt = false
-[filter "lfs"]
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
-    required = true
