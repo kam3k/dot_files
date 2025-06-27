@@ -18,8 +18,6 @@ Plug 'mrtazz/DoxygenToolkit.vim' " Auto-insert Doxygen comments
 Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
 Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background 
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
-Plug 'w0rp/ale' " Asynchronous linting
-Plug 'sheerun/vim-polyglot' " Better syntax highlighting
 Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'Asheq/close-buffers.vim' " Close hidden buffers easily
 Plug 'w0ng/vim-hybrid' " Colorscheme
@@ -43,7 +41,7 @@ set splitbelow " new horizontal splits go below
 set nostartofline " keep cursor in same column for long-range motion cmds
 set ignorecase " ignore case when using a search pattern
 set smartcase " override 'ignorecase' when pattern has upper case character
-set tabstop=2 " tab is four spaces
+set tabstop=2 " tab is two spaces
 set shiftwidth=2 " number of spaces indented using >> and << commands
 set expandtab " tab inserts spaces instead of tabs
 set softtabstop=2 " always uses spaces, never tabs
@@ -51,6 +49,7 @@ set number " show line numbers
 set updatetime=250 " 250 ms between screen updates
 set noshowmode " don't show mode (just look at cursor)
 set wildmode=list:longest,full " list completions on command line, cycle through with tab
+set ttimeoutlen=5 " very short timeout after hitting escape
 
 " Ruler has column and AsyncRun status
 set rulerformat=%60(%=%t\ %c\ %{g:asyncrun_status}%)
@@ -138,6 +137,7 @@ let g:ycm_show_diagnostics_ui = 1
 let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_always_populate_location_list = 1
 let g:ycm_auto_hover=''
+let g:ycm_enable_semantic_highlighting=1
 let g:ycm_clangd_args=['--header-insertion=never']
 nnoremap <leader>yd :YcmDebugInfo<CR>
 nnoremap <leader>yr :YcmRestartServer<CR>
@@ -145,6 +145,15 @@ nnoremap <leader>yt :YcmCompleter GetType<CR>
 nnoremap <leader>yf :YcmCompleter FixIt<CR>
 nnoremap <leader>yc :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>yn :YcmCompleter GoToDefinition<CR>
+let MY_YCM_HIGHLIGHT_GROUP = {
+      \   'parameter': 'Normal',
+      \   'variable': 'Normal',
+      \   'property': 'Normal',
+      \ }
+for tokenType in keys( MY_YCM_HIGHLIGHT_GROUP )
+  call prop_type_add( 'YCM_HL_' . tokenType,
+                    \ { 'highlight': MY_YCM_HIGHLIGHT_GROUP[ tokenType ] } )
+endfor
 
 " -- fzf
 nnoremap <leader>o :Files<CR>
@@ -208,16 +217,6 @@ let g:startify_change_to_dir = 0
 
 " -- vim-gitgutter 
 hi! link GitGutterDelete Constant
-
-" -- ale
-let g:ale_linters = {
-            \   'cpp': ['clangtidy'],
-            \}
-let g:ale_set_highlights = 0
-let g:ale_cpp_clangtidy_checks = ['-*,cppcoreguidelines*,modernize*,readability*,
-      \ bugprone*,performance*,-modernize-use-trailing-return-type,
-      \ -google-runtime-references,-cppcoreguidelines-pro-bounds-array-to-pointer-decay']
-let g:ale_c_build_dir_names = ['build', 'release', 'debug']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION
