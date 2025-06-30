@@ -21,12 +21,7 @@ Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'Asheq/close-buffers.vim' " Close hidden buffers easily
 Plug 'w0ng/vim-hybrid' " Colorscheme
-
-if has('patch-8.1.2269')
-  Plug 'ycm-core/YouCompleteMe' " Autocomplete and much more
-else
-  Plug 'ycm-core/YouCompleteMe', { 'commit':'d98f896' }
-endif
+Plug 'ycm-core/YouCompleteMe', { 'commit':'4ca5b45' } " Supports Ubuntu 20.04
   
 call plug#end()
 
