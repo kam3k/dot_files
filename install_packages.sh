@@ -1,31 +1,22 @@
 #!/bin/bash
-
-apt-get update
-
-apt-get install -y \
-  vim-gtk \
+dnf install -y \
+  vimx \
   tmux \
   git \
   htop \
   curl \
-  silversearcher-ag \
+  the_silver_searcher \
   stow \
   unzip \
-  libclang-dev \
-  clang-format \
-  clang-tidy \
+  clang-devel \
+  clang-tools-extra \
   cmake \
-  cmake-curses-gui \
-  build-essential \
+  @c-development \
+  @development-tools \
   gdb \
   ncdu \
   rsync \
-  xclip \
-  libpython3-dev \
-  gawk \
-  xsel \
+  python3-devel \
   meld \
   tree \
-  fd-find \
-  zsh \
-  brightnessctl \
+  fd-find

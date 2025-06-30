@@ -1,0 +1,36 @@
+# Set Starship prompt
+eval "$(starship init bash)"
+
+# Source FZF
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Aliases
+alias ls='ls --color=auto'
+alias ta='tmux a -t'
+alias now='watch -x -t -n 0.01 date +%s.%N'
+alias o='xdg-open'
+alias cdg='cd "$(git rev-parse --show-cdup)"'
+alias lt='ls -alhrt'
+alias vim='vimx'
+
+# Make and change into a directory
+mkcd()
+{
+  mkdir -p -- "$1" &&
+  cd -P -- "$1"
+}
+
+# Fuzzy checkout git branch with fzf
+zb()
+{
+  local branches branch
+  branches=$(git branch --all | grep -v HEAD) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+# Log CPU and memory usage of a process
+logpid() { while sleep 1; do  ps -p $1 -o pcpu= -o pmem= ; done; }
+
+export COWPATH="$HOME/.local/share/cowsay-files/cows:$COWPATH"

@@ -22,7 +22,6 @@ Plug 'w0rp/ale' " Asynchronous linting
 Plug 'sheerun/vim-polyglot' " Better syntax highlighting
 Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'Asheq/close-buffers.vim' " Close hidden buffers easily
-Plug 'w0ng/vim-hybrid' " Colorscheme
 
 if has('patch-8.1.2269')
   Plug 'ycm-core/YouCompleteMe' " Autocomplete and much more
@@ -61,11 +60,7 @@ let &t_SR = "\<esc>[5 q"
 let &t_EI = "\<esc>[2 q"
 
 " Colorscheme
-set background=dark
-silent! colorscheme hybrid
-let g:hybrid_custom_term_colors = 1
-hi! Normal ctermbg=NONE
-hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
+set t_Co=16
 
 " Windowing commands
 nnoremap <leader>q :Sayonara<CR>
