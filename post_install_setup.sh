@@ -27,6 +27,14 @@ for app in */; do
   stow -t ${HOME} $app
 done;
 
+# Install starship (prompt)
+curl -sS https://starship.rs/install.sh > /tmp/starship_install.sh
+mkdir -p ~/.local/bin
+sh /tmp/starship_install.sh -y -b ~/.local/bin
+
+# Load tilix settings
+dconf load /com/gexperts/Tilix/ < ${HOME}/.dot/tilix/tilix.dconf
+
 # Install vim plugins
 vim +PlugInstall +qall
 
