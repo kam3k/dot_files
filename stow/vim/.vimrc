@@ -18,7 +18,6 @@ Plug 'mrtazz/DoxygenToolkit.vim' " Auto-insert Doxygen comments
 Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
 Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background 
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
-Plug 'w0rp/ale' " Asynchronous linting
 Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'Asheq/close-buffers.vim' " Close hidden buffers easily
 Plug 'w0ng/vim-hybrid' " Colorscheme
@@ -200,16 +199,6 @@ let g:startify_change_to_dir = 0
 
 " -- vim-gitgutter 
 hi! link GitGutterDelete Constant
-
-" -- ale
-let g:ale_linters = {
-            \   'cpp': ['clangtidy'],
-            \}
-let g:ale_set_highlights = 0
-let g:ale_cpp_clangtidy_checks = ['-*,cppcoreguidelines*,modernize*,readability*,
-      \ bugprone*,performance*,-modernize-use-trailing-return-type,
-      \ -google-runtime-references,-cppcoreguidelines-pro-bounds-array-to-pointer-decay']
-let g:ale_c_build_dir_names = ['build', 'release', 'debug']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " SOURCE LOCAL VIM CONFIGURATION
