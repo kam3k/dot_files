@@ -45,7 +45,6 @@ set number " show line numbers
 set updatetime=250 " 250 ms between screen updates
 set noshowmode " don't show mode (just look at cursor)
 set wildmode=list:longest,full " list completions on command line, cycle through with tab
-set timeoutlen=5 " very short timeout after hitting escape
 
 " Ruler has column and AsyncRun status
 set rulerformat=%60(%=%t\ %c\ %{g:asyncrun_status}%)
