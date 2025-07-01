@@ -3,7 +3,7 @@
 apt-get update
 
 apt-get install -y \
-  vim-gtk \
+  vim-gtk3 \
   tmux \
   git \
   htop \
@@ -13,19 +13,12 @@ apt-get install -y \
   unzip \
   libclang-dev \
   clang-format \
-  clang-tidy \
   cmake \
-  cmake-curses-gui \
   build-essential \
   gdb \
   ncdu \
   rsync \
-  xclip \
   libpython3-dev \
-  gawk \
-  xsel \
   meld \
-  tree \
   fd-find \
-  zsh \
-  brightnessctl \
+  tilix
