@@ -1,0 +1,53 @@
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=-1
+HISTFILESIZE=-1
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# Update path
+export PATH="$PATH:~/.local/bin"
+
+# Set Starship prompt
+eval "$(starship init bash)"
+
+# Source FZF
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Aliases
+alias ls='ls --color=auto'
+alias ta='tmux a -t'
+alias now='watch -x -t -n 0.01 date +%s.%N'
+alias o='xdg-open'
+alias cdg='cd "$(git rev-parse --show-cdup)"'
+alias fd='fdfind'
+alias a="apt-cache search '' | sort | cut --delimiter ' ' --fields 1 | fzf --multi --cycle --reverse --preview 'apt-cache show {1}' | xargs -r sudo apt install -y"
+alias lt='ls -alhrt'
+
+# Make and change into a directory
+mkcd()
+{
+  mkdir -p -- "$1" &&
+  cd -P -- "$1"
+}
+
+# Fuzzy checkout git branch with fzf
+zb()
+{
+  local branches branch
+  branches=$(git branch --all | grep -v HEAD) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+# Log CPU and memory usage of a process
+logpid() { while sleep 1; do  ps -p $1 -o pcpu= -o pmem= ; done; }
