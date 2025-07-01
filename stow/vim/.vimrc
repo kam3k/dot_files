@@ -37,7 +37,7 @@ set splitbelow " new horizontal splits go below
 set nostartofline " keep cursor in same column for long-range motion cmds
 set ignorecase " ignore case when using a search pattern
 set smartcase " override 'ignorecase' when pattern has upper case character
-set tabstop=2 " tab is four spaces
+set tabstop=2 " tab is two spaces
 set shiftwidth=2 " number of spaces indented using >> and << commands
 set expandtab " tab inserts spaces instead of tabs
 set softtabstop=2 " always uses spaces, never tabs
@@ -45,6 +45,7 @@ set number " show line numbers
 set updatetime=250 " 250 ms between screen updates
 set noshowmode " don't show mode (just look at cursor)
 set wildmode=list:longest,full " list completions on command line, cycle through with tab
+set timeoutlen=5 " very short timeout after hitting escape
 
 " Ruler has column and AsyncRun status
 set rulerformat=%60(%=%t\ %c\ %{g:asyncrun_status}%)
@@ -57,8 +58,6 @@ let &t_EI = "\<esc>[2 q"
 " Colorscheme
 set background=dark
 silent! colorscheme hybrid
-let g:hybrid_custom_term_colors = 1
-hi! Normal ctermbg=NONE
 hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
 
 " Windowing commands
