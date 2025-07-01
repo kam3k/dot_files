@@ -19,16 +19,10 @@ Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
 Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background 
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'w0rp/ale' " Asynchronous linting
-Plug 'sheerun/vim-polyglot' " Better syntax highlighting
 Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'Asheq/close-buffers.vim' " Close hidden buffers easily
 Plug 'w0ng/vim-hybrid' " Colorscheme
-
-if has('patch-8.1.2269')
-  Plug 'ycm-core/YouCompleteMe' " Autocomplete and much more
-else
-  Plug 'ycm-core/YouCompleteMe', { 'commit':'d98f896' }
-endif
+Plug 'ycm-core/YouCompleteMe', { 'commit':'4ca5b45' }
   
 call plug#end()
 
@@ -138,6 +132,7 @@ let g:ycm_show_diagnostics_ui = 1
 let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_always_populate_location_list = 1
 let g:ycm_auto_hover=''
+let g:ycm_enable_semantic_highlighting=1
 let g:ycm_clangd_args=['--header-insertion=never']
 nnoremap <leader>yd :YcmDebugInfo<CR>
 nnoremap <leader>yr :YcmRestartServer<CR>
@@ -145,6 +140,15 @@ nnoremap <leader>yt :YcmCompleter GetType<CR>
 nnoremap <leader>yf :YcmCompleter FixIt<CR>
 nnoremap <leader>yc :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>yn :YcmCompleter GoToDefinition<CR>
+let MY_YCM_HIGHLIGHT_GROUP = {
+      \   'parameter': 'Normal',
+      \   'variable': 'Normal',
+      \   'property': 'Normal',
+      \ }
+for tokenType in keys( MY_YCM_HIGHLIGHT_GROUP )
+  call prop_type_add( 'YCM_HL_' . tokenType,
+                    \ { 'highlight': MY_YCM_HIGHLIGHT_GROUP[ tokenType ] } )
+endfor
 
 " -- fzf
 nnoremap <leader>o :Files<CR>
