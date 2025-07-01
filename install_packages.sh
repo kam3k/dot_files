@@ -3,7 +3,7 @@
 apt-get update
 
 apt-get install -y \
-  vim-gtk3 \
+  vim-gtk3 \ # for clipboard support in vim
   tmux \
   git \
   htop \
@@ -21,4 +21,4 @@ apt-get install -y \
   libpython3-dev \
   meld \
   fd-find \
-  tilix
+  xsel \ # for tmux-yank
