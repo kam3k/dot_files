@@ -56,6 +56,7 @@ let &t_EI = "\<esc>[2 q"
 " Colorscheme
 set background=dark
 silent! colorscheme hybrid
+hi Normal ctermbg=none " use same background color as terminal
 hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
 
 " Windowing commands
