@@ -12,5 +12,6 @@ $cmd_duration\
 $line_break\
 $time\
 $status\
-$container
+$container\
+$character
 """
