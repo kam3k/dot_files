@@ -33,7 +33,7 @@ mkdir -p ~/.local/bin
 sh /tmp/starship_install.sh -y -b ~/.local/bin
 
 # Load tilix settings
-dconf load /com/gexperts/Tilix/ < ${HOME}/.dot/tilix/tilix.dconf
+dconf load /com/gexperts/Tilix/ < ${HOME}/.dot/dconf/tilix.dconf
 
 # Install vim plugins
 vim +PlugInstall +qall
