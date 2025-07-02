@@ -1,11 +1,24 @@
+[/]
+prompt-on-close=true
+quake-height-percent=90
+quake-specific-monitor=0
+quake-width-percent=67
+terminal-title-style='none'
+window-style='borderless'
+
 [profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d]
-background-color='#303030'
+background-color='#161719'
 badge-color='#AC7EA8'
-badge-color-set=true
+badge-color-set=false
 bold-color-set=false
+bold-is-bright=false
 cursor-colors-set=false
-foreground-color='#EFEFEF'
+font='Iosevka Term 12'
+foreground-color='#B7BCBA'
 highlight-colors-set=false
-palette=['#000000', '#CC0000', '#4D9A05', '#C3A000', '#3464A3', '#754F7B', '#05979A', '#D3D6CF', '#545652', '#EF2828', '#89E234', '#FBE84F', '#729ECF', '#AC7EA8', '#34E2E2', '#EDEDEB']
+login-shell=true
+palette=['#2A2E33', '#B84D51', '#B3BF5A', '#E4B55E', '#6E90B0', '#A17EAC', '#7FBFB4', '#B5B9B6', '#1D1F22', '#8D2E32', '#798431', '#E58A50', '#4B6B88', '#6E5079', '#4D7B74', '#5A626A']
+terminal-bell='icon'
+use-system-font=false
 use-theme-colors=false
 visible-name='Default'
