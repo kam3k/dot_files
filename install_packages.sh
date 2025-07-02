@@ -29,3 +29,5 @@ apt-get install -y \
   fd-find \
   zsh \
   brightnessctl \
+  tilix \
+  flameshot
