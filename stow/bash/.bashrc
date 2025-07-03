@@ -51,3 +51,6 @@ zb()
 
 # Log CPU and memory usage of a process
 logpid() { while sleep 1; do  ps -p $1 -o pcpu= -o pmem= ; done; }
+
+# Source localrc
+[ -f ~/.localrc ] && source ~/.localrc
