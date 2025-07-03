@@ -16,8 +16,11 @@ if [[ ! -a $(which vim) ]]; then
   exit 1
 fi
 
+# Append source localrc in bashrc
+echo "[ -f ~/.localrc ] && source ~/.localrc" >> ~/.bashrc
+
 # Symlink everything in stow directory to home directory
-cd ${HOME}/.dot/stow
+cd ${HOME}/shared/dot/stow
 for app in */; do
   stow -t ${HOME} $app
 done;

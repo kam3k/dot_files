@@ -21,7 +21,7 @@ Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'Asheq/close-buffers.vim' " Close hidden buffers easily
 Plug 'w0ng/vim-hybrid' " Colorscheme
-Plug 'ycm-core/YouCompleteMe', { 'commit':'4ca5b45' }
+Plug 'ycm-core/YouCompleteMe', { 'branch':'legacy-vim-8.1' }
   
 call plug#end()
 
@@ -125,6 +125,7 @@ set completeopt-=preview
 nnoremap <leader>gb :Git blame<CR>
 
 " -- YouCompleteMe
+set encoding=utf-8
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_show_diagnostics_ui = 1
 let g:ycm_enable_diagnostic_highlighting = 0
