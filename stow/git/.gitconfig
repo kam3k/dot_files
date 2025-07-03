@@ -1,6 +1,6 @@
 [user]
     name = Marc Gallant
-    email = marc.j.gallant@gmail.com
+    email = marc.gallant@avidbots.com
 [core]
     editor = /usr/bin/vim
     excludesfile = ~/.gitignore_global
