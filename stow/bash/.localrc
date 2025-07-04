@@ -31,6 +31,9 @@ alias cdg='cd "$(git rev-parse --show-cdup)"'
 alias fd='fdfind'
 alias a="apt-cache search '' | sort | cut --delimiter ' ' --fields 1 | fzf --multi --cycle --reverse --preview 'apt-cache show {1}' | xargs -r sudo apt install -y"
 alias lt='ls -alhrt'
+alias cb='catkin build -j9 && concat_compile_commands.sh'
+alias cc='catkin clean -y'
+alias ct="catkin run_tests | sed -En '/^-- run_tests.py/,/^-- run_tests.py/p' && catkin_test_results && concat_compile_commands.sh"
 
 # Make and change into a directory
 mkcd()

@@ -30,6 +30,10 @@ curl -sS https://starship.rs/install.sh > /tmp/starship_install.sh
 mkdir -p ~/.local/bin
 sh /tmp/starship_install.sh -y -b ~/.local/bin
 
+# Install matplot++
+curl -fLo /tmp/matplot.sh https://github.com/alandefreitas/matplotplusplus/releases/download/v1.1.0/matplotplusplus-1.1.0-Linux.sh
+sudo sh /tmp/matplot.sh --prefix=/usr/local --skip-license --exclude-subdir
+
 # Install vim plugins
 vim +PlugInstall +qall
 

@@ -10,4 +10,5 @@ apt-get install -y \
   ncdu \
   meld \
   fd-find \
+  silversearcher-ag \
   xsel `# for tmux-yank` \

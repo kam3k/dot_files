@@ -49,6 +49,7 @@ set wildmode=list:longest,full " list completions on command line, cycle through
 set rulerformat=%60(%=%t\ %c\ %{g:asyncrun_status}%)
 
 " Different cursors in insert and normal mode
+set ttimeoutlen=0 " cursor instantly changes when hitting escape
 let &t_SI = "\<esc>[5 q"
 let &t_SR = "\<esc>[5 q"
 let &t_EI = "\<esc>[2 q"
@@ -174,8 +175,8 @@ nnoremap <leader>dd :Dox<CR>
 nnoremap <leader>ds O/**<space><space>*/<Esc>F<space>i
 
 " -- asyncrun
-noremap <leader>b :AsyncRun -cwd=<root> catkin build && concat_compile_commands<CR>
-noremap <leader>t :AsyncRun -cwd=<root> catkin build --make-args tests && concat_compile_commands<CR>
+noremap <leader>b :AsyncRun catkin build && concat_compile_commands.sh<CR>
+noremap <leader>t :AsyncRun catkin build --make-args tests && concat_compile_commands.sh<CR>
 noremap <leader>n :AsyncStop<CR>
 noremap <leader><leader> :call asyncrun#quickfix_toggle(20)<CR>
 let g:asyncrun_open = 4
