@@ -16,8 +16,10 @@ if [[ ! -a $(which vim) ]]; then
   exit 1
 fi
 
-# Append source localrc in bashrc
-echo "[ -f ~/.localrc ] && source ~/.localrc" >> ~/.bashrc
+if [[ ! -a $(which tmux) ]]; then
+  echo "Error: tmux is not installed. Please install tmux first."
+  exit 1
+fi
 
 # Symlink everything in stow directory to home directory
 cd ${HOME}/shared/dot/stow
@@ -39,3 +41,17 @@ vim +PlugInstall +qall
 
 # Compile YouCompleteMe
 ~/.vim/plugged/YouCompleteMe/install.py --clangd-completer
+
+# Set up tmux plugin manager
+mkdir -p ~/.tmux/plugins
+if [ ! -d ~/.tmux/plugins/tpm ]; then
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+
+# Install tmux plugins by starting a server (but not attaching to it),
+# creating a new session (but not attaching to it), installing the
+# plugins, then killing the server
+tmux start-server
+tmux new-session -d
+~/.tmux/plugins/tpm/scripts/install_plugins.sh
+tmux kill-server
