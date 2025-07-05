@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Check for required dependencies before continuing:
-if [[ ! -a $(which git) ]]; then
-  echo "Error: git is not installed. Please install git first."
+if [[ ! -a $(which curl) ]]; then
+  echo "Error: curl is not installed. Please install curl first."
   exit 1
 fi
 
@@ -16,10 +16,8 @@ if [[ ! -a $(which vim) ]]; then
   exit 1
 fi
 
-if [[ ! -a $(which tmux) ]]; then
-  echo "Error: tmux is not installed. Please install tmux first."
-  exit 1
-fi
+# Append sourcing .localrc in .bashrc
+echo "[ -f ~/.localrc  ] && source ~/.localrc" >> ${HOME}/.bashrc
 
 # Symlink everything in stow directory to home directory
 cd ${HOME}/.dot/stow
@@ -32,25 +30,14 @@ curl -sS https://starship.rs/install.sh > /tmp/starship_install.sh
 mkdir -p ~/.local/bin
 sh /tmp/starship_install.sh -y -b ~/.local/bin
 
-# Load tilix settings
-dconf load /com/gexperts/Tilix/ < ${HOME}/.dot/dconf/tilix.dconf
+# Install zellij (multiplexer)
+curl -fLo /tmp/zellij.tar.gz https://github.com/zellij-org/zellij/releases/download/v0.42.2/zellij-x86_64-unknown-linux-musl.tar.gz
+cd /tmp
+tar -xzf zellij.tar.gz
+mv zellij ~/.local/bin
 
 # Install vim plugins
 vim +PlugInstall +qall
 
 # Compile YouCompleteMe
 ~/.vim/plugged/YouCompleteMe/install.py --clangd-completer
-
-# Set up tmux plugin manager
-mkdir -p ~/.tmux/plugins
-if [ ! -d ~/.tmux/plugins/tpm ]; then
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
-
-# Install tmux plugins by starting a server (but not attaching to it),
-# creating a new session (but not attaching to it), installing the
-# plugins, then killing the server
-tmux start-server
-tmux new-session -d
-~/.tmux/plugins/tpm/scripts/install_plugins.sh
-tmux kill-server
