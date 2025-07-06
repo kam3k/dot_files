@@ -21,6 +21,7 @@ Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'Asheq/close-buffers.vim' " Close hidden buffers easily
 Plug 'w0ng/vim-hybrid' " Colorscheme
+Plug 'ghifarit53/tokyonight-vim'
 Plug 'ycm-core/YouCompleteMe', { 'commit':'4ca5b45' }
   
 call plug#end()
@@ -54,10 +55,10 @@ let &t_SR = "\<esc>[5 q"
 let &t_EI = "\<esc>[2 q"
 
 " Colorscheme
-set background=dark
-silent! colorscheme hybrid
-hi Normal ctermbg=none " use same background color as terminal
-hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
+set termguicolors
+let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_enable_italic = 1"
+silent! colorscheme tokyonight
 
 " Windowing commands
 nnoremap <leader>q :Sayonara<CR>
