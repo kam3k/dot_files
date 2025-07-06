@@ -159,6 +159,15 @@ keybinds clear-defaults=true {
         bind "Alt n" { NewPane; }
         bind "Alt x" { CloseFocus; }
         bind "Alt o" { MoveTab "right"; }
+        bind "Alt 1" { GoToTab 1; }
+        bind "Alt 2" { GoToTab 2; }
+        bind "Alt 3" { GoToTab 3; }
+        bind "Alt 4" { GoToTab 4; }
+        bind "Alt 5" { GoToTab 5; }
+        bind "Alt 6" { GoToTab 6; }
+        bind "Alt 7" { GoToTab 7; }
+        bind "Alt 8" { GoToTab 8; }
+        bind "Alt 9" { GoToTab 9; }
     }
     shared_except "locked" "renametab" "renamepane" {
         bind "Ctrl g" { SwitchToMode "locked"; }
@@ -257,7 +266,6 @@ load_plugins {
 // Default: default
 // 
 // theme "ansi"
-theme "tokyo-night"
 themes {
     tokyo-night {
         fg 169 177 214
@@ -273,6 +281,7 @@ themes {
         orange 255 158 100
     }
 }
+theme "tokyo-night"
  
 // Choose the base input mode of zellij.
 // Default: normal
