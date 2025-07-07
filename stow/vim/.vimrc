@@ -49,6 +49,7 @@ set wildmode=list:longest,full " list completions on command line, cycle through
 set rulerformat=%60(%=%t\ %c\ %{g:asyncrun_status}%)
 
 " Different cursors in insert and normal mode
+set ttimeoutlen=0 " cursor instantly changes when hitting escape
 let &t_SI = "\<esc>[5 q"
 let &t_SR = "\<esc>[5 q"
 let &t_EI = "\<esc>[2 q"
