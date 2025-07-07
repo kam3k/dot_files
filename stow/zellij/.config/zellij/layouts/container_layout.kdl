@@ -1,0 +1,48 @@
+layout {
+  default_tab_template {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    children
+    pane size=2 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+  }
+  tab name="vim" cwd="~/Dev/autonomy_ws/src" {
+    pane command="vim"
+  }
+  tab name="workspace" cwd="~/Dev/autonomy_ws" {
+    pane
+  }
+  tab name="git" focus=true {
+    pane split_direction="vertical" {
+      pane cwd="~/Dev/autonomy_ws/src/autonomy"
+      pane cwd="~/Dev/autonomy_ws/src/autonomy" command="bash" {
+        args "/home/marc.gallant/shared/monitor_git.bash"
+      }
+    }
+    pane split_direction="vertical" {
+      pane cwd="~/Dev/autonomy_ws/src/slam" {
+        focus true
+      }
+      pane cwd="~/Dev/autonomy_ws/src/slam" command="bash" {
+        args "/home/marc.gallant/shared/monitor_git.bash"
+      }
+    }
+  }
+  tab name="playback" cwd="~/Dev/autonomy_ws/src/slam/slam_playback_and_validation/scripts" {
+    pane
+    pane split_direction="vertical"
+  }
+  tab name="sim" cwd="~/Dev/autonomy_ws/src/" {
+    pane
+  }
+  tab name="btop" cwd="~" {
+    pane command="btop" {
+      args "--force-utf"
+    }
+  }
+  tab name="scratch" cwd="~" {
+    pane
+  }
+}
