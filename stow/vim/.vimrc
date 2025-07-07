@@ -19,6 +19,7 @@ Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
 Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background 
 Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'Asheq/close-buffers.vim' " Close hidden buffers easily
+Plug 'bfrg/vim-c-cpp-modern'
 Plug 'w0ng/vim-hybrid' " Colorscheme
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'ycm-core/YouCompleteMe', { 'branch':'legacy-vim-8.1' }
