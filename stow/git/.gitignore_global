@@ -1,0 +1,7 @@
+.cache/*
+*.swp
+obj-*/
+debian/
+*.deb
+*.pyc
+compile_commands.json
