@@ -3,10 +3,9 @@
 apt-get update
 
 apt-get install -y \
-  vim-gtk3 \ # for clipboard support in vim
-  tmux \
+  vim-gtk3 `# for clipboard support in vim` \
   git \
-  htop \
+  btop \
   curl \
   silversearcher-ag \
   stow \
@@ -21,4 +20,4 @@ apt-get install -y \
   libpython3-dev \
   meld \
   fd-find \
-  xsel \ # for tmux-yank
+  foot \
