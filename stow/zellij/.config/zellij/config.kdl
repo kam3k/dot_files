@@ -4,7 +4,7 @@
 
 keybinds clear-defaults=true {
     locked {
-        bind "Ctrl g" { SwitchToMode "normal"; }
+        bind "Ctrl b" { SwitchToMode "normal"; }
     }
     pane {
         bind "left" { MoveFocus "left"; }
@@ -54,7 +54,7 @@ keybinds clear-defaults=true {
         bind "s" { ToggleActiveSyncTab; SwitchToMode "locked"; }
         bind "t" { SwitchToMode "normal"; }
         bind "x" { CloseTab; SwitchToMode "locked"; }
-        bind "tab" { ToggleTab; }
+        bind "tab" { ToggleTab; SwitchToMode "locked"; }
     }
     resize {
         bind "left" { Resize "Increase left"; }
@@ -291,7 +291,7 @@ default_mode "locked"
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
 // 
-// default_shell "fish"
+default_shell "bash"
  
 // Choose the path to override cwd that zellij will use for opening new panes
 // 
