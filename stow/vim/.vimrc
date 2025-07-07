@@ -19,6 +19,7 @@ Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
 Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background 
 Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'Asheq/close-buffers.vim' " Close hidden buffers easily
+Plug 'bfrg/vim-c-cpp-modern'
 Plug 'w0ng/vim-hybrid' " Colorscheme
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'ycm-core/YouCompleteMe', { 'commit':'4ca5b45' }
@@ -126,6 +127,7 @@ set completeopt-=preview
 nnoremap <leader>gb :Git blame<CR>
 
 " -- YouCompleteMe
+set encoding=utf-8
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_show_diagnostics_ui = 1
 let g:ycm_enable_diagnostic_highlighting = 0
