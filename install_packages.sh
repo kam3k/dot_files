@@ -5,7 +5,6 @@ apt-get update
 apt-get install -y \
   vim-gtk3 `# for clipboard support in vim` \
   git \
-  btop \
   curl \
   silversearcher-ag \
   stow \
@@ -20,4 +19,3 @@ apt-get install -y \
   libpython3-dev \
   meld \
   fd-find \
-  foot \

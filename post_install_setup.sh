@@ -36,6 +36,12 @@ cd /tmp
 tar -xzf zellij.tar.gz
 mv zellij ~/.local/bin
 
+# Install btop
+curl -fLo btop.tbz https://github.com/aristocratos/btop/releases/download/v1.4.4/btop-x86_64-linux-musl.tbz
+cd /tmp
+tar -xjf btop.tbz
+mv btop/bin/btop ~/.local/bin
+
 # Install vim plugins
 vim +PlugInstall +qall
 

@@ -17,7 +17,6 @@ Plug 'junegunn/fzf.vim' " Vim bindings to various fuzzy searches
 Plug 'mrtazz/DoxygenToolkit.vim' " Auto-insert Doxygen comments
 Plug 'tpope/vim-commentary' " Easily comment / uncomment blocks
 Plug 'skywind3000/asyncrun.vim' " Run commands / builds in background 
-Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between vim and tmux
 Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'Asheq/close-buffers.vim' " Close hidden buffers easily
 Plug 'w0ng/vim-hybrid' " Colorscheme
