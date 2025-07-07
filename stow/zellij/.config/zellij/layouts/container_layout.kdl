@@ -32,7 +32,6 @@ layout {
   }
   tab name="playback" cwd="~/Dev/autonomy_ws/src/slam/slam_playback_and_validation/scripts" {
     pane
-    pane split_direction="vertical"
   }
   tab name="sim" cwd="~/Dev/autonomy_ws/src/" {
     pane

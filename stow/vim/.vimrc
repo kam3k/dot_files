@@ -58,7 +58,6 @@ let &t_EI = "\<esc>[2 q"
 " Colorscheme
 set termguicolors
 let g:tokyonight_style = 'night' " available: night, storm
-let g:tokyonight_enable_italic = 1"
 silent! colorscheme tokyonight
 
 " Windowing commands
