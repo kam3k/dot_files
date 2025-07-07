@@ -1,4 +1,5 @@
 format = """
+$container\
 $username\
 $hostname\
 $localip\
@@ -18,3 +19,7 @@ $character
 [character]
 success_symbol = '[→](green)'
 error_symbol = '[→](red)'
+
+[container]
+style=''
+format='[$symbol]($style) '
