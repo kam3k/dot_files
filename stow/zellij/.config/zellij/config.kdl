@@ -159,6 +159,7 @@ keybinds clear-defaults=true {
         bind "Alt n" { NewPane; }
         bind "Alt x" { CloseFocus; }
         bind "Alt o" { MoveTab "right"; }
+        bind "Alt p" { ToggleTab; SwitchToMode "locked"; }
         bind "Alt 1" { GoToTab 1; }
         bind "Alt 2" { GoToTab 2; }
         bind "Alt 3" { GoToTab 3; }
@@ -168,6 +169,8 @@ keybinds clear-defaults=true {
         bind "Alt 7" { GoToTab 7; }
         bind "Alt 8" { GoToTab 8; }
         bind "Alt 9" { GoToTab 9; }
+        bind "Alt Shift l" { GoToNextTab; }
+        bind "Alt Shift h" { GoToPreviousTab; }
     }
     shared_except "locked" "renametab" "renamepane" {
         bind "Ctrl g" { SwitchToMode "locked"; }
@@ -265,23 +268,7 @@ load_plugins {
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-// theme "ansi"
-themes {
-    tokyo-night {
-        fg 169 177 214
-        bg 26 27 38
-        black 56 62 90
-        red 249 51 87
-        green 158 206 106
-        yellow 224 175 104
-        blue 122 162 247
-        magenta 187 154 247
-        cyan 42 195 222
-        white 192 202 245
-        orange 255 158 100
-    }
-}
-theme "tokyo-night"
+theme "ansi"
  
 // Choose the base input mode of zellij.
 // Default: normal
@@ -364,7 +351,7 @@ default_shell "bash"
 // copy_command "wl-copy"                    // wayland
 // copy_command "pbcopy"                     // osx
 // 
-// copy_command "pbcopy"
+copy_command "xclip -selection clipboard"
  
 // Choose the destination for copied text
 // Allows using the primary selection buffer (on x11/wayland) instead of the system clipboard.
