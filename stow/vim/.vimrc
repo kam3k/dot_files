@@ -21,7 +21,6 @@ Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'Asheq/close-buffers.vim' " Close hidden buffers easily
 Plug 'bfrg/vim-c-cpp-modern'
 Plug 'w0ng/vim-hybrid' " Colorscheme
-Plug 'ghifarit53/tokyonight-vim'
 Plug 'ycm-core/YouCompleteMe', { 'branch':'legacy-vim-8.1' }
   
 call plug#end()
@@ -57,8 +56,8 @@ let &t_EI = "\<esc>[2 q"
 
 " Colorscheme
 set termguicolors
-let g:tokyonight_style = 'night' " available: night, storm
-silent! colorscheme tokyonight
+set background=dark
+silent! colorscheme hybrid
 
 " Windowing commands
 nnoremap <leader>q :Sayonara<CR>

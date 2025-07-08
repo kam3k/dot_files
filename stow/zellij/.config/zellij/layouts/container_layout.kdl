@@ -36,11 +36,6 @@ layout {
   tab name="sim" cwd="~/Dev/autonomy_ws/src/" {
     pane
   }
-  tab name="btop" cwd="~" {
-    pane command="btop" {
-      args "--force-utf"
-    }
-  }
   tab name="scratch" cwd="~" {
     pane
   }
