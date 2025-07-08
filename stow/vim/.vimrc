@@ -8,7 +8,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'mhinz/vim-sayonara' " Kill buffers well
-Plug 'jiangmiao/auto-pairs' " Auto-handling of brackets, etc.
 Plug 'djoshea/vim-autoread' " Auto-reload buffers that have been changed elsewhere
 Plug 'airblade/vim-gitgutter' " Show git status of lines in gutter
 Plug 'tpope/vim-fugitive' " Git functionality in vim
@@ -21,7 +20,6 @@ Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'Asheq/close-buffers.vim' " Close hidden buffers easily
 Plug 'bfrg/vim-c-cpp-modern'
 Plug 'w0ng/vim-hybrid' " Colorscheme
-Plug 'ghifarit53/tokyonight-vim'
 Plug 'ycm-core/YouCompleteMe', { 'commit':'4ca5b45' }
   
 call plug#end()
@@ -57,9 +55,9 @@ let &t_EI = "\<esc>[2 q"
 
 " Colorscheme
 set termguicolors
-let g:tokyonight_style = 'night' " available: night, storm
-let g:tokyonight_enable_italic = 1"
-silent! colorscheme tokyonight
+set background=dark
+silent! colorscheme hybrid
+hi! link MatchParen Identifier
 
 " Windowing commands
 nnoremap <leader>q :Sayonara<CR>
