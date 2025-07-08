@@ -13,6 +13,9 @@ layout {
   }
   tab name="workspace" cwd="~/Dev/autonomy_ws" {
     pane
+    pane command="catkin" close_on_exit=true {
+      args "config" "--cmake-args" "-DCMAKE_EXPORT_COMPILE_COMMANDS=On" "-DBUILD_MATPLOT_EXAMPLES=On"
+    }
   }
   tab name="git" focus=true {
     pane split_direction="vertical" {
