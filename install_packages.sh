@@ -21,3 +21,5 @@ apt-get install -y \
   meld \
   fd-find \
   foot \
+  tmux \
+  xsel `# for tmux yank` \
