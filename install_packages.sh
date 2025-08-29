@@ -3,7 +3,7 @@
 apt-get update
 
 apt-get install -y \
-  vim-gtk \
+  vim-gtk3 `# for clipboard support in vim` \
   silversearcher-ag \
   stow \
   unzip \
@@ -15,7 +15,7 @@ apt-get install -y \
   build-essential \
   gdb \
   libpython3-dev \
-  xsel \
+  xclip `# for tmux yank` \
   meld \
   fd-find \
   zsh
