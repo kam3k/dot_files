@@ -4,10 +4,6 @@ apt-get update
 
 apt-get install -y \
   vim-gtk \
-  tmux \
-  git \
-  htop \
-  curl \
   silversearcher-ag \
   stow \
   unzip \
@@ -18,16 +14,8 @@ apt-get install -y \
   cmake-curses-gui \
   build-essential \
   gdb \
-  ncdu \
-  rsync \
-  xclip \
   libpython3-dev \
-  gawk \
   xsel \
   meld \
-  tree \
   fd-find \
-  zsh \
-  brightnessctl \
-  tilix \
-  flameshot
+  zsh
