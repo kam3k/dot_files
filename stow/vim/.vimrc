@@ -8,7 +8,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'mhinz/vim-sayonara' " Kill buffers well
-Plug 'jiangmiao/auto-pairs' " Auto-handling of brackets, etc.
 Plug 'djoshea/vim-autoread' " Auto-reload buffers that have been changed elsewhere
 Plug 'airblade/vim-gitgutter' " Show git status of lines in gutter
 Plug 'tpope/vim-fugitive' " Git functionality in vim
@@ -185,8 +184,6 @@ nnoremap <leader>dd :Dox<CR>
 nnoremap <leader>ds O/**<space><space>*/<Esc>F<space>i
 
 " -- asyncrun
-noremap <leader>b :AsyncRun -cwd=<root> catkin build && concat_compile_commands<CR>
-noremap <leader>t :AsyncRun -cwd=<root> catkin build --make-args tests && concat_compile_commands<CR>
 noremap <leader>n :AsyncStop<CR>
 noremap <leader><leader> :call asyncrun#quickfix_toggle(20)<CR>
 let g:asyncrun_open = 4
