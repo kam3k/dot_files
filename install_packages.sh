@@ -18,4 +18,5 @@ apt-get install -y \
   xclip `# for tmux yank` \
   meld \
   fd-find \
+  tmux \
   zsh
