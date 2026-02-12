@@ -26,9 +26,6 @@ zplug load
 # Options
 setopt autopushd pushdignoredups
 
-# Use starship prompt
-eval "$(starship init zsh)"
-
 # Stop prompt from setting tmux title
 DISABLE_AUTO_TITLE=true
 
@@ -43,11 +40,7 @@ alias o=xdg-open
 alias cdg='cd "$(git rev-parse --show-cdup)"'
 alias cds='cd "$(git rev-parse --show-superproject-working-tree)"'
 alias fd='fdfind'
-alias a="apt-cache search '' | sort | cut --delimiter ' ' --fields 1 | fzf --multi --cycle --reverse --preview 'apt-cache show {1}' | xargs -r sudo apt install -y"
 alias lt='ls -alhrt'
-
-# Source fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Enable Ctrl-x to edit command line in vim
 autoload -U edit-command-line
@@ -64,18 +57,11 @@ mkcd()
   cd -P -- "$1"
 }
 
-# Fuzzy checkout git branch with fzf
-zb() 
-{
-  local branches branch
-  branches=$(git branch --all | grep -v HEAD) &&
-  branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-}
-
 # Log CPU and memory usage of a process
 logpid() { while sleep 1; do  ps -p $1 -o pcpu= -o pmem= ; done; }
 
 # Source localrc
 [ -f ~/.localrc ] && source ~/.localrc
+
+# Use starship prompt
+eval "$(starship init zsh)"

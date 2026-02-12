@@ -3,24 +3,22 @@
 apt-get update
 
 apt-get install -y \
-  vim-gtk3 `# for clipboard support in vim` \
+  neovim \
   zsh \
   git \
   btop \
   curl \
-  silversearcher-ag \
+  ripgrep \
   stow \
   unzip \
-  libclang-dev \
   clang-format \
   cmake \
   build-essential \
   gdb \
   ncdu \
   rsync \
-  libpython3-dev \
   meld \
   fd-find \
   foot \
   tmux \
-  xsel `# for tmux yank` \
+  xclip \

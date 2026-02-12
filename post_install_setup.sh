@@ -27,12 +27,6 @@ curl -sS https://starship.rs/install.sh > /tmp/starship_install.sh
 mkdir -p ~/.local/bin
 sh /tmp/starship_install.sh -y -b ~/.local/bin
 
-# Install vim plugins
-vim +PlugInstall +qall
-
-# Compile YouCompleteMe
-~/.vim/plugged/YouCompleteMe/install.py --clangd-completer
-
 # Set up tmux plugin manager
 mkdir -p ~/.tmux/plugins
 if [ ! -d ~/.tmux/plugins/tpm ]; then
