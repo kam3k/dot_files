@@ -1,6 +1,5 @@
 vim.o.number = true -- enable line numbers
 vim.o.laststatus = 0 -- hide status line
-vim.o.clipboard = 'unnamedplus' -- sync with system keyboard
 vim.o.wrap = false -- don't wrap lines
 vim.o.autoindent = true -- copy indent from current line when starting a new one
 vim.o.ignorecase = true -- case insensitive search

@@ -41,3 +41,9 @@ vim.keymap.set('v', '>', '>gv', opts)
 
 -- Keep last yanked when pasting
 vim.keymap.set('v', 'p', '"_dP', opts)
+
+-- Interact with system keyboard
+vim.keymap.set('v', '<leader>y', '"+y', vim.tbl_extend('force', opts, { desc = "Yank selection to system clipboard" }))
+vim.keymap.set('n', '<leader>y', '"+y', vim.tbl_extend('force', opts, { desc = "Yank motion to system clipboard" }))
+vim.keymap.set('n', '<leader>p', '"+p', vim.tbl_extend('force', opts, { desc = "Paste from system clipboard" }))
+vim.keymap.set('v', '<leader>p', '"+p', vim.tbl_extend('force', opts, { desc = "Paste from system clipboard" }))
