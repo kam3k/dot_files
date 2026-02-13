@@ -11,6 +11,7 @@ apt-get install -y \
   ripgrep \
   stow \
   unzip \
+  clangd \
   clang-format \
   cmake \
   build-essential \
@@ -22,3 +23,4 @@ apt-get install -y \
   foot \
   tmux \
   xclip \
+  tree \

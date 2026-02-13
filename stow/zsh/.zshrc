@@ -49,6 +49,7 @@ bindkey '^x' edit-command-line
 
 # Add local to path
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
 # Make and change into a directory
 mkcd()
