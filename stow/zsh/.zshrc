@@ -41,6 +41,7 @@ alias cdg='cd "$(git rev-parse --show-cdup)"'
 alias cds='cd "$(git rev-parse --show-superproject-working-tree)"'
 alias fd='fdfind'
 alias lt='ls -alhrt'
+alias vim='nvim'
 
 # Set up fzf
 source <(fzf --zsh)
