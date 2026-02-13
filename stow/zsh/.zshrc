@@ -42,6 +42,9 @@ alias cds='cd "$(git rev-parse --show-superproject-working-tree)"'
 alias fd='fdfind'
 alias lt='ls -alhrt'
 
+# Set up fzf
+source <(fzf --zsh)
+
 # Enable Ctrl-x to edit command line in vim
 autoload -U edit-command-line
 zle -N edit-command-line

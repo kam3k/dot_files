@@ -24,3 +24,4 @@ apt-get install -y \
   tmux \
   xclip \
   tree \
+  fzf \

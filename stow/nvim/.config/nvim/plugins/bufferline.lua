@@ -6,6 +6,7 @@ return {
       options = {
         numbers = "ordinal",
         truncate_names = true,
+        show_buffer_icons = false,
         buffer_close_icon = "",
         modified_icon = "[+]",
       }
