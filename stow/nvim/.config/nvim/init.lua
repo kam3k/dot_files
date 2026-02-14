@@ -23,4 +23,7 @@ require('lazy').setup({
   require 'plugins.gitsigns',
   require 'plugins.neogen',
   require 'plugins.alpha',
+  require 'plugins.lsp',
+  require 'plugins.autocompletion',
+  require 'plugins.autoformatting',
 })
