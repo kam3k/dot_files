@@ -13,10 +13,9 @@ return {
         h = { "clang_format" },
         hpp = { "clang_format" },
 
-        python = { "ruff_format" },
-        json = { "prettier" },
-        xml = { "prettier" },
-        cmake = { "cmake_format" },
+        python = { "black" },
+        json = { "jq" },
+        xml = { "xmllint" },
       },
 
       formatters = {
@@ -25,6 +24,21 @@ return {
             local home = vim.fn.expand("~")
             return { "--style=file:" .. home .. "/.clang-format" }
           end,
+        },
+        black = {
+          command = "black",
+          args = { "-" },
+          stdin = true,
+        },
+        jq = {
+          command = "jq",
+          args = { "." },
+          stdin = true,
+        },
+        xmllint = {
+          command = "xmllint",
+          args = { "--format", "-" },
+          stdin = true,
         },
       },
     })

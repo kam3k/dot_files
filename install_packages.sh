@@ -25,3 +25,6 @@ apt-get install -y \
   xclip \
   tree \
   fzf \
+  black \
+  libxml2-utils \
+  jq \
