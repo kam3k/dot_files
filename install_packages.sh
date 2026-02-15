@@ -3,7 +3,6 @@
 apt-get update
 
 apt-get install -y \
-  neovim \
   zsh \
   git \
   btop \
@@ -28,3 +27,11 @@ apt-get install -y \
   black \
   libxml2-utils \
   jq \
+
+  # Install latest nvim release
+if [ ! -d /opt/nvim-linux-x86_64 ]; then
+  curl -fLo /tmp/nvim-linux-x86_64.tar.gz \
+    https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+  cd /tmp && tar -xzf nvim-linux-x86_64.tar.gz
+  mv /tmp/nvim-linux-x86_64 /opt/
+fi
