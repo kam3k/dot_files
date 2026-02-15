@@ -42,6 +42,7 @@ alias cds='cd "$(git rev-parse --show-superproject-working-tree)"'
 alias fd='fdfind'
 alias lt='ls -alhrt'
 alias vim='nvim'
+alias htop='btop'
 
 # Set up fzf
 source <(fzf --zsh)
@@ -64,6 +65,46 @@ mkcd()
 
 # Log CPU and memory usage of a process
 logpid() { while sleep 1; do  ps -p $1 -o pcpu= -o pmem= ; done; }
+
+# Switch git branches with fzf
+zb() {
+  local branch
+  branch=$(
+    git for-each-ref --sort=-committerdate refs/heads refs/remotes \
+      --format='%(if)%(HEAD)%(then)*%(else) %(end) %(refname:short)' \
+    | grep -v '\->' \
+    | fzf --ansi \
+          --prompt="  " \
+          --height=70% \
+          --reverse \
+          --preview='
+            branch=$(echo {} | sed "s/^[* ] //")
+            echo "Branch: $branch"
+            echo "----------------------------------------"
+
+            upstream=$(git for-each-ref --format="%(upstream:short)" refs/heads/${branch#origin/})
+            if [ -n "$upstream" ]; then
+              echo "Upstream: $upstream"
+              git rev-list --left-right --count "$branch...$upstream" 2>/dev/null | \
+                awk "{print \"Ahead: \"$1\"  Behind: \"$2}"
+            fi
+
+            echo
+            git log --graph --color=always \
+              --pretty=format:"%C(auto)%h %C(blue)%ad %C(green)%an%C(reset) %s" \
+              --date=short -n 10 "$branch"
+          ' \
+          --preview-window=down:55%
+  ) || return
+
+  branch=$(echo "$branch" | sed 's/^[* ] //')
+
+  if [[ "$branch" == origin/* ]]; then
+    git checkout -t "$branch"
+  else
+    git checkout "$branch"
+  fi
+}
 
 # Source localrc
 [ -f ~/.localrc ] && source ~/.localrc
