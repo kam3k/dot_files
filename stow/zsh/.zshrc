@@ -106,6 +106,51 @@ zb() {
   fi
 }
 
+# Manage apt packages with fzf
+a() {
+  local pkg
+
+  pkg=$(
+    apt list 2>/dev/null \
+    | tail -n +2 \
+    | fzf --ansi \
+          --prompt="📦  " \
+          --height=85% \
+          --reverse \
+          --delimiter="/" \
+          --with-nth=1 \
+          --preview='
+            pkg=$(echo {} | cut -d/ -f1)
+
+            echo "Package: $pkg"
+            echo "----------------------------------------"
+
+            # Show metadata (limit output for speed)
+            apt-cache show "$pkg" 2>/dev/null | \
+              grep -E "^(Package|Version|Installed-Size|Depends|Recommends|Suggests|Description)" \
+              | head -n 40
+
+            echo
+
+            # Show install status
+            if dpkg -s "$pkg" >/dev/null 2>&1; then
+              echo "✅ Installed"
+              dpkg -s "$pkg" | grep -E "Version|Installed-Size"
+            else
+              echo "❌ Not installed"
+            fi
+          ' \
+          --preview-window=right:60% \
+          --bind 'ctrl-i:execute(sudo apt install {1})+abort' \
+          --bind 'ctrl-r:execute(sudo apt remove {1})+abort' \
+          --bind 'ctrl-p:execute(sudo apt purge {1})+abort'
+  ) || return
+
+  pkg=$(echo "$pkg" | cut -d/ -f1)
+
+  echo "Selected: $pkg"
+}
+
 # Source localrc
 [ -f ~/.localrc ] && source ~/.localrc
 
