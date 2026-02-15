@@ -47,3 +47,8 @@ vim.keymap.set('v', '<leader>y', '"+y', vim.tbl_extend('force', opts, { desc = "
 vim.keymap.set('n', '<leader>y', '"+y', vim.tbl_extend('force', opts, { desc = "Yank motion to system clipboard" }))
 vim.keymap.set('n', '<leader>p', '"+p', vim.tbl_extend('force', opts, { desc = "Paste from system clipboard" }))
 vim.keymap.set('v', '<leader>p', '"+p', vim.tbl_extend('force', opts, { desc = "Paste from system clipboard" }))
+
+-- Navigate quickfix window
+vim.keymap.set("n", "]c", ":cnext<CR>", opts)
+vim.keymap.set("n", "[c", ":cprevious<CR>", opts)
+

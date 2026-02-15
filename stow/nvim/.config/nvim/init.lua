@@ -14,16 +14,7 @@ local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
 -- Set up plugins
-require('lazy').setup({
-  require 'plugins.colorscheme',
-  require 'plugins.bufferline',
-  require 'plugins.treesitter',
-  require 'plugins.telescope',
-  require 'plugins.tmux',
-  require 'plugins.gitsigns',
-  require 'plugins.neogen',
-  require 'plugins.alpha',
-  require 'plugins.lsp',
-  require 'plugins.autocompletion',
-  require 'plugins.autoformatting',
-})
+require('lazy').setup("plugins")
+
+-- Set up local "plugins"
+require('marc.switcheroo')
