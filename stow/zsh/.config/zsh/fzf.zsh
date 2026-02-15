@@ -2,6 +2,48 @@
 command -v fzf >/dev/null 2>&1 || return
 
 # ----------------------------------------------------------------------------
+# zhelp: list all fzf toolkit functions with brief descriptions
+# ----------------------------------------------------------------------------
+zhelp() {
+  local file="${ZSH_FZF_FILE:-$HOME/.config/zsh/fzf.zsh}"
+
+  [ ! -f "$file" ] && { echo "fzf function file not found: $file"; return 1; }
+
+  # build a list of function names with descriptions (omit function names from description)
+  local list
+  list=$(awk '
+    # skip horizontal lines
+    /^# -+/ { next }
+
+    # capture description line
+    /^# [a-zA-Z0-9_]+:/ {
+      desc=$0
+      gsub(/^# /,"",desc)
+      # remove "name: " from the beginning
+      sub(/^[a-zA-Z0-9_]+: /,"",desc)
+      next
+    }
+
+    # capture function definition immediately after description
+    /^[a-zA-Z0-9_]+\(\)/ {
+      if (desc != "") {
+        func=$1
+        gsub(/\(\)/,"",func)
+        print func " -- " desc
+        desc=""
+      }
+    }
+  ' "$file" | grep -v '^zhelp ' )  # omit zhelp itself
+
+  # show fzf menu
+  local func
+  func=$(echo "$list" | fzf --ansi --reverse --height=70% --prompt="❯ zhelp> ") || return
+
+  # extract function name and run it
+  local fname="${func%% --*}"
+  $fname
+}
+
 # zb: fuzzy git branch switcher
 # ----------------------------------------------------------------------------
 zb() {
