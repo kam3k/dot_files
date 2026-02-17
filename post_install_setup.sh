@@ -11,11 +11,6 @@ if [[ ! -a $(which stow) ]]; then
   exit 1
 fi
 
-if [[ ! -a $(which vim) ]]; then
-  echo "Error: vim is not installed. Please install vim first."
-  exit 1
-fi
-
 # Symlink everything in stow directory to home directory
 cd ${HOME}/.dot/stow
 for app in */; do
