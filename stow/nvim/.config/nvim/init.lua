@@ -2,6 +2,7 @@
 require 'core.options'
 require 'core.keymaps'
 require 'core.autocommand'
+require 'core.functions'
 
 -- Install lazy
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -15,6 +16,3 @@ rtp:prepend(lazypath)
 
 -- Set up plugins
 require('lazy').setup("plugins")
-
--- Set up local "plugins"
-require('marc.switcheroo')

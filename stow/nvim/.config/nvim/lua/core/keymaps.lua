@@ -51,4 +51,3 @@ vim.keymap.set('v', '<leader>p', '"+p', vim.tbl_extend('force', opts, { desc = "
 -- Navigate quickfix window
 vim.keymap.set("n", "]c", ":cnext<CR>", opts)
 vim.keymap.set("n", "[c", ":cprevious<CR>", opts)
-
