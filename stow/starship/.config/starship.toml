@@ -24,3 +24,6 @@ error_symbol = '[→](red)'
 [container]
 style=''
 format='[$symbol]($style) '
+
+[directory]
+style = "fg:#7AA89F"

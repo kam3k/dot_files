@@ -45,7 +45,8 @@ alias vim='nvim'
 alias htop='btop'
 
 # Set up fzf
-source <(fzf --zsh)
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
 
 # Enable Ctrl-x to edit command line in vim
 autoload -U edit-command-line
