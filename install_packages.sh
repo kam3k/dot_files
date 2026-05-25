@@ -5,6 +5,7 @@ apt-get update
 apt-get install -y \
   zsh \
   git \
+  btop \
   curl \
   ripgrep \
   stow \
@@ -25,3 +26,4 @@ apt-get install -y \
   black \
   libxml2-utils \
   jq \
+  foot \
