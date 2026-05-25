@@ -44,6 +44,7 @@ zhelp() {
   $fname
 }
 
+# ----------------------------------------------------------------------------
 # zb: fuzzy git branch switcher
 # ----------------------------------------------------------------------------
 zb() {
@@ -136,35 +137,32 @@ za() {
               fi
             ' \
             --preview-window=right:60% \
-            --bind 'ctrl-i:execute-silent(sudo apt install {1})+abort' \
-            --bind 'ctrl-r:execute-silent(sudo apt remove {1})+abort' \
-            --bind 'ctrl-p:execute-silent(sudo apt purge {1})+abort'
+            --bind 'ctrl-i:execute(sudo apt install {1})+reload(apt list 2>/dev/null)' \
+            --bind 'ctrl-r:execute(sudo apt remove {1})+reload(apt list 2>/dev/null)'
   ) || return
 
   pkg=$(echo "$pkg" | cut -d/ -f1)
-  echo "selected: $pkg"
-}
-
-# ----------------------------------------------------------------------------
-# zcd: fuzzy directory jump
-# ----------------------------------------------------------------------------
-zcd() {
-  command -v fd >/dev/null 2>&1 || {
-    echo "fd not found (install fd for best performance)"
-    return 1
-  }
-
-  local dir
-
-  dir=$(
-    fd . --type d --hidden --exclude .git 2>/dev/null \
-      | fzf --height=80% \
-            --reverse \
-            --preview 'ls -la --color=always {}' \
-            --preview-window=right:60%
-  ) || return
-
-  cd "$dir"
+  
+  # Clear the terminal grid so the output looks clean
+  clear
+  echo "========================================================================"
+  echo " Detailed information for: $pkg"
+  echo "========================================================================"
+  
+  # Show the full package details
+  apt show "$pkg" 2>/dev/null
+  
+  echo "========================================================================"
+  echo
+  
+  # Ask if the user wants to install the selected package
+  print -rn "Do you want to install $pkg? (y/N) "
+  read -q "opt"
+  echo # Print a newline after the single-character read
+  
+  if [[ $opt == "y" ]]; then
+    sudo apt install "$pkg"
+  fi
 }
 
 # ----------------------------------------------------------------------------
