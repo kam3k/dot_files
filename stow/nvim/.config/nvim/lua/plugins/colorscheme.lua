@@ -1,8 +1,10 @@
 return {
-    'AlexvZyl/nordic.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-        require('nordic').load()
-    end
+  "Aejkatappaja/sora",
+  lazy = false,
+  priority = 1000,
+  opts = {},
+  config = function(_, opts)
+    require("sora").setup(opts)
+    vim.cmd("colorscheme sora")
+  end,
 }
