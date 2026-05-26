@@ -5,10 +5,10 @@ apt-get update
 apt-get install -y \
   zsh \
   git \
-  btop \
   curl \
   ripgrep \
   stow \
+  htop \
   unzip \
   clangd \
   clang-format \
@@ -26,4 +26,4 @@ apt-get install -y \
   black \
   libxml2-utils \
   jq \
-  foot \
+  ccache \

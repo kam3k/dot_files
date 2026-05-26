@@ -42,7 +42,6 @@ alias cds='cd "$(git rev-parse --show-superproject-working-tree)"'
 alias fd='fdfind'
 alias lt='ls -alhrt'
 alias vim='nvim'
-alias htop='btop'
 
 # Set up fzf
 source /usr/share/doc/fzf/examples/key-bindings.zsh
