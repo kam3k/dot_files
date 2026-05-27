@@ -1,6 +1,27 @@
 # Ensure fzf exists
 command -v fzf >/dev/null 2>&1 || return
 
+# Set fzf options
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
+  --color=bg+:#1e2430 \
+  --color=bg:#0e1018 \
+  --color=border:#222838 \
+  --color=fg:#c8d0e0 \
+  --color=fg+:#dce4f0 \
+  --color=gutter:#0e1018 \
+  --color=header:#80c8e0 \
+  --color=hl:#80c8e0 \
+  --color=hl+:#98d8f0 \
+  --color=info:#586478 \
+  --color=marker:#90c8a0 \
+  --color=pointer:#80c8e0 \
+  --color=prompt:#b0a0d8 \
+  --color=query:#c8d0e0 \
+  --color=scrollbar:#222838 \
+  --color=separator:#222838 \
+  --color=spinner:#80c8e0"
+
 # ----------------------------------------------------------------------------
 # zhelp: list all fzf toolkit functions with brief descriptions
 # ----------------------------------------------------------------------------
@@ -207,4 +228,55 @@ zproc() {
         | awk '{printf "%-6s %-6s\n",$1,$2}'
     done
   fi
+}
+
+# ----------------------------------------------------------------------------
+# zcd: fuzzy recursive directory jumper
+# ----------------------------------------------------------------------------
+zcd() {
+  local dir
+
+  dir=$(
+    find . -type d \
+      \( -path '*/\.git' -o -path '*/node_modules' -o -path '*/build' -o -path '*/dist' \) -prune \
+      -o -type d -print 2>/dev/null \
+    | sed 's|^\./||' \
+    | fzf --ansi \
+          --prompt="📁 cd> " \
+          --height=70% \
+          --reverse \
+          --preview='
+            echo "{}"
+            echo "----------------------------------------"
+            eza --tree --level=2 --icons {} 2>/dev/null || tree -L 2 {} 2>/dev/null || ls -la {}
+          ' \
+          --preview-window=right:60%
+  ) || return
+
+  cd "$dir"
+}
+
+# ----------------------------------------------------------------------------
+# zv: fuzzy file opener in vim
+# ----------------------------------------------------------------------------
+zv() {
+  local file
+
+  file=$(
+    find . -type f \
+      \( -path '*/\.git/*' -o -path '*/node_modules/*' -o -path '*/build/*' -o -path '*/dist/*' \) -prune \
+      -o -type f -print 2>/dev/null \
+    | sed 's|^\./||' \
+    | fzf --ansi \
+          --prompt=" vim> " \
+          --height=80% \
+          --reverse \
+          --preview='
+            bat --style=numbers --color=always --line-range=:300 {} 2>/dev/null \
+              || sed -n "1,300p" {}
+          ' \
+          --preview-window=right:65%
+  ) || return
+
+  vim "$file"
 }
