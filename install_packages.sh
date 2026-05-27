@@ -27,3 +27,5 @@ apt-get install -y \
   libxml2-utils \
   jq \
   ccache \
+  adwaita-icon-theme-full \
+  shared-mime-info \
