@@ -17,9 +17,6 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --color=marker:#90c8a0 \
   --color=pointer:#80c8e0 \
   --color=prompt:#b0a0d8 \
-  --color=query:#c8d0e0 \
-  --color=scrollbar:#222838 \
-  --color=separator:#222838 \
   --color=spinner:#80c8e0"
 
 # ----------------------------------------------------------------------------
