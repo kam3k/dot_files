@@ -16,16 +16,22 @@ return {
 
     -- 3. Build Command
     vim.keymap.set("n", "<leader>b", function()
-      local build_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ":h") .. "/build"
-      -- Starts the build; stays in current window
-      vim.cmd(string.format("AsyncRun -cwd=%s -mode=async ninja -j4", build_dir))
-    end, { desc = "Build Project" })
+      -- Dynamically grab the true root directory that clangd is currently indexing
+      local lsp_clients = vim.lsp.get_clients({ name = "clangd" })
+      local lsp_root = (lsp_clients and lsp_clients[1]) and lsp_clients[1].root_dir or nil
 
-    -- 4. Post-Build Logic (Auto-close on success, Alert on failure)
+      -- Fallback: If LSP isn't ready yet, drop back to Neovim's current working directory
+      local final_cwd = lsp_root or vim.fn.getcwd()
+
+      -- Execute ebm inside an interactive Zsh shell, explicitly locked to the true root folder
+      local cmd = string.format("AsyncRun -cwd=%s -mode=async zsh -ic 'ebm'", final_cwd)
+      vim.cmd(cmd)
+    end, { desc = "Build Project via ebm" })
+
+    -- 4. Post-Build Logic (Auto-close on success)
     vim.api.nvim_create_autocmd("User", {
       pattern = "AsyncRunStop",
       callback = function()
-        -- g:asyncrun_code is 0 for success
         if vim.g.asyncrun_code == 0 then
           vim.cmd("cclose")
         end
