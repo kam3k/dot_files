@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# scratchpad - Launch a customized, bordered foot terminal attached to tmux.
+# Intended for a GNOME/Wayland environment.
+
+# Define styling overrides for foot
+FOOT_OPTS="
+  --title=Scratchpad 
+  -w 1200x800 
+  -o csd.preferred=client 
+  -o csd.size=0 
+  -o csd.button-width=0 
+  -o csd.border-width=1 
+  -o csd.border-color=b0a0d8 
+  -o main.pad=10x10
+"
+
+# Define the payload command (attach to or spin up the 'scratch' tmux session)
+PAYLOAD="tmux new-session -A -s scratch"
+
+# Execute foot with the options and payload, silencing the XDG icon warnings
+exec foot $FOOT_OPTS $PAYLOAD 2>/dev/null
