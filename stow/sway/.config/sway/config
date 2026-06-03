@@ -1,0 +1,183 @@
+### =========================
+### BASIC SETUP
+### =========================
+
+set $mod Mod4
+set $term foot
+set $menu fuzzel
+
+font pango:Iosevka Term 12
+
+### =========================
+### STARTUP (MINIMAL ONLY)
+### =========================
+
+# background (replace path later)
+exec_always swaybg -i ~/.config/wallpapers/default.jpg -m fill
+
+# NOTE: we intentionally do NOT autostart everything yet
+
+### =========================
+### INPUT
+### =========================
+
+input * {
+    xkb_layout us
+    repeat_delay 300
+    repeat_rate 40
+}
+
+### =====================================================
+### DESKTOP AUTOSTART SERVICES
+### =====================================================
+
+# --- Core desktop services (Wayland session)
+exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+# --- Network Manager tray (WiFi + VPN UI)
+exec_always nm-applet
+
+# --- Bluetooth UI
+exec_always blueman-applet
+
+# --- USB automount
+exec_always udiskie -t
+
+# --- Notifications
+exec_always mako
+
+# --- Pipewire
+exec_always systemctl --user start pipewire wireplumber
+
+### =====================================================
+### WAYLAND + PORTAL FIXES
+### =====================================================
+
+set $XDG_CURRENT_DESKTOP sway
+set $XDG_SESSION_TYPE wayland
+set $XDG_SESSION_DESKTOP sway
+
+exec_always systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
+### =========================
+### BASIC KEYBINDINGS (from i3, modernized)
+### =========================
+
+# terminal
+bindsym $mod+Return exec $term
+
+# launcher
+bindsym $mod+space exec $menu
+
+# kill window
+bindsym $mod+q kill
+
+# focus movement (vim-style)
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# fullscreen
+bindsym $mod+f fullscreen toggle
+
+# floating toggle
+bindsym $mod+Shift+f floating toggle
+
+### =========================
+### WORKSPACES (your original style preserved)
+### =========================
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# back and forth
+bindsym $mod+p workspace back_and_forth
+
+### =========================
+### LAYOUT CONTROL (same mental model as i3)
+### =========================
+
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+### =========================
+### SCRATCHPAD (modernized)
+### =========================
+
+bindsym $mod+n scratchpad show
+
+### =========================
+### RELOAD / EXIT
+### =========================
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "swaynag -t warning -m 'Exit Sway?' -b 'Yes' 'swaymsg exit'"
+
+### =========================
+### SCREENSHOT (minimal but usable)
+### =========================
+
+bindsym Print exec grim ~/pictures/screenshot-$(date +%F-%H-%M-%S).png
+
+bindsym Shift+Print exec grim -g "$(slurp)" \
+  ~/pictures/screenshot-$(date +%F-%H-%M-%S).png
+
+### =========================
+### AUDIO (PipeWire modern replacement)
+### =========================
+
+bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+
+### =========================
+### LOCK SCREEN (basic)
+### =========================
+
+bindsym $mod+Shift+x exec swaylock
+
+### =========================
+### FLOATING RULES (optional starter)
+### =========================
+
+for_window [app_id="pavucontrol"] floating enable
+for_window [app_id="blueman-manager"] floating enable
