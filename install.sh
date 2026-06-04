@@ -196,6 +196,21 @@ sudo systemctl enable NetworkManager
 sudo systemctl enable bluetooth || true
 
 # =========================================================
+# 5.2 FLATPAK + PLEXAMP
+# =========================================================
+echo "==> Installing Flatpak + Plexamp"
+
+sudo apt install -y flatpak
+
+# Add Flathub (safe to run multiple times)
+if ! flatpak remote-list | grep -q flathub; then
+  flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+fi
+
+# Install Plexamp (non-interactive)
+flatpak install -y flathub com.plexamp.Plexamp
+
+# =========================================================
 # 6. DOTFILES (STOW)
 # =========================================================
 echo "==> Stowing dotfiles"

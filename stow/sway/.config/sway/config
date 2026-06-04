@@ -67,6 +67,9 @@ bindsym $mod+Return exec footclient
 # browser
 bindsym $mod+b exec firefox
 
+# music
+bindsym $mod+m exec flatpak run com.plexamp.Plexamp
+
 # kill window
 bindsym $mod+q kill
 
