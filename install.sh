@@ -174,7 +174,8 @@ sudo apt install -y \
   gvfs-backends \
   mpv \
   xdg-utils \
-  swappy
+  swappy \
+  pulsemixer
 
 # =========================================================
 # 5. DIRECTORIES

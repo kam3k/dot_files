@@ -38,6 +38,11 @@ window#waybar {
   border-radius: 6px;
 }
 
+#workspaces button:hover {
+  background: #1e2430;
+  color: #c8d0e0;
+}
+
 /* visible (multi-monitor edge case) */
 #workspaces button.visible {
   color: @fg;
@@ -72,7 +77,6 @@ window#waybar {
    ========================= */
 
 #custom-media {
-  color: @cyan;
   padding: 0 10px;
 }
 

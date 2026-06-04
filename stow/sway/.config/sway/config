@@ -24,6 +24,11 @@ input * {
     repeat_rate 40
 }
 
+bindgesture swipe:3:left workspace prev
+bindgesture swipe:3:right workspace next
+
+seat seat0 hide_cursor 3000
+
 ### =====================================================
 ### DESKTOP AUTOSTART SERVICES
 ### =====================================================
@@ -42,6 +47,13 @@ exec udiskie -t
 
 # --- Notifications
 exec mako
+
+# --- Lock
+exec_always killall swayidle; swayidle -w \
+  timeout 300 'swaylock -f -c 0e1018' \
+  timeout 330 'swaymsg "output * dpms off"' \
+  resume 'swaymsg "output * dpms on"' \
+  before-sleep 'swaylock -f -c 0e1018'
 
 # -- Foot
 exec_always foot --server
@@ -157,7 +169,7 @@ smart_borders on
 client.focused          #80c8e0 #0e1018 #c8d0e0 #80c8e0 #80c8e0
 client.unfocused        #0e1018 #0e1018 #9aa4b8 #364050 #0e1018
 
-for_window [title="btop"] {
+for_window [app_id="waybar-tool"] {
     floating enable
     resize set 1100 650
     move position center
@@ -176,8 +188,10 @@ bindsym $mod+e layout toggle split
 ### =========================
 
 for_window [app_id="term_scratch"] {
-    floating enable
     move to scratchpad
+    floating enable
+    sticky enable
+    focus
 }
 
 # create if missing
@@ -215,7 +229,7 @@ bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 ### LOCK SCREEN (basic)
 ### =========================
 
-bindsym $mod+Shift+x exec swaylock
+bindsym $mod+Shift+x exec swaylock -f -c 0e1018
 
 ### =========================
 ### FLOATING RULES (optional starter)

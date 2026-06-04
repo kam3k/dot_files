@@ -40,7 +40,7 @@
     "format": "󰻠  {usage}%",
     "interval": 2,
     "tooltip": true,
-    "on-click": "footclient --title btop btop",
+    "on-click": "~/.local/bin/waybar-tool system btop",
     "states": {
       "warning": 70,
       "critical": 90
@@ -51,7 +51,7 @@
     "format": "󰍛  {percentage}%",
     "interval": 2,
     "tooltip": true,
-    "on-click": "footclient --title btop btop",
+    "on-click": "~/.local/bin/waybar-tool system btop",
     "states": {
       "warning": 70,
       "critical": 90
@@ -63,7 +63,7 @@
     "format-ethernet": "󰈀",
     "format-disconnected": "󰖪",
     "tooltip-format": "{ifname} via {gwaddr}",
-    "on-click": "nm-connection-editor"
+    "on-click": "~/.local/bin/waybar-tool network nmtui"
   },
 
   "bluetooth": {
@@ -77,7 +77,7 @@
   "pulseaudio": {
     "format": "   {volume}%",
     "format-muted": "  muted",
-    "on-click": "pavucontrol",
+    "on-click": "~/.local/bin/waybar-tool audio pulsemixer",
     "scroll-step": 5
   },
 
