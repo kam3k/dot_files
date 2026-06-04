@@ -22,6 +22,7 @@ sudo apt install -y \
   btop \
   ncdu \
   tree \
+  fontconfig \
   jq \
   fzf \
   ripgrep \
@@ -38,7 +39,7 @@ sudo apt install -y \
   foot
 
 # =========================================================
-# 1.5 DEFAULT SHELL (ZSH)
+# 1.1 DEFAULT SHELL (ZSH)
 # =========================================================
 echo "==> Setting default shell to zsh"
 
@@ -52,6 +53,10 @@ fi
 # 2. FONTS
 # =========================================================
 echo "==> Installing fonts"
+
+sudo apt install -y \
+  fonts-noto \
+  fonts-dejavu
 
 fonts="$HOME/.local/share/fonts"
 mkdir -p "$fonts"
@@ -112,7 +117,7 @@ else
 fi
 
 # =========================================================
-# 3.5 NEOVIM PLUGIN BOOTSTRAP (lazy.nvim)
+# 3.1 NEOVIM PLUGIN BOOTSTRAP (lazy.nvim)
 # =========================================================
 echo "==> Bootstrapping Neovim plugins (lazy.nvim)"
 
@@ -132,7 +137,6 @@ sudo apt install -y \
   xwayland \
   swayidle \
   swaylock \
-  fuzzel \
   wl-clipboard \
   grim \
   mako-notifier \
@@ -143,10 +147,12 @@ sudo apt install -y \
   pipewire \
   wireplumber \
   pavucontrol \
+  waybar \
   xdg-desktop-portal \
   xdg-desktop-portal-wlr \
   xdg-desktop-portal-gtk \
   dbus-user-session \
+  libnotify-bin \
   xdg-user-dirs
 
 # =========================================================
@@ -158,15 +164,29 @@ sudo apt install -y \
   firefox-esr \
   network-manager \
   network-manager-gnome \
+  nm-connection-editor \
   blueman \
+  pavucontrol \
+  gsimplecal \
+  playerctl \
   udiskie \
-  thunar \
   gvfs \
   gvfs-backends \
-  xdg-utils
+  mpv \
+  xdg-utils \
+  swappy
 
 # =========================================================
-# 5.5 SYSTEM SERVICES (ENABLE CORE DESKTOP BACKENDS)
+# 5. DIRECTORIES
+# =========================================================
+echo "==> Creating home directories"
+
+mkdir -p "$HOME/downloads"
+mkdir -p "$HOME/pictures/screenshots"
+mkdir -p "$HOME/videos/screen-recordings"
+
+# =========================================================
+# 5.1 SYSTEM SERVICES (ENABLE CORE DESKTOP BACKENDS)
 # =========================================================
 
 echo "==> Enabling system services"

@@ -3,9 +3,6 @@
 ### =========================
 
 set $mod Mod4
-set $term foot
-set $menu fuzzel
-
 font pango:Iosevka Term 12
 
 ### =========================
@@ -13,7 +10,7 @@ font pango:Iosevka Term 12
 ### =========================
 
 # background (replace path later)
-exec_always swaybg -i ~/.config/wallpapers/default.jpg -m fill
+exec_always sh -c '[ -f ~/.config/wallpapers/default.jpg ] && swaybg -i ~/.config/wallpapers/default.jpg -m fill'
 
 # NOTE: we intentionally do NOT autostart everything yet
 
@@ -35,19 +32,22 @@ input * {
 exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 # --- Network Manager tray (WiFi + VPN UI)
-exec_always nm-applet
+exec nm-applet
 
 # --- Bluetooth UI
-exec_always blueman-applet
+exec blueman-applet
 
 # --- USB automount
-exec_always udiskie -t
+exec udiskie -t
 
 # --- Notifications
-exec_always mako
+exec mako
 
-# --- Pipewire
-exec_always systemctl --user start pipewire wireplumber
+# -- Foot
+exec_always foot --server
+
+# -- Waybar
+exec_always sh -c 'pkill -x waybar || true; sleep 0.2; waybar'
 
 ### =====================================================
 ### WAYLAND + PORTAL FIXES
@@ -57,17 +57,15 @@ set $XDG_CURRENT_DESKTOP sway
 set $XDG_SESSION_TYPE wayland
 set $XDG_SESSION_DESKTOP sway
 
-exec_always systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-
 ### =========================
 ### BASIC KEYBINDINGS (from i3, modernized)
 ### =========================
 
 # terminal
-bindsym $mod+Return exec $term
+bindsym $mod+Return exec footclient
 
-# launcher
-bindsym $mod+space exec $menu
+# browser
+bindsym $mod+b exec firefox
 
 # kill window
 bindsym $mod+q kill
@@ -84,11 +82,26 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
+# back and forth workspaces
+bindsym $mod+Tab workspace back_and_forth
+
 # fullscreen
 bindsym $mod+f fullscreen toggle
 
 # floating toggle
 bindsym $mod+Shift+f floating toggle
+
+### =========================
+### MOUSE/TRACKPAD
+### =========================
+
+input type:touchpad {
+    natural_scroll enabled
+    tap enabled
+    dwt enabled
+}
+
+focus_follows_mouse no
 
 ### =========================
 ### WORKSPACES (your original style preserved)
@@ -131,6 +144,23 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 bindsym $mod+p workspace back_and_forth
 
 ### =========================
+### WINDOWS
+### =========================
+
+default_border pixel 1
+default_floating_border pixel 1
+smart_borders on
+
+client.focused          #80c8e0 #0e1018 #c8d0e0 #80c8e0 #80c8e0
+client.unfocused        #0e1018 #0e1018 #9aa4b8 #364050 #0e1018
+
+for_window [title="btop"] {
+    floating enable
+    resize set 1100 650
+    move position center
+}
+
+### =========================
 ### LAYOUT CONTROL (same mental model as i3)
 ### =========================
 
@@ -142,7 +172,16 @@ bindsym $mod+e layout toggle split
 ### SCRATCHPAD (modernized)
 ### =========================
 
-bindsym $mod+n scratchpad show
+for_window [app_id="term_scratch"] {
+    floating enable
+    move to scratchpad
+}
+
+# create if missing
+bindsym $mod+Shift+grave exec footclient --app-id=term_scratch
+
+# show/hide if exists
+bindsym $mod+grave [app_id="term_scratch"] scratchpad show, resize set 1400 900, move position center
 
 ### =========================
 ### RELOAD / EXIT
@@ -156,10 +195,10 @@ bindsym $mod+Shift+e exec "swaynag -t warning -m 'Exit Sway?' -b 'Yes' 'swaymsg 
 ### SCREENSHOT (minimal but usable)
 ### =========================
 
-bindsym Print exec grim ~/pictures/screenshot-$(date +%F-%H-%M-%S).png
-
-bindsym Shift+Print exec grim -g "$(slurp)" \
-  ~/pictures/screenshot-$(date +%F-%H-%M-%S).png
+bindsym $mod+Shift+minus exec screenshot
+bindsym $mod+Shift+equal exec screenshot-region
+bindsym $mod+Shift+bracketleft exec screenrecord
+bindsym $mod+Shift+bracketright exec pkill -INT wf-recorder
 
 ### =========================
 ### AUDIO (PipeWire modern replacement)

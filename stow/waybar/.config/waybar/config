@@ -1,0 +1,106 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 34,
+
+  "modules-left": ["sway/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": [
+    "custom/media",
+    "custom/recording",
+    "cpu",
+    "memory",
+    "pulseaudio",
+    "network",
+    "bluetooth",
+    "battery",
+    "custom/power"
+  ],
+
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{name}"
+  },
+
+  "clock": {
+    "format": "{:%a %b %d %H:%M}",
+    "tooltip-format": "{:%A, %d %B %Y}",
+    "on-click": "gsimplecal"
+  },
+
+  "custom/recording": {
+    "exec": "~/.local/bin/rec-status",
+    "interval": 1,
+    "format": "{}",
+    "on-click": "pkill -INT wf-recorder"
+  },
+
+  "cpu": {
+    "format": "󰻠  {usage}%",
+    "interval": 2,
+    "tooltip": true,
+    "on-click": "footclient --title btop btop",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    }
+  },
+
+  "memory": {
+    "format": "󰍛  {percentage}%",
+    "interval": 2,
+    "tooltip": true,
+    "on-click": "footclient --title btop btop",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    }
+  },
+
+  "network": {
+    "format-wifi": "   {signalStrength}%",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰖪",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "on-click": "nm-connection-editor"
+  },
+
+  "bluetooth": {
+    "format": "󰂯",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂱",
+    "tooltip-format": "{device_alias}",
+    "on-click": "blueman-manager"
+  },
+
+  "pulseaudio": {
+    "format": "   {volume}%",
+    "format-muted": "  muted",
+    "on-click": "pavucontrol",
+    "scroll-step": 5
+  },
+
+  "battery": {
+    "format": "   {capacity}%",
+    "format-charging": "  {capacity}%",
+    "states": {
+      "warning": 30,
+      "critical": 15
+    }
+  },
+
+  "custom/media": {
+    "exec": "playerctl metadata --format '{{artist}} - {{title}}'",
+    "interval": 2,
+    "max-length": 40,
+    "format": "󰎈  {}",
+    "on-click": "playerctl play-pause"
+  },
+
+  "custom/power": {
+    "format": "⏻",
+    "tooltip": "Power menu",
+    "on-click": "swaynag -t warning -m 'Power' -b 'Shutdown' 'systemctl poweroff' -b 'Reboot' 'systemctl reboot' -b 'Logout' 'swaymsg exit'"
+  }
+}

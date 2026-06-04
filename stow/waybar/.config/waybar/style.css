@@ -1,0 +1,110 @@
+@import "sora.css";
+
+/* =========================
+   GLOBAL
+   ========================= */
+
+* {
+  font-family: Noto Sans, sans-serif;
+  font-size: 16px;
+  color: @fg;
+}
+
+/* =========================
+   BAR
+   ========================= */
+
+window#waybar {
+  background: @bg;
+  border: none;
+}
+
+/* =========================
+   WORKSPACES
+   ========================= */
+
+/* default */
+#workspaces button {
+  color: @fg_dim;
+}
+
+/* active workspace (most reliable) */
+#workspaces button.focused,
+#workspaces button.active {
+  color: @accent;
+  background: @bg_selection;
+  border-radius: 6px;
+}
+
+/* visible (multi-monitor edge case) */
+#workspaces button.visible {
+  color: @fg;
+}
+
+/* urgent */
+#workspaces button.urgent {
+  color: @error;
+}
+
+/* =========================
+   MODULE GROUP (RIGHT SIDE)
+   ========================= */
+
+#clock,
+#cpu,
+#memory {
+  padding: 0 10px;
+  color: @fg;
+}
+#battery,
+#network,
+#pulseaudio,
+#bluetooth,
+#custom-power {
+  padding: 0 10px;
+  color: @fg;
+}
+
+/* =========================
+   MEDIA
+   ========================= */
+
+#custom-media {
+  color: @cyan;
+  padding: 0 10px;
+}
+
+/* =========================
+   STATUS EMPHASIS (optional subtle cues)
+   ========================= */
+
+#custom-recording {
+  color: @error;
+  font-weight: bold;
+}
+
+#cpu.warning,
+#memory.warning {
+  color: @warning;
+}
+
+#cpu.critical,
+#memory.critical {
+  color: @error;
+}
+
+#battery.charging {
+  color: @ok;
+}
+
+#battery.warning {
+  color: @warning;
+}
+
+#battery.critical {
+  color: @error;
+}
+
+#network.disconnected {
+  color: @error;
+}

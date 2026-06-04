@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+file="$1"
+tmp="$(mktemp --suffix=.png)"
+
+swappy -f "$file" -o "$tmp"
+
+cp "$tmp" "$file"
+rm -f "$tmp"

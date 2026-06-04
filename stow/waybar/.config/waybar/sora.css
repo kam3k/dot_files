@@ -1,0 +1,36 @@
+/* SORA THEME (generated from palette.lua) */
+
+@define-color bg              #0e1018;
+@define-color bg_float        #0a0c12;
+@define-color bg_elevated     #14161e;
+@define-color bg_cursorline   #171a24;
+@define-color bg_selection    #1e2430;
+@define-color bg_search       #1a3050;
+@define-color bg_statusline   #0a0c12;
+
+@define-color fg              #c8d0e0;
+@define-color fg_dim          #9aa4b8;
+@define-color fg_bright       #dce4f0;
+@define-color fg_comment      #586478;
+@define-color fg_gutter       #364050;
+@define-color fg_gutter_active #6a7890;
+
+@define-color cyan            #80c8e0;
+@define-color purple          #b0a0d8;
+@define-color sage            #90c8a0;
+@define-color rose            #d0909c;
+@define-color gold            #d4b878;
+@define-color peach           #d0a888;
+@define-color teal            #78b8b0;
+@define-color steel           #8898b8;
+
+@define-color accent          #80c8e0;
+
+@define-color border          #222838;
+@define-color guide           #181c26;
+
+@define-color error           #c46c78;
+@define-color warning         #c8a860;
+@define-color info            #5ca8c8;
+@define-color hint            #78b0a0;
+@define-color ok              #68a888;
