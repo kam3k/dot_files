@@ -134,7 +134,8 @@ sudo apt install -y \
   sway \
   xwayland \
   swayidle \
-  swaylock \
+  gtklock \
+  imagemagick \
   wl-clipboard \
   grim \
   mako-notifier \

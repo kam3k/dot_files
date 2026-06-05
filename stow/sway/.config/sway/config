@@ -48,10 +48,10 @@ exec mako
 
 # lock (automatic, also turn screen off after a while)
 exec swayidle -w \
-  timeout 600 'swaylock -f -c 0e1018' \
+  timeout 600 'exec ~/.local/bin/lock-blur' \
   timeout 1200 'swaymsg "output * dpms off"' \
   resume 'swaymsg "output * dpms on"' \
-  before-sleep 'swaylock -f -c 0e1018'
+  before-sleep 'exec ~/.local/bin/lock-blur'
 
 # waybar
 exec_always sh -c 'pkill -x waybar || true; sleep 0.2; waybar'
@@ -108,7 +108,7 @@ bindsym $mod+Shift+f floating toggle
 bindsym $mod+Shift+c reload
 
 # lock screen
-bindsym $mod+Shift+x exec swaylock -f -c 0e1018
+bindsym $mod+Shift+x exec lock-blur
 
 ### ===============================================================================================
 ### MOUSE/TRACKPAD

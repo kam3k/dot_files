@@ -8,10 +8,10 @@ fuzzel --dmenu -l 5 -p "Power: "
 
 case "$selection" in
 *"Lock")
-swaylock -f -c 0e1018
+~/.local/bin/lock-blur
 ;;
 *"Suspend")
-swaylock -f -c 0e1018
+~/.local/bin/lock-blur
 systemctl suspend
 ;;
 *"Log out")
