@@ -5,7 +5,7 @@
    ========================= */
 
 * {
-  font-family: Noto Sans, sans-serif;
+  font-family: "Roboto";
   font-size: 16px;
   color: @fg;
 }
@@ -35,7 +35,7 @@ window#waybar {
 #workspaces button.active {
   color: @accent;
   background: @bg_selection;
-  border-radius: 6px;
+  border-radius: 0px;
 }
 
 #workspaces button:hover {
@@ -58,19 +58,11 @@ window#waybar {
    ========================= */
 
 #clock,
-#cpu,
-#memory {
-  padding: 0 10px;
-  color: @fg;
-}
-#battery,
-#network,
 #pulseaudio,
-#bluetooth,
-#custom-power {
-  padding: 0 10px;
-  color: @fg;
-}
+#cpu,
+#memory,
+#disk,
+#battery,
 
 /* =========================
    MEDIA
@@ -90,12 +82,14 @@ window#waybar {
 }
 
 #cpu.warning,
-#memory.warning {
+#memory.warning,
+#disk.warning {
   color: @warning;
 }
 
 #cpu.critical,
-#memory.critical {
+#memory.critical,
+#disk.critical {
   color: @error;
 }
 
@@ -108,9 +102,5 @@ window#waybar {
 }
 
 #battery.critical {
-  color: @error;
-}
-
-#network.disconnected {
   color: @error;
 }

@@ -6,26 +6,14 @@ return {
   --- @type blink.cmp.Config
   opts = {
     keymap = {
-      -- 'default' (recommended) for mappings similar to built-in completions
-      --   <c-y> to accept ([y]es) the completion.
-      --    This will auto-import if your LSP supports it.
-      -- 'super-tab' for tab to accept
-      -- 'enter' for enter to accept
-      -- 'none' for no mappings
-      --
-      -- For an understanding of why the 'default' preset is recommended,
-      -- you will need to read `:help ins-completion`
-      --
-      -- No, but seriously. Please read `:help ins-completion`, it is really good!
-      --
-      -- All presets have the following mappings:
-      -- <c-space>: Open menu or open docs if already open
-      -- <c-n>/<c-p> or <up>/<down>: Select next/previous item
-      -- <c-e>: Hide menu
-      -- <c-k>: Toggle signature help
-      --
-      -- See :h blink-cmp-config-keymap for defining your own keymap
-      preset = 'default',
+      preset = 'none',
+
+      ['<C-n>'] = { 'select_next', 'snippet_forward', 'fallback' },
+      ['<C-p>'] = { 'select_prev', 'snippet_backward', 'fallback' },
+
+      ['<CR>'] = { 'accept', 'fallback' },
+      ['<Tab>'] = { 'accept', 'fallback' },
+      ['<C-y>'] = { 'accept', 'fallback' },
     },
 
     appearance = {

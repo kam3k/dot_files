@@ -1,86 +1,84 @@
-### =========================
+### ===============================================================================================
 ### BASIC SETUP
-### =========================
+### ===============================================================================================
 
 set $mod Mod4
 font pango:Iosevka Term 12
 
-### =========================
-### STARTUP (MINIMAL ONLY)
-### =========================
+set $XDG_CURRENT_DESKTOP sway
+set $XDG_SESSION_TYPE wayland
+set $XDG_SESSION_DESKTOP sway
 
-# background (replace path later)
+### ===============================================================================================
+### WALLPAPER
+### ===============================================================================================
+
 exec_always sh -c '[ -f ~/.config/wallpapers/default.jpg ] && swaybg -i ~/.config/wallpapers/default.jpg -m fill'
 
-# NOTE: we intentionally do NOT autostart everything yet
-
-### =========================
+### ===============================================================================================
 ### INPUT
-### =========================
+### ===============================================================================================
 
+# keyboard layout
 input * {
     xkb_layout us
     repeat_delay 300
     repeat_rate 40
 }
 
+# swipe between workspaces
 bindgesture swipe:3:left workspace prev
 bindgesture swipe:3:right workspace next
 
+# hide cursor after three seconds
 seat seat0 hide_cursor 3000
 
-### =====================================================
+### ===============================================================================================
 ### DESKTOP AUTOSTART SERVICES
-### =====================================================
+### ===============================================================================================
 
-# --- Core desktop services (Wayland session)
+# core desktop services (Wayland session)
 exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-# --- Network Manager tray (WiFi + VPN UI)
-exec nm-applet
-
-# --- Bluetooth UI
-exec blueman-applet
-
-# --- USB automount
+# usb automount
 exec udiskie -t
 
-# --- Notifications
+# notifications
 exec mako
 
-# --- Lock
-exec_always killall swayidle; swayidle -w \
-  timeout 300 'swaylock -f -c 0e1018' \
-  timeout 330 'swaymsg "output * dpms off"' \
+# lock (automatic, also turn screen off after a while)
+exec swayidle -w \
+  timeout 600 'swaylock -f -c 0e1018' \
+  timeout 1200 'swaymsg "output * dpms off"' \
   resume 'swaymsg "output * dpms on"' \
   before-sleep 'swaylock -f -c 0e1018'
 
-# -- Foot
-exec_always foot --server
-
-# -- Waybar
+# waybar
 exec_always sh -c 'pkill -x waybar || true; sleep 0.2; waybar'
 
-### =====================================================
-### WAYLAND + PORTAL FIXES
-### =====================================================
+### ===============================================================================================
+### MONITORS
+### ===============================================================================================
 
-set $XDG_CURRENT_DESKTOP sway
-set $XDG_SESSION_TYPE wayland
-set $XDG_SESSION_DESKTOP sway
+set $laptop eDP-1
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
+exec_always ~/.local/bin/laptop-lid-state
 
-### =========================
-### BASIC KEYBINDINGS (from i3, modernized)
-### =========================
+output HDMI-A-1 scale 1.5
+
+### ===============================================================================================
+### BASIC KEYBINDINGS
+### ===============================================================================================
 
 # terminal
-bindsym $mod+Return exec footclient
+bindsym $mod+Return exec foot
 
-# browser
-bindsym $mod+b exec firefox
+# launcher
+bindsym $mod+space exec fuzzel-actions
 
-# music
-bindsym $mod+m exec flatpak run com.plexamp.Plexamp
+# power menu
+bindsym $mod+x exec fuzzel-pwrmenu
 
 # kill window
 bindsym $mod+q kill
@@ -106,9 +104,15 @@ bindsym $mod+f fullscreen toggle
 # floating toggle
 bindsym $mod+Shift+f floating toggle
 
-### =========================
+# reload sway
+bindsym $mod+Shift+c reload
+
+# lock screen
+bindsym $mod+Shift+x exec swaylock -f -c 0e1018
+
+### ===============================================================================================
 ### MOUSE/TRACKPAD
-### =========================
+### ===============================================================================================
 
 input type:touchpad {
     natural_scroll enabled
@@ -118,9 +122,9 @@ input type:touchpad {
 
 focus_follows_mouse no
 
-### =========================
+### ===============================================================================================
 ### WORKSPACES (your original style preserved)
-### =========================
+### ===============================================================================================
 
 set $ws1 "1"
 set $ws2 "2"
@@ -144,23 +148,23 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+1 move container to workspace $ws1, workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2, workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3, workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4, workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5, workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6, workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7, workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8, workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10, workspace $ws10
 
 # back and forth
 bindsym $mod+p workspace back_and_forth
 
-### =========================
+### ===============================================================================================
 ### WINDOWS
-### =========================
+### ===============================================================================================
 
 default_border pixel 1
 default_floating_border pixel 1
@@ -169,71 +173,71 @@ smart_borders on
 client.focused          #80c8e0 #0e1018 #c8d0e0 #80c8e0 #80c8e0
 client.unfocused        #0e1018 #0e1018 #9aa4b8 #364050 #0e1018
 
+
 for_window [app_id="waybar-tool"] {
     floating enable
     resize set 1100 650
     move position center
 }
+# assign some applications to specific workspaces
+assign [app_id="^firefox-esr$"] 1
+assign [app_id="Slack$"] 2
+assign [app_id="^foot$"] 3
+assign [app_id="^plexamp$"] 4
 
-### =========================
-### LAYOUT CONTROL (same mental model as i3)
-### =========================
+# start up specific applications (done this way to make sure environment is ready)
+exec firefox-esr
+exec flatpak run com.slack.Slack
+exec foot
+exec flatpak run com.plexamp.Plexamp
+exec swaymsg workspace 1
 
-bindsym $mod+s layout stacking
+# floating windows
+for_window [app_id="btop"] floating enable, resize set 1400 900, move position center, border pixel 1
+for_window [app_id="ncdu"] floating enable, resize set 1400 900, move position center, border pixel 1
+for_window [app_id="pulsemixer"] floating enable, resize set 1400 900, move position center, border pixel 1
+for_window [app_id="blueman-manager"] floating enable
+
+### ===============================================================================================
+### LAYOUT CONTROL
+### ===============================================================================================
+
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-### =========================
-### SCRATCHPAD (modernized)
-### =========================
+### ===============================================================================================
+### SCRATCHPAD
+### ===============================================================================================
 
+# style it
 for_window [app_id="term_scratch"] {
-    move to scratchpad
     floating enable
     sticky enable
+    resize set 1400 900
+    move to scratchpad
+    border pixel 1
     focus
 }
 
 # create if missing
-bindsym $mod+Shift+grave exec footclient --app-id=term_scratch
+bindsym $mod+Shift+grave exec foot --app-id=term_scratch
 
 # show/hide if exists
-bindsym $mod+grave [app_id="term_scratch"] scratchpad show, resize set 1400 900, move position center
+bindsym $mod+grave [app_id="term_scratch"] scratchpad show
 
-### =========================
-### RELOAD / EXIT
-### =========================
-
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "swaynag -t warning -m 'Exit Sway?' -b 'Yes' 'swaymsg exit'"
-
-### =========================
-### SCREENSHOT (minimal but usable)
-### =========================
+### ===============================================================================================
+### SCREENSHOT
+### ===============================================================================================
 
 bindsym $mod+Shift+minus exec screenshot
 bindsym $mod+Shift+equal exec screenshot-region
 bindsym $mod+Shift+bracketleft exec screenrecord
 bindsym $mod+Shift+bracketright exec pkill -INT wf-recorder
 
-### =========================
-### AUDIO (PipeWire modern replacement)
-### =========================
+### ===============================================================================================
+### AUDIO
+### ===============================================================================================
 
 bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
 bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
 bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-
-### =========================
-### LOCK SCREEN (basic)
-### =========================
-
-bindsym $mod+Shift+x exec swaylock -f -c 0e1018
-
-### =========================
-### FLOATING RULES (optional starter)
-### =========================
-
-for_window [app_id="pavucontrol"] floating enable
-for_window [app_id="blueman-manager"] floating enable

@@ -1,0 +1,3 @@
+if pgrep -x wf-recorder >/dev/null; then
+  echo "● REC"
+fi

@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+choices=$(cat <<EOF
+1 - Firefox
+2 - Slack
+3 - Plexamp
+4 - Bluetooth
+5 - Network
+EOF
+)
+
+selection=$(printf "%s\n" "$choices" | fuzzel --dmenu -l 5 -p "Launch: ")
+
+case "$selection" in
+"1 - Firefox")
+firefox-esr &
+;;
+
+"2 - Slack")
+flatpak run com.slack.Slack &
+;;
+
+"3 - Plexamp")
+flatpak run com.plexamp.Plexamp &
+;;
+
+"4 - Bluetooth")
+blueman-manager &
+;;
+
+"5 - Network")
+nmtui &
+;;
+esac

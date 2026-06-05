@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-title="$1"
-shift
-
-footclient --app-id=waybar-tool --title="$title" "$@"

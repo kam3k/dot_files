@@ -54,9 +54,7 @@ fi
 # =========================================================
 echo "==> Installing fonts"
 
-sudo apt install -y \
-  fonts-noto \
-  fonts-dejavu
+sudo apt install -y fonts-roboto
 
 fonts="$HOME/.local/share/fonts"
 mkdir -p "$fonts"
@@ -148,6 +146,7 @@ sudo apt install -y \
   wireplumber \
   pavucontrol \
   waybar \
+  fuzzel \
   xdg-desktop-portal \
   xdg-desktop-portal-wlr \
   xdg-desktop-portal-gtk \
@@ -162,6 +161,7 @@ echo "==> Installing desktop apps"
 
 sudo apt install -y \
   firefox-esr \
+  meld \
   network-manager \
   network-manager-gnome \
   nm-connection-editor \
