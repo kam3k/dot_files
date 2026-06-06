@@ -204,8 +204,9 @@ exec swaymsg workspace 1
 # floating windows
 for_window [app_id="btop"] floating enable, resize set 1400 900, move position center, border pixel 1
 for_window [app_id="ncdu"] floating enable, resize set 1400 900, move position center, border pixel 1
-for_window [app_id="pulsemixer"] floating enable, resize set 1400 900, move position center, border pixel 1
-for_window [app_id="blueman-manager"] floating enable
+for_window [app_id="pavucontrol"] floating enable, move position center, border pixel 1
+for_window [app_id="blueman-manager"] floating enable, move position center, border pixel 1
+for_window [app_id="gsimplecal"] floating enable, move position center, border pixel 1
 
 ### ===============================================================================================
 ### LAYOUT CONTROL

@@ -22,8 +22,8 @@
   },
 
   "clock": {
-    "format": "{:%a, %b %d %H:%M}",
-    "tooltip-format": "{:%A, %d %B %Y}",
+    "format": "{:%H:%M}",
+    "tooltip-format": "{:%A, %B %d, %Y}",
     "on-click": "gsimplecal"
   },
 
@@ -59,7 +59,7 @@
   "pulseaudio": {
     "format": "   {volume}%",
     "format-muted": "  muted",
-    "on-click": "foot --app-id=pulsemixer pulsemixer",
+    "on-click": "pavucontrol",
     "scroll-step": 5
   },
 
@@ -85,10 +85,9 @@
   },
 
   "custom/media": {
-    "exec": "playerctl metadata --format '{{artist}} - {{title}}'",
+    "exec": "~/.local/bin/media-status",
     "interval": 2,
     "max-length": 40,
-    "format": "󰎈  {}",
     "on-click": "playerctl play-pause"
   }
 }

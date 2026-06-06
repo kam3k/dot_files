@@ -175,8 +175,7 @@ sudo apt install -y \
   mpv \
   xdg-utils \
   swappy \
-  orchis-gtk-theme \
-  pulsemixer
+  orchis-gtk-theme
 
 # =========================================================
 # 5.1 DIRECTORIES
