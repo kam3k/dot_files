@@ -225,7 +225,6 @@ for_window [app_id="term_scratch"] {
     resize set 1400 900
     move to scratchpad
     border pixel 1
-    focus
 }
 
 # create if missing
@@ -233,6 +232,24 @@ bindsym $mod+Shift+grave exec foot --app-id=term_scratch
 
 # show/hide if exists
 bindsym $mod+grave [app_id="term_scratch"] scratchpad show
+
+### ===============================================================================================
+### TODO
+### ===============================================================================================
+
+for_window [app_id="todo_scratch"] {
+    floating enable
+    sticky enable
+    move position center
+    move to scratchpad
+    border pixel 1
+}
+
+# create if missing
+bindsym $mod+Shift+t exec foot --app-id=todo_scratch nvim ~/.todo.txt
+
+# show/hide if exists
+bindsym $mod+t [app_id="todo_scratch"] scratchpad show, resize set 1400 900, move position center
 
 ### ===============================================================================================
 ### SCREENSHOT
