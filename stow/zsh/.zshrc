@@ -36,14 +36,13 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#707880"
 alias ls='ls --color=auto'
 alias ta='tmux a -t'
 alias now='watch -x -t -n 0.01 date +%s.%N' 
-alias o=xdg-open
+alias o='xdg-open'
 alias cdg='cd "$(git rev-parse --show-cdup)"'
-alias cds='cd "$(git rev-parse --show-superproject-working-tree)"'
 alias fd='fdfind'
 alias lt='ls -alhrt'
 alias vim='nvim'
 alias htop='btop'
-alias swp='swappy-edit'
+alias img='swappy-edit'
 alias td='vim ~/.todo.txt'
 
 # Set up fzf
