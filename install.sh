@@ -135,7 +135,6 @@ sudo apt install -y \
   xwayland \
   swayidle \
   gtklock \
-  imagemagick \
   wl-clipboard \
   grim \
   mako-notifier \
@@ -176,10 +175,11 @@ sudo apt install -y \
   mpv \
   xdg-utils \
   swappy \
+  orchis-gtk-theme \
   pulsemixer
 
 # =========================================================
-# 5. DIRECTORIES
+# 5.1 DIRECTORIES
 # =========================================================
 echo "==> Creating home directories"
 
@@ -188,7 +188,12 @@ mkdir -p "$HOME/pictures/screenshots"
 mkdir -p "$HOME/videos/screen-recordings"
 
 # =========================================================
-# 5.1 SYSTEM SERVICES (ENABLE CORE DESKTOP BACKENDS)
+# 5.2 THEME
+# =========================================================
+gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark"
+
+# =========================================================
+# 5.3 SYSTEM SERVICES (ENABLE CORE DESKTOP BACKENDS)
 # =========================================================
 
 echo "==> Enabling system services"

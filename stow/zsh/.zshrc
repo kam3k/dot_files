@@ -44,6 +44,7 @@ alias lt='ls -alhrt'
 alias vim='nvim'
 alias htop='btop'
 alias swp='swappy-edit'
+alias td='vim ~/.todo.txt'
 
 # Set up fzf
 source /usr/share/doc/fzf/examples/key-bindings.zsh

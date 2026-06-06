@@ -37,7 +37,7 @@ seat seat0 hide_cursor 3000
 ### DESKTOP AUTOSTART SERVICES
 ### ===============================================================================================
 
-# core desktop services (Wayland session)
+# core desktop services (wayland session)
 exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 # usb automount
@@ -48,10 +48,10 @@ exec mako
 
 # lock (automatic, also turn screen off after a while)
 exec swayidle -w \
-  timeout 600 'exec ~/.local/bin/lock-blur' \
+  timeout 600 'exec gtklock -b 0e1018' \
   timeout 1200 'swaymsg "output * dpms off"' \
   resume 'swaymsg "output * dpms on"' \
-  before-sleep 'exec ~/.local/bin/lock-blur'
+  before-sleep 'exec gtklock -b 0e1018'
 
 # waybar
 exec_always sh -c 'pkill -x waybar || true; sleep 0.2; waybar'
@@ -104,11 +104,26 @@ bindsym $mod+f fullscreen toggle
 # floating toggle
 bindsym $mod+Shift+f floating toggle
 
+# open next split vertical or horizontal
+bindsym $mod+backslash splith
+bindsym $mod+minus splitv
+
 # reload sway
 bindsym $mod+Shift+c reload
 
 # lock screen
-bindsym $mod+Shift+x exec lock-blur
+bindsym $mod+Shift+x exec gtklock -b 0e1018
+
+# resize containers
+mode "resize" {
+    bindsym h resize grow width 10px
+    bindsym j resize shrink height 10px
+    bindsym k resize grow height 10px
+    bindsym l resize shrink width 10px
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
 
 ### ===============================================================================================
 ### MOUSE/TRACKPAD
