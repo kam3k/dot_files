@@ -256,6 +256,25 @@ bindsym $mod+Shift+t exec foot --app-id=todo_scratch nvim ~/.todo.txt
 bindsym $mod+t [app_id="todo_scratch"] scratchpad show, resize set 1400 900, move position center
 
 ### ===============================================================================================
+### NOTES
+### ===============================================================================================
+
+for_window [app_id="notes_scratch"] {
+    floating enable
+    sticky enable
+    move position center
+    move to scratchpad
+    border pixel 1
+}
+
+# create if missing
+bindsym $mod+Shift+n exec foot --app-id=notes_scratch --working-directory ~/.notes nvim -c Explore
+
+
+# show/hide if exists
+bindsym $mod+n [app_id="notes_scratch"] scratchpad show, resize set 1400 900, move position center
+
+### ===============================================================================================
 ### SCREENSHOT
 ### ===============================================================================================
 
