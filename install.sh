@@ -187,12 +187,25 @@ mkdir -p "$HOME/pictures/screenshots"
 mkdir -p "$HOME/videos/screen-recordings"
 
 # =========================================================
-# 5.2 THEME
+# 5.2 WALLPAPER
+# =========================================================
+
+WALLPAPER_DIR="$HOME/.config/wallpapers"
+WALLPAPER_URL="https://w.wallhaven.cc/full/yq/wallhaven-yqg6r7.jpg"
+
+mkdir -p "$WALLPAPER_DIR"
+
+if [ ! -f "$WALLPAPER_DIR/default.jpg" ]; then
+  curl -L "$WALLPAPER_URL" -o "$WALLPAPER_DIR/default.jpg"
+fi
+
+# =========================================================
+# 5.3 THEME
 # =========================================================
 gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark"
 
 # =========================================================
-# 5.3 SYSTEM SERVICES (ENABLE CORE DESKTOP BACKENDS)
+# 5.4 SYSTEM SERVICES (ENABLE CORE DESKTOP BACKENDS)
 # =========================================================
 
 echo "==> Enabling system services"
@@ -202,7 +215,7 @@ sudo systemctl enable NetworkManager
 sudo systemctl enable bluetooth || true
 
 # =========================================================
-# 5.2 FLATPAK + PLEXAMP
+# 5.5 FLATPAK + PLEXAMP
 # =========================================================
 echo "==> Installing Flatpak + Plexamp"
 
@@ -214,7 +227,9 @@ if ! flatpak remote-list | grep -q flathub; then
 fi
 
 # Install Plexamp (non-interactive)
-flatpak install -y flathub com.plexamp.Plexamp
+if ! flatpak info com.plexamp.Plexamp >/dev/null 2>&1; then
+  flatpak install -y flathub com.plexamp.Plexamp
+fi
 
 # =========================================================
 # 6. DOTFILES (STOW)

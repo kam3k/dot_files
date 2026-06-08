@@ -12,7 +12,8 @@
     "cpu",
     "memory",
     "disk",
-    "battery"
+    "battery",
+    "tray"
   ],
 
   "sway/workspaces": {
@@ -89,5 +90,10 @@
     "interval": 2,
     "max-length": 40,
     "on-click": "playerctl play-pause"
+  },
+
+  "tray": {
+    "icon-size": 20,
+    "spacing": 8
   }
 }

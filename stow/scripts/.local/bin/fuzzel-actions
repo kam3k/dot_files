@@ -5,7 +5,6 @@ choices=$(cat <<EOF
 2 - Slack
 3 - Plexamp
 4 - Bluetooth
-5 - Network
 EOF
 )
 
@@ -26,9 +25,5 @@ flatpak run com.plexamp.Plexamp &
 
 "4 - Bluetooth")
 blueman-manager &
-;;
-
-"5 - Network")
-nmtui &
 ;;
 esac
