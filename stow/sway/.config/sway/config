@@ -243,7 +243,7 @@ for_window [app_id="scratch_todo"] {
     move to scratchpad
     border pixel 1
 }
-bindsym $mod+Shift+t exec foot --app-id=scratch_todo -W 160x40 nvim ~/.todo.txt
+bindsym $mod+Shift+t exec foot --app-id=scratch_todo -W 160x40 nvim -c "set wrap" -c "set linebreak" ~/.todo.txt
 bindsym $mod+t [app_id="scratch_todo"] scratchpad show
 
 # notes
@@ -253,7 +253,7 @@ for_window [app_id="scratch_notes"] {
     move to scratchpad
     border pixel 1
 }
-bindsym $mod+Shift+n exec foot --app-id=scratch_notes -W 160x40 --working-directory ~/.notes nvim -c Explore
+bindsym $mod+Shift+n exec foot --app-id=scratch_notes -W 160x40 --working-directory ~/.notes nvim -c "set wrap" -c "set linebreak" -c Explore
 bindsym $mod+n [app_id="scratch_notes"] scratchpad show
 
 ### ===============================================================================================
