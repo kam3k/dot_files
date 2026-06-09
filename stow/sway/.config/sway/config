@@ -193,14 +193,12 @@ client.unfocused        #0e1018 #0e1018 #9aa4b8 #364050 #0e1018
 
 # assign some applications to specific workspaces
 assign [app_id="^firefox-esr$"] 1
-assign [app_id="^foot$"] 2
-assign [app_id="^plexamp$"] 3
-assign [app_id="Slack$"] 4
+assign [app_id="Slack$"] 3
 
 # start up specific applications (done this way to make sure environment is ready)
 exec firefox-esr
+exec workspace 2
 exec foot
-exec sh -c 'flatpak info com.plexamp.Plexamp >/dev/null 2>&1 && flatpak run com.plexamp.Plexamp'
 exec sh -c 'flatpak info com.slack.Slack >/dev/null 2>&1 && flatpak run com.slack.Slack'
 exec swaymsg workspace 1
 
@@ -219,60 +217,47 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 ### ===============================================================================================
-### SCRATCHPAD
+### SCRATCHPADS
 ### ===============================================================================================
 
-# style it
+# terminal
 for_window [app_id="term_scratch"] {
     floating enable
-    sticky enable
     move position center
     move to scratchpad
     border pixel 1
 }
-
-# create if missing
 bindsym $mod+Shift+grave exec foot --app-id=term_scratch
-
-# show/hide if exists
 bindsym $mod+grave [app_id="term_scratch"] scratchpad show, resize set 1400 900, border pixel 1
 
-### ===============================================================================================
-### TODO
-### ===============================================================================================
-
+# todo list
 for_window [app_id="todo_scratch"] {
     floating enable
-    sticky enable
     move position center
     move to scratchpad
     border pixel 1
 }
-
-# create if missing
 bindsym $mod+Shift+t exec foot --app-id=todo_scratch nvim ~/.todo.txt
-
-# show/hide if exists
 bindsym $mod+t [app_id="todo_scratch"] scratchpad show, resize set 1400 900, move position center
 
-### ===============================================================================================
-### NOTES
-### ===============================================================================================
-
+# notes
 for_window [app_id="notes_scratch"] {
     floating enable
-    sticky enable
     move position center
     move to scratchpad
     border pixel 1
 }
-
-# create if missing
 bindsym $mod+Shift+n exec foot --app-id=notes_scratch --working-directory ~/.notes nvim -c Explore
-
-
-# show/hide if exists
 bindsym $mod+n [app_id="notes_scratch"] scratchpad show, resize set 1400 900, move position center
+
+# music
+for_window [app_id="plexamp"] {
+    floating enable
+    move position center
+    move to scratchpad
+}
+bindsym $mod+Shift+m exec sh -c 'flatpak info com.plexamp.Plexamp >/dev/null 2>&1 && flatpak run com.plexamp.Plexamp'
+bindsym $mod+m [app_id="plexamp"] scratchpad show, resize set 500 800, move position center
 
 ### ===============================================================================================
 ### SCREENSHOT
