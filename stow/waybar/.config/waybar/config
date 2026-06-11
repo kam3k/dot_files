@@ -101,7 +101,7 @@
     "exec": "~/.local/bin/media-status",
     "interval": 2,
     "max-length": 40,
-    "on-click": "playerctl play-pause"
+    "on-click": "playerctl -p Plexamp play-pause"
   },
 
   "tray": {

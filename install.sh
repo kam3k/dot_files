@@ -2,17 +2,54 @@
 set -euo pipefail
 
 echo "======================================"
-echo " Debian Sway Bootstrap Installer"
+echo " Debian sway installer/updater"
 echo "======================================"
 
-sudo apt update
+# Create temp dir
+tmpdir=$(mktemp -d)
+trap 'rm -rf "$tmpdir"' EXIT
+
+# Record when apt was last updated so we don't keep checking if this
+# script is run multiple times a day for updates
+APT_STAMP="/tmp/apt-update-$(date +%Y%m%d)"
+
+# Only attempt to install missing packages
+ensure_packages() {
+    local missing=()
+
+    for pkg in "$@"; do
+        dpkg -s "$pkg" >/dev/null 2>&1 || missing+=("$pkg")
+    done
+
+    if (( ${#missing[@]} )); then
+        sudo apt install -y "${missing[@]}"
+    fi
+}
+
+# Only attempt to install missing flatpak messages
+install_flatpak() {
+    local app="$1"
+
+    if ! flatpak info "$app" >/dev/null 2>&1; then
+        flatpak install -y flathub "$app"
+    fi
+}
+
+# Only update fonts when they have changed
+fonts_changed=false
+
+# Only update apt when it needs to be updated
+if [[ ! -f "$APT_STAMP" ]]; then
+    sudo apt update
+    touch "$APT_STAMP"
+fi
 
 # =========================================================
 # 1. BASE SYSTEM
 # =========================================================
 echo "==> Installing base system tools"
 
-sudo apt install -y \
+ensure_packages \
   zsh \
   git \
   curl \
@@ -54,8 +91,6 @@ fi
 # =========================================================
 echo "==> Installing fonts"
 
-sudo apt install -y fonts-roboto
-
 fonts="$HOME/.local/share/fonts"
 mkdir -p "$fonts"
 
@@ -63,27 +98,29 @@ mkdir -p "$fonts"
 if ls "$fonts"/Iosevka* >/dev/null 2>&1; then
   echo "==> Iosevka already installed, skipping"
 else
-  tmp="/tmp/iosevka.zip"
+  tmp="$tmpdir/iosevka.zip"
   curl -fLo "$tmp" \
     https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IosevkaTerm.zip
-  unzip -o "$tmp" -d /tmp/iosevka-fonts
-  cp /tmp/iosevka-fonts/*.ttf "$fonts/" || true
-  rm -rf /tmp/iosevka-fonts "$tmp"
+  unzip -o "$tmp" -d "$tmpdir/iosevka-fonts"
+  cp "$tmpdir"/iosevka-fonts/*.ttf "$fonts/"
+  fonts_changed=true
 fi
 
 # Jetbrains Mono
 if ls "$fonts"/JetBrains* >/dev/null 2>&1; then
   echo "==> Jetbrains Mono already installed, skipping"
 else
-  tmp="/tmp/jetbrains.zip"
+  tmp="$tmpdir/jetbrains.zip"
   curl -fLo "$tmp" \
     https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
-  unzip -o "$tmp" -d /tmp/jetbrains-fonts
-  cp /tmp/jetbrains-fonts/*.ttf "$fonts/" || true
-  rm -rf /tmp/jetbrains-fonts "$tmp"
+  unzip -o "$tmp" -d "$tmpdir/jetbrains-fonts"
+  cp "$tmpdir"/jetbrains-fonts/*.ttf "$fonts/"
+  fonts_changed=true
 fi
 
-fc-cache -f
+if $fonts_changed; then
+    fc-cache -f
+fi
 
 # =========================================================
 # 3. NEOVIM
@@ -95,7 +132,7 @@ if command -v nvim >/dev/null 2>&1; then
 else
   echo "==> Building Neovim"
 
-  sudo apt install -y \
+  ensure_packages \
     ninja-build \
     gettext \
     libtool \
@@ -109,11 +146,11 @@ else
     curl \
     git
 
-  rm -rf /tmp/neovim
+  git clone --depth 1 --branch stable \
+    https://github.com/neovim/neovim \
+    "$tmpdir/neovim"
 
-  git clone --depth 1 --branch stable https://github.com/neovim/neovim /tmp/neovim
-
-  cd /tmp/neovim
+  cd "$tmpdir/neovim"
 
   make CMAKE_BUILD_TYPE=RelWithDebInfo \
        CMAKE_INSTALL_PREFIX="$HOME/.local"
@@ -129,7 +166,9 @@ fi
 echo "==> Bootstrapping Neovim plugins (lazy.nvim)"
 
 if command -v nvim >/dev/null 2>&1; then
-  nvim --headless "+Lazy! sync" +qa || true
+  if [[ "${SYNC_NVIM_PLUGINS:-0}" == "1" ]]; then
+    nvim --headless "+Lazy! sync" +qa || true
+  fi
 else
   echo "==> nvim not found, skipping plugin sync"
 fi
@@ -139,7 +178,7 @@ fi
 # =========================================================
 echo "==> Installing Wayland + Sway"
 
-sudo apt install -y \
+ensure_packages \
   sway \
   xwayland \
   swayidle \
@@ -168,7 +207,7 @@ sudo apt install -y \
 # =========================================================
 echo "==> Installing desktop apps"
 
-sudo apt install -y \
+ensure_packages \
   firefox-esr \
   meld \
   network-manager \
@@ -211,7 +250,10 @@ fi
 # =========================================================
 # 5.3 THEME
 # =========================================================
-gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark"
+current_theme=$(gsettings get org.gnome.desktop.interface gtk-theme)
+if [[ "$current_theme" != "'Orchis-Dark'" ]]; then
+    gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark"
+fi
 
 # =========================================================
 # 5.4 SYSTEM SERVICES (ENABLE CORE DESKTOP BACKENDS)
@@ -228,7 +270,7 @@ sudo systemctl enable bluetooth || true
 # =========================================================
 echo "==> Installing Flatpak + Plexamp"
 
-sudo apt install -y flatpak
+ensure_packages flatpak
 
 # Add Flathub (safe to run multiple times)
 if ! flatpak remote-list | grep -q flathub; then
@@ -236,9 +278,7 @@ if ! flatpak remote-list | grep -q flathub; then
 fi
 
 # Install Plexamp (non-interactive)
-if ! flatpak info com.plexamp.Plexamp >/dev/null 2>&1; then
-  flatpak install -y flathub com.plexamp.Plexamp
-fi
+install_flatpak com.plexamp.Plexamp
 
 # =========================================================
 # 6. DOTFILES (STOW)
@@ -263,9 +303,10 @@ echo "==> Installing Starship"
 
 mkdir -p "$HOME/.local/bin"
 
-curl -sS https://starship.rs/install.sh > /tmp/starship_install.sh
-
-sh /tmp/starship_install.sh -y -b "$HOME/.local/bin"
+if [[ ! -x "$HOME/.local/bin/starship" ]]; then
+    curl -sS https://starship.rs/install.sh > "$tmpdir/starship_install.sh"
+    sh "$tmpdir/starship_install.sh" -y -b "$HOME/.local/bin"
+fi
 
 # =========================================================
 # 8. TMUX PLUGIN MANAGER (TPM) + INSTALL PLUGINS
@@ -280,18 +321,16 @@ fi
 
 echo "==> Installing tmux plugins"
 
-# Start a headless tmux session so TPM can install plugins
-tmux start-server
-tmux new-session -d
-
-"$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"
-
-tmux kill-server
+if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
+    tmux start-server
+    tmux new-session -d
+    "$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"
+    tmux kill-server
+fi
 
 # =========================================================
 # DONE
 # =========================================================
 echo "======================================"
-echo " Install complete"
-echo " Next step: reboot → sway"
+echo " Install/update complete"
 echo "======================================"
