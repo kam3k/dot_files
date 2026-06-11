@@ -3,7 +3,6 @@
 ### ===============================================================================================
 
 set $mod Mod4
-font pango:Iosevka Term 12
 
 set $XDG_CURRENT_DESKTOP sway
 set $XDG_SESSION_TYPE wayland

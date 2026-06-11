@@ -19,7 +19,19 @@
   "sway/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
-    "format": "{name}"
+    "format": "{icon}",
+    "format-icons": {
+      "1": "web",
+      "2": "term",
+      "3": "music",
+      "4": "chat",
+      "5": "five",
+      "6": "six",
+      "7": "seven",
+      "8": "eight",
+      "9": "nine",
+      "10": "ten"
+    }
   },
 
   "clock": {
@@ -36,7 +48,7 @@
   },
 
   "cpu": {
-    "format": "󰻠  {usage}%",
+    "format": "󰻠 {usage}%",
     "interval": 2,
     "tooltip": true,
     "on-click": "foot --app-id=btop btop",
@@ -47,7 +59,7 @@
   },
 
   "memory": {
-    "format": "󰍛  {percentage}%",
+    "format": "󰍛 {percentage}%",
     "interval": 2,
     "tooltip": true,
     "on-click": "foot --app-id=btop btop",
@@ -58,15 +70,15 @@
   },
 
   "pulseaudio": {
-    "format": "   {volume}%",
-    "format-muted": "  muted",
+    "format": "  {volume}%",
+    "format-muted": " muted",
     "on-click": "pavucontrol",
     "scroll-step": 5
   },
 
   "disk": {
     "interval": 30,
-    "format": "󰋊  {percentage_used}%",
+    "format": "󰋊 {percentage_used}%",
     "path": "/",
     "tooltip-format": "Root: {used} used of {total} ({percentage_used}%)",
     "on-click": "foot --app-id=ncdu ncdu ~",
@@ -77,8 +89,8 @@
   },
 
   "battery": {
-    "format": "   {capacity}%",
-    "format-charging": "  {capacity}%",
+    "format": "  {capacity}%",
+    "format-charging": " {capacity}%",
     "states": {
       "warning": 30,
       "critical": 15

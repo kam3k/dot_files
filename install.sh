@@ -59,19 +59,28 @@ sudo apt install -y fonts-roboto
 fonts="$HOME/.local/share/fonts"
 mkdir -p "$fonts"
 
+# Iosevka
 if ls "$fonts"/Iosevka* >/dev/null 2>&1; then
   echo "==> Iosevka already installed, skipping"
 else
   tmp="/tmp/iosevka.zip"
-
   curl -fLo "$tmp" \
     https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IosevkaTerm.zip
-
   unzip -o "$tmp" -d /tmp/iosevka-fonts
-
   cp /tmp/iosevka-fonts/*.ttf "$fonts/" || true
-
   rm -rf /tmp/iosevka-fonts "$tmp"
+fi
+
+# Jetbrains Mono
+if ls "$fonts"/JetBrains* >/dev/null 2>&1; then
+  echo "==> Jetbrains Mono already installed, skipping"
+else
+  tmp="/tmp/jetbrains.zip"
+  curl -fLo "$tmp" \
+    https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+  unzip -o "$tmp" -d /tmp/jetbrains-fonts
+  cp /tmp/jetbrains-fonts/*.ttf "$fonts/" || true
+  rm -rf /tmp/jetbrains-fonts "$tmp"
 fi
 
 fc-cache -f
