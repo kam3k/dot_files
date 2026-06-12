@@ -222,8 +222,7 @@ ensure_packages \
   gvfs-backends \
   mpv \
   xdg-utils \
-  swappy \
-  orchis-gtk-theme
+  swappy
 
 # =========================================================
 # 5.1 DIRECTORIES
@@ -248,15 +247,7 @@ if [ ! -f "$WALLPAPER_DIR/default.jpg" ]; then
 fi
 
 # =========================================================
-# 5.3 THEME
-# =========================================================
-current_theme=$(gsettings get org.gnome.desktop.interface gtk-theme)
-if [[ "$current_theme" != "'Orchis-Dark'" ]]; then
-    gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark"
-fi
-
-# =========================================================
-# 5.4 SYSTEM SERVICES (ENABLE CORE DESKTOP BACKENDS)
+# 5.3 SYSTEM SERVICES (ENABLE CORE DESKTOP BACKENDS)
 # =========================================================
 
 echo "==> Enabling system services"
@@ -266,7 +257,7 @@ sudo systemctl enable NetworkManager
 sudo systemctl enable bluetooth || true
 
 # =========================================================
-# 5.5 FLATPAK + PLEXAMP
+# 5.4 FLATPAK + PLEXAMP
 # =========================================================
 echo "==> Installing Flatpak + Plexamp"
 

@@ -39,8 +39,11 @@ window#waybar {
 }
 
 #workspaces button:hover {
-  background: #1e2430;
-  color: #c8d0e0;
+  box-shadow: none; /* remove predefined box-shadow */
+  text-shadow: none; /* remove predefined text-shadow */
+  background: none; /* remove predefined background color (white) */
+  transition: none; /* disable predefined animations */
+  border-color: transparent;
 }
 
 /* visible (multi-monitor edge case) */
