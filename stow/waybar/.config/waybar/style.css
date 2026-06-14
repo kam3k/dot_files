@@ -41,9 +41,10 @@ window#waybar {
 #workspaces button:hover {
   box-shadow: none; /* remove predefined box-shadow */
   text-shadow: none; /* remove predefined text-shadow */
-  background: none; /* remove predefined background color (white) */
+  background: @bg_selection;
   transition: none; /* disable predefined animations */
   border-color: transparent;
+  border-radius: 0px;
 }
 
 /* visible (multi-monitor edge case) */
