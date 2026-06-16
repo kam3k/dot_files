@@ -2,7 +2,7 @@
 set -euo pipefail
 
 echo "======================================"
-echo " Debian sway installer/updater"
+echo " Pop!_OS setup"
 echo "======================================"
 
 # Create temp dir
@@ -26,15 +26,6 @@ ensure_packages() {
     fi
 }
 
-# Only attempt to install missing flatpak messages
-install_flatpak() {
-    local app="$1"
-
-    if ! flatpak info "$app" >/dev/null 2>&1; then
-        flatpak install -y flathub "$app"
-    fi
-}
-
 # Only update fonts when they have changed
 fonts_changed=false
 
@@ -45,7 +36,7 @@ if [[ ! -f "$APT_STAMP" ]]; then
 fi
 
 # =========================================================
-# 1. BASE SYSTEM
+# BASE SYSTEM
 # =========================================================
 echo "==> Installing base system tools"
 
@@ -72,11 +63,11 @@ ensure_packages \
   tmux \
   python3 \
   python3-pip \
-  libxml2-utils \
-  foot
+  meld \
+  libxml2-utils
 
 # =========================================================
-# 1.1 DEFAULT SHELL (ZSH)
+# DEFAULT SHELL (ZSH)
 # =========================================================
 echo "==> Setting default shell to zsh"
 
@@ -87,7 +78,7 @@ if command -v zsh >/dev/null 2>&1; then
 fi
 
 # =========================================================
-# 2. FONTS
+# FONTS
 # =========================================================
 echo "==> Installing fonts"
 
@@ -106,24 +97,12 @@ else
   fonts_changed=true
 fi
 
-# Jetbrains Mono
-if ls "$fonts"/JetBrains* >/dev/null 2>&1; then
-  echo "==> Jetbrains Mono already installed, skipping"
-else
-  tmp="$tmpdir/jetbrains.zip"
-  curl -fLo "$tmp" \
-    https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
-  unzip -o "$tmp" -d "$tmpdir/jetbrains-fonts"
-  cp "$tmpdir"/jetbrains-fonts/*.ttf "$fonts/"
-  fonts_changed=true
-fi
-
 if $fonts_changed; then
     fc-cache -f
 fi
 
 # =========================================================
-# 3. NEOVIM
+# NEOVIM
 # =========================================================
 echo "==> Checking Neovim installation"
 
@@ -160,11 +139,7 @@ else
   cd -
 fi
 
-# =========================================================
-# 3.1 NEOVIM PLUGIN BOOTSTRAP (lazy.nvim)
-# =========================================================
 echo "==> Bootstrapping Neovim plugins (lazy.nvim)"
-
 if command -v nvim >/dev/null 2>&1; then
   if [[ "${SYNC_NVIM_PLUGINS:-0}" == "1" ]]; then
     nvim --headless "+Lazy! sync" +qa || true
@@ -174,105 +149,7 @@ else
 fi
 
 # =========================================================
-# 4. WAYLAND + SWAY CORE
-# =========================================================
-echo "==> Installing Wayland + Sway"
-
-ensure_packages \
-  sway \
-  xwayland \
-  swayidle \
-  gtklock \
-  wl-clipboard \
-  grim \
-  mako-notifier \
-  slurp \
-  wf-recorder \
-  brightnessctl \
-  playerctl \
-  pipewire \
-  wireplumber \
-  pavucontrol \
-  waybar \
-  fuzzel \
-  xdg-desktop-portal \
-  xdg-desktop-portal-wlr \
-  xdg-desktop-portal-gtk \
-  dbus-user-session \
-  libnotify-bin \
-  xdg-user-dirs
-
-# =========================================================
-# 5. DESKTOP LAYER
-# =========================================================
-echo "==> Installing desktop apps"
-
-ensure_packages \
-  firefox-esr \
-  meld \
-  network-manager \
-  network-manager-gnome \
-  nm-connection-editor \
-  blueman \
-  pavucontrol \
-  gsimplecal \
-  playerctl \
-  udiskie \
-  gvfs \
-  gvfs-backends \
-  mpv \
-  xdg-utils \
-  swappy
-
-# =========================================================
-# 5.1 DIRECTORIES
-# =========================================================
-echo "==> Creating home directories"
-
-mkdir -p "$HOME/downloads"
-mkdir -p "$HOME/pictures/screenshots"
-mkdir -p "$HOME/videos/screen-recordings"
-
-# =========================================================
-# 5.2 WALLPAPER
-# =========================================================
-
-WALLPAPER_DIR="$HOME/.config/wallpapers"
-WALLPAPER_URL="https://w.wallhaven.cc/full/yq/wallhaven-yqg6r7.jpg"
-
-mkdir -p "$WALLPAPER_DIR"
-
-if [ ! -f "$WALLPAPER_DIR/default.jpg" ]; then
-  curl -L "$WALLPAPER_URL" -o "$WALLPAPER_DIR/default.jpg"
-fi
-
-# =========================================================
-# 5.3 SYSTEM SERVICES (ENABLE CORE DESKTOP BACKENDS)
-# =========================================================
-
-echo "==> Enabling system services"
-
-sudo systemctl enable NetworkManager
-
-sudo systemctl enable bluetooth || true
-
-# =========================================================
-# 5.4 FLATPAK + PLEXAMP
-# =========================================================
-echo "==> Installing Flatpak + Plexamp"
-
-ensure_packages flatpak
-
-# Add Flathub (safe to run multiple times)
-if ! flatpak remote-list | grep -q flathub; then
-  flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-fi
-
-# Install Plexamp (non-interactive)
-install_flatpak com.plexamp.Plexamp
-
-# =========================================================
-# 6. DOTFILES (STOW)
+# DOTFILES (STOW)
 # =========================================================
 echo "==> Stowing dotfiles"
 
@@ -288,7 +165,7 @@ done
 cd -
 
 # =========================================================
-# 7. STARSHIP (RESTORED FROM POST INSTALL SCRIPT)
+# STARSHIP
 # =========================================================
 echo "==> Installing Starship"
 
@@ -300,7 +177,7 @@ if [[ ! -x "$HOME/.local/bin/starship" ]]; then
 fi
 
 # =========================================================
-# 8. TMUX PLUGIN MANAGER (TPM) + INSTALL PLUGINS
+# TMUX PLUGIN MANAGER (TPM) + INSTALL PLUGINS
 # =========================================================
 echo "==> Installing tmux plugin manager (TPM)"
 
@@ -323,5 +200,5 @@ fi
 # DONE
 # =========================================================
 echo "======================================"
-echo " Install/update complete"
+echo " Setup complete"
 echo "======================================"

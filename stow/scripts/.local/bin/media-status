@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-status=$(playerctl -p Plexamp status 2>/dev/null)
-
-if [ "$status" = "Playing" ]; then
-    playerctl -p Plexamp metadata --format '{{artist}} - {{title}}'
-fi
