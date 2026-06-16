@@ -64,6 +64,7 @@ ensure_packages \
   python3 \
   python3-pip \
   meld \
+  foot \
   libxml2-utils
 
 # =========================================================
