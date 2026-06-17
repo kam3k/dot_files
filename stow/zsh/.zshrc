@@ -41,9 +41,6 @@ alias cdg='cd "$(git rev-parse --show-cdup)"'
 alias fd='fdfind'
 alias lt='ls -alhrt'
 alias vim='nvim'
-alias htop='btop'
-alias img='swappy-edit'
-alias td='vim ~/.todo.txt'
 
 # Set up fzf
 source /usr/share/doc/fzf/examples/key-bindings.zsh
@@ -56,7 +53,6 @@ bindkey '^x' edit-command-line
 
 # Add local to path
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
 # Make and change into a directory
 mkcd()

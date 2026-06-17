@@ -65,6 +65,7 @@ ensure_packages \
   python3-pip \
   meld \
   foot \
+  neovim \
   libxml2-utils
 
 # =========================================================
@@ -105,48 +106,12 @@ fi
 # =========================================================
 # NEOVIM
 # =========================================================
-echo "==> Checking Neovim installation"
+echo "==> Setting up neovim"
 
-if command -v nvim >/dev/null 2>&1; then
-  echo "==> Neovim already installed, skipping build"
-else
-  echo "==> Building Neovim"
-
-  ensure_packages \
-    ninja-build \
-    gettext \
-    libtool \
-    libtool-bin \
-    autoconf \
-    automake \
-    cmake \
-    g++ \
-    pkg-config \
-    unzip \
-    curl \
-    git
-
-  git clone --depth 1 --branch stable \
-    https://github.com/neovim/neovim \
-    "$tmpdir/neovim"
-
-  cd "$tmpdir/neovim"
-
-  make CMAKE_BUILD_TYPE=RelWithDebInfo \
-       CMAKE_INSTALL_PREFIX="$HOME/.local"
-
-  make install
-
-  cd -
-fi
-
-echo "==> Bootstrapping Neovim plugins (lazy.nvim)"
-if command -v nvim >/dev/null 2>&1; then
-  if [[ "${SYNC_NVIM_PLUGINS:-0}" == "1" ]]; then
-    nvim --headless "+Lazy! sync" +qa || true
-  fi
-else
-  echo "==> nvim not found, skipping plugin sync"
+mkdir -p ~/.local/share/nvim/site/pack/themes/start
+if [ ! -d ~/.local/share/nvim/site/pack/themes/start/sora ]; then
+    git clone https://github.com/Aejkatappaja/sora.git \
+        ~/.local/share/nvim/site/pack/themes/start/sora
 fi
 
 # =========================================================
