@@ -47,13 +47,13 @@ ensure_packages \
   stow \
   unzip \
   rsync \
-  btop \
+  htop \
   ncdu \
   tree \
   fontconfig \
   jq \
   fzf \
-  ripgrep \
+  silversearcher-ag \
   fd-find \
   build-essential \
   cmake \
@@ -64,7 +64,6 @@ ensure_packages \
   python3 \
   python3-pip \
   meld \
-  foot \
   neovim \
   libxml2-utils
 
