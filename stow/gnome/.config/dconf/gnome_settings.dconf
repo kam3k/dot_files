@@ -3,7 +3,7 @@ active-plugins=['movie-properties', 'autoload-subtitles', 'recent', 'variable-ra
 subtitle-encoding='UTF-8'
 
 [control-center]
-last-panel='display'
+last-panel='keyboard'
 window-state=(980, 640, false)
 
 [desktop/app-folders]
@@ -42,7 +42,7 @@ enable-animations=true
 show-battery-percentage=true
 
 [desktop/notifications]
-application-children=['firefox-esr', 'gnome-power-panel', 'slack', 'com-plexamp-plexamp', 'dev-zed-zed']
+application-children=['firefox-esr', 'gnome-power-panel', 'slack', 'com-plexamp-plexamp', 'dev-zed-zed', 'io-github-mrvladus-list']
 
 [desktop/notifications/application/com-plexamp-plexamp]
 application-id='com.plexamp.Plexamp.desktop'
@@ -55,6 +55,9 @@ application-id='firefox-esr.desktop'
 
 [desktop/notifications/application/gnome-power-panel]
 application-id='gnome-power-panel.desktop'
+
+[desktop/notifications/application/io-github-mrvladus-list]
+application-id='io.github.mrvladus.List.desktop'
 
 [desktop/notifications/application/slack]
 application-id='slack.desktop'
@@ -113,14 +116,14 @@ sleep-inactive-ac-timeout=3600
 
 [shell]
 disable-user-extensions=false
-enabled-extensions=['live-lockscreen@nick-redwill', 'randomwallpaper@iflow.space', 'Bluetooth-Battery-Meter@maniacx.github.com', 'caffeine@patapon.info', 'monitor@astraext.github.io', 'BingWallpaper@ineffable-gmail.com', 'status-tray@keithvassallo.com', 'unblank@sun.wxg@gmail.com', 'SmartAutoMoveNG@lauinger-clan.de', 'workspaces-by-open-apps@favo02.github.com', 'instantworkspaceswitcher@amalantony.net', 'just-perfection-desktop@just-perfection']
+enabled-extensions=['status-tray@keithvassallo.com', 'Bluetooth-Battery-Meter@maniacx.github.com', 'workspaces-by-open-apps@favo02.github.com', 'just-perfection-desktop@just-perfection', 'caffeine@patapon.info', 'BingWallpaper@ineffable-gmail.com', 'unblank@sun.wxg@gmail.com', 'SmartAutoMoveNG@lauinger-clan.de', 'instantworkspaceswitcher@amalantony.net', 'live-lockscreen@nick-redwill', 'randomwallpaper@iflow.space', 'monitor@astraext.github.io', 'advanced-media-controller@sanjai.com']
 favorite-apps=['firefox-esr.desktop', 'dev.zed.Zed.desktop', 'foot.desktop', 'com.plexamp.Plexamp.desktop', 'slack.desktop', 'chromium.desktop']
 last-selected-power-profile='performance'
 welcome-dialog-last-shown-version='48.7'
 
 [shell/extensions/Bluetooth-Battery-Meter]
 circle-widget-custom-colors=['#ff7800', '#ff7800', '#15c931', '#15c931', '#15c931', '#15c931', '#15c931', '#15c931', '#15c931', '#15c931']
-device-list=['{"path":"/org/bluez/hci0/dev_80_C3_BA_86_A4_2E","icon":"headphone1","alias":"MOMENTUM 4","paired":true,"battery-reported":true,"qs-level":true,"indicator-mode":2,"enhanced-device":null,"connected-time":1781881289,"disconnected-time":1781885820}']
+device-list=['{"path":"/org/bluez/hci0/dev_80_C3_BA_86_A4_2E","icon":"headphone1","alias":"MOMENTUM 4","paired":true,"battery-reported":true,"qs-level":true,"indicator-mode":2,"enhanced-device":null,"connected-time":1781889872,"disconnected-time":1781885820}']
 enable-battery-indicator-text=false
 enable-battery-level-icon=true
 enable-battery-level-text=true
@@ -136,7 +139,26 @@ swap-icon-text=false
 [shell/extensions/SmartAutoMoveNG]
 freeze-saves=false
 overrides='{}'
-saved-windows='{"plexamp":[{"id":3147708521,"hash":3147708521,"sequence":3,"title":"Plexamp","workspace":3,"maximized":0,"fullscreen":false,"above":false,"monitor":0,"on_all_workspaces":false,"x":859,"y":207,"width":843,"height":1056,"occupied":true}],"dev.zed.Zed":[{"id":3147708519,"hash":3147708519,"sequence":1,"title":"empty project","workspace":1,"maximized":3,"fullscreen":false,"above":false,"monitor":0,"on_all_workspaces":false,"x":0,"y":32,"width":2560,"height":1408,"occupied":true}],"slack":[{"id":3147708520,"hash":3147708520,"sequence":2,"title":"topic_train_filter (Channel) - Quanergy Solutions - Slack","workspace":4,"maximized":3,"fullscreen":false,"above":false,"monitor":0,"on_all_workspaces":false,"x":0,"y":32,"width":2560,"height":1408,"occupied":true}],"foot":[{"id":3147708523,"hash":3147708523,"sequence":5,"title":"foot","workspace":2,"maximized":3,"fullscreen":false,"above":false,"monitor":0,"on_all_workspaces":false,"x":0,"y":32,"width":2560,"height":1408,"occupied":true}],"firefox-esr":[{"id":3147708522,"hash":3147708522,"sequence":4,"title":"back up gnome shell, what does it save exactly - Google Search — Mozilla Firefox","workspace":0,"maximized":3,"fullscreen":false,"above":false,"monitor":0,"on_all_workspaces":false,"x":0,"y":32,"width":2560,"height":1408,"occupied":true}],"chrome-cmkncekebbebpfilplodngbpllndjkfo-Default":[{"id":3147708540,"hash":3147708540,"sequence":22,"title":"Chrome Remote Desktop - pe03.quanergy.com","workspace":5,"maximized":3,"fullscreen":false,"above":false,"monitor":0,"on_all_workspaces":false,"x":0,"y":32,"width":2560,"height":1408,"occupied":true}],"io.github.mrvladus.List":[{"id":3147708601,"hash":3147708601,"sequence":83,"title":"Errands","workspace":6,"maximized":0,"fullscreen":false,"above":false,"monitor":0,"on_all_workspaces":false,"x":749,"y":364,"width":1000,"height":700,"occupied":true}],"dconf-editor":[{"id":3147708596,"hash":3147708596,"sequence":78,"title":"dconf Editor","workspace":7,"maximized":3,"fullscreen":false,"above":false,"monitor":0,"on_all_workspaces":false,"x":0,"y":32,"width":2560,"height":1408,"occupied":true}],"org.gnome.Settings":[{"id":3147708600,"hash":3147708600,"sequence":82,"title":"Settings","workspace":6,"maximized":0,"fullscreen":false,"above":false,"monitor":0,"on_all_workspaces":false,"x":1063,"y":910,"width":980,"height":640,"occupied":false}],"org.gnome.tweaks":[{"id":3147708602,"hash":3147708602,"sequence":84,"title":"GNOME Tweaks","workspace":0,"maximized":0,"fullscreen":false,"above":false,"monitor":0,"on_all_workspaces":false,"x":790,"y":416,"width":980,"height":640,"occupied":false}]}'
+saved-windows='{"plexamp":[{"id":15825920,"hash":15825920,"sequence":7,"title":"Plexamp","workspace":3,"maximized":3,"fullscreen":false,"above":false,"monitor":0,"on_all_workspaces":false,"x":0,"y":32,"width":2560,"height":1408,"occupied":true}],"dev.zed.Zed":[{"id":15825915,"hash":15825915,"sequence":2,"title":"empty project","workspace":1,"maximized":3,"fullscreen":false,"above":false,"monitor":0,"on_all_workspaces":false,"x":0,"y":32,"width":2560,"height":1408,"occupied":true}],"slack":[{"id":15825918,"hash":15825918,"sequence":5,"title":"topic_train_filter (Channel) - Quanergy Solutions - Slack","workspace":4,"maximized":3,"fullscreen":false,"above":false,"monitor":0,"on_all_workspaces":false,"x":0,"y":32,"width":2560,"height":1408,"occupied":true}],"foot":[{"id":15825914,"hash":15825914,"sequence":1,"title":"foot","workspace":2,"maximized":3,"fullscreen":false,"above":false,"monitor":0,"on_all_workspaces":false,"x":0,"y":32,"width":2560,"height":1408,"occupied":true}],"firefox-esr":[{"id":15825917,"hash":15825917,"sequence":4,"title":"Installed Extensions - GNOME Shell Extensions — Mozilla Firefox","workspace":0,"maximized":3,"fullscreen":false,"above":false,"monitor":0,"on_all_workspaces":false,"x":0,"y":32,"width":2560,"height":1408,"occupied":true}],"io.github.mrvladus.List":[{"id":15825919,"hash":15825919,"sequence":6,"title":"Errands","workspace":6,"maximized":0,"fullscreen":false,"above":false,"monitor":0,"on_all_workspaces":false,"x":749,"y":364,"width":1000,"height":700,"occupied":true}],"chromium":[{"id":15825916,"hash":15825916,"sequence":3,"title":"New Tab - Chromium","workspace":5,"maximized":3,"fullscreen":false,"above":false,"monitor":0,"on_all_workspaces":false,"x":0,"y":32,"width":2560,"height":1408,"occupied":true}],"org.gnome.Settings":[{"id":15825930,"hash":15825930,"sequence":17,"title":"Settings","workspace":0,"maximized":0,"fullscreen":false,"above":false,"monitor":0,"on_all_workspaces":false,"x":790,"y":416,"width":980,"height":640,"occupied":false}]}'
+
+[shell/extensions/advanced-media-controller]
+enable-album-art-rotation=true
+enable-panel-scroll=true
+info-align-center=true
+monochrome-icons=false
+panel-element-order='icon,label,controls'
+panel-font-bold=false
+panel-font-size=14
+panel-icon-size=20
+panel-index=0
+panel-label-width=170
+panel-position='right'
+popup-width=280
+separator-text=' - '
+show-artist=true
+show-track-name=true
+vinyl-app-ids=['com.plexamp.Plexamp']
+vinyl-app-instances=['{"id":"com.plexamp.Plexamp","name":"Plexamp","desktopId":"com.plexamp.Plexamp","busName":"org.mpris.MediaPlayer2.Plexamp","enabled":true}']
 
 [shell/extensions/astra-monitor]
 experimental-features='[]'
@@ -200,7 +222,7 @@ sigma=30
 
 [shell/extensions/caffeine]
 cli-toggle=false
-indicator-position-max=3
+indicator-position-max=4
 
 [shell/extensions/dash-to-panel]
 animate-appicon-hover-animation-extent={'RIPPLE': 4, 'PLANK': 4, 'SIMPLE': 1}
@@ -312,6 +334,15 @@ spacing-label-top=1
 screenshot=['<Shift><Super>minus']
 show-screen-recording-ui=['<Shift><Super>bracketleft']
 show-screenshot-ui=['<Shift><Super>equal']
+switch-to-application-1=@as []
+switch-to-application-2=@as []
+switch-to-application-3=@as []
+switch-to-application-4=@as []
+switch-to-application-5=@as []
+switch-to-application-6=@as []
+switch-to-application-7=@as []
+switch-to-application-8=@as []
+switch-to-application-9=@as []
 
 [shell/world-clocks]
 locations=@av []
