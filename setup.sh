@@ -63,8 +63,10 @@ ensure_packages \
   tmux \
   python3 \
   python3-pip \
+  pipx \
   meld \
   neovim \
+  foot \
   libxml2-utils
 
 # =========================================================
@@ -128,6 +130,57 @@ for pkg in */; do
 done
 
 cd -
+
+# =========================================================
+# GNOME SHELL CONFIGURATION
+# =========================================================
+echo "==> Restoring GNOME settings and extensions"
+
+# Load the dconf registry first (restores visual settings and extension preferences)
+if [[ -f "$HOME/.config/dconf/gnome_settings.dconf" ]]; then
+    echo "==> Importing GNOME visual preferences and extension settings"
+    dconf load /org/gnome/ < "$HOME/.config/dconf/gnome_settings.dconf"
+fi
+
+# Set up workspace switching keybinds
+for i in {1..9}; do
+  gsettings set org.gnome.shell.keybindings switch-to-application-$i "[]"
+done
+for i in $(seq 10); do
+  gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-$i "['<Super>$i']"
+  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-$i "['<Shift><Super>$i']"
+done
+
+# Ensure pipx path is exposed in the current subshell execution context
+export PATH="$HOME/.local/bin:$PATH"
+
+# Automatically install and enable extensions
+my_extensions=(
+  "BingWallpaper@ineffable-gmail.com"
+  "caffeine@patapon.info"
+  "instantworkspaceswitcher@amalantony.net"
+  "monitor@astraext.github.io"
+  "unblank@sun.wxg@gmail.com"
+  "Bluetooth-Battery-Meter@maniacx.github.com"
+  "live-lockscreen@nick-redwill"
+  "SmartAutoMoveNG@lauinger-clan.de"
+  "workspaces-by-open-apps@favo02.github.com"
+)
+
+# Install extensions using an isolated pipx environment runner
+echo "==> Fetching and activating GNOME extensions"
+echo "  -> Cleaning out existing local extension folders to prevent conflicts..."
+for ext in "${my_extensions[@]}"; do
+    rm -rf "$HOME/.local/share/gnome-shell/extensions/$ext"
+done
+
+echo "  -> Downloading extensions..."
+pipx run gnome-extensions-cli install "${my_extensions[@]}" || true
+
+echo "  -> Enabling extensions..."
+for ext in "${my_extensions[@]}"; do
+    pipx run gnome-extensions-cli enable "$ext" || true
+done
 
 # =========================================================
 # STARSHIP

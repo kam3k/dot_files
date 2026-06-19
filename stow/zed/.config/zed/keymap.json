@@ -41,5 +41,37 @@
     "bindings": {
       "\\ s i": "tab_switcher::ToggleAll"
     }
-  }
+  },
+  {
+    "context": "Editor || Terminal || ProjectPanel",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "\\ a": "agent::Toggle"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "\\ g": "git_panel::Toggle"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "\\ t": "terminal_panel::Toggle"
+    }
+  },
+  {
+    "context": "Workspace",
+      "bindings": {
+      "\\ n": "agent::NewThread" }
+  },
 ]
