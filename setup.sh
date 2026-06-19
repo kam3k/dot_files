@@ -2,7 +2,7 @@
 set -euo pipefail
 
 echo "======================================"
-echo " Pop!_OS setup"
+echo " Debian setup"
 echo "======================================"
 
 # Create temp dir
