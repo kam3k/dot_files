@@ -165,6 +165,7 @@ my_extensions=(
   "live-lockscreen@nick-redwill"
   "SmartAutoMoveNG@lauinger-clan.de"
   "workspaces-by-open-apps@favo02.github.com"
+  "advanced-media-controller@sanjai.com"
 )
 
 # Install extensions using an isolated pipx environment runner
