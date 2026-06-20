@@ -108,15 +108,23 @@ search-filter-time-type='last_modified'
 initial-size=(1189, 1169)
 initial-size-file-chooser=(890, 550)
 
+[portal/filechooser/org.gnome.TextEditor]
+last-folder-path='/home/marc/.ssh'
+
 [settings-daemon/plugins/color]
+night-light-enabled=false
 night-light-schedule-automatic=false
+
+[settings-daemon/plugins/media-keys]
+rotate-video-lock-static=@as []
 
 [settings-daemon/plugins/power]
 sleep-inactive-ac-timeout=3600
+sleep-inactive-ac-type='suspend'
 
 [shell]
 disable-user-extensions=false
-enabled-extensions=['status-tray@keithvassallo.com', 'Bluetooth-Battery-Meter@maniacx.github.com', 'workspaces-by-open-apps@favo02.github.com', 'just-perfection-desktop@just-perfection', 'caffeine@patapon.info', 'BingWallpaper@ineffable-gmail.com', 'unblank@sun.wxg@gmail.com', 'SmartAutoMoveNG@lauinger-clan.de', 'instantworkspaceswitcher@amalantony.net', 'live-lockscreen@nick-redwill', 'randomwallpaper@iflow.space', 'monitor@astraext.github.io', 'advanced-media-controller@sanjai.com']
+enabled-extensions=['SmartAutoMoveNG@lauinger-clan.de', 'monitor@astraext.github.io', 'unblank@sun.wxg@gmail.com', 'workspaces-by-open-apps@favo02.github.com', 'Bluetooth-Battery-Meter@maniacx.github.com', 'caffeine@patapon.info', 'randomwallpaper@iflow.space', 'medialine@funinkina.co.in', 'live-lockscreen@nick-redwill', 'instantworkspaceswitcher@amalantony.net', 'BingWallpaper@ineffable-gmail.com', 'just-perfection-desktop@just-perfection', 'advanced-media-controller@sanjai.com', 'status-tray@keithvassallo.com']
 favorite-apps=['firefox-esr.desktop', 'dev.zed.Zed.desktop', 'foot.desktop', 'com.plexamp.Plexamp.desktop', 'slack.desktop', 'chromium.desktop']
 last-selected-power-profile='performance'
 welcome-dialog-last-shown-version='48.7'
@@ -170,6 +178,7 @@ memory-indicators-order='["icon","bar","graph","percentage","value","free"]'
 monitors-order='["processor","gpu","memory","storage","network","sensors"]'
 network-header-show=false
 network-indicators-order='["icon","IO bar","IO graph","IO speed"]'
+panel-box-order=1
 processor-header-bars=true
 processor-header-bars-breakdown=false
 processor-header-bars-core=true
